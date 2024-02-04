@@ -8,6 +8,7 @@
   },
   "setup": {
     "title": "Setup Game",
+    "opponent": "AI Opponent | AI Opponent {index}",
     "players": {
       "title": "Player",
       "playerCount": "Human Players",
@@ -16,7 +17,17 @@
       "botCount": "AI Opponents",
       "botCountItem": "{count} AI Opponent | {count} AI Opponents",
       "botColor": "AI Opponent Color | AI Opponent {index} Color"
+    },
+    "difficultyLevel": {
+      "title": "Difficulty Level",
+      "easy": "Easy",
+      "hard": "Hard"
     }
+  },
+  "difficultyLevel": {
+    "1": "Normal",
+    "2": "Hard",
+    "3": "Impossible"
   },
   "notfound": {
     "title": "Not Found"
