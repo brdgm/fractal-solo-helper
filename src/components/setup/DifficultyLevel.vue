@@ -24,8 +24,8 @@
 </template>
 
 <script lang="ts">
-import DifficultyLevel from '@/services/enum/DifficultyLevel'
 import { useStateStore } from '@/store/state'
+import getBotDifficultyLevel from '@/util/getBotDifficultyLevel'
 import { defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -37,7 +37,7 @@ export default defineComponent({
 
     const initialLevels : number[] = []
     for (let bot = 1; bot<=3; bot++) {
-      initialLevels[bot-1] = state.setup.playerSetup.botDifficultyLevel[bot-1] || DifficultyLevel.NORMAL
+      initialLevels[bot-1] = getBotDifficultyLevel(state.setup.playerSetup, bot)
     }
 
     const levels = ref(initialLevels)
@@ -52,8 +52,9 @@ export default defineComponent({
     updateDifficultyLevel(bot : number, event: Event) {
       const level = parseInt((event.target as HTMLInputElement).value)
       this.levels[bot-1] = level
-      this.state.setup.playerSetup.botDifficultyLevel = this.levels.slice(0, this.botCount)
+      this.state.setup.playerSetup.botDifficultyLevels = this.levels.slice(0, this.botCount)
     }
   }
 })
 </script>
+@/util/getBotDifficultyLevel

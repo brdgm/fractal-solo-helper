@@ -19,6 +19,7 @@
 <script lang="ts">
 import Faction from '@/services/enum/Faction'
 import { useStateStore } from '@/store/state'
+import getBotFaction from '@/util/getBotFaction'
 import { defineComponent, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
@@ -30,7 +31,7 @@ export default defineComponent({
 
     const initialFactions : Faction[] = []
     for (let bot = 1; bot<=3; bot++) {
-      initialFactions[bot-1] = state.setup.playerSetup.botFactions[bot-1] || Faction.BORROKA
+      initialFactions[bot-1] = getBotFaction(state.setup.playerSetup, bot)
     }
 
     const factions = ref(initialFactions)
@@ -53,3 +54,4 @@ export default defineComponent({
   }
 })
 </script>
+@/util/getBotFaction

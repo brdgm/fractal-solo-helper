@@ -14,8 +14,8 @@ export const useStateStore = defineStore(`${name}.state`, {
           playerCount: 1,
           botCount: 1,
           playerColors: [PlayerColor.RED, PlayerColor.BLUE, PlayerColor.GREEN, PlayerColor.YELLOW],
-          botFactions: [Faction.BORROKA],
-          botDifficultyLevel: [DifficultyLevel.NORMAL]
+          botFactions: [],
+          botDifficultyLevels: []
         }
       },
       rounds: []
@@ -48,7 +48,7 @@ export interface PlayerSetup {
   botCount: number
   playerColors: PlayerColor[]
   botFactions: Faction[]
-  botDifficultyLevel: DifficultyLevel[]
+  botDifficultyLevels: DifficultyLevel[]
 }
 
 export interface Round {
