@@ -8,11 +8,11 @@ import PlayerColor from '@/services/enum/PlayerColor';
 export default function(playerColor: PlayerColor) : string {
   switch (playerColor) {
     case PlayerColor.RED:
-      return '#f33'
+      return '#da0e18'
     case PlayerColor.BLUE:
-      return '#77f'
+      return '#48b3e7'
     case PlayerColor.GREEN:
-      return '#0a0'
+      return '#00a979'
     case PlayerColor.YELLOW:
       return 'gold'
     default:
