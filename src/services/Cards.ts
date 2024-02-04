@@ -9,6 +9,9 @@ import PlayerColor from './enum/PlayerColor'
 import UnitType from './enum/UnitType'
 import ColonyType from './enum/ColonyType'
 
+/**
+ * AI protocol cards.
+ */
 const cards : Card[] = [
   {
     id: 1,
