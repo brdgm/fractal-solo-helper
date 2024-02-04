@@ -22,7 +22,19 @@
       "title": "Difficulty Level",
       "easy": "Easy",
       "hard": "Hard"
+    },
+    "factionSelection": {
+      "title": "Faction"
     }
+  },
+  "faction": {
+    "borroka": "Borroka",
+    "delverar": "Delverar",
+    "exodian": "Exodian",
+    "goria": "Goria",
+    "saura": "Saura",
+    "txingur": "Txingur",
+    "vax-117": "VAX-117"
   },
   "difficultyLevel": {
     "1": "Normal",
