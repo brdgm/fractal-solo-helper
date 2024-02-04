@@ -15,7 +15,7 @@
       "playerColor": "Player Color | Player {index} Color",
       "botCount": "AI Opponents",
       "botCountItem": "{count} AI Opponent | {count} AI Opponents",
-      "botColor": "AI Opponent Color"
+      "botColor": "AI Opponent Color | AI Opponent {index} Color"
     }
   },
   "notfound": {
