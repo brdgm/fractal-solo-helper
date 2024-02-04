@@ -11,6 +11,6 @@ describe('services/Cards', () => {
 
   it('getAll', () => {
     const normalCards = Cards.getAll()
-    expect(normalCards.length).eq(1)
+    expect(normalCards.length).eq(10)
   })
 })
