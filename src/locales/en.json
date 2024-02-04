@@ -6,6 +6,18 @@
     "play2": "You need the <a href='https://boardgamegeek.com/boardgameexpansion/401413/fractal-automata' target='_blank' rel='noopener'>Fractal: Automata</a> expansion. This application replaces the AI protocol and AI behavior cards and helps managing the faction abilities.",
     "feedback": "Discussion and Feedback:"
   },
+  "setup": {
+    "title": "Setup Game",
+    "players": {
+      "title": "Player",
+      "playerCount": "Human Players",
+      "playerCountItem": "{count} Player | {count} Players",
+      "playerColor": "Player Color | Player {index} Color",
+      "botCount": "AI Opponents",
+      "botCountItem": "{count} AI Opponent | {count} AI Opponents",
+      "botColor": "AI Opponent Color"
+    }
+  },
   "notfound": {
     "title": "Not Found"
   },

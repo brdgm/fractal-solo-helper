@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
 import { name } from '@/../package.json'
 import DifficultyLevel from '@/services/enum/DifficultyLevel'
+import Faction from '@/services/enum/Faction'
+import PlayerColor from '@/services/enum/PlayerColor'
 
 export const useStateStore = defineStore(`${name}.state`, {
   state: () => {
@@ -8,7 +10,13 @@ export const useStateStore = defineStore(`${name}.state`, {
       language: 'en',
       baseFontSize: 1.0,
       setup: {
-        difficultyLevel: DifficultyLevel.NORMAL
+        playerSetup: {
+          playerCount: 1,
+          botCount: 1,
+          playerColors: [PlayerColor.RED, PlayerColor.BLUE, PlayerColor.GREEN, PlayerColor.YELLOW],
+          botFactions: [Faction.BORROKA],
+          botDifficultyLevel: [DifficultyLevel.NORMAL]
+        }
       },
       rounds: []
     } as State
@@ -32,14 +40,20 @@ export interface State {
   rounds: Round[]
 }
 export interface Setup {
-  difficultyLevel: DifficultyLevel
+  playerSetup: PlayerSetup
   debugMode?: boolean
+}
+export interface PlayerSetup {
+  playerCount: number
+  botCount: number
+  playerColors: PlayerColor[]
+  botFactions: Faction[]
+  botDifficultyLevel: DifficultyLevel[]
 }
 
 export interface Round {
   round: number
 }
-
 export interface CardDeckPersistence {
   deck: number[]
   reserve: number[]
