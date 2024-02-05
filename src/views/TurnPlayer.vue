@@ -1,7 +1,7 @@
 <template>
   <h1>{{t('player.human', {player}, playerCount)}}</h1>
 
-  <p>TBD</p>
+  <p v-html="t('turnPlayer.takeTurn')" class="mt-4"></p>
 
   <button class="btn btn-primary btn-lg mt-4" @click="next()">
     {{t('action.next')}}

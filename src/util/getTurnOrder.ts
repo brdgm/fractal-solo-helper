@@ -14,8 +14,7 @@ export default function(state: State, cycle: number, turn: number, startPlayer: 
   const botCount = state.setup.playerSetup.botCount
   const playerOrder = getPlayerOrder(playerCount, botCount, startPlayer)
   
-  const currentCycle = state.cycles.find(item => item.cycle==cycle)
-  const turns = currentCycle?.turns ?? []
+  const turns = getTurns(state, cycle)
   const steps : TurnOrder[] = []
 
   let invalidTurn = false
@@ -23,7 +22,7 @@ export default function(state: State, cycle: number, turn: number, startPlayer: 
     playerOrder.forEach(player => {
       if (!playerHasPassedBeforeTurn(turns, cycle, turnNo, player)) {
         if (turnNo > MAX_TURN) {
-          // not a valid round as not all have passed in time, return empty list of steps
+          // not a valid cycle as not all have passed in time, return empty list of steps
           invalidTurn = true
         }
         if (player.player) {
@@ -41,6 +40,11 @@ export default function(state: State, cycle: number, turn: number, startPlayer: 
   else {
     return steps
   }
+}
+
+function getTurns(state: State, cycle: number) : Turn[] {
+  const currentCycle = state.cycles.find(item => item.cycle==cycle)
+  return currentCycle?.turns ?? []
 }
 
 function playerHasPassedBeforeTurn(turns: Turn[], cycle: number, turnNo: number, player : PlayerOrder) : boolean {
