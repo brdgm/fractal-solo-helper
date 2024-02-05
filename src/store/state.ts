@@ -71,6 +71,7 @@ export interface Turn {
   player?: number
   bot?: number
   passed?: boolean
+  botCardDeck?: CardDeckPersistence
 }
 export interface CardDeckPersistence {
   deck: number[]
