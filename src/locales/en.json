@@ -37,7 +37,7 @@
       "2": "Replace 1 random AI tactic card with the elite tactic card with the same name and shuffle it with the other non-elite tactic cards in the deck. Put the remaining elite tactic cards in the reserve.",
       "3": "Replace 2 random AI tactic cards with the elite tactic cards with the same name and shuffle them with the other non-elite tactic cards in the deck. Put the remaining elite tactic cards in the reserve."
     },
-    "startingUnits": "Deploy the starting units in the starting sector.",
+    "startingUnits": "Deploy the colony and starting units in the starting sector.",
     "singularity": "Shuffle the following singularities and place one face-down on the Utopian sector:",
     "singularityToken": {
       "resonantMonolith": "Resonant Monolith",
