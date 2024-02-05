@@ -1,6 +1,6 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1><PlayerColorDisplay :playerColor="playerColor"/> {{t('player.human', {player}, playerCount)}}</h1>
+  <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t('player.human', {player}, playerCount)}}</h1>
 
   <p v-html="t('turnPlayer.takeTurn')" class="mt-4"></p>
 
@@ -63,3 +63,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.color {
+  margin-top: -0.5rem;
+}
+</style>

@@ -4,7 +4,7 @@
       <span v-html="t('setupBot.factionMap')"></span>
       <ul>
         <li v-for="bot of botCount" :key="bot">
-          <PlayerColorDisplay :player-color="playerColors[playerCount+bot-1]" class="color"/>
+          <PlayerColorDisplay :player-color="playerColors[playerCount+bot-1]" :size-rem="1" class="color"/>
           <b>{{t(`faction.${getFaction(bot)}`)}}</b>
         </li>
       </ul>
@@ -100,8 +100,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .color {
-  height: 1rem;
-  width: 1rem;
   margin-top: -0.25rem;
   margin-right: 0.25rem;
 }

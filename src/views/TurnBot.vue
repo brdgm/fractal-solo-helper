@@ -1,6 +1,6 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1><PlayerColorDisplay :playerColor="playerColor"/> {{t('player.bot', {bot}, botCount)}}</h1>
+  <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t('player.bot', {bot}, botCount)}}</h1>
 
   <p>TBD</p>
 
@@ -57,3 +57,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.color {
+  margin-top: -0.5rem;
+}
+</style>

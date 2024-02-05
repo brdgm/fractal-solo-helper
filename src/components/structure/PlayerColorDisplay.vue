@@ -1,6 +1,7 @@
 <template>
-  <svg :width="sizeRem+'rem'" :height="sizeRem+'rem'" class="color">
-    <rect :width="rectSizeRem+'rem'" :height="rectSizeRem+'rem'" :style="`fill:${getColorCode(playerColor)};'`"/>
+  <svg :width="`${sizeRem}rem`" :height="`${sizeRem}rem`" class="color">
+    <rect :width="`${sizeRem}rem`" :height="`${sizeRem}rem`" :rx="`${sizeRem * 0.2}rem`"
+        :style="`fill:${getColorCode(playerColor)};'`"/>
   </svg>
 </template>
 
@@ -19,11 +20,6 @@ export default defineComponent({
     sizeRem: {
       type: Number,
       default: 2
-    }
-  },
-  computed: {
-    rectSizeRem() : number {
-      return this.sizeRem * 0.75
     }
   },
   methods: {

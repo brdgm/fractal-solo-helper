@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div v-for="playerIndex of totalPlayerCount" :key="playerIndex" class="form-check">
+    <div v-for="playerIndex of totalPlayerCount" :key="playerIndex" class="form-check mt-2 mb-2">
       <label class="form-check-label">
         <input class="form-check-input" type="radio" v-model="startPlayer" :value="playerIndex">
-        <PlayerColorDisplay :playerColor="playerColors[playerIndex-1]"/>
+        <PlayerColorDisplay :playerColor="playerColors[playerIndex-1]" :sizeRem="1.5" class="color"/>
         <span v-if="isBot(playerIndex)">{{t('player.bot',{bot:playerIndex-playerCount},botCount)}}</span>
         <span v-else>{{t('player.human',{player:playerIndex},playerCount)}}</span>
       </label>
@@ -51,3 +51,10 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+.color {
+  margin-top: -0.25rem;
+  margin-right: 0.25rem;
+}
+</style>

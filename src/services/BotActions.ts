@@ -2,7 +2,12 @@ import { CardAction } from './Card'
 import CardDeck from './CardDeck'
 import Action from './enum/Action'
 import Behavior from './enum/Behavior'
+import ColonyType from './enum/ColonyType'
 import ConditionalActivation from './enum/ConditionalActivation'
+import LivingStormDirection from './enum/LivingStormDirection'
+import LivingStormOrientation from './enum/LivingStormOrientation'
+import PlayerColor from './enum/PlayerColor'
+import UnitType from './enum/UnitType'
 
 /**
  * Bot actions in this turn based on AI protocol cards.
@@ -33,6 +38,30 @@ export default class BotActions {
 
   public get behavior() : Behavior {
     return this._behavior
+  }
+
+  public get livingStormDirection() : LivingStormDirection {
+    return this._cardDeck.actionCard?.livingStormDirection ?? LivingStormDirection.DOWN_RIGHT
+  }
+
+  public get livingStormOrientation() : LivingStormOrientation {
+    return this._cardDeck.actionCard?.livingStormOrientation ?? LivingStormOrientation.VERTICAL
+  }
+
+  public get playerPriority() : PlayerColor[]|undefined {
+    return this._cardDeck.actionCard?.playerPriority
+  }
+
+  public get playerPriorityWatcherToken() : boolean {
+    return this._cardDeck.actionCard?.playerPriorityWatcherToken ?? false
+  }
+
+  public get unitPriority() : UnitType[] {
+    return this._cardDeck.actionCard?.unitPriority ?? []
+  }
+
+  public get colonyPriority() : ColonyType[] {
+    return this._cardDeck.actionCard?.colonyPriority ?? []
   }
 
 }
