@@ -29,6 +29,13 @@ export const useStateStore = defineStore(`${name}.state`, {
     storeCycle(cycle : Cycle) {
       this.cycles = this.cycles.filter(item => item.cycle < cycle.cycle)
       this.cycles.push(cycle)
+    },
+    storeTurn(turn : Turn) {
+      const cycle = this.cycles.find(item => item.cycle==turn.cycle)
+      if (cycle) {
+        cycle.turns = cycle.turns.filter(item => item.turn < turn.turn)
+        cycle.turns.push(turn)
+      }
     }
   },
   persist: true

@@ -4,7 +4,7 @@
   <template v-for="bot in botCount" :key="bot">
     <div class="row mt-3">
       <div class="col-4 col-md-3">
-        <label for="difficultyLevel" class="form-label">{{t('player.bot', {index:bot}, botCount)}}</label>
+        <label for="difficultyLevel" class="form-label">{{t('player.bot', {bot}, botCount)}}</label>
       </div>
       <div class="col-7 col-md-4">
         <select class="form-select"

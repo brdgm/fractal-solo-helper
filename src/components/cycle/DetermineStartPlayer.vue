@@ -4,8 +4,8 @@
       <label class="form-check-label">
         <input class="form-check-input" type="radio" v-model="startPlayer" :value="playerIndex">
         <PlayerColorDisplay :playerColor="playerColors[playerIndex-1]"/>
-        <span v-if="isBot(playerIndex)">{{t('player.bot',{index:playerIndex-playerCount},botCount)}}</span>
-        <span v-else>{{t('player.human',{index:playerIndex},playerCount)}}</span>
+        <span v-if="isBot(playerIndex)">{{t('player.bot',{bot:playerIndex-playerCount},botCount)}}</span>
+        <span v-else>{{t('player.human',{player:playerIndex},playerCount)}}</span>
       </label>
     </div>
   </div>

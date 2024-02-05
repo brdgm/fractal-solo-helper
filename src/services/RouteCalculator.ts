@@ -39,7 +39,7 @@ export default class RouteCalculator {
 
   /**
    * Get route to previous step in cycle.
-   * If this is the first turn in cycle, returns route to end of previous cycle (or empty route in first cycle).
+   * If this is the first turn in cycle, returns route to cycle income.
    */
   public getBackRouteTo(state: State) : string {
     const steps = getTurnOrder(state, this.cycle, this.turn, this.getFirstPlayer(state))
@@ -50,12 +50,7 @@ export default class RouteCalculator {
     }
     const previousStep = steps[currentStepIndex-1]
     if (!previousStep) {
-      if (this.cycle > 1) {
-        return `/cycle/${this.cycle-1}/end`
-      }
-      else {
-        return ''
-      }
+      return `/cycle/${this.cycle}/income`
     }
     return routeTo(previousStep)
   }

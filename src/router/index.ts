@@ -6,6 +6,9 @@ import { name } from '@/../package.json'
 import SetupGame from '@/views/SetupGame.vue'
 import SetupBot from '@/views/SetupBot.vue'
 import CycleIncome from '@/views/CycleIncome.vue'
+import TurnPlayer from '@/views/TurnPlayer.vue'
+import TurnBot from '@/views/TurnBot.vue'
+import CycleEnd from '@/views/CycleEnd.vue'
 
 const LOCALSTORAGE_KEY = `${name}.route`
 
@@ -29,6 +32,21 @@ const routes: Array<RouteRecordRaw> = [
     path: '/cycle/:cycle/income',
     name: 'CycleIncome',
     component: CycleIncome
+  },
+  {
+    path: '/cycle/:cycle/turn/:turn/player/:player',
+    name: 'TurnPlayer',
+    component: TurnPlayer
+  },
+  {
+    path: '/cycle/:cycle/turn/:turn/bot/:bot',
+    name: 'TurnBot',
+    component: TurnBot
+  },
+  {
+    path: '/cycle/:cycle/end',
+    name: 'EndOfRound',
+    component: CycleEnd
   },
   {
     path: '/:pathMatch(.*)*',
