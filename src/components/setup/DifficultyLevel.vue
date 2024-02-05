@@ -2,7 +2,7 @@
   <h3 class="mt-4 mb-3">{{t('setup.difficultyLevel.title')}}</h3>
 
   <template v-for="bot in botCount" :key="bot">
-    <h6 v-if="botCount > 1">{{t('setup.opponent', {index:bot}, botCount)}}</h6>
+    <h6 v-if="botCount > 1">{{t('player.bot', {index:bot}, botCount)}}</h6>
     <div class="row">
       <div class="col-2 col-lg-1 text-end">
         <label for="difficultyLevel" class="form-label">{{t('setup.difficultyLevel.easy')}}</label>

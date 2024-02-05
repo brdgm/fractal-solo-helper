@@ -2,10 +2,14 @@
   <h1>{{t('cycleIncome.title', {cycle})}}</h1>
 
   <ol>
-    <li>TBD {{cycle}}</li>
+    <li>
+      <span v-html="t('cycleIncome.startPlayer')"></span><br/>
+      <DetermineStartPlayer @startPlayer="setStartPlayer" class="mt-2"/>
+    </li>
+    <li v-html="t('cycleIncome.gainIncome')"></li>
   </ol>
 
-  <button class="btn btn-primary btn-lg mt-4" @click="next()">
+  <button class="btn btn-primary btn-lg mt-4" @click="next()" v-if="startPlayer">
     {{t('action.next')}}
   </button>
 
@@ -15,15 +19,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useStateStore } from '@/store/state'
+import { Cycle, useStateStore } from '@/store/state'
 import FooterButtons from '@/components/structure/FooterButtons.vue'
 import { useRoute } from 'vue-router'
 import NavigationState from '@/util/NavigationState'
+import DetermineStartPlayer from '@/components/cycle/DetermineStartPlayer.vue'
 
 export default defineComponent({
   name: 'CycleIncome',
   components: {
-    FooterButtons
+    FooterButtons,
+    DetermineStartPlayer
   },
   setup() {
     const { t } = useI18n()
@@ -33,6 +39,11 @@ export default defineComponent({
     const { cycle } = navigationState
     return { t, state, cycle }
   },
+  data() {
+    return {
+      startPlayer: undefined as number|undefined
+    }
+  },
   computed: {
     backButtonRouteTo() : string {
       return ''
@@ -40,7 +51,19 @@ export default defineComponent({
   },
   methods: {
     next() : void {
+      // store cycle
+      if (this.startPlayer) {
+        const cycle : Cycle = {
+          cycle: this.cycle,
+          startPlayer: this.startPlayer,
+          turns: []
+        }
+        this.state.storeCycle(cycle)
+      }
       this.$router.push(`/cycle/${this.cycle}/turn/1`)
+    },
+    setStartPlayer(startPlayer: number) : void {
+      this.startPlayer = startPlayer
     }
   }
 })

@@ -18,17 +18,17 @@ export const useStateStore = defineStore(`${name}.state`, {
           botDifficultyLevels: []
         }
       },
-      rounds: []
+      cycles: []
     } as State
   },
   actions: {
     resetGame() {
-      this.rounds = []
+      this.cycles = []
       this.setup.initialBotCardDecks = undefined
     },
-    storeRound(round : Round) {
-      this.rounds = this.rounds.filter(item => item.round < round.round)
-      this.rounds.push(round)
+    storeCycle(cycle : Cycle) {
+      this.cycles = this.cycles.filter(item => item.cycle < cycle.cycle)
+      this.cycles.push(cycle)
     }
   },
   persist: true
@@ -38,7 +38,7 @@ export interface State {
   language: string,
   baseFontSize: number,
   setup: Setup,
-  rounds: Round[]
+  cycles: Cycle[]
 }
 export interface Setup {
   playerSetup: PlayerSetup
@@ -53,8 +53,14 @@ export interface PlayerSetup {
   botDifficultyLevels: DifficultyLevel[]
 }
 
-export interface Round {
-  round: number
+export interface Cycle {
+  cycle: number
+  startPlayer: number
+  turns: Turn[]
+}
+export interface Turn {
+  cycle: number
+  turn: number
 }
 export interface CardDeckPersistence {
   deck: number[]

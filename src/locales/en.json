@@ -8,15 +8,13 @@
   },
   "setup": {
     "title": "Setup Game",
-    "opponent": "AI Opponent | AI Opponent {index}",
     "players": {
       "title": "Player",
+      "playerColor": "{player} Color",
       "playerCount": "Human Players",
       "playerCountItem": "{count} Player | {count} Players",
-      "playerColor": "Player Color | Player {index} Color",
       "botCount": "AI Opponents",
-      "botCountItem": "{count} AI Opponent | {count} AI Opponents",
-      "botColor": "AI Opponent Color | AI Opponent {index} Color"
+      "botCountItem": "{count} AI Opponent | {count} AI Opponents"
     },
     "difficultyLevel": {
       "title": "Difficulty Level",
@@ -48,7 +46,13 @@
     }
   },
   "cycleIncome": {
-    "title": "Cycle {cycle}: Income"
+    "title": "Cycle {cycle}: Income",
+    "startPlayer": "Determine start player for this cycle:",
+    "gainIncome": "Human players gain credits and resources from exploitation areas."
+  },
+  "player": {
+    "human": "Player | Player {index}",
+    "bot": "AI Opponent | AI Opponent {index}"
   },
   "faction": {
     "borroka": "Borroka",

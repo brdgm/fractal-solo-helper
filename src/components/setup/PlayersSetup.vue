@@ -13,7 +13,7 @@
   </div>  
   <div class="row mt-3" v-for="playerColorIndex in playerCount" :key="playerColorIndex+playerColors[playerColorIndex-1]">
     <div class="col-4 col-md-3">
-      <label for="playerCount" class="form-label">{{t('setup.players.playerColor', {index:playerColorIndex}, playerCount)}}</label>
+      <label for="playerCount" class="form-label">{{t('setup.players.playerColor', {player:t('player.human', {index:playerColorIndex}, playerCount)})}}</label>
     </div>
     <div class="col-8 col-md-9">
       <PlayerColorPicker :model-value="playerColors[playerColorIndex-1]" @update:model-value="corporation => playerColorChanged(playerColorIndex-1, corporation)"/>
@@ -32,7 +32,7 @@
   </div>  
   <div class="row mt-3" v-for="botColorIndex in botCount" :key="botColorIndex+playerColors[playerCount+botColorIndex-1]">
     <div class="col-4 col-md-3">
-      <label for="playerCount" class="form-label">{{t('setup.players.botColor', {index:botColorIndex}, botCount)}}</label>
+      <label for="playerCount" class="form-label">{{t('setup.players.playerColor', {player:t('player.bot', {index:botColorIndex}, botCount)})}}</label>
     </div>
     <div class="col-8 col-md-9">
       <PlayerColorPicker :model-value="playerColors[playerCount+botColorIndex-1]" @update:model-value="corporation => playerColorChanged(playerCount+botColorIndex-1, corporation)"/>
