@@ -85,19 +85,21 @@ export default class CardDeck {
 
   /**
    * Creates a shuffled new deck and reserve deck.
+   * @param difficultyLevel Difficulty level
+   * @param additionalCards Number of additional cards to add to deck
    */
-  public static new(difficultyLevel : DifficultyLevel) : CardDeck {
+  public static new(difficultyLevel : DifficultyLevel, additionalCards: number = 0) : CardDeck {
     const allCards = _.shuffle(Cards.getAll())
     const deck : Card[] = []
     const reserve : Card[] = []
 
     // pull in protocol cards based on difficulty level, the rest makes the reserve deck
-    let startingCards = 4;
+    let startingCards = 4 + additionalCards
     if (difficultyLevel == DifficultyLevel.HARD) {
-      startingCards = 5
+      startingCards += 1
     }
     else if (difficultyLevel == DifficultyLevel.IMPOSSIBLE) {
-      startingCards = 6
+      startingCards += 2
     }
     for (let i=0; i < allCards.length; i++) {
       if (i < startingCards) {

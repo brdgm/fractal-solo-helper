@@ -24,6 +24,7 @@ export const useStateStore = defineStore(`${name}.state`, {
   actions: {
     resetGame() {
       this.rounds = []
+      this.setup.initialBotCardDecks = undefined
     },
     storeRound(round : Round) {
       this.rounds = this.rounds.filter(item => item.round < round.round)
@@ -41,6 +42,7 @@ export interface State {
 }
 export interface Setup {
   playerSetup: PlayerSetup
+  initialBotCardDecks?: CardDeckPersistence[]
   debugMode?: boolean
 }
 export interface PlayerSetup {

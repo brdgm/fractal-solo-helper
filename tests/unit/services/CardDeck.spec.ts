@@ -24,6 +24,14 @@ describe('CardDeck', () => {
     expect(cardDeck.discard.length, 'discard size').to.eq(0)
   })
 
+  it('new-hard-additional-2', () => {
+    const cardDeck = CardDeck.new(DifficultyLevel.HARD, 2)
+
+    expect(cardDeck.deck.length, 'deck size').to.eq(7)
+    expect(cardDeck.reserve.length, 'reserve size').to.eq(3)
+    expect(cardDeck.discard.length, 'discard size').to.eq(0)
+  })
+
   it('new-impossible', () => {
     const cardDeck = CardDeck.new(DifficultyLevel.IMPOSSIBLE)
 

@@ -16,6 +16,10 @@ import { useI18n } from 'vue-i18n'
 import { useStateStore } from '@/store/state'
 import FooterButtons from '@/components/structure/FooterButtons.vue'
 import BotInstructions from '@/components/setup/BotInstructions.vue'
+import CardDeck from '@/services/CardDeck'
+import getBotFaction from '@/util/getBotFaction'
+import getBotDifficultyLevel from '@/util/getBotDifficultyLevel'
+import FactionConfigs from '@/services/FactionConfigs'
 
 export default defineComponent({
   name: 'SetupBot',
@@ -32,7 +36,18 @@ export default defineComponent({
     startGame() : void {
       this.state.resetGame()
 
-      this.$router.push('/round/1')
+      // prepare initial bot card decks
+      const playerSetup = this.state.setup.playerSetup
+      const initialBotCardDecks : CardDeck[] = []
+      for (let bot=1; bot<=playerSetup.botCount; bot++) {
+        const difficultyLevel = getBotDifficultyLevel(playerSetup, bot)
+        const faction = getBotFaction(playerSetup, bot)
+        const factionConfig = FactionConfigs.get(faction)
+        initialBotCardDecks.push(CardDeck.new(difficultyLevel, factionConfig.additionalProtocolCards))
+      }
+      this.state.setup.initialBotCardDecks = initialBotCardDecks.map(deck => deck.toPersistence())
+
+      this.$router.push('/cycle/1/income')
     }
   }
 })

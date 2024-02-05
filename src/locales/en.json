@@ -47,6 +47,9 @@
       "taintedCivilization": "Tainted Civilization"
     }
   },
+  "cycleIncome": {
+    "title": "Cycle {cycle}: Income"
+  },
   "faction": {
     "borroka": "Borroka",
     "delverar": "Delverar",
