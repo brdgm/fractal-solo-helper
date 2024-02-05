@@ -59,12 +59,12 @@ describe('CardDeck', () => {
   })
 
   it('prepareForNextRound', () => {
-    const cardDeck = CardDeck.fromPersistence({deck:[1], discard:[2,3], reserve:[]})
+    const cardDeck = CardDeck.fromPersistence({deck:[1], discard:[2,3], reserve:[4]})
 
     cardDeck.prepareForNextRound()
 
-    expect(cardDeck.deck.length, 'deck size').to.eq(2)
-    expect(cardDeck.reserve.length, 'reserve size').to.eq(0)
-    expect(cardDeck.discard.length, 'discard size').to.eq(1)
+    expect(cardDeck.deck.length, 'deck size').to.eq(3)
+    expect(cardDeck.reserve.length, 'reserve size').to.eq(1)
+    expect(cardDeck.discard.length, 'discard size').to.eq(0)
   })
 })

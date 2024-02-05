@@ -2,6 +2,7 @@ import { CardAction } from './Card'
 import CardDeck from './CardDeck'
 import Action from './enum/Action'
 import Behavior from './enum/Behavior'
+import ConditionalActivation from './enum/ConditionalActivation'
 
 /**
  * Bot actions in this turn based on AI protocol cards.
@@ -18,7 +19,7 @@ export default class BotActions {
     // draw next card
     this._cardDeck.draw()
 
-    this._actions = getBotActions(getCardActions(cardDeck))
+    this._actions = getCardActions(cardDeck).map(toBotAction)
     this._behavior = getBehavior(cardDeck)
   }
 
@@ -35,21 +36,36 @@ export default class BotActions {
 /**
  * Transform card actions into bot actions.
  */
-function getBotActions(cardActions: CardAction[]) : BotAction[] {
-  const actions : BotAction[] = []
-  cardActions.forEach(cardAction => {
-    if (cardAction.actions.length == 1) {
-      actions.push(toBotAction(cardAction, cardAction.actions[0]))
-    }
-    else if (cardAction.actions.length == 2 && cardAction.conditionalActivation) {
-      // TODO: implement
-    }
-  })
-  return actions
-}
+function toBotAction(cardAction: CardAction) : BotAction {
+  const items : BotActionItem[] = []
 
-function toBotAction(cardAction: CardAction, action: Action) : BotAction {
-  const botAction : BotAction = { action }
+  if (cardAction.actions.length == 1) {
+    items.push({ action: cardAction.actions[0] })
+  }
+  else if (cardAction.actions.length == 2 && cardAction.conditionalActivation) {
+    switch (cardAction.conditionalActivation) {
+      case ConditionalActivation.FIRST_OR_SECOND:
+        items.push({ action: cardAction.actions[0] })
+        items.push({ action: cardAction.actions[1], fallback: true })
+        break
+      case ConditionalActivation.FIRST_IF_AVAILABLE_THEN_SECOND:
+        items.push({ action: cardAction.actions[0] })
+        items.push({ action: cardAction.actions[1] })
+        break
+      default:
+        throw new Error(`Unknown conditional activation: ${cardAction.conditionalActivation}`)
+    }
+  }
+
+  // last breath
+  if (!items.find(item => item.action == Action.ADVANCE || item.action == Action.MOVEMENT_SINGLE)) {
+    items.push({ action: Action.ADVANCE, fallback: true })
+  }
+  if (!items.find(item => item.action == Action.RECRUIT)) {
+    items.push({ action: Action.RECRUIT, fallback: true })
+  }
+
+  const botAction : BotAction = { items }
   if (cardAction.actionCardSlot) {
     botAction.actionCardSlot = cardAction.actionCardSlot
   }
@@ -91,8 +107,11 @@ function getBehavior(cardDeck: CardDeck) : Behavior {
 }
 
 export interface BotAction {
-  action: Action
-  alternative?: boolean
-  fallback?: boolean
+  items: BotActionItem[]
   actionCardSlot?: number
+}
+
+export interface BotActionItem {
+  action: Action
+  fallback?: boolean
 }

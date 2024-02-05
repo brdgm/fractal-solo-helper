@@ -79,8 +79,6 @@ export default class CardDeck {
     // shuffle discard as new deck
     this._deck = _.shuffle(this._discard)
     this._discard = []
-    // draw first card to discard
-    this.draw()
   }
 
   /**
