@@ -29,11 +29,11 @@
     "title": "Automata Setup",
     "factionMap": "Place the faction mat to the left of the empire board. Place the corresponding faction token for the chosen color on the empire board.",
     "empireBoard": "On the Automata empire board, place the corresponding colonies, influence marker on 1, and victory points marker on 0.",
-    "tacticCards": "Shuffle the AI tactic cards and AI elite tactic cards to form the AI tactic deck. Shuffle and set the rest of the elite AI tactics aside to form the reserve. Place each deck in its corresponding space.",
+    "tacticCards": "Shuffle the AI tactic cards and AI elite tactic cards to form the AI tactic DECK. The rest of the elite AI tactic cards go to ELITE. The replaced non-elite card are put to RESERVE. Place each deck in its corresponding space.",
     "tacticCardDifficultyLevel": {
-      "1": "Shuffle all non-elite tactic cars as deck. Put all elite tactic cards in the reserve.",
-      "2": "Replace 1 random AI tactic card with the elite tactic card with the same name and shuffle it with the other non-elite tactic cards in the deck. Put the remaining elite tactic cards in the reserve.",
-      "3": "Replace 2 random AI tactic cards with the elite tactic cards with the same name and shuffle them with the other non-elite tactic cards in the deck. Put the remaining elite tactic cards in the reserve."
+      "1": "Shuffle all non-elite tactic cars as DECK. No elite cards are included in initially.",
+      "2": "Replace 1 random AI tactic card with the elite tactic card with the same name and shuffle it with the other non-elite tactic cards as DECK.",
+      "3": "Replace 2 random AI tactic cards with the elite tactic cards with the same name and shuffle them with the other non-elite tactic cards as DECK."
     },
     "startingUnits": "Deploy the colony and starting units in the starting sector.",
     "singularity": "Shuffle the following singularities and place one face-down on the Utopian sector:",
