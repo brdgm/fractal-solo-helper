@@ -61,6 +61,9 @@ export interface Cycle {
 export interface Turn {
   cycle: number
   turn: number
+  player?: number
+  bot?: number
+  passed?: boolean
 }
 export interface CardDeckPersistence {
   deck: number[]

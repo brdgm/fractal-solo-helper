@@ -1,7 +1,7 @@
 import PlayerColor from '@/services/enum/PlayerColor'
 import Faction from '@/services/enum/Faction'
 import DifficultyLevel from '@/services/enum/DifficultyLevel'
-import { Round, State } from '@/store/state'
+import { Cycle, State } from '@/store/state'
 
 export default function (params?: MockStateParams) : State {  
   return {
@@ -16,7 +16,7 @@ export default function (params?: MockStateParams) : State {
         botDifficultyLevels: params?.botDifficultyLevels ?? []
       }
     },
-    rounds: params?.rounds ?? []
+    cycles: params?.cycles ?? []
   }
 }
 
@@ -26,5 +26,5 @@ export interface MockStateParams {
   playerColors?: PlayerColor[]
   botFactions?: Faction[]
   botDifficultyLevels?: DifficultyLevel[]
-  rounds?: Round[]
+  cycles?: Cycle[]
 }

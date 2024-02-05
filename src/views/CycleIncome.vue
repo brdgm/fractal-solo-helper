@@ -24,6 +24,7 @@ import FooterButtons from '@/components/structure/FooterButtons.vue'
 import { useRoute } from 'vue-router'
 import NavigationState from '@/util/NavigationState'
 import DetermineStartPlayer from '@/components/cycle/DetermineStartPlayer.vue'
+import RouteCalculator from '@/services/RouteCalculator'
 
 export default defineComponent({
   name: 'CycleIncome',
@@ -46,7 +47,8 @@ export default defineComponent({
   },
   computed: {
     backButtonRouteTo() : string {
-      return ''
+      const routeCalculator = new RouteCalculator({cycle:this.cycle})
+      return routeCalculator.getLastTurnRouteTo(this.state)
     }
   },
   methods: {
