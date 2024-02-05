@@ -1,5 +1,5 @@
-import { State } from "@/store/state"
-import getPlayerOrder from "./getPlayerOrder"
+import { State, Turn } from "@/store/state"
+import getPlayerOrder, { PlayerOrder } from "./getPlayerOrder"
 
 /**
  * Generate list of all player/bot turns - leaving out steps after player/bot has passed.
@@ -21,9 +21,7 @@ export default function(state: State, cycle: number, turn: number, startPlayer: 
   let invalidTurn = false
   for (let turnNo=1; turnNo<=turn+1; turnNo++) {
     playerOrder.forEach(player => {
-      const hasPassed = turns.find(item => item.cycle==cycle && item.turn<turnNo
-            && item.player==player.player && item.bot==player.bot && item.passed) != undefined
-      if (!hasPassed) {
+      if (!playerHasPassedBeforeTurn(turns, cycle, turnNo, player)) {
         if (turnNo > MAX_TURN) {
           // not a valid round as not all have passed in time, return empty list of steps
           invalidTurn = true
@@ -43,6 +41,11 @@ export default function(state: State, cycle: number, turn: number, startPlayer: 
   else {
     return steps
   }
+}
+
+function playerHasPassedBeforeTurn(turns: Turn[], cycle: number, turnNo: number, player : PlayerOrder) : boolean {
+  return turns.find(item => item.cycle==cycle && item.turn<turnNo
+    && item.player==player.player && item.bot==player.bot && item.passed) != undefined
 }
 
 export class TurnOrder {
