@@ -1,5 +1,5 @@
 <template>
-  <h1>{{t('player.bot', {bot}, botCount)}}</h1>
+  <h1><PlayerColorDisplay :playerColor="playerColor"/> {{t('player.bot', {bot}, botCount)}}</h1>
 
   <p>TBD</p>
 
@@ -18,20 +18,22 @@ import FooterButtons from '@/components/structure/FooterButtons.vue'
 import { useRoute } from 'vue-router'
 import NavigationState from '@/util/NavigationState'
 import RouteCalculator from '@/services/RouteCalculator'
+import PlayerColorDisplay from '@/components/structure/PlayerColorDisplay.vue'
 
 export default defineComponent({
   name: 'TurnBot',
   components: {
-    FooterButtons
+    FooterButtons,
+    PlayerColorDisplay
   },
   setup() {
     const { t } = useI18n()
     const route = useRoute()
     const state = useStateStore()
     const navigationState = new NavigationState(route, state)
-    const { cycle, turn, bot, botCount } = navigationState
+    const { cycle, turn, bot, botCount, playerColor } = navigationState
     const routeCalculator = new RouteCalculator({cycle,turn,bot})
-    return { t, state, cycle, turn, bot, botCount, routeCalculator }
+    return { t, state, cycle, turn, bot, botCount, playerColor, routeCalculator }
   },
   computed: {
     backButtonRouteTo() : string {

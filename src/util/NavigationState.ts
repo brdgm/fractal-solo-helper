@@ -2,6 +2,7 @@ import { State } from '@/store/state'
 import { RouteLocation } from 'vue-router'
 import getIntRouteParam from 'brdgm-commons/src/util/router/getIntRouteParam'
 import PlayerColor from '@/services/enum/PlayerColor'
+import getPlayerColor from './getPlayerColor'
 
 export default class NavigationState {
 
@@ -22,21 +23,7 @@ export default class NavigationState {
     const playerSetup = state.setup.playerSetup
     this.playerCount = playerSetup.playerCount
     this.botCount = playerSetup.botCount
-    this.playerColor = this.getPlayerColor(playerSetup.playerColors)
-  }
-
-  private getPlayerColor(playerColors : PlayerColor[]) : PlayerColor {
-    let colorCode : PlayerColor
-    if (this.player > 0) {
-      colorCode = playerColors[this.player-1]
-    }
-    else {
-      colorCode = playerColors[this.bot-this.playerCount-1]
-    }
-    if (!colorCode) {
-      colorCode = PlayerColor.RED
-    }
-    return colorCode
+    this.playerColor = getPlayerColor(playerSetup, this.player, this.bot)
   }
 
 }
