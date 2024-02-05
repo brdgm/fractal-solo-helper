@@ -23,6 +23,10 @@ export default class BotActions {
     this._behavior = getBehavior(cardDeck)
   }
 
+  public get cardDeck() : CardDeck {
+    return this._cardDeck
+  }
+
   public get actions() : readonly BotAction[] {
     return this._actions
   }

@@ -3,6 +3,8 @@ import { RouteLocation } from 'vue-router'
 import getIntRouteParam from 'brdgm-commons/src/util/router/getIntRouteParam'
 import PlayerColor from '@/services/enum/PlayerColor'
 import getPlayerColor from './getPlayerColor'
+import BotActions from '@/services/BotActions'
+import getBotCardDeck from './getBotCardDeck'
 
 export default class NavigationState {
 
@@ -13,6 +15,7 @@ export default class NavigationState {
   readonly playerCount : number
   readonly botCount : number
   readonly playerColor : PlayerColor
+  readonly botActions? : BotActions
 
   public constructor(route : RouteLocation, state : State) {    
     this.cycle = getIntRouteParam(route, 'cycle')
@@ -24,6 +27,11 @@ export default class NavigationState {
     this.playerCount = playerSetup.playerCount
     this.botCount = playerSetup.botCount
     this.playerColor = getPlayerColor(playerSetup, this.player, this.bot)
+    
+    if (this.bot > 0 && this.turn > 0) {
+      const cardDeck = getBotCardDeck(state, this.cycle, this.turn, this.bot)
+      this.botActions = new BotActions(cardDeck)
+    }
   }
 
 }
