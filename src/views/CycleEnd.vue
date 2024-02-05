@@ -1,4 +1,5 @@
 <template>
+  <SideBar :navigationState="navigationState"/>
   <h1>{{t('cycleEnd.title', {cycle})}}</h1>
 
   <p>TBD</p>
@@ -18,11 +19,13 @@ import FooterButtons from '@/components/structure/FooterButtons.vue'
 import { useRoute } from 'vue-router'
 import NavigationState from '@/util/NavigationState'
 import RouteCalculator from '@/services/RouteCalculator'
+import SideBar from '@/components/cycle/SideBar.vue'
 
 export default defineComponent({
   name: 'CycleEnd',
   components: {
-    FooterButtons
+    FooterButtons,
+    SideBar
   },
   setup() {
     const { t } = useI18n()
@@ -31,7 +34,7 @@ export default defineComponent({
     const navigationState = new NavigationState(route, state)
     const { cycle } = navigationState
     const routeCalculator = new RouteCalculator({cycle})
-    return { t, state, cycle, routeCalculator }
+    return { t, state, cycle, routeCalculator, navigationState }
   },
   computed: {
     backButtonRouteTo() : string {

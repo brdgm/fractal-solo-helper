@@ -53,6 +53,10 @@
   "turnPlayer": {
     "takeTurn": "Take your turn."
   },
+  "sideBar": {
+    "cycle": "Cycle",
+    "turn": "Turn"
+  },
   "player": {
     "human": "Player | Player {player}",
     "bot": "AI Opponent | AI Opponent {bot}"

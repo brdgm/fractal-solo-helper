@@ -1,4 +1,5 @@
 <template>
+  <SideBar :navigationState="navigationState"/>
   <h1><PlayerColorDisplay :playerColor="playerColor"/> {{t('player.human', {player}, playerCount)}}</h1>
 
   <p v-html="t('turnPlayer.takeTurn')" class="mt-4"></p>
@@ -19,13 +20,15 @@ import { useRoute } from 'vue-router'
 import NavigationState from '@/util/NavigationState'
 import RouteCalculator from '@/services/RouteCalculator'
 import PlayerColorDisplay from '@/components/structure/PlayerColorDisplay.vue'
+import SideBar from '@/components/cycle/SideBar.vue'
 
 export default defineComponent({
   name: 'TurnPlayer',
   components: {
     FooterButtons,
-    PlayerColorDisplay
-},
+    PlayerColorDisplay,
+    SideBar
+  },
   setup() {
     const { t } = useI18n()
     const route = useRoute()
@@ -33,7 +36,7 @@ export default defineComponent({
     const navigationState = new NavigationState(route, state)
     const { cycle, turn, player, playerCount, playerColor } = navigationState
     const routeCalculator = new RouteCalculator({cycle,turn,player})
-    return { t, state, turn, player, playerCount, playerColor, cycle, routeCalculator }
+    return { t, state, turn, player, playerCount, playerColor, cycle, routeCalculator, navigationState }
   },
   computed: {
     backButtonRouteTo() : string {

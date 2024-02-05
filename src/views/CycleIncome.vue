@@ -1,4 +1,5 @@
 <template>
+  <SideBar :navigationState="navigationState"/>
   <h1>{{t('cycleIncome.title', {cycle})}}</h1>
 
   <ol>
@@ -25,12 +26,14 @@ import { useRoute } from 'vue-router'
 import NavigationState from '@/util/NavigationState'
 import DetermineStartPlayer from '@/components/cycle/DetermineStartPlayer.vue'
 import RouteCalculator from '@/services/RouteCalculator'
+import SideBar from '@/components/cycle/SideBar.vue'
 
 export default defineComponent({
   name: 'CycleIncome',
   components: {
     FooterButtons,
-    DetermineStartPlayer
+    DetermineStartPlayer,
+    SideBar
   },
   setup() {
     const { t } = useI18n()
@@ -39,7 +42,7 @@ export default defineComponent({
     const navigationState = new NavigationState(route, state)
     const { cycle } = navigationState
     const routeCalculator = new RouteCalculator({cycle})
-    return { t, state, cycle, routeCalculator }
+    return { t, state, cycle, routeCalculator, navigationState }
   },
   data() {
     return {
