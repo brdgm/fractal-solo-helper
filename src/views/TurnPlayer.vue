@@ -4,8 +4,11 @@
 
   <p v-html="t('turnPlayer.takeTurn')" class="mt-4"></p>
 
-  <button class="btn btn-primary btn-lg mt-4" @click="next()">
+  <button class="btn btn-primary btn-lg mt-4 me-2" @click="next(false)">
     {{t('action.next')}}
+  </button>
+  <button class="btn btn-secondary btn-lg mt-4" @click="next(true)">
+    {{t('action.pass')}}
   </button>
 
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" endGameButtonType="abortGame"/>
@@ -44,12 +47,15 @@ export default defineComponent({
     }
   },
   methods: {
-    next() : void {
+    next(pass : boolean) : void {
       // store turn
       const turn : Turn = {
         cycle: this.cycle,
         turn: this.turn,
         player: this.player
+      }
+      if (pass) {
+        turn.passed = true
       }
       this.state.storeTurn(turn)
       this.$router.push(this.routeCalculator.getNextRouteTo(this.state))
