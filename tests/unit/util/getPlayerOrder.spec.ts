@@ -9,33 +9,30 @@ describe('util/getPlayerOrder', () => {
     ])
   })
 
-  it('3player-2bot-firstplayer1', () => {
-    expect(getPlayerOrder(3,2,1)).to.eql([
-      {player:1},
+  it('2player-2bot-firstplayer2', () => {
+    expect(getPlayerOrder(2,2,2)).to.eql([
       {player:2},
-      {player:3},
-      {bot:1},
-      {bot:2}
-    ])
-  })
-
-  it('3player-2bot-firstplayer2', () => {
-    expect(getPlayerOrder(3,2,2)).to.eql([
-      {player:2},
-      {player:3},
       {bot:1},
       {bot:2},
       {player:1}
     ])
   })
 
-  it('3player-2bot-firstplayer3', () => {
-    expect(getPlayerOrder(3,2,3)).to.eql([
-      {player:3},
+  it('2player-2bot-firstplayer3', () => {
+    expect(getPlayerOrder(2,2,3)).to.eql([
       {bot:1},
       {bot:2},
       {player:1},
       {player:2}
+    ])
+  })
+
+  it('2player-2bot-firstplayer4', () => {
+    expect(getPlayerOrder(2,2,4)).to.eql([
+      {bot:2},
+      {player:1},
+      {player:2},
+      {bot:1}
     ])
   })
 })

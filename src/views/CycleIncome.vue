@@ -38,7 +38,8 @@ export default defineComponent({
     const state = useStateStore()
     const navigationState = new NavigationState(route, state)
     const { cycle } = navigationState
-    return { t, state, cycle }
+    const routeCalculator = new RouteCalculator({cycle})
+    return { t, state, cycle, routeCalculator }
   },
   data() {
     return {
@@ -47,8 +48,7 @@ export default defineComponent({
   },
   computed: {
     backButtonRouteTo() : string {
-      const routeCalculator = new RouteCalculator({cycle:this.cycle})
-      return routeCalculator.getLastTurnRouteTo(this.state)
+      return this.routeCalculator.getLastTurnRouteTo(this.state)
     }
   },
   methods: {
@@ -62,7 +62,7 @@ export default defineComponent({
         }
         this.state.storeCycle(cycle)
       }
-      this.$router.push(`/cycle/${this.cycle}/turn/1`)
+      this.$router.push(this.routeCalculator.getFirstTurnRouteTo(this.state))
     },
     setStartPlayer(startPlayer: number) : void {
       this.startPlayer = startPlayer
