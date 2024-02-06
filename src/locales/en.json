@@ -65,9 +65,47 @@
       "behavior": "Behavior"
     }
   },
+  "actionRulesCollapse": {
+    "showRules": "Show Rules",
+    "hideRules": "Hide Rules"
+  },
   "player": {
     "human": "Player | Player {player}",
     "bot": "AI Opponent | AI Opponent {bot}"
+  },
+  "rules": {
+    "action": {
+      "recruit": {
+        "title": "Recruit"
+      },
+      "advance": {
+        "title": "Advance"
+      },
+      "colonize": {
+        "title": "Colonize"
+      },
+      "research-civil": {
+        "title": "Research (Civil)"
+      },
+      "research-military": {
+        "title": "Research (Military)"
+      },
+      "gain-influence": {
+        "title": "Gain Influence"
+      },
+      "loose-influence-action-card": {
+        "title": "Loose Influence, Play Action Card"
+      },
+      "movement-single": {
+        "title": "Single Movement"
+      },
+      "living-storm-movement": {
+        "title": "Living Storm Movement"
+      },
+      "action-card": {
+        "title": "Play Action Card"
+      }
+    }
   },
   "faction": {
     "borroka": "Borroka",

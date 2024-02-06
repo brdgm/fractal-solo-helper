@@ -2,11 +2,7 @@
   <SideBar :navigationState="navigationState"/>
   <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t('player.bot', {bot}, botCount)}}</h1>
 
-  <p>TBD</p>
-
-  <button class="btn btn-primary btn-lg mt-4" @click="next()">
-    {{t('action.next')}}
-  </button>
+  <BotActionSelection v-if="botActions" :botActions="botActions" @next="next()"/>
 
   <DebugInfo :navigationState="navigationState"/>
 
@@ -24,6 +20,8 @@ import RouteCalculator from '@/services/RouteCalculator'
 import PlayerColorDisplay from '@/components/structure/PlayerColorDisplay.vue'
 import SideBar from '@/components/cycle/SideBar.vue'
 import DebugInfo from '@/components/cycle/DebugInfo.vue'
+import BotActionSelection from '@/components/cycle/BotActionSelection.vue'
+import BotActions from '@/services/BotActions'
 
 export default defineComponent({
   name: 'TurnBot',
@@ -31,7 +29,8 @@ export default defineComponent({
     FooterButtons,
     PlayerColorDisplay,
     SideBar,
-    DebugInfo
+    DebugInfo,
+    BotActionSelection
   },
   setup() {
     const { t } = useI18n()
@@ -45,6 +44,9 @@ export default defineComponent({
   computed: {
     backButtonRouteTo() : string {
       return this.routeCalculator.getBackRouteTo(this.state)
+    },
+    botActions() : BotActions|undefined {
+      return this.navigationState.botActions
     }
   },
   methods: {
