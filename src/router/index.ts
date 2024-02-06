@@ -39,7 +39,7 @@ const routes: Array<RouteRecordRaw> = [
     component: TurnPlayer
   },
   {
-    path: '/cycle/:cycle/turn/:turn/bot/:bot',
+    path: '/cycle/:cycle/turn/:turn/bot/:bot/action/:action',
     name: 'TurnBot',
     component: TurnBot
   },

@@ -2,7 +2,8 @@
   <SideBar :navigationState="navigationState"/>
   <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t('player.bot', {bot}, botCount)}}</h1>
 
-  <BotActionSelection v-if="botActions" :botActions="botActions" @next="next()"/>
+  <BotActionSelection v-if="botActions" :botActions="botActions" :actionIndex="action"
+      @next="next()"/>
 
   <DebugInfo :navigationState="navigationState"/>
 
@@ -37,9 +38,9 @@ export default defineComponent({
     const route = useRoute()
     const state = useStateStore()
     const navigationState = new NavigationState(route, state)
-    const { cycle, turn, bot, botCount, playerColor } = navigationState
-    const routeCalculator = new RouteCalculator({cycle,turn,bot})
-    return { t, state, cycle, turn, bot, botCount, playerColor, routeCalculator, navigationState }
+    const { cycle, turn, bot, action, botCount, playerColor } = navigationState
+    const routeCalculator = new RouteCalculator({cycle,turn,bot,action})
+    return { t, state, cycle, turn, bot, action, botCount, playerColor, routeCalculator, navigationState }
   },
   computed: {
     backButtonRouteTo() : string {

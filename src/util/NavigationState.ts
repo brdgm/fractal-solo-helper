@@ -12,6 +12,7 @@ export default class NavigationState {
   readonly turn : number
   readonly player : number
   readonly bot : number
+  readonly action : number
   readonly playerCount : number
   readonly botCount : number
   readonly playerColor : PlayerColor
@@ -22,6 +23,7 @@ export default class NavigationState {
     this.turn = getIntRouteParam(route, 'turn')
     this.player = getIntRouteParam(route, 'player')
     this.bot = getIntRouteParam(route, 'bot')
+    this.action = getIntRouteParam(route, 'action')
 
     const playerSetup = state.setup.playerSetup
     this.playerCount = playerSetup.playerCount

@@ -11,12 +11,14 @@ export default class RouteCalculator {
   readonly turn : number
   readonly player? : number
   readonly bot? : number
+  readonly action? : number
 
-  constructor(params:{cycle: number, turn?: number, player?: number, bot?: number}) {    
+  constructor(params:{cycle: number, turn?: number, player?: number, bot?: number, action?: number}) {    
     this.cycle = params.cycle
     this.turn = params.turn ?? MAX_TURN  // when called outside a turn
     this.player = params.player
     this.bot = params.bot
+    this.action = params.action
   }
 
   /**
@@ -30,11 +32,15 @@ export default class RouteCalculator {
     if (currentStepIndex < 0) {
       return ''
     }
+    const currentStep = steps[currentStepIndex]
+    if (currentStep.bot && this.action == 1) {
+      return routeTo(currentStep, 2)
+    } 
     const nextStep = steps[currentStepIndex+1]
     if (!nextStep) {
       return `/cycle/${this.cycle}/end`
     }
-    return routeTo(nextStep)
+    return routeTo(nextStep, 1)
   }
 
   /**
@@ -48,11 +54,15 @@ export default class RouteCalculator {
     if (currentStepIndex < 0) {
       return ''
     }
+    const currentStep = steps[currentStepIndex]
+    if (currentStep.bot && this.action == 2) {
+      return routeTo(currentStep, 1)
+    } 
     const previousStep = steps[currentStepIndex-1]
     if (!previousStep) {
       return `/cycle/${this.cycle}/income`
     }
-    return routeTo(previousStep)
+    return routeTo(previousStep, 2)
   }
 
   /**
@@ -63,7 +73,7 @@ export default class RouteCalculator {
     const playerCount = state.setup.playerSetup.playerCount
     const botCount = state.setup.playerSetup.botCount
     const playerOrder = getPlayerOrder(playerCount, botCount, firstPlayer)
-    return routeTo({cycle:this.cycle,turn:1,player:playerOrder[0].player,bot:playerOrder[0].bot})
+    return routeTo({cycle:this.cycle,turn:1,player:playerOrder[0].player,bot:playerOrder[0].bot}, 1)
   }
 
   /**
@@ -73,7 +83,7 @@ export default class RouteCalculator {
     const steps = getTurnOrder(state, this.cycle, this.turn, this.getFirstPlayer(state))
     const lastStep = steps[steps.length-1]
     if (lastStep) {
-      return routeTo(lastStep)
+      return routeTo(lastStep, 2)
     }
     else {
       return ''
@@ -96,9 +106,9 @@ export default class RouteCalculator {
 /**
  * Build route to player/bot step
  */
-function routeTo(step: Step) : string {
+function routeTo(step: Step, action: number) : string {
   if (step.bot) {
-    return `/cycle/${step.cycle}/turn/${step.turn}/bot/${step.bot}`
+    return `/cycle/${step.cycle}/turn/${step.turn}/bot/${step.bot}/action/${action}`
   }
   else {
     return `/cycle/${step.cycle}/turn/${step.turn}/player/${step.player}`

@@ -53,6 +53,10 @@
   "turnPlayer": {
     "takeTurn": "Take your turn."
   },
+  "turnBot": {
+    "executed": "Completed",
+    "notPossible": "Not Possible"
+  },
   "sideBar": {
     "cycle": "Cycle",
     "turn": "Turn",
