@@ -16,9 +16,9 @@ export default function getBotCardDeck(state: State, cycle: number, turn: number
   const cycleData = state.cycles.find(item => item.cycle==cycle)
   if (cycleData) {
     const lastTurn = cycleData.turns
-      .sort((a, b) => a.turn - b.turn)
+      .toSorted((a, b) => a.turn - b.turn)
       .findLast(item => item.cycle==cycle && item.turn<turn && item.bot==bot)
-    if (lastTurn && lastTurn.botCardDeck) {
+    if (lastTurn?.botCardDeck) {
       return CardDeck.fromPersistence(lastTurn.botCardDeck)
     }
   }
