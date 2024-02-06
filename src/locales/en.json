@@ -55,7 +55,14 @@
   },
   "sideBar": {
     "cycle": "Cycle",
-    "turn": "Turn"
+    "turn": "Turn",
+    "priority": {
+      "title": "AI Priorities",
+      "unit": "Unit",
+      "colony": "Colony",
+      "player": "Player",
+      "livingStorm": "Living Storm"
+    }
   },
   "player": {
     "human": "Player | Player {player}",

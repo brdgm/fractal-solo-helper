@@ -5,20 +5,24 @@
       <template v-if="navigationState.turn > 0">{{t('sideBar.turn')}} {{navigationState.turn}}</template>
     </p>
     <div v-if="botActions">
-      AI Priorities
+      {{t('sideBar.priority.title')}}
       <div>
+        <div class="prioritiesLabel">{{t('sideBar.priority.unit')}}</div>
         <AppIcon v-for="unit of botActions.unitPriority" :key="unit" type="unit-type" :name="unit" class="icon"/>
       </div>
       <div>
+        <div class="prioritiesLabel">{{t('sideBar.priority.colony')}}</div>
         <AppIcon v-for="colony of botActions.colonyPriority" :key="colony" type="colony-type" :name="colony" class="icon"/>
       </div>
       <div>
+        <div class="prioritiesLabel">{{t('sideBar.priority.player')}}</div>
         <AppIcon v-if="botActions.playerPriorityWatcherToken" name="watcher-token" class="icon"/>
         <template v-else>
           <PlayerColorDisplay v-for="playerColor of botActions.playerPriority" :key="playerColor" :playerColor="playerColor" :sizeRem="1.5" class="icon"/>
         </template>
       </div>
       <div>
+        <div class="prioritiesLabel">{{t('sideBar.priority.livingStorm')}}</div>
         <LivingStormMovement :orientation="botActions.livingStormOrientation"
             :direction="botActions.livingStormDirection" class="icon"/>
       </div>
@@ -80,5 +84,9 @@ export default defineComponent({
   &.playerColor {
     border-radius: 5px;
   }
+}
+.prioritiesLabel {
+  font-size: 55%;
+  text-transform: uppercase;
 }
 </style>
