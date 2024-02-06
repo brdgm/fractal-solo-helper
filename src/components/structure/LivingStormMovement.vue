@@ -55,13 +55,9 @@
 import { defineComponent, PropType } from 'vue'
 import LivingStormOrientation from '@/services/enum/LivingStormOrientation'
 import LivingStormDirection from '@/services/enum/LivingStormDirection'
-import AppIcon from './AppIcon.vue'
 
 export default defineComponent({
   name: 'LivingStormMovement',
-  components: {
-    AppIcon
-  },
   props: {
     orientation: {
       type: String as PropType<LivingStormOrientation>,
