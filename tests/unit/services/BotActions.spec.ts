@@ -6,7 +6,7 @@ import { expect } from 'chai'
 
 describe('BotActions', () => {
   it('card-1+2', () => {
-    const cardDeck = CardDeck.fromPersistence({deck:[2,1], discard:[], reserve:[]})
+    const cardDeck = CardDeck.fromPersistence({deck:[1], discard:[2], reserve:[]})
     const botActions = new BotActions(cardDeck)
 
     expect(cardDeck.actionCard?.id, 'actionCard').to.eq(1)
@@ -30,7 +30,7 @@ describe('BotActions', () => {
   })
 
   it('card-1+4', () => {
-    const cardDeck = CardDeck.fromPersistence({deck:[4,1], discard:[], reserve:[]})
+    const cardDeck = CardDeck.fromPersistence({deck:[1], discard:[4], reserve:[]})
     const botActions = new BotActions(cardDeck)
 
     expect(cardDeck.actionCard?.id, 'actionCard').to.eq(1)
@@ -54,7 +54,7 @@ describe('BotActions', () => {
   })
 
   it('card-4+1', () => {
-    const cardDeck = CardDeck.fromPersistence({deck:[1,4], discard:[], reserve:[]})
+    const cardDeck = CardDeck.fromPersistence({deck:[4], discard:[1], reserve:[]})
     const botActions = new BotActions(cardDeck)
 
     expect(cardDeck.actionCard?.id, 'actionCard').to.eq(4)
@@ -78,7 +78,7 @@ describe('BotActions', () => {
   })
 
   it('card-6+2', () => {
-    const cardDeck = CardDeck.fromPersistence({deck:[2,6], discard:[], reserve:[]})
+    const cardDeck = CardDeck.fromPersistence({deck:[6], discard:[2], reserve:[]})
     const botActions = new BotActions(cardDeck)
 
     expect(cardDeck.actionCard?.id, 'actionCard').to.eq(6)

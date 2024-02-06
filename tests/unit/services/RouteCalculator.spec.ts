@@ -65,7 +65,7 @@ describe('services/RouteCalculator', () => {
         {cycle:1, turn:1, bot:1, passed:true},
         {cycle:1, turn:1, bot:2, passed:true}]})
     ]})
-    expect(routeCalculator.getNextRouteTo(state)).to.eq('/cycle/1/end')
+    expect(routeCalculator.getNextRouteTo(state)).to.eq('/cycle/1/conflict')
     expect(routeCalculator.getBackRouteTo(state)).to.eq('/cycle/1/turn/1/bot/2/action/1')
   })
 

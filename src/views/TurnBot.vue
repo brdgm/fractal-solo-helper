@@ -48,17 +48,28 @@ export default defineComponent({
     },
     botActions() : BotActions|undefined {
       return this.navigationState.botActions
+    },
+    isPass() : boolean {
+      return this.action == 2 && (this.botActions?.cardDeck.isPass() ?? false)
     }
   },
   methods: {
     next() : void {
       // store turn
-      const turn : Turn = {
-        cycle: this.cycle,
-        turn: this.turn,
-        bot: this.bot
+      const cardDeck = this.botActions?.cardDeck
+      if (cardDeck) {
+        const turn : Turn = {
+          cycle: this.cycle,
+          turn: this.turn,
+          bot: this.bot,
+          action: this.action,
+          botCardDeck: cardDeck.toPersistence()
+        }
+        if (this.isPass) {
+          turn.passed = true
+        }
+        this.state.storeTurn(turn)
       }
-      this.state.storeTurn(turn)
       this.$router.push(this.routeCalculator.getNextRouteTo(this.state))
     }
   }

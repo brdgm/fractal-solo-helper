@@ -51,7 +51,10 @@ export default defineComponent({
   },
   computed: {
     backButtonRouteTo() : string {
-      return this.routeCalculator.getLastTurnRouteTo(this.state)
+      if (this.cycle > 1) {
+        return `/cycle/${this.cycle-1}/end`
+      }
+      return ''
     }
   },
   methods: {

@@ -9,6 +9,7 @@ import CycleIncome from '@/views/CycleIncome.vue'
 import TurnPlayer from '@/views/TurnPlayer.vue'
 import TurnBot from '@/views/TurnBot.vue'
 import CycleEnd from '@/views/CycleEnd.vue'
+import CycleConflict from '@/views/CycleConflict.vue'
 
 const LOCALSTORAGE_KEY = `${name}.route`
 
@@ -44,8 +45,13 @@ const routes: Array<RouteRecordRaw> = [
     component: TurnBot
   },
   {
+    path: '/cycle/:cycle/conflict',
+    name: 'CycleConflict',
+    component: CycleConflict
+  },
+  {
     path: '/cycle/:cycle/end',
-    name: 'EndOfRound',
+    name: 'CycleEnd',
     component: CycleEnd
   },
   {

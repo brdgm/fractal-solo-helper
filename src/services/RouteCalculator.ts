@@ -38,7 +38,7 @@ export default class RouteCalculator {
     } 
     const nextStep = steps[currentStepIndex+1]
     if (!nextStep) {
-      return `/cycle/${this.cycle}/end`
+      return `/cycle/${this.cycle}/conflict`
     }
     return routeTo(nextStep, 1)
   }

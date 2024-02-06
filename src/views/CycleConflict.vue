@@ -1,6 +1,6 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1>{{t('cycleEnd.title', {cycle})}}</h1>
+  <h1>{{t('cycleConflict.title', {cycle})}}</h1>
 
   <p>TBD</p>
 
@@ -22,7 +22,7 @@ import RouteCalculator from '@/services/RouteCalculator'
 import SideBar from '@/components/cycle/SideBar.vue'
 
 export default defineComponent({
-  name: 'CycleEnd',
+  name: 'CycleConflict',
   components: {
     FooterButtons,
     SideBar
@@ -38,12 +38,12 @@ export default defineComponent({
   },
   computed: {
     backButtonRouteTo() : string {
-      return `/cycle/${this.cycle}/end`
+      return this.routeCalculator.getLastTurnRouteTo(this.state)
     }
   },
   methods: {
     next() : void {
-      this.$router.push(`/cycle/${this.cycle+1}/income`)
+      this.$router.push(`/cycle/${this.cycle}/end`)
     }
   }
 })

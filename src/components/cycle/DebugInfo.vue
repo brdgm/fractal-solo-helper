@@ -5,7 +5,7 @@
       Active Card: {{cardDeck.actionCard?.id}},
       Discard: {{getDeckInfo(cardDeck.discard)}},
       Deck: {{getDeckInfo(cardDeck.deck, 1)}},
-      Reserve: {{getDeckInfo(cardDeck.reserve)}}<br/>
+      Reserve: {{getDeckInfo(cardDeck.reserve)}}<span v-if="cardDeck.isPass()">, pass</span><br/>
       <span v-for="(botAction,index) in botActions.actions" :key="index">
         Action {{index+1}}: {{getBotActionInfo(botAction)}}<br/>
       </span>

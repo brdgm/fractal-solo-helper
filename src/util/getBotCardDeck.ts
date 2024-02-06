@@ -9,22 +9,24 @@ import { MAX_TURN } from '@/util/getTurnOrder'
  * @param cycle Cycle
  * @param turn Turn
  * @param bot Bot
+ * @param action Bot action
  * @returns Card deck
  */
-export default function getBotCardDeck(state: State, cycle: number, turn: number, bot : number) : CardDeck {
+export default function getBotCardDeck(state: State, cycle: number, turn: number, bot : number, action : number) : CardDeck {
   // check current cycle
   const cycleData = state.cycles.find(item => item.cycle==cycle)
   if (cycleData) {
     const lastTurn = cycleData.turns
+      .toSorted((a, b) => (a.action ?? 0) - (b.action ?? 0))
       .toSorted((a, b) => a.turn - b.turn)
-      .findLast(item => item.cycle==cycle && item.turn<turn && item.bot==bot)
+      .findLast(item => item.cycle==cycle && (item.turn<turn || item.turn==turn && (item.action ?? 0)<action) && item.bot==bot)
     if (lastTurn?.botCardDeck) {
       return CardDeck.fromPersistence(lastTurn.botCardDeck)
     }
   }
   // check previous cycle
   if (cycle > 1) {
-    return getBotCardDeck(state, cycle - 1, MAX_TURN, bot)
+    return getBotCardDeck(state, cycle - 1, MAX_TURN, bot, action)
   }
   // get initial card deck
   const initialCardDeck = (state.setup.initialBotCardDecks ?? [])[bot-1]

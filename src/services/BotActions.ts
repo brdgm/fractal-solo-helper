@@ -20,10 +20,6 @@ export default class BotActions {
 
   public constructor(cardDeck : CardDeck) {
     this._cardDeck = cardDeck
-
-    // draw next card
-    this._cardDeck.draw()
-
     this._actions = getCardActions(cardDeck).map(toBotAction)
     this._behavior = getBehavior(cardDeck)
   }

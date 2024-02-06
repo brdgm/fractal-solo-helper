@@ -70,6 +70,7 @@ export interface Turn {
   turn: number
   player?: number
   bot?: number
+  action?: number
   passed?: boolean
   botCardDeck?: CardDeckPersistence
 }
