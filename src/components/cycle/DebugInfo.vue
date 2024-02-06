@@ -18,7 +18,7 @@ import NavigationState from '@/util/NavigationState';
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n';
 import { useStateStore } from '@/store/state';
-import BotActions, { BotAction } from '@/services/BotActions';
+import BotActions, { BotAction, BotActionItem } from '@/services/BotActions';
 import CardDeck from '@/services/CardDeck';
 import Card from '@/services/Card';
 
@@ -45,10 +45,13 @@ export default defineComponent({
   },
   methods: {
     getBotActionInfo(botAction : BotAction) : string {
-      const actions = botAction.items
-              .map(item => item.action + (item.fallback ? ' (fallback)' : ''))
-              .join(', ')
-      return actions + (botAction.actionCardSlot ? ` / card #${botAction.actionCardSlot}` : '')
+      return botAction.items.map(this.getBotActionItemInfo).join(', ')
+    },
+    getBotActionItemInfo(botActionItem : BotActionItem) : string {
+      return botActionItem.actions.join('+')
+          + (botActionItem.actionCardSlot ? ` (card #${botActionItem.actionCardSlot})` : '')
+          + (botActionItem.alternative ? ' (alternative)' : '')
+          + (botActionItem.fallback ? ' (fallback)' : '')
     },
     getDeckInfo(cards: readonly Card[], skipCards : number = 0) : string {
       return '[' + cards.slice(skipCards)

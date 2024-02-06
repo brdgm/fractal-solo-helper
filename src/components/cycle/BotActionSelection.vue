@@ -1,10 +1,12 @@
 <template>
   <h4>Action {{actionIndex}}</h4>
-  <div class="mt-3" v-if="botAction">
-    <component :is="`action-${botAction.items[actionItem].action}`"
-        :action="botAction.items[actionItem].action"
-        :botAction="botAction"
-        :botActions="botActions"/>
+  <div class="mt-3" v-if="botActionItem">
+    <div v-for="action of botActionItem.actions">
+      <component :is="`action-${action}`"
+          :action="action"
+          :botActionItem="botActionItem"
+          :botActions="botActions"/>
+    </div>
   </div>
 
   <button class="btn btn-success btn-lg mt-4 me-2" @click="executed()">
@@ -18,7 +20,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-import BotActions, { BotAction } from '@/services/BotActions'
+import BotActions, { BotAction, BotActionItem } from '@/services/BotActions'
 import ActionActionCard from './action/ActionActionCard.vue'
 import ActionAdvance from './action/ActionAdvance.vue'
 import ActionColonize from './action/ActionColonize.vue'
@@ -67,6 +69,9 @@ export default defineComponent({
   computed: {
     botAction() : BotAction|undefined {
       return this.botActions.actions[this.actionIndex-1]
+    },
+    botActionItem() : BotActionItem|undefined {
+      return this.botAction?.items[this.actionItem]
     }
   },
   methods: {

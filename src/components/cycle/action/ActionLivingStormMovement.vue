@@ -14,7 +14,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
-import BotActions, { BotAction } from '@/services/BotActions'
+import BotActions, { BotActionItem } from '@/services/BotActions'
 import AppIcon from '@/components/structure/AppIcon.vue'
 import Action from '@/services/enum/Action'
 import ActionRulesCollapse from '../ActionRulesCollapse.vue'
@@ -34,8 +34,8 @@ export default defineComponent({
       type: String as PropType<Action>,
       required: true
     },
-    botAction: {
-      type: Object as PropType<BotAction>,
+    botActionItem: {
+      type: Object as PropType<BotActionItem>,
       required: true
     },
     botActions: {

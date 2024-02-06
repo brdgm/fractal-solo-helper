@@ -73,36 +73,37 @@ function toBotAction(cardAction: CardAction) : BotAction {
   const items : BotActionItem[] = []
 
   if (cardAction.actions.length == 1) {
-    items.push({ action: cardAction.actions[0] })
+    items.push({ actions: [cardAction.actions[0]] })
   }
   else if (cardAction.actions.length == 2 && cardAction.conditionalActivation) {
     switch (cardAction.conditionalActivation) {
       case ConditionalActivation.FIRST_OR_SECOND:
-        items.push({ action: cardAction.actions[0] })
-        items.push({ action: cardAction.actions[1], fallback: true })
+        items.push({ actions: [cardAction.actions[0]] })
+        items.push({ actions: [cardAction.actions[1]], alternative: true })
         break
       case ConditionalActivation.FIRST_IF_AVAILABLE_THEN_SECOND:
-        items.push({ action: cardAction.actions[0] })
-        items.push({ action: cardAction.actions[1] })
+        items.push({ actions: cardAction.actions })
         break
       default:
         throw new Error(`Unknown conditional activation: ${cardAction.conditionalActivation}`)
     }
   }
 
-  // last breath
-  if (!items.find(item => item.action == Action.ADVANCE || item.action == Action.MOVEMENT_SINGLE)) {
-    items.push({ action: Action.ADVANCE, fallback: true })
+  // last breath: fallback to advance (only if standard advance action is not already present)
+  if (!items.find(item => item.actions.includes(Action.ADVANCE) || item.actions.includes(Action.MOVEMENT_SINGLE))) {
+    items.push({ actions: [Action.ADVANCE], fallback: true })
   }
-  if (!items.find(item => item.action == Action.RECRUIT)) {
-    items.push({ action: Action.RECRUIT, fallback: true })
-  }
+  // last breath: fallback to recruit. the "normal" recruit is skipped if not enough are left, this is a last resort recruit
+  items.push({ actions: [Action.RECRUIT], fallback: true })
 
-  const botAction : BotAction = { items }
   if (cardAction.actionCardSlot) {
-    botAction.actionCardSlot = cardAction.actionCardSlot
+    items.forEach(item => {
+      if (item.actions.includes(Action.ACTION_CARD) || item.actions.includes(Action.LOOSE_INFLUENCE_ACTION_CARD)) {
+        item.actionCardSlot = cardAction.actionCardSlot
+      }
+    })
   }
-  return botAction
+  return { items }
 }
 
 /**
@@ -141,10 +142,11 @@ function getBehavior(cardDeck: CardDeck) : Behavior {
 
 export interface BotAction {
   items: BotActionItem[]
-  actionCardSlot?: number
 }
 
 export interface BotActionItem {
-  action: Action
+  actions: Action[]
+  alternative?: boolean
   fallback?: boolean
+  actionCardSlot?: number
 }

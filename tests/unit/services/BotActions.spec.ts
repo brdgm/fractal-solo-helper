@@ -15,16 +15,16 @@ describe('BotActions', () => {
     expect(botActions.behavior).to.eq(Behavior.EXPANSIVE)
     expect(botActions.actions[0]).to.eql({
       items: [
-        { action: Action.COLONIZE },
-        { action: Action.ADVANCE, fallback: true },
-        { action: Action.RECRUIT, fallback: true },
+        { actions: [Action.COLONIZE] },
+        { actions: [Action.ADVANCE], alternative: true },
+        { actions: [Action.RECRUIT], fallback: true },
       ]
     })
     expect(botActions.actions[1]).to.eql({
       items: [
-        { action: Action.RESEARCH_MILITARY },
-        { action: Action.MOVEMENT_SINGLE, fallback: true },
-        { action: Action.RECRUIT, fallback: true },
+        { actions: [Action.RESEARCH_MILITARY] },
+        { actions: [Action.MOVEMENT_SINGLE], alternative: true },
+        { actions: [Action.RECRUIT], fallback: true },
       ]
     })
   })
@@ -39,18 +39,18 @@ describe('BotActions', () => {
     expect(botActions.behavior).to.eq(Behavior.VICTORY)
     expect(botActions.actions[0]).to.eql({
       items: [
-        { action: Action.COLONIZE },
-        { action: Action.RECRUIT, fallback: true },
-        { action: Action.ADVANCE, fallback: true },
+        { actions: [Action.COLONIZE] },
+        { actions: [Action.RECRUIT], alternative: true },
+        { actions: [Action.ADVANCE], fallback: true },
+        { actions: [Action.RECRUIT], fallback: true },
       ]
     })
     expect(botActions.actions[1]).to.eql({
       items: [
-        { action: Action.ACTION_CARD },
-        { action: Action.ADVANCE, fallback: true },
-        { action: Action.RECRUIT, fallback: true },
-      ],
-      actionCardSlot: 4
+        { actions: [Action.ACTION_CARD], actionCardSlot: 4 },
+        { actions: [Action.ADVANCE], fallback: true },
+        { actions: [Action.RECRUIT], fallback: true },
+      ]
     })
   })
 
@@ -64,17 +64,16 @@ describe('BotActions', () => {
     expect(botActions.behavior).to.eq(Behavior.AGGRESSIVE)
     expect(botActions.actions[0]).to.eql({
       items: [
-        { action: Action.COLONIZE },
-        { action: Action.ADVANCE, fallback: true },
-        { action: Action.RECRUIT, fallback: true },
+        { actions: [Action.COLONIZE] },
+        { actions: [Action.ADVANCE], alternative: true },
+        { actions: [Action.RECRUIT], fallback: true },
       ]
     })
     expect(botActions.actions[1]).to.eql({
       items: [
-        { action: Action.GAIN_INFLUENCE },
-        { action: Action.LIVING_STORM_MOVEMENT },
-        { action: Action.ADVANCE, fallback: true },
-        { action: Action.RECRUIT, fallback: true },
+        { actions: [Action.GAIN_INFLUENCE,Action.LIVING_STORM_MOVEMENT] },
+        { actions: [Action.ADVANCE], fallback: true },
+        { actions: [Action.RECRUIT], fallback: true },
       ]
     })
   })
@@ -89,18 +88,17 @@ describe('BotActions', () => {
     expect(botActions.behavior).to.eq(Behavior.EXPANSIVE)
     expect(botActions.actions[0]).to.eql({
       items: [
-        { action: Action.COLONIZE },
-        { action: Action.ADVANCE, fallback: true },
-        { action: Action.RECRUIT, fallback: true },
+        { actions: [Action.COLONIZE] },
+        { actions: [Action.ADVANCE], alternative: true },
+        { actions: [Action.RECRUIT], fallback: true },
       ]
     })
     expect(botActions.actions[1]).to.eql({
       items: [
-        { action: Action.LOOSE_INFLUENCE_ACTION_CARD },
-        { action: Action.ADVANCE, fallback: true },
-        { action: Action.RECRUIT, fallback: true },
-      ],
-      actionCardSlot: 2
+        { actions: [Action.LOOSE_INFLUENCE_ACTION_CARD], actionCardSlot: 2 },
+        { actions: [Action.ADVANCE], fallback: true },
+        { actions: [Action.RECRUIT], fallback: true },
+      ]
     })
   })
 })
