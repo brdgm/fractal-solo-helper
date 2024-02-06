@@ -77,15 +77,15 @@ export default defineComponent({
     },
     directionRotation() : number {
       switch (this.direction) {
-        case LivingStormDirection.DOWN_RIGHT:
-        default:
-          return 0
         case LivingStormDirection.DOWN_LEFT:
           return 90
         case LivingStormDirection.UP_LEFT:
           return 180
         case LivingStormDirection.UP_RIGHT:
           return 270
+          case LivingStormDirection.DOWN_RIGHT:
+        default:
+          return 0
       }
     }
   }

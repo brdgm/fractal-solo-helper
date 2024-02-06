@@ -44,7 +44,7 @@ export default defineComponent({
       const actions = botAction.items
               .map(item => `${item.action}${item.fallback ? ' (fallback)' : ''}`)
               .join(', ')
-      return `${actions}${botAction.actionCardSlot ? ` / card #${botAction.actionCardSlot}` : ''}`
+      return actions + (botAction.actionCardSlot ? ` / card #${botAction.actionCardSlot}` : '')
     }
   }
 })
