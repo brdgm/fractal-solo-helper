@@ -93,6 +93,21 @@
     "concepts": {
       "lastBreath": {
         "title": "Last breath"
+      },
+      "behavior": {
+        "title": "AI Behavior",
+        "victory": {
+          "title": "Victory"
+        },
+        "defensive": {
+          "title": "Defensive"
+        },
+        "aggressive": {
+          "title": "Aggressive"
+        },
+        "expansive": {
+          "title": "Expansive"
+        }
       }
     },
     "action": {
@@ -168,12 +183,6 @@
     "1": "Normal",
     "2": "Hard",
     "3": "Impossible"
-  },
-  "behavior": {
-    "victory": "Victory",
-    "defensive": "Defensive",
-    "aggressive": "Aggressive",
-    "expansive": "Expansive"
   },
   "notfound": {
     "title": "Not Found"

@@ -28,12 +28,14 @@
       </div>
       <div>
         <div class="prioritiesLabel">{{t('sideBar.priority.behavior')}}</div>
-        <button class="btn btn-secondary btn-sm">
-          {{t(`behavior.${botActions.behavior}`)}}
+        <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#rulesBehaviorModal">
+          {{t(`rules.concepts.behavior.${botActions.behavior}.title`)}}
         </button>
       </div>
     </div>
   </div>
+
+  <BehaviorModal/>
 </template>
 
 <script lang="ts">
@@ -44,13 +46,15 @@ import { useI18n } from 'vue-i18n'
 import AppIcon from '../structure/AppIcon.vue'
 import PlayerColorDisplay from '../structure/PlayerColorDisplay.vue'
 import LivingStormMovementIcon from '../structure/LivingStormMovementIcon.vue'
+import BehaviorModal from '../rules/BehaviorModal.vue'
 
 export default defineComponent({
   name: 'SideBar',
   components: {
     AppIcon,
     PlayerColorDisplay,
-    LivingStormMovementIcon
+    LivingStormMovementIcon,
+    BehaviorModal
   },
   setup() {
     const { t } = useI18n()
