@@ -10,6 +10,8 @@ import TurnPlayer from '@/views/TurnPlayer.vue'
 import TurnBot from '@/views/TurnBot.vue'
 import CycleEnd from '@/views/CycleEnd.vue'
 import CycleConflict from '@/views/CycleConflict.vue'
+import CycleTransition from '@/views/CycleTransition.vue'
+import EndOfGame from '@/views/EndOfGame.vue'
 
 const LOCALSTORAGE_KEY = `${name}.route`
 
@@ -53,6 +55,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/cycle/:cycle/end',
     name: 'CycleEnd',
     component: CycleEnd
+  },
+  {
+    path: '/cycle/:cycle/transition',
+    name: 'CycleTransition',
+    component: CycleTransition
+  },
+  {
+    path: '/endOfGame',
+    name: 'EndOfGame',
+    component: EndOfGame
   },
   {
     path: '/:pathMatch(.*)*',

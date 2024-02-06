@@ -1,6 +1,6 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1>{{t('cycleIncome.title', {cycle})}}</h1>
+  <h1>{{t('cycleIncome.title')}}</h1>
 
   <ol>
     <li>

@@ -58,10 +58,10 @@ describe('CardDeck', () => {
     expect(cardDeck.isPass()).to.true
   })
 
-  it('prepareForNextRound', () => {
+  it('prepareForNextCycle', () => {
     const cardDeck = CardDeck.fromPersistence({deck:[1], discard:[2,3], reserve:[4]})
 
-    cardDeck.prepareForNextRound()
+    cardDeck.prepareForNextCycle()
 
     expect(cardDeck.deck.length, 'deck size').to.eq(3)
     expect(cardDeck.reserve.length, 'reserve size').to.eq(1)

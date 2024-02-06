@@ -1,6 +1,6 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1>{{t('cycleConflict.title')}}</h1>
+  <h1>{{t('cycleTransition.title')}}</h1>
 
   <p>TBD</p>
 
@@ -18,11 +18,10 @@ import { useStateStore } from '@/store/state'
 import FooterButtons from '@/components/structure/FooterButtons.vue'
 import { useRoute } from 'vue-router'
 import NavigationState from '@/util/NavigationState'
-import RouteCalculator from '@/services/RouteCalculator'
 import SideBar from '@/components/cycle/SideBar.vue'
 
 export default defineComponent({
-  name: 'CycleConflict',
+  name: 'CycleTransition',
   components: {
     FooterButtons,
     SideBar
@@ -33,17 +32,21 @@ export default defineComponent({
     const state = useStateStore()
     const navigationState = new NavigationState(route, state)
     const { cycle } = navigationState
-    const routeCalculator = new RouteCalculator({cycle})
-    return { t, state, cycle, routeCalculator, navigationState }
+    return { t, state, cycle, navigationState }
   },
   computed: {
     backButtonRouteTo() : string {
-      return this.routeCalculator.getLastTurnRouteTo(this.state)
+      return `/cycle/${this.cycle}/end`
     }
   },
   methods: {
     next() : void {
-      this.$router.push(`/cycle/${this.cycle}/end`)
+      if (this.cycle == 4) {
+        this.$router.push(`/endOfGame`)
+      }
+      else {
+        this.$router.push(`/cycle/${this.cycle+1}/income`)
+      }
     }
   }
 })

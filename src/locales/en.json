@@ -63,6 +63,12 @@
   "cycleEnd": {
     "title": "End of Cycle"
   },
+  "cycleTransition": {
+    "title": "Transition"
+  },
+  "endOfGame": {
+    "title": "End of Game"
+  },
   "sideBar": {
     "cycle": "Cycle",
     "turn": "Turn",

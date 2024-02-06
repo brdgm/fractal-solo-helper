@@ -1,6 +1,6 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1>{{t('cycleEnd.title', {cycle})}}</h1>
+  <h1>{{t('cycleEnd.title')}}</h1>
 
   <p>TBD</p>
 
@@ -18,7 +18,6 @@ import { useStateStore } from '@/store/state'
 import FooterButtons from '@/components/structure/FooterButtons.vue'
 import { useRoute } from 'vue-router'
 import NavigationState from '@/util/NavigationState'
-import RouteCalculator from '@/services/RouteCalculator'
 import SideBar from '@/components/cycle/SideBar.vue'
 
 export default defineComponent({
@@ -33,17 +32,21 @@ export default defineComponent({
     const state = useStateStore()
     const navigationState = new NavigationState(route, state)
     const { cycle } = navigationState
-    const routeCalculator = new RouteCalculator({cycle})
-    return { t, state, cycle, routeCalculator, navigationState }
+    return { t, state, cycle, navigationState }
   },
   computed: {
     backButtonRouteTo() : string {
-      return `/cycle/${this.cycle}/end`
+      return `/cycle/${this.cycle}/conflict`
     }
   },
   methods: {
     next() : void {
-      this.$router.push(`/cycle/${this.cycle+1}/income`)
+      if (this.cycle == 2 || this.cycle == 4) {
+        this.$router.push(`/cycle/${this.cycle}/transition`)
+      }
+      else {
+        this.$router.push(`/cycle/${this.cycle+1}/income`)
+      }
     }
   }
 })
