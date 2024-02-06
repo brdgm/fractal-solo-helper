@@ -42,7 +42,6 @@ describe('BotActions', () => {
         { actions: [Action.COLONIZE] },
         { actions: [Action.RECRUIT], alternative: true },
         { actions: [Action.ADVANCE], fallback: true },
-        { actions: [Action.RECRUIT], fallback: true },
       ]
     })
     expect(botActions.actions[1]).to.eql({

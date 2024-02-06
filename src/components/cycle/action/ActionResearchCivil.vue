@@ -2,9 +2,10 @@
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
   <ActionRulesCollapse>
     <ul>
-      <li>Check the science track on the empire board for the card with the highest scientific cost that can be developed.</li>
-      <li>On the <b>civil</b> technology board, take a card that matches this cost.</li>
-      <li>If there is no card with that cost, take a card with the next lower cost.</li>
+      <li v-html="t('rules.action.research.scienceTrack')"></li>
+      <li v-html="t('rules.action.research.chooseTech', {type:t('rules.action.research-civil.type')})"></li>
+      <li v-html="t('rules.action.research.chooseTechFallback')"></li>
+      <li v-html="t('rules.action.research.shortCircuit')"></li>
     </ul>
   </ActionRulesCollapse>
 </template>

@@ -2,7 +2,7 @@
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
   <ActionRulesCollapse>
     <ul>
-      <li>Move the influence marker one step to the right on the empire board.</li>
+      <li v-html="t('rules.action.gain-influence.moveMarker')"></li>
     </ul>
   </ActionRulesCollapse>
 </template>

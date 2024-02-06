@@ -85,34 +85,61 @@
     },
     "action": {
       "recruit": {
-        "title": "Recruit"
+        "title": "Recruit",
+        "addUnits": "Add units to a sector colonized by the Automata, determined by the active AI behavior.",
+        "unitSelection": "The rightmost visible space on the military track determines the recruited units. If the Automata doesn’t have enough units in reserve to place the indicated units, check the composition of the space immediately to the left. Keep going until you find a valid set of units.",
+        "notPossible": "If the Automata can’t recruit the required units in full because it doesn’t have enough in its reserve, the action is not possible."
       },
       "advance": {
-        "title": "Advance"
+        "title": "Advance",
+        "imperialTrack": "The imperial track determines how many movement orders the Automata can give, i.e., how many space units can move during the action.",
+        "scienceTrack": "The science track determines the number of sectors they can move.",
+        "behavior": "For each space unit you move, check the AI behavior to determine how they must move. This process must be repeated every time a unit moves, not just once."
       },
       "colonize": {
-        "title": "Colonize"
+        "title": "Colonize",
+        "addColony": "Add a colony to a colonizable sector controlled by the Automata and containing at least 1 infantry.",
+        "pickType": "Pick colony type based on current colony AI priority.",
+        "shortCircuit": "If two possible sectors have priority for colony placement, the most-prioritized human player decides."
       },
       "research-civil": {
-        "title": "Research (Civil)"
+        "title": "Research (Civil)",
+        "type": "civil"
       },
       "research-military": {
-        "title": "Research (Military)"
+        "title": "Research (Military)",
+        "type": "military"
+      },
+      "research": {
+        "scienceTrack": "Check the science track on the empire board for the card with the highest scientific cost that can be developed.",
+        "chooseTech": "On the {type} technology board, take a card that matches this cost.",
+        "chooseTechFallback": "If there is no card with that cost, take a card with the next lower cost.",
+        "shortCircuit": "If more than one matching technology is available, the most-prioritized human player decides."
       },
       "gain-influence": {
-        "title": "Gain Influence"
+        "title": "Gain Influence",
+        "moveMarker": "Move the influence marker one step to the right on the empire board."
       },
       "loose-influence-action-card": {
-        "title": "Loose Influence, Play Action Card"
+        "title": "Loose Influence, Play Action Card",
+        "moveMarker": "Move the influence marker one step to the left on the empire board."
       },
       "movement-single": {
-        "title": "Single Movement"
+        "title": "Single Movement",
+        "singleOrder": "The Automata performs a single movement order.",
+        "scienceTrack": "The science track determines the number of sectors it can move.",
+        "behavior": "Check the AI behavior to determine how it must move."
       },
       "living-storm-movement": {
-        "title": "Living Storm Movement"
+        "title": "Living Storm Movement",
+        "moveStorm": "Move the living storm nearest the priority player.",
+        "identifyMovements": "Identify one of the possible movements of the storm and the final position indicated by the icon. Icons have 2 possible directions and orientations."
       },
       "action-card": {
-        "title": "Play Action Card"
+        "title": "Play Action Card",
+        "playCard": "Play the action card from slot {slot} of the Action display face-down. Ignore the card's effect.",
+        "drawCard": "A new action card is immediately drawn to the Action display and placed <i>face-down<i>.",
+        "checkPendulum": "Check the pendulum action section on the faction mat and trigger the applicable action."
       }
     }
   },

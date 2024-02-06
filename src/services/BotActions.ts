@@ -89,12 +89,13 @@ function toBotAction(cardAction: CardAction) : BotAction {
     }
   }
 
-  // last breath: fallback to advance (only if standard advance action is not already present)
+  // last breath
   if (!items.find(item => item.actions.includes(Action.ADVANCE) || item.actions.includes(Action.MOVEMENT_SINGLE))) {
     items.push({ actions: [Action.ADVANCE], fallback: true })
   }
-  // last breath: fallback to recruit. the "normal" recruit is skipped if not enough are left, this is a last resort recruit
-  items.push({ actions: [Action.RECRUIT], fallback: true })
+  if (!items.find(item => item.actions.includes(Action.RECRUIT))) {
+    items.push({ actions: [Action.RECRUIT], fallback: true })
+  }
 
   if (cardAction.actionCardSlot) {
     items.forEach(item => {

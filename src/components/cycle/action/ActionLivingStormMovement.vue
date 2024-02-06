@@ -2,8 +2,8 @@
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
   <ActionRulesCollapse>
     <ul>
-      <li>Move the living storm nearest the priority player (on the active AI protocol).</li>
-      <li>Identify one of the possible movements of the storm and the final position indicated by the icon. Icons have 2 possible directions and orientations.</li>
+      <li v-html="t('rules.action.living-storm-movement.moveStorm')"></li>
+      <li v-html="t('rules.action.living-storm-movement.identifyMovements')"></li>
     </ul>
   </ActionRulesCollapse>
 </template>

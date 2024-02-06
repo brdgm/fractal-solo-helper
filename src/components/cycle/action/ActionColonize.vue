@@ -2,9 +2,9 @@
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
   <ActionRulesCollapse>
     <ul>
-      <li>Add a colony to a colonizable sector controlled by the Automata and containing at least 1 infantry.</li>
-      <li>Pick colony type based on current colony AI priority.</li>
-      <li>If two possible sectors have priority for colony placement, use the <i>Short-circuit</i> rule.</li>
+      <li v-html="t('rules.action.colonize.addColony')"></li>
+      <li v-html="t('rules.action.colonize.pickType')"></li>
+      <li v-html="t('rules.action.colonize.shortCircuit')"></li>
     </ul>
   </ActionRulesCollapse>
 </template>

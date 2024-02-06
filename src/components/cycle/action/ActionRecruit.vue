@@ -2,9 +2,9 @@
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
   <ActionRulesCollapse>
     <ul>
-      <li>Add units to a sector colonized by the Automata, determined by the active AI behavior.</li>
-      <li>The rightmost visible space on the military track determines the recruited units. If the Automata doesn’t have enough units in reserve to place the indicated units, check the composition of the space immediately to the left. Keep going until you find a valid set of units.</li>
-      <li>If the Automata can’t recruit the required units in full because it doesn’t have enough in its reserve, then apply the Last breath rule. If the Automata still cannot perform the action, ignore it.</li>
+      <li v-html="t('rules.action.recruit.addUnits')"></li>
+      <li v-html="t('rules.action.recruit.unitSelection')"></li>
+      <li v-html="t('rules.action.recruit.notPossible')"></li>
     </ul>
   </ActionRulesCollapse>
 </template>

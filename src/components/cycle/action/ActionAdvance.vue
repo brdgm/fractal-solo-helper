@@ -2,10 +2,9 @@
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
   <ActionRulesCollapse>
     <ul>
-      <li>Move the Automata units on the board according to the active AI behavior.</li>
-      <li>The imperial track determines how many movement orders the Automata can give, i.e., how many space units can move during the action.</li>
-      <li>The science track determines the number of sectors they can move.</li>
-      <li>For each space unit you move, check the AI behavior to determine how they must move. This process must be repeated every time a unit moves, not just once.</li>
+      <li v-html="t('rules.action.advance.imperialTrack')"></li>
+      <li v-html="t('rules.action.advance.scienceTrack')"></li>
+      <li v-html="t('rules.action.advance.behavior')"></li>
     </ul>
   </ActionRulesCollapse>
 </template>

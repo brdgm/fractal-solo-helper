@@ -5,9 +5,10 @@
   </ActionTitle>
   <ActionRulesCollapse>
     <ul>
-      <li>Move the influence marker one step to the left on the empire board.</li>
-      <li>Play the action card from slot {{botActionItem.actionCardSlot}} of the Action display. The action on the card is ignored.</li>
-      <li>Check the pendulum action section on the faction mat and trigger the applicable action.</li>
+      <li v-html="t('rules.action.loose-influence-action-card.moveMarker')"></li>
+      <li v-html="t('rules.action.action-card.playCard', {slot:botActionItem.actionCardSlot})"></li>
+      <li v-html="t('rules.action.action-card.drawCard')"></li>
+      <li v-html="t('rules.action.action-card.checkPendulum')"></li>
     </ul>
   </ActionRulesCollapse>
 </template>
