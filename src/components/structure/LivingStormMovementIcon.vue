@@ -57,7 +57,7 @@ import LivingStormOrientation from '@/services/enum/LivingStormOrientation'
 import LivingStormDirection from '@/services/enum/LivingStormDirection'
 
 export default defineComponent({
-  name: 'LivingStormMovement',
+  name: 'LivingStormMovementIcon',
   props: {
     orientation: {
       type: String as PropType<LivingStormOrientation>,

@@ -80,6 +80,7 @@ export default defineComponent({
   margin-bottom: 0.5rem;
   .icon {
     width: 3rem;
+    min-width: 3rem;
     margin-right: 0.25rem;
   }
   .title {

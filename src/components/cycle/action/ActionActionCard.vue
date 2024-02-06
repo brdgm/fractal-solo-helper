@@ -1,6 +1,6 @@
 <template>
   <div class="action-title">
-    <AppIcon type="action" :name="action" class="icon"/>
+    <ActionCardIcon class="icon" :actionCardSlot="botAction.actionCardSlot"/>
     <h5 class="title">{{t(`rules.action.${action}.title`)}}</h5>
   </div>
   <ActionRulesCollapse>
@@ -14,15 +14,15 @@
 import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import BotActions, { BotAction } from '@/services/BotActions'
-import AppIcon from '@/components/structure/AppIcon.vue'
 import Action from '@/services/enum/Action'
 import ActionRulesCollapse from '../ActionRulesCollapse.vue'
+import ActionCardIcon from '@/components/structure/ActionCardIcon.vue'
 
 export default defineComponent({
   name: 'ActionActionCard',
   components: {
-    AppIcon,
-    ActionRulesCollapse
+    ActionRulesCollapse,
+    ActionCardIcon
   },
   setup() {
     const { t } = useI18n()

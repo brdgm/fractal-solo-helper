@@ -23,7 +23,7 @@
       </div>
       <div>
         <div class="prioritiesLabel">{{t('sideBar.priority.livingStorm')}}</div>
-        <LivingStormMovement :orientation="botActions.livingStormOrientation"
+        <LivingStormMovementIcon :orientation="botActions.livingStormOrientation"
             :direction="botActions.livingStormDirection" class="icon"/>
       </div>
       <div>
@@ -43,14 +43,14 @@ import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AppIcon from '../structure/AppIcon.vue'
 import PlayerColorDisplay from '../structure/PlayerColorDisplay.vue'
-import LivingStormMovement from '../structure/LivingStormMovement.vue'
+import LivingStormMovementIcon from '../structure/LivingStormMovementIcon.vue'
 
 export default defineComponent({
   name: 'SideBar',
   components: {
     AppIcon,
     PlayerColorDisplay,
-    LivingStormMovement
+    LivingStormMovementIcon
   },
   setup() {
     const { t } = useI18n()
