@@ -26,6 +26,12 @@
         <LivingStormMovement :orientation="botActions.livingStormOrientation"
             :direction="botActions.livingStormDirection" class="icon"/>
       </div>
+      <div>
+        <div class="prioritiesLabel">{{t('sideBar.priority.behavior')}}</div>
+        <button class="btn btn-secondary btn-sm">
+          {{t(`behavior.${botActions.behavior}`)}}
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -77,7 +83,7 @@ export default defineComponent({
   }
 }
 .icon {
-  width: 1.5rem;
+  height: 1.5rem;
   margin-top: 0.25rem;
   margin-right: 0.25rem;
   margin-bottom: 0.25rem;

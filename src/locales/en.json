@@ -61,7 +61,8 @@
       "unit": "Unit",
       "colony": "Colony",
       "player": "Player",
-      "livingStorm": "Living Storm"
+      "livingStorm": "Living Storm",
+      "behavior": "Behavior"
     }
   },
   "player": {
@@ -81,6 +82,12 @@
     "1": "Normal",
     "2": "Hard",
     "3": "Impossible"
+  },
+  "behavior": {
+    "victory": "Victory",
+    "defensive": "Defensive",
+    "aggressive": "Aggressive",
+    "expansive": "Expansive"
   },
   "notfound": {
     "title": "Not Found"

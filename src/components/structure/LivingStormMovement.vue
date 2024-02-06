@@ -1,6 +1,32 @@
 <template>
-  <AppIcon v-if="isUtopian" name="living-storm-utopian"/>
-  <svg v-else version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  <!-- *** UTOPIAN *** -->
+  <svg v-if="isUtopian" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    viewBox="3 12 33.68 15.69" style="enable-background:new 0 0 39.68 39.69;" xml:space="preserve">
+    <g>
+      <path style="fill:#000;" d="M14.02,24.7
+        c-1.04,0.78-2.31,1.21-3.63,1.21c-1.33,0-2.59-0.42-3.63-1.21l-0.62,0.62c1.17,0.91,2.65,1.46,4.25,1.46c1.6,0,3.08-0.54,4.25-1.46
+        L14.02,24.7z M4.91,15.59C4,16.76,3.45,18.24,3.45,19.84c0,1.6,0.54,3.08,1.46,4.25l0.62-0.62c-0.79-1.04-1.21-2.31-1.21-3.63
+        c0-1.33,0.42-2.59,1.21-3.63L4.91,15.59z M10.39,12.91c-1.6,0-3.08,0.54-4.25,1.46l0.62,0.62c1.04-0.78,2.31-1.21,3.63-1.21
+        c1.33,0,2.59,0.42,3.63,1.21l0.62-0.62C13.47,13.45,11.99,12.91,10.39,12.91 M15.87,15.59l-0.62,0.62
+        c0.78,1.04,1.21,2.31,1.21,3.63c0,1.33-0.42,2.59-1.21,3.63l0.62,0.62c0.91-1.17,1.46-2.65,1.46-4.25
+        C17.32,18.24,16.78,16.76,15.87,15.59"/>
+      <template v-if="isHorizontal">
+        <polygon style="fill:#000;" points="10.08,14.64 10.08,20.76 8.54,19.22 9.16,17.39" transform="rotate(90 9.92 19.84)"/>
+        <polygon style="fill:#000;" points="12.23,20.46 11.62,22.3 10.7,25.03 10.7,18.93" transform="rotate(90 9.92 19.84)"/>
+      </template>
+      <template v-else>
+        <polygon style="fill:#000;" points="10.08,14.64 10.08,20.76 8.54,19.22 9.16,17.39"/>
+        <polygon style="fill:#000;" points="12.23,20.46 11.62,22.3 10.7,25.03 10.7,18.93"/>
+      </template>
+    </g>
+    <g>
+      <path style="fill:#000;" d="M32.23,12.91h-8.01
+        l-4,6.93l4,6.94h8.01l4-6.94L32.23,12.91z M31.69,21.97c0,0.74-0.61,1.34-1.34,1.34H26.1c-0.74,0-1.34-0.6-1.34-1.34v-5.6h1.27v5.6
+        c0,0.04,0.03,0.07,0.07,0.07h4.26c0.03,0,0.06-0.03,0.06-0.07v-5.6h1.28V21.97z"/>
+    </g>
+  </svg>
+  <!-- *** STANDARD *** -->
+  <svg v-else version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
     viewBox="10 10 19.68 19.69" style="enable-background:new 0 0 39.68 39.69;" xml:space="preserve">
     <g>
       <path style="fill:#000;" d="M24.05,25.47
