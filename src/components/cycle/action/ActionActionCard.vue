@@ -1,8 +1,7 @@
 <template>
-  <div class="action-title">
+  <ActionTitle :action="action" :botActionItem="botActionItem">
     <ActionCardIcon class="icon" :actionCardSlot="botActionItem.actionCardSlot"/>
-    <h5 class="title">{{t(`rules.action.${action}.title`)}}</h5>
-  </div>
+  </ActionTitle>
   <ActionRulesCollapse>
     <ul>
       <li>Play the action card from slot {{botActionItem.actionCardSlot}} of the Action display. The action on the card is ignored.</li>
@@ -18,12 +17,14 @@ import BotActions, { BotActionItem } from '@/services/BotActions'
 import Action from '@/services/enum/Action'
 import ActionRulesCollapse from '../ActionRulesCollapse.vue'
 import ActionCardIcon from '@/components/structure/ActionCardIcon.vue'
+import ActionTitle from '../ActionTitle.vue'
 
 export default defineComponent({
   name: 'ActionActionCard',
   components: {
     ActionRulesCollapse,
-    ActionCardIcon
+    ActionCardIcon,
+    ActionTitle
   },
   setup() {
     const { t } = useI18n()

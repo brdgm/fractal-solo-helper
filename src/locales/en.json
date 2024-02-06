@@ -78,6 +78,11 @@
     "bot": "AI Opponent | AI Opponent {bot}"
   },
   "rules": {
+    "concepts": {
+      "lastBreath": {
+        "title": "Last breath"
+      }
+    },
     "action": {
       "recruit": {
         "title": "Recruit"

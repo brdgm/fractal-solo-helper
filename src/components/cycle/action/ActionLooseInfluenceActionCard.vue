@@ -1,9 +1,8 @@
 <template>
-  <div class="action-title">
+  <ActionTitle :action="action" :botActionItem="botActionItem">
     <AppIcon type="action" name="loose-influence" class="icon"/>
     <ActionCardIcon class="icon" :actionCardSlot="botActionItem.actionCardSlot"/>
-    <h5 class="title">{{t(`rules.action.${action}.title`)}}</h5>
-  </div>
+  </ActionTitle>
   <ActionRulesCollapse>
     <ul>
       <li>Move the influence marker one step to the left on the empire board.</li>
@@ -21,13 +20,15 @@ import AppIcon from '@/components/structure/AppIcon.vue'
 import Action from '@/services/enum/Action'
 import ActionRulesCollapse from '../ActionRulesCollapse.vue'
 import ActionCardIcon from '@/components/structure/ActionCardIcon.vue'
+import ActionTitle from '../ActionTitle.vue'
 
 export default defineComponent({
   name: 'ActionLooseInfluenceActionCard',
   components: {
     AppIcon,
     ActionRulesCollapse,
-    ActionCardIcon
+    ActionCardIcon,
+    ActionTitle
   },
   setup() {
     const { t } = useI18n()

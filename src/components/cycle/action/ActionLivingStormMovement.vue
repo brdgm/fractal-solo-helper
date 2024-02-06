@@ -1,8 +1,5 @@
 <template>
-  <div class="action-title">
-    <AppIcon type="action" :name="action" class="icon"/>
-    <h5 class="title">{{t(`rules.action.${action}.title`)}}</h5>
-  </div>
+  <ActionTitle :action="action" :botActionItem="botActionItem"/>
   <ActionRulesCollapse>
     <ul>
       <li>Move the living storm nearest the priority player (on the active AI protocol).</li>
@@ -15,15 +12,15 @@
 import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import BotActions, { BotActionItem } from '@/services/BotActions'
-import AppIcon from '@/components/structure/AppIcon.vue'
 import Action from '@/services/enum/Action'
 import ActionRulesCollapse from '../ActionRulesCollapse.vue'
+import ActionTitle from '../ActionTitle.vue'
 
 export default defineComponent({
   name: 'ActionLivingStormMovement',
   components: {
-    AppIcon,
-    ActionRulesCollapse
+    ActionRulesCollapse,
+    ActionTitle
   },
   setup() {
     const { t } = useI18n()

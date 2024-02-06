@@ -1,7 +1,7 @@
 <template>
   <h4>Action {{actionIndex}}</h4>
   <div class="mt-3" v-if="botActionItem">
-    <div v-for="action of botActionItem.actions">
+    <div v-for="action of botActionItem.actions" :key="action">
       <component :is="`action-${action}`"
           :action="action"
           :botActionItem="botActionItem"
@@ -88,19 +88,3 @@ export default defineComponent({
   }
 })
 </script>
-
-<style lang="scss">
-.action-title {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  .icon {
-    width: 3rem;
-    min-width: 3rem;
-    margin-right: 0.25rem;
-  }
-  .title {
-    margin-left: 0.25rem;
-  }
-}
-</style>
