@@ -38,7 +38,10 @@ describe('util/getBotCardDeck', () => {
     expect(getBotCardDeck(state, 1, 2, 1, 1).toPersistence()).to.eql({deck:[1,2,3],discard:[],reserve:[10]})
     expect(getBotCardDeck(state, 1, 2, 1, 2).toPersistence()).to.eql({deck:[2,3],discard:[1],reserve:[]})
     // previous cycle
-    expect(getBotCardDeck(state, 2, 1, 1, 1).toPersistence()).to.eql({deck:[3],discard:[2,1],reserve:[10]})
+    const cardDeckNewCycle = getBotCardDeck(state, 2, 1, 1, 1).toPersistence()
+    expect(cardDeckNewCycle.deck.length).to.eq(3)
+    expect(cardDeckNewCycle.discard.length).to.eq(0)
+    expect(cardDeckNewCycle.reserve.length).to.eq(1)
     // initial
     expect(getBotCardDeck(state, 1, 1, 1, 1).toPersistence()).to.eql({deck:[1],discard:[],reserve:[]})
     expect(getBotCardDeck(state, 1, 1, 2, 1).toPersistence()).to.eql({deck:[4],discard:[],reserve:[]})

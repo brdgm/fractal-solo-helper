@@ -26,7 +26,9 @@ export default function getBotCardDeck(state: State, cycle: number, turn: number
   }
   // check previous cycle
   if (cycle > 1) {
-    return getBotCardDeck(state, cycle - 1, MAX_TURN, bot, action)
+    const cardDeck = getBotCardDeck(state, cycle - 1, MAX_TURN, bot, action)
+    cardDeck.prepareForNextCycle()
+    return cardDeck
   }
   // get initial card deck
   const initialCardDeck = (state.setup.initialBotCardDecks ?? [])[bot-1]

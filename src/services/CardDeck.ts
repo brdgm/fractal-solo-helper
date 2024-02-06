@@ -70,9 +70,9 @@ export default class CardDeck {
   }
 
   /**
-   * Prepare card deck for new round, adding additional card from reserve.
+   * Prepare card deck for new cycle, adding additional card from reserve.
    */
-  public prepareForNextRound() : void {
+  public prepareForNextCycle() : void {
     // discard all remaining cards
     this._deck.forEach(card => this._discard.push(card))
     this._deck = []
