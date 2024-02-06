@@ -5,7 +5,9 @@
   </div>
   <ActionRulesCollapse>
     <ul>
-      <li>TBD</li>
+      <li>Check the science track on the empire board for the card with the highest scientific cost that can be developed.</li>
+      <li>On the <b>military</b> technology board, take a card that matches this cost.</li>
+      <li>If there is no card with that cost, take a card with the next lower cost.</li>
     </ul>
   </ActionRulesCollapse>
 </template>

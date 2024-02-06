@@ -1,9 +1,9 @@
 <template>
   <h4>Action {{actionIndex}}</h4>
-  <div class="mt-3">
-    <component :is="`action-${botActions.actions[actionIndex-1].items[0].action}`"
-        :action="botActions.actions[actionIndex-1].items[0].action"
-        :botAction="botActions.actions[actionIndex-1]"
+  <div class="mt-3" v-if="botAction">
+    <component :is="`action-${botAction.items[actionItem].action}`"
+        :action="botAction.items[actionItem].action"
+        :botAction="botAction"
         :botActions="botActions"/>
   </div>
 
@@ -18,7 +18,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-import BotActions from '@/services/BotActions'
+import BotActions, { BotAction } from '@/services/BotActions'
 import ActionActionCard from './action/ActionActionCard.vue'
 import ActionAdvance from './action/ActionAdvance.vue'
 import ActionColonize from './action/ActionColonize.vue'
@@ -44,7 +44,7 @@ export default defineComponent({
     ActionResearchCivil,
     ActionResearchMilitary
   },
-  emits: ['next','back'],
+  emits: ['next'],
   setup() {
     const { t } = useI18n()    
     return { t }
@@ -59,15 +59,26 @@ export default defineComponent({
       required: true
     }
   },
+  data() {
+    return {
+      actionItem: 0
+    }
+  },
+  computed: {
+    botAction() : BotAction|undefined {
+      return this.botActions.actions[this.actionIndex-1]
+    }
+  },
   methods: {
     executed() {
       this.$emit('next')
     },
     notPossible() {
-      // TODO: implement
-    },
-    back() {
-      this.$emit('back')
+      if (this.botAction && this.actionItem < this.botAction.items.length-1) {
+        this.actionItem++
+      } else {
+        this.$emit('next')
+      }
     }
   }
 })

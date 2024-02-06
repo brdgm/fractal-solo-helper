@@ -5,7 +5,7 @@
   </div>
   <ActionRulesCollapse>
     <ul>
-      <li>TBD</li>
+      <li>Move the influence marker one step to the right on the empire board.</li>
     </ul>
   </ActionRulesCollapse>
 </template>

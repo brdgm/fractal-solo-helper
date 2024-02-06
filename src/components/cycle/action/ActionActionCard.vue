@@ -5,7 +5,8 @@
   </div>
   <ActionRulesCollapse>
     <ul>
-      <li>TBD</li>
+      <li>Play the action card from slot {{botAction.actionCardSlot}} of the Action display. The action on the card is ignored.</li>
+      <li>Check the pendulum action section on the faction mat and trigger the applicable action.</li>
     </ul>
   </ActionRulesCollapse>
 </template>
