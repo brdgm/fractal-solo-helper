@@ -27,7 +27,7 @@
   </svg>
   <!-- *** STANDARD *** -->
   <svg v-else version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-    viewBox="10 10 19.68 19.69" style="enable-background:new 0 0 39.68 39.69;" xml:space="preserve">
+    viewBox="11 11 17.68 17.69" style="enable-background:new 0 0 39.68 39.69;" xml:space="preserve">
     <g>
       <path style="fill:#000;" d="M24.05,25.47
         c-1.21,0.91-2.67,1.4-4.21,1.4c-1.54,0-3-0.49-4.21-1.4l-0.72,0.72c1.36,1.06,3.07,1.69,4.92,1.69c1.86,0,3.56-0.63,4.92-1.69

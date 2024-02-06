@@ -2,7 +2,10 @@
   <div class="mt-4" v-if="state.setup.debugMode && botActions && cardDeck">
     <hr/>
     <p class="debug">
-      Action Card: {{cardDeck.actionCard?.id}}, Support Card: {{cardDeck.supportCard?.id}}<br/>
+      Active Card: {{cardDeck.actionCard?.id}},
+      Discard: {{getDeckInfo(cardDeck.discard)}},
+      Deck: {{getDeckInfo(cardDeck.deck, 1)}},
+      Reserve: {{getDeckInfo(cardDeck.reserve)}}<br/>
       <span v-for="(botAction,index) in botActions.actions" :key="index">
         Action {{index+1}}: {{getBotActionInfo(botAction)}}<br/>
       </span>
@@ -17,6 +20,7 @@ import { useI18n } from 'vue-i18n';
 import { useStateStore } from '@/store/state';
 import BotActions, { BotAction } from '@/services/BotActions';
 import CardDeck from '@/services/CardDeck';
+import Card from '@/services/Card';
 
 export default defineComponent({
   name: 'DebugInfo',
@@ -42,9 +46,14 @@ export default defineComponent({
   methods: {
     getBotActionInfo(botAction : BotAction) : string {
       const actions = botAction.items
-              .map(item => `${item.action}${item.fallback ? ' (fallback)' : ''}`)
+              .map(item => item.action + (item.fallback ? ' (fallback)' : ''))
               .join(', ')
       return actions + (botAction.actionCardSlot ? ` / card #${botAction.actionCardSlot}` : '')
+    },
+    getDeckInfo(cards: readonly Card[], skipCards : number = 0) : string {
+      return '[' + cards.slice(skipCards)
+        .map(card => card.id)
+        .join(',') + ']'
     }
   }
 })
