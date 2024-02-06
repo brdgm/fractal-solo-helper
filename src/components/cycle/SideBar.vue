@@ -18,6 +18,10 @@
           <PlayerColorDisplay v-for="playerColor of botActions.playerPriority" :key="playerColor" :playerColor="playerColor" :sizeRem="1.5" class="icon"/>
         </template>
       </div>
+      <div>
+        <LivingStormMovement :orientation="botActions.livingStormOrientation"
+            :direction="botActions.livingStormDirection" class="icon"/>
+      </div>
     </div>
   </div>
 </template>
@@ -29,12 +33,14 @@ import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AppIcon from '../structure/AppIcon.vue'
 import PlayerColorDisplay from '../structure/PlayerColorDisplay.vue'
+import LivingStormMovement from '../structure/LivingStormMovement.vue'
 
 export default defineComponent({
   name: 'SideBar',
   components: {
     AppIcon,
-    PlayerColorDisplay
+    PlayerColorDisplay,
+    LivingStormMovement
   },
   setup() {
     const { t } = useI18n()

@@ -7,14 +7,14 @@
 
 <script lang="ts">
 import PlayerColor from '@/services/enum/PlayerColor'
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import getPlayerColorCode from '@/util/getPlayerColorCode'
 
 export default defineComponent({
   name: 'PlayerColorDisplay',
   props: {
     playerColor: {
-      type: String,
+      type: String as PropType<PlayerColor>,
       required: true
     },
     sizeRem: {
@@ -23,8 +23,8 @@ export default defineComponent({
     }
   },
   methods: {
-    getColorCode(color : string) : string {
-      return getPlayerColorCode(color as PlayerColor)
+    getColorCode(color : PlayerColor) : string {
+      return getPlayerColorCode(color)
     }
   }
 })

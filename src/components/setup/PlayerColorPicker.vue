@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import PlayerColor from '@/services/enum/PlayerColor'
 import getPlayerColorCode from '@/util/getPlayerColorCode'
 
@@ -15,7 +15,7 @@ export default defineComponent({
   emits: ['update:modelValue'],
   props: {
     modelValue: {
-      type: String,
+      type: String as PropType<PlayerColor>,
       required: true
     }
   },
