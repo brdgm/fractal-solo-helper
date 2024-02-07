@@ -4,7 +4,10 @@
     <template #body>
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="tablink-behavior-victory" data-bs-toggle="tab" data-bs-target="#tab-behavior-victory" type="button" role="tab" aria-controls="tab-behavior-victory" aria-selected="true">{{t('rules.concepts.behavior.victory.title')}}</button>
+          <button class="nav-link active" id="tablink-important-concepts" data-bs-toggle="tab" data-bs-target="#tab-important-concepts" type="button" role="tab" aria-controls="tab-important-concepts" aria-selected="false">{{t('rules.concepts.important.title')}}</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tablink-behavior-victory" data-bs-toggle="tab" data-bs-target="#tab-behavior-victory" type="button" role="tab" aria-controls="tab-behavior-victory" aria-selected="true">{{t('rules.concepts.behavior.victory.title')}}</button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="tablink-behavior-defensive" data-bs-toggle="tab" data-bs-target="#tab-behavior-defensive" type="button" role="tab" aria-controls="tab-behavior-defensive" aria-selected="false">{{t('rules.concepts.behavior.defensive.title')}}</button>
@@ -15,14 +18,25 @@
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="tablink-behavior-expansive" data-bs-toggle="tab" data-bs-target="#tab-behavior-expansive" type="button" role="tab" aria-controls="tab-behavior-expansive" aria-selected="false">{{t('rules.concepts.behavior.expansive.title')}}</button>
         </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="tablink-important-concepts" data-bs-toggle="tab" data-bs-target="#tab-important-concepts" type="button" role="tab" aria-controls="tab-important-concepts" aria-selected="false">{{t('rules.concepts.important.title')}}</button>
-        </li>
       </ul>
       <div class="tab-content">
 
+        <!-- Important concepts -->
+        <div class="tab-pane show active" id="tab-important-concepts" role="tabpanel" aria-labelledby="tablink-important-concepts" tabindex="0">
+          <h6>{{t('rules.concepts.important.exploration.title')}}</h6>
+          <p v-html="t('rules.concepts.important.cards.description')"></p>
+          <h6>{{t('rules.concepts.important.cards.title')}}</h6>
+          <p v-html="t('rules.concepts.important.training.description')"></p>
+          <h6>{{t('rules.concepts.important.training.title')}}</h6>
+          <p v-html="t('rules.concepts.important.training.description')"></p>
+          <h6>{{t('rules.concepts.important.holdTheLine.title')}}</h6>
+          <p v-html="t('rules.concepts.important.holdTheLine.description')"></p>
+          <h6>{{t('rules.concepts.important.shortCircuit.title')}}</h6>
+          <p v-html="t('rules.concepts.important.shortCircuit.description')"></p>
+        </div>
+
         <!-- Victory Behavior -->
-        <div class="tab-pane show active" id="tab-behavior-victory" role="tabpanel" aria-labelledby="tablink-behavior-victory" tabindex="0">
+        <div class="tab-pane" id="tab-behavior-victory" role="tabpanel" aria-labelledby="tablink-behavior-victory" tabindex="0">
           <p>
             <span v-html="t('rules.concepts.behavior.victory.advanceInteractive.controllingUtopian')"></span><br/>
             <BehaviorYesNoButtons :answers="victory" :index="0"/>
@@ -161,20 +175,6 @@
             <h6>{{t('rules.action.recruit.title')}}</h6>
             <p v-html="t('rules.concepts.behavior.expansive.recruit.description')"></p>
           </ActionRulesCollapse>
-        </div>
-
-        <!-- Important concepts -->
-        <div class="tab-pane" id="tab-important-concepts" role="tabpanel" aria-labelledby="tablink-important-concepts" tabindex="0">
-          <h6>{{t('rules.concepts.important.exploration.title')}}</h6>
-          <p v-html="t('rules.concepts.important.cards.description')"></p>
-          <h6>{{t('rules.concepts.important.cards.title')}}</h6>
-          <p v-html="t('rules.concepts.important.training.description')"></p>
-          <h6>{{t('rules.concepts.important.training.title')}}</h6>
-          <p v-html="t('rules.concepts.important.training.description')"></p>
-          <h6>{{t('rules.concepts.important.holdTheLine.title')}}</h6>
-          <p v-html="t('rules.concepts.important.holdTheLine.description')"></p>
-          <h6>{{t('rules.concepts.important.shortCircuit.title')}}</h6>
-          <p v-html="t('rules.concepts.important.shortCircuit.description')"></p>
         </div>
 
       </div>

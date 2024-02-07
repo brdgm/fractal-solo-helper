@@ -43,7 +43,8 @@
       "forbiddenPact": "The Forbidden Pact",
       "voidThrone": "Void Throne",
       "taintedCivilization": "Tainted Civilization"
-    }
+    },
+    "importantInstructions": "If you are playing first time, read the <a href='#rulesBehaviorModal' data-bs-toggle='modal'>important concepts</a>."
   },
   "cycleIncome": {
     "title": "Income",

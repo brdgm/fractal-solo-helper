@@ -37,6 +37,10 @@
       </ul>
     </li>
   </ul>
+
+  <p v-html="t('setupBot.importantInstructions')"></p>
+
+  <BehaviorModal/>
 </template>
 
 <script lang="ts">
@@ -52,12 +56,14 @@ import getBotDifficultyLevel from '@/util/getBotDifficultyLevel'
 import FactionConfig from '@/services/FactionConfig'
 import FactionConfigs from '@/services/FactionConfigs'
 import AppIcon from '../structure/AppIcon.vue'
+import BehaviorModal from '../rules/BehaviorModal.vue'
 
 export default defineComponent({
   name: 'BotInstructions',
   components: {
     PlayerColorDisplay,
-    AppIcon
+    AppIcon,
+    BehaviorModal
   },
   setup() {
     const { t } = useI18n()
