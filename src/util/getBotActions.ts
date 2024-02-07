@@ -1,12 +1,13 @@
-import BotActions from '@/services/BotActions';
-import CardDeck from '@/services/CardDeck';
-import Technologies from '@/services/Technologies';
-import DifficultyLevel from '@/services/enum/DifficultyLevel';
-import { State } from '@/store/state';
+import BotActions from '@/services/BotActions'
+import CardDeck from '@/services/CardDeck'
+import Technologies from '@/services/Technologies'
+import DifficultyLevel from '@/services/enum/DifficultyLevel'
+import { State } from '@/store/state'
 import { MAX_TURN } from '@/util/getTurnOrder'
 
 /**
- * Get card deck for given bot from previous turn, or last turn of previous cycle, or the initial one.
+ * Get bot actions with card deck and technologies for given bot from previous turn/action,
+ * or last turn/action of previous cycle, or the initial one.
  * @param state State
  * @param cycle Cycle
  * @param turn Turn
@@ -15,6 +16,8 @@ import { MAX_TURN } from '@/util/getTurnOrder'
  * @returns Card deck
  */
 export default function getBotActions(state: State, cycle: number, turn: number, bot : number, action : number) : BotActions {
+  // draw new card for 1st action
+  const drawCard = (action == 1)
   // check current cycle
   const cycleData = state.cycles.find(item => item.cycle==cycle)
   if (cycleData) {
@@ -23,7 +26,7 @@ export default function getBotActions(state: State, cycle: number, turn: number,
       .toSorted((a, b) => a.turn - b.turn)
       .findLast(item => item.cycle==cycle && (item.turn<turn || item.turn==turn && (item.action ?? 0)<action) && item.bot==bot)
     if (lastTurn?.botActions) {
-      return BotActions.fromPersistence(lastTurn.botActions)
+      return BotActions.fromPersistence(lastTurn.botActions, drawCard)
     }
   }
   // check previous cycle
@@ -37,5 +40,6 @@ export default function getBotActions(state: State, cycle: number, turn: number,
   if (!initialCardDeck) {
     initialCardDeck = CardDeck.new(DifficultyLevel.NORMAL).toPersistence()  // fallback, should never happen
   }
-  return new BotActions(CardDeck.fromPersistence(initialCardDeck), new Technologies())
+  const cardDeck = CardDeck.fromPersistence(initialCardDeck)
+  return new BotActions(cardDeck, new Technologies(), drawCard)
 }

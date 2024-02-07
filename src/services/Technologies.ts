@@ -1,5 +1,5 @@
-import { TechnologiesPersistence } from "@/store/state"
-import Technology from "./enum/Technology"
+import { TechnologiesPersistence } from '@/store/state'
+import Technology from './enum/Technology'
 
 /**
  * Collection of civil and military technologies.

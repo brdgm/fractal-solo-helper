@@ -32,10 +32,6 @@ export default class NavigationState {
     
     if (this.bot > 0 && this.turn > 0) {
       this.botActions = getBotActions(state, this.cycle, this.turn, this.bot, this.action)
-      if (this.action == 1) {
-        // draw next protocol card on begin of bot's turn
-        this.botActions.cardDeck.draw()
-      }
     }
   }
 

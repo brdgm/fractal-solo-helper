@@ -1,11 +1,11 @@
-import Action from "./enum/Action"
-import Behavior from "./enum/Behavior"
-import ColonyType from "./enum/ColonyType"
-import ConditionalActivation from "./enum/ConditionalActivation"
-import LivingStormDirection from "./enum/LivingStormDirection"
-import LivingStormOrientation from "./enum/LivingStormOrientation"
-import PlayerColor from "./enum/PlayerColor"
-import UnitType from "./enum/UnitType"
+import Action from './enum/Action'
+import Behavior from './enum/Behavior'
+import ColonyType from './enum/ColonyType'
+import ConditionalActivation from './enum/ConditionalActivation'
+import LivingStormDirection from './enum/LivingStormDirection'
+import LivingStormOrientation from './enum/LivingStormOrientation'
+import PlayerColor from './enum/PlayerColor'
+import UnitType from './enum/UnitType'
 
 export default interface Card {
   id: number

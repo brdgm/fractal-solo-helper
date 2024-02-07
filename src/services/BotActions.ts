@@ -21,9 +21,12 @@ export default class BotActions {
   private _actions : BotAction[]
   private _behavior : Behavior
 
-  public constructor(cardDeck : CardDeck, technologies: Technologies) {
+  public constructor(cardDeck : CardDeck, technologies: Technologies, drawCard: boolean = false) {
     this._cardDeck = cardDeck
     this._technologies = technologies
+    if (drawCard) {
+      this._cardDeck.draw()
+    }
     this._actions = getCardActions(cardDeck).map(toBotAction)
     this._behavior = getBehavior(cardDeck)
   }
@@ -80,11 +83,14 @@ export default class BotActions {
 
   /**
    * Re-creates bot actions from persistence.
+   * @param persistence Persistence
+   * @param drawCard Draw card before fetching bot actions
    */
-  public static fromPersistence(persistence : BotActionsPersistence) : BotActions {
+  public static fromPersistence(persistence: BotActionsPersistence, drawCard: boolean = false) : BotActions {
     return new BotActions(
       CardDeck.fromPersistence(persistence.cardDeck),
-      Technologies.fromPersistence(persistence.technologies)
+      Technologies.fromPersistence(persistence.technologies),
+      drawCard
     )
   }
 

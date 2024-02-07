@@ -56,14 +56,13 @@ export default defineComponent({
   methods: {
     next() : void {
       // store turn
-      const cardDeck = this.botActions?.cardDeck
-      if (cardDeck) {
+      if (this.botActions) {
         const turn : Turn = {
           cycle: this.cycle,
           turn: this.turn,
           bot: this.bot,
           action: this.action,
-          botCardDeck: cardDeck.toPersistence()
+          botActions: this.botActions.toPersistence()
         }
         if (this.isPass) {
           turn.passed = true

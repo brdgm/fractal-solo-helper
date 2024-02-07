@@ -1,5 +1,5 @@
-import { State, Turn } from "@/store/state"
-import getPlayerOrder, { PlayerOrder } from "./getPlayerOrder"
+import { State, Turn } from '@/store/state'
+import getPlayerOrder, { PlayerOrder } from './getPlayerOrder'
 
 /**
  * Generate list of all player/bot turns - leaving out steps after player/bot has passed.

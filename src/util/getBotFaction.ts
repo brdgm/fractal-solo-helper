@@ -1,5 +1,5 @@
-import Faction from '@/services/enum/Faction';
-import { PlayerSetup } from '@/store/state';
+import Faction from '@/services/enum/Faction'
+import { PlayerSetup } from '@/store/state'
 
 /**
  * Get faction assigned to bot.

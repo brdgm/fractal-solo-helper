@@ -1,5 +1,5 @@
-import PlayerColor from '@/services/enum/PlayerColor';
-import { PlayerSetup } from '@/store/state';
+import PlayerColor from '@/services/enum/PlayerColor'
+import { PlayerSetup } from '@/store/state'
 
 /**
  * Get color code for player color.
