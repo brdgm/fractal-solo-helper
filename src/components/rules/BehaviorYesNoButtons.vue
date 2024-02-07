@@ -1,8 +1,8 @@
 <template>
-  <button class="btn me-2"
+  <button class="btn me-2 mt-1"
       :class="{'btn-success':!answers.isNo(index),'btn-secondary':answers.isNo(index)}"
       @click="answers.yes(index)">{{t('action.yes')}}</button>
-  <button class="btn me-2"
+  <button class="btn me-2 mt-1"
       :class="{'btn-danger':!answers.isYes(index),'btn-secondary':answers.isYes(index)}"
       @click="answers.no(index)">{{t('action.no')}}</button>
 </template>

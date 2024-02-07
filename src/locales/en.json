@@ -92,8 +92,31 @@
   },
   "rules": {
     "concepts": {
-      "lastBreath": {
-        "title": "Last breath"
+      "important": {
+        "title": "Important Concepts",
+        "exploration": {
+          "title": "Exploration",
+          "description": " When the Automata’s units enter a sector with an obstacle or anomaly, these are immediately discarded without revealing or resolving the cards. The Automata also doesn’t trigger exploitation areas on living galaxies."
+        },
+        "cards": {
+          "title": "Cards",
+          "description": "When the Automata draws an action or technology card, these are placed face-down in its play area. The effects are irrelevant, as only the type and number of cards matter."
+        },
+        "training": {
+          "title": "Training",
+          "description": "When the Automata improves an AI tactic card, draw a random elite AI tactic from the elite reserve, then replace the basic version of that card into the deck (e.g., Elite Orbital Assault replaces Orbital Assault)."
+        },
+        "lastBreath": {
+          "title": "Last breath"
+        },
+        "holdTheLine": {
+          "title": "Hold the line",
+          "description": "If the Automata is trying to move and there are many valid sectors to move space units from, always choose to move the ones closer to the Automata’s starting sector."
+        },
+        "shortCircuit": {
+          "title": "Short-circuit",
+          "description": "If the Automata can do an action in two different ways, and the AI behavior cannot help you break the tie, the priority player on the currently active AI protocol card decides."
+        }
       },
       "behavior": {
         "title": "AI Behavior",
@@ -135,7 +158,7 @@
           },
           "advance": {
             "priorityReinforce": "The Automata’s priority is to reinforce its besieged colonies. Before each separate movement, check if any Automata colonies in range contain more enemy units than the Automata’s.",
-            "moveReinforce": "If there are, move <i>space units</i> there, transporting the maximum number of <i>ground units</i> to reinforce the sector. If several colonies are under siege, choose the closest one and, if tied, the priority one. If several space units are in range, use the <i>Hold the line</i> rule to break the tie. If there are colonies under siege but the Automata cannot move its units to defend the sector, it triggers the <a href='#tablink-behavior-aggressive' data-custom-toggle='tab'>Aggressive AI behavior</a> instead.",
+            "moveReinforce": "If there are, move <i>space units</i> there, transporting the maximum number of <i>ground units</i> to reinforce the sector. If several colonies are under siege, choose the closest one and, if tied, the priority one. If several space units are in range, use the <a href='#tablink-important-concepts' data-custom-toggle='tab'>Hold the line</a> rule to break the tie. If there are colonies under siege but the Automata cannot move its units to defend the sector, it triggers the <a href='#tablink-behavior-aggressive' data-custom-toggle='tab'>Aggressive AI behavior</a> instead.",
             "opponentSpaceUnits": "If there are no besieged colonies, check whether the opponent has <i>space units</i> in range that are not pinned-down, i.e., not currently engaged with the Automata’s (or another opponent’s) <i>space units</i>. If there are, move the closest Automata units to engage.",
             "severalUnits": "If several units are in range, choose the priority units. If several Automata units can engage, use the priority units to determine which ones move.",
             "switchExpansive": "Finally, if no options are available, the Automata triggers the <a href='#tablink-behavior-expansive' data-custom-toggle='tab'>Expansive behavior</a> instead."
@@ -157,9 +180,9 @@
           },
           "advance": {
             "priorityEnemyColonies": "The priority is to attack and besiege enemy colonies. Before each separate movement, check if there are any enemy colonies in range of the Automata’s <i>space units</i>.",
-            "attackColony": "If yes, move space units carrying at least 1 <i>ground unit</i> to reinforce the sector. If several colonies are in range, choose by priority. If several Automata units are in range, select the priority units. Use the <i>Hold the line</i> rule to break the tie. If space units cannot transport ground units, the Automata triggers the <a href='#tablink-behavior-defensive' data-custom-toggle='tab'>Defensive behavior</a> instead.",
+            "attackColony": "If yes, move space units carrying at least 1 <i>ground unit</i> to reinforce the sector. If several colonies are in range, choose by priority. If several Automata units are in range, select the priority units. Use the <a href='#tablink-important-concepts' data-custom-toggle='tab'>Hold the line</a> rule to break the tie. If space units cannot transport ground units, the Automata triggers the <a href='#tablink-behavior-defensive' data-custom-toggle='tab'>Defensive behavior</a> instead.",
             "contestedSector": "If no enemy colonies are in range, check if there is a contested sector with the Automata’s units in range but not under its control. If yes, move the closest Automata units to reinforce the sector.",
-            "prioritize": "If several <i>space units</i> are in range, use the priority one. If several sectors are tied, move towards the one containing the most priority units. If still tied, use the <i>Hold the line</i> rule.",
+            "prioritize": "If several <i>space units</i> are in range, use the priority one. If several sectors are tied, move towards the one containing the most priority units. If still tied, use the <a href='#tablink-important-concepts' data-custom-toggle='tab'>Hold the line</a> rule.",
             "switchExpansive": "Finally, if no options are available, the Automata triggers the <a href='#tablink-behavior-expansive' data-custom-toggle='tab'>Expansive behavior</a> instead."
           }
         },
@@ -178,8 +201,8 @@
           },
           "advance": {
             "priorityExpansion": "The priority is to expand on the board to be in a position to colonize new sectors. Before each separate movement, check if you can transport infantries to a colonizable sector without Automata infantry.",
-            "transportColonizableSector": "If you can, move a <i>space unit</i> there transporting an infantry. If several colonizable sectors are in range, use the priority colony. Use the <i>Hold the line</i> rule to break the tie.",
-            "enemySectorInRange": "If there are no <i>space units</i> able to transport infantry in range or there are no colonizable sectors, move units to the nearest sector with enemy colonies. If there are multiple options, use colony priority or use the <i>Hold the line</i> rule to break the tie.",
+            "transportColonizableSector": "If you can, move a <i>space unit</i> there transporting an infantry. If several colonizable sectors are in range, use the priority colony. Use the <a href='#tablink-important-concepts' data-custom-toggle='tab'>Hold the line</a> rule to break the tie.",
+            "enemySectorInRange": "If there are no <i>space units</i> able to transport infantry in range or there are no colonizable sectors, move units to the nearest sector with enemy colonies. If there are multiple options, use colony priority or use the <a href='#tablink-important-concepts' data-custom-toggle='tab'>Hold the line</a> rule to break the tie.",
             "utopianOrReinforce": "Lastly, if there are no colonizable sectors or enemy colonies in range, move towards the Utopian sector even if the Automata can’t reach it. If not possible, reinforce contested sectors instead."
           }
         }

@@ -15,6 +15,9 @@
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="tablink-behavior-expansive" data-bs-toggle="tab" data-bs-target="#tab-behavior-expansive" type="button" role="tab" aria-controls="tab-behavior-expansive" aria-selected="false">{{t('rules.concepts.behavior.expansive.title')}}</button>
         </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tablink-important-concepts" data-bs-toggle="tab" data-bs-target="#tab-important-concepts" type="button" role="tab" aria-controls="tab-important-concepts" aria-selected="false">{{t('rules.concepts.important.title')}}</button>
+        </li>
       </ul>
       <div class="tab-content">
 
@@ -158,6 +161,20 @@
             <h6>{{t('rules.action.recruit.title')}}</h6>
             <p v-html="t('rules.concepts.behavior.expansive.recruit.description')"></p>
           </ActionRulesCollapse>
+        </div>
+
+        <!-- Important concepts -->
+        <div class="tab-pane" id="tab-important-concepts" role="tabpanel" aria-labelledby="tablink-important-concepts" tabindex="0">
+          <h6>{{t('rules.concepts.important.exploration.title')}}</h6>
+          <p v-html="t('rules.concepts.important.cards.description')"></p>
+          <h6>{{t('rules.concepts.important.cards.title')}}</h6>
+          <p v-html="t('rules.concepts.important.training.description')"></p>
+          <h6>{{t('rules.concepts.important.training.title')}}</h6>
+          <p v-html="t('rules.concepts.important.training.description')"></p>
+          <h6>{{t('rules.concepts.important.holdTheLine.title')}}</h6>
+          <p v-html="t('rules.concepts.important.holdTheLine.description')"></p>
+          <h6>{{t('rules.concepts.important.shortCircuit.title')}}</h6>
+          <p v-html="t('rules.concepts.important.shortCircuit.description')"></p>
         </div>
 
       </div>

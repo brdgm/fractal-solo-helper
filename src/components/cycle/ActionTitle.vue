@@ -5,7 +5,7 @@
     </slot>
     <div class="title">
       <h5>{{t(`rules.action.${action}.title`)}}</h5>
-      <div v-if="botActionItem.fallback" class="fallback">{{t('rules.concepts.lastBreath.title')}}</div>
+      <div v-if="botActionItem.fallback" class="fallback">{{t('rules.concepts.important.lastBreath.title')}}</div>
     </div>
   </div>
 </template>
