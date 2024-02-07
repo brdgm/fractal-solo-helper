@@ -3,6 +3,7 @@ import { name } from '@/../package.json'
 import DifficultyLevel from '@/services/enum/DifficultyLevel'
 import Faction from '@/services/enum/Faction'
 import PlayerColor from '@/services/enum/PlayerColor'
+import Technology from '@/services/enum/Technology'
 
 export const useStateStore = defineStore(`${name}.state`, {
   state: () => {
@@ -34,7 +35,7 @@ export const useStateStore = defineStore(`${name}.state`, {
       const cycle = this.cycles.find(item => item.cycle==turn.cycle)
       if (cycle) {
         cycle.turns = cycle.turns.filter(item => 
-            (item.turn < turn.turn || (item.turn == turn.turn && item.action < turn.action))
+            (item.turn < turn.turn || (item.turn == turn.turn && (item.action ?? 0) < (turn.action ?? 0)))
             || item.player != turn.player || item.bot != turn.bot)
         cycle.turns.push(turn)
       }
@@ -74,10 +75,18 @@ export interface Turn {
   bot?: number
   action?: number
   passed?: boolean
-  botCardDeck?: CardDeckPersistence
+  botActions?: BotActionsPersistence
+}
+export interface BotActionsPersistence {
+  cardDeck: CardDeckPersistence
+  technologies: TechnologiesPersistence
 }
 export interface CardDeckPersistence {
   deck: number[]
   reserve: number[]
   discard: number[]
+}
+export interface TechnologiesPersistence {
+  civil: Technology[]
+  military: Technology[]
 }

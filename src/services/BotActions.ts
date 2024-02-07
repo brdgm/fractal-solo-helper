@@ -1,5 +1,7 @@
+import { BotActionsPersistence } from '@/store/state'
 import { CardAction } from './Card'
 import CardDeck from './CardDeck'
+import Technologies from './Technologies'
 import Action from './enum/Action'
 import Behavior from './enum/Behavior'
 import ColonyType from './enum/ColonyType'
@@ -15,17 +17,23 @@ import UnitType from './enum/UnitType'
 export default class BotActions {
 
   private _cardDeck : CardDeck
+  private _technologies : Technologies
   private _actions : BotAction[]
   private _behavior : Behavior
 
-  public constructor(cardDeck : CardDeck) {
+  public constructor(cardDeck : CardDeck, technologies: Technologies) {
     this._cardDeck = cardDeck
+    this._technologies = technologies
     this._actions = getCardActions(cardDeck).map(toBotAction)
     this._behavior = getBehavior(cardDeck)
   }
 
   public get cardDeck() : CardDeck {
     return this._cardDeck
+  }
+
+  public get technologies() : Technologies {
+    return this._technologies
   }
 
   public get actions() : readonly BotAction[] {
@@ -58,6 +66,26 @@ export default class BotActions {
 
   public get colonyPriority() : ColonyType[] {
     return this._cardDeck.actionCard?.colonyPriority ?? []
+  }
+
+  /**
+   * Gets persistence view of bot actions.
+   */
+  public toPersistence() : BotActionsPersistence {
+    return {
+      cardDeck: this._cardDeck.toPersistence(),
+      technologies: this._technologies.toPersistence()
+    }
+  }
+
+  /**
+   * Re-creates bot actions from persistence.
+   */
+  public static fromPersistence(persistence : BotActionsPersistence) : BotActions {
+    return new BotActions(
+      CardDeck.fromPersistence(persistence.cardDeck),
+      Technologies.fromPersistence(persistence.technologies)
+    )
   }
 
 }
