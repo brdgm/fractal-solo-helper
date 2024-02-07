@@ -2,14 +2,14 @@
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
   <p>
     <i>{{t(`rules.concepts.behavior.${behavior}.title`)}}</i>:
-    <span v-html="t(`rules.concepts.behavior.${behavior}.recruitSummary`)"></span>
+    <span v-html="t(`rules.concepts.behavior.${behavior}.recruit.summary`)"></span>
   </p>
   <ActionRulesCollapse>
     <ul>
       <li>
         <span v-html="t('rules.action.recruit.addUnits', {behavior:t(`rules.concepts.behavior.${behavior}.title`)})"></span>
         <ul>
-          <li v-html="t(`rules.concepts.behavior.${behavior}.recruitDescription`)"></li>
+          <li v-html="t(`rules.concepts.behavior.${behavior}.recruit.description`)"></li>
         </ul>
       </li>
       <li v-html="t('rules.action.recruit.unitSelection')"></li>

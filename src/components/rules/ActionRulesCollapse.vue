@@ -12,10 +12,9 @@
 
 <script lang="ts">
 import { uniqueId } from 'lodash'
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import BehaviorButton from './BehaviorButton.vue'
-import { PropType } from 'vue'
 import Behavior from '@/services/enum/Behavior'
 
 export default defineComponent({

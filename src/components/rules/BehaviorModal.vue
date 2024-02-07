@@ -17,46 +17,149 @@
         </li>
       </ul>
       <div class="tab-content">
+
+        <!-- Victory Behavior -->
         <div class="tab-pane show active" id="tab-behavior-victory" role="tabpanel" aria-labelledby="tablink-behavior-victory" tabindex="0">
-          <p>TBD victory...</p>
-        </div>
-        <div class="tab-pane" id="tab-behavior-defensive" role="tabpanel" aria-labelledby="tablink-behavior-defensive" tabindex="0">
           <p>
-            Are there besieged colonies not under the Automata's control in range?<br/>
-            <BehaviorYesNoButtons :answers="defensive" :index="0"/>
+            <span v-html="t('rules.concepts.behavior.victory.advanceInteractive.controllingUtopian')"></span><br/>
+            <BehaviorYesNoButtons :answers="victory" :index="0"/>
           </p>
-          <div class="answer" v-show="defensive.isAnswered(0)">             
-            <p v-show="defensive.isYes(0)">
-              Move to defend the closest colony.<br/>
-              <b>No valid target:</b> <a href='#tablink-behavior-aggressive' data-custom-toggle='tab'>Aggressive AI behavior</a>.
+          <div class="answer" v-show="victory.isAnswered(0)">
+            <p v-show="victory.isYes(0)">
+              <span v-html="t('rules.concepts.behavior.victory.advanceInteractive.scoringSector')"></span><br/>
+              <span v-html="t('rules.concepts.behavior.victory.advanceInteractive.scoringNoValidTarget')"></span>
             </p>
-            <p v-show="defensive.isNo(0)">
-              Are there enemy space units currently not pinned-down in range?<br/>
-              <BehaviorYesNoButtons :answers="defensive" :index="1"/>
+            <p v-show="victory.isNo(0)">
+              <span v-html="t('rules.concepts.behavior.victory.advanceInteractive.utopianInRange')"></span><br/>
+              <BehaviorYesNoButtons :answers="victory" :index="1"/>
             </p>
-            <div class="answer" v-show="defensive.isAnswered(1)">
-              <p v-show="defensive.isYes(1)">
-                Move to the closest enemy space units not pinned-down.
+            <div class="answer" v-show="victory.isAnswered(1)">
+              <p v-show="victory.isYes(1)">
+                <span v-html="t('rules.concepts.behavior.victory.advanceInteractive.moveToUtopian')"></span>
               </p>
-              <p v-show="defensive.isNo(1)">
-                Expansive AI behavior.
+              <p v-show="victory.isNo(1)">
+                <span v-html="t('rules.concepts.behavior.victory.advanceInteractive.switchDefensive')"></span>
               </p>
             </div>
           </div>
           <ActionRulesCollapse>
-            <p>The Automata’s priority is to reinforce its besieged colonies. Before each separate movement, check if any Automata colonies in range contain more enemy units than the Automata’s.</p>
-            <p>If there are, move <i>space units</i> there, transporting the maximum number of <i>ground units</i> to reinforce the sector. If several colonies are under siege, choose the closest one and, if tied, the priority one. If several space units are in range, use the <i>Hold the line</i> rule to break the tie. If there are colonies under siege but the Automata cannot move its units to defend the sector, it triggers the <i>Aggressive behavior</i> instead.</p>
-            <p>If there are no besieged colonies, check whether the opponent has <i>space units</i> in range that are not pinned-down, i.e., not currently engaged with the Automata’s (or another opponent’s) <i>space units</i>. If there are, move the closest Automata units to engage.</p>
-            <p>If several units are in range, choose the priority units. If several Automata units can engage, use the priority units to determine which ones move.</p>
-            <p>Finally, if no options are available, the Automata triggers the <i>Expansive behavior</i> instead.</p>
+            <h6>{{t('rules.action.advance.title')}}</h6>
+            <p v-html="t('rules.concepts.behavior.victory.advance.priorityUtopian')"></p>
+            <p v-html="t('rules.concepts.behavior.victory.advance.scoringFocus')"></p>
+            <p v-html="t('rules.concepts.behavior.victory.advance.scoringTie')"></p>
+            <p v-html="t('rules.concepts.behavior.victory.advance.scoringNoValidTarget')"></p>
+            <p v-html="t('rules.concepts.behavior.victory.advance.switchDefensive')"></p>
+            <h6>{{t('rules.action.recruit.title')}}</h6>
+            <p v-html="t('rules.concepts.behavior.victory.recruit.description')"></p>
           </ActionRulesCollapse>
         </div>
+
+        <!-- Defensive Behavior -->
+        <div class="tab-pane" id="tab-behavior-defensive" role="tabpanel" aria-labelledby="tablink-behavior-defensive" tabindex="0">
+          <p>
+            <span v-html="t('rules.concepts.behavior.defensive.advanceInteractive.besiegedColonies')"></span><br/>
+            <BehaviorYesNoButtons :answers="defensive" :index="0"/>
+          </p>
+          <div class="answer" v-show="defensive.isAnswered(0)">
+            <p v-show="defensive.isYes(0)">
+              <span v-html="t('rules.concepts.behavior.defensive.advanceInteractive.defendClosestColony')"></span><br/>
+              <span v-html="t('rules.concepts.behavior.defensive.advanceInteractive.defendNoValidTarget')"></span>
+            </p>
+            <p v-show="defensive.isNo(0)">
+              <span v-html="t('rules.concepts.behavior.defensive.advanceInteractive.enemiesInRange')"></span><br/>
+              <BehaviorYesNoButtons :answers="defensive" :index="1"/>
+            </p>
+            <div class="answer" v-show="defensive.isAnswered(1)">
+              <p v-show="defensive.isYes(1)">
+                <span v-html="t('rules.concepts.behavior.defensive.advanceInteractive.moveToClosestEnemy')"></span>
+              </p>
+              <p v-show="defensive.isNo(1)">
+                <span v-html="t('rules.concepts.behavior.defensive.advanceInteractive.switchExpansive')"></span>
+              </p>
+            </div>
+          </div>
+          <ActionRulesCollapse>
+            <h6>{{t('rules.action.advance.title')}}</h6>
+            <p v-html="t('rules.concepts.behavior.defensive.advance.priorityReinforce')"></p>
+            <p v-html="t('rules.concepts.behavior.defensive.advance.moveReinforce')"></p>
+            <p v-html="t('rules.concepts.behavior.defensive.advance.opponentSpaceUnits')"></p>
+            <p v-html="t('rules.concepts.behavior.defensive.advance.severalUnits')"></p>
+            <p v-html="t('rules.concepts.behavior.defensive.advance.switchExpansive')"></p>
+            <h6>{{t('rules.action.recruit.title')}}</h6>
+            <p v-html="t('rules.concepts.behavior.defensive.recruit.description')"></p>
+          </ActionRulesCollapse>
+        </div>
+
+        <!-- Aggressive Behavior -->
         <div class="tab-pane" id="tab-behavior-aggressive" role="tabpanel" aria-labelledby="tablink-behavior-aggressive" tabindex="0">
-          <p>TBD aggressive...</p>
+          <p>
+            <span v-html="t('rules.concepts.behavior.aggressive.advanceInteractive.enemyColoniesInRange')"></span><br/>
+            <BehaviorYesNoButtons :answers="aggressive" :index="0"/>
+          </p>
+          <div class="answer" v-show="aggressive.isAnswered(0)">
+            <p v-show="aggressive.isYes(0)">
+              <span v-html="t('rules.concepts.behavior.aggressive.advanceInteractive.moveToEnemyColony')"></span><br/>
+              <span v-html="t('rules.concepts.behavior.aggressive.advanceInteractive.aggressiveNoValidTarget')"></span>
+            </p>
+            <p v-show="aggressive.isNo(0)">
+              <span v-html="t('rules.concepts.behavior.aggressive.advanceInteractive.enemyUnitsInRange')"></span><br/>
+              <BehaviorYesNoButtons :answers="aggressive" :index="1"/>
+            </p>
+            <div class="answer" v-show="aggressive.isAnswered(1)">
+              <p v-show="aggressive.isYes(1)">
+                <span v-html="t('rules.concepts.behavior.aggressive.advanceInteractive.enforceContestedSectors')"></span>
+              </p>
+              <p v-show="aggressive.isNo(1)">
+                <span v-html="t('rules.concepts.behavior.aggressive.advanceInteractive.switchExpansive')"></span>
+              </p>
+            </div>
+          </div>
+          <ActionRulesCollapse>
+            <h6>{{t('rules.action.advance.title')}}</h6>
+            <p v-html="t('rules.concepts.behavior.aggressive.advance.priorityEnemyColonies')"></p>
+            <p v-html="t('rules.concepts.behavior.aggressive.advance.attackColony')"></p>
+            <p v-html="t('rules.concepts.behavior.aggressive.advance.contestedSector')"></p>
+            <p v-html="t('rules.concepts.behavior.aggressive.advance.prioritize')"></p>
+            <p v-html="t('rules.concepts.behavior.aggressive.advance.switchExpansive')"></p>
+            <h6>{{t('rules.action.recruit.title')}}</h6>
+            <p v-html="t('rules.concepts.behavior.aggressive.recruit.description')"></p>
+          </ActionRulesCollapse>
         </div>
+
+        <!-- Expansive Behavior -->
         <div class="tab-pane" id="tab-behavior-expansive" role="tabpanel" aria-labelledby="tablink-behavior-expansive" tabindex="0">
-          <p>TBD expansive...</p>
+          <p>
+            <span v-html="t('rules.concepts.behavior.expansive.advanceInteractive.colonizableSectorInRange')"></span><br/>
+            <BehaviorYesNoButtons :answers="expansive" :index="0"/>
+          </p>
+          <div class="answer" v-show="expansive.isAnswered(0)">
+            <p v-show="expansive.isYes(0)">
+              <span v-html="t('rules.concepts.behavior.expansive.advanceInteractive.transportColonizableSector')"></span>
+            </p>
+            <p v-show="expansive.isNo(0)">
+              <span v-html="t('rules.concepts.behavior.expansive.advanceInteractive.enemySectorInRange')"></span><br/>
+              <BehaviorYesNoButtons :answers="expansive" :index="1"/>
+            </p>
+            <div class="answer" v-show="expansive.isAnswered(1)">
+              <p v-show="expansive.isYes(1)">
+                <span v-html="t('rules.concepts.behavior.expansive.advanceInteractive.transportEnemySector')"></span>
+              </p>
+              <p v-show="expansive.isNo(1)">
+                <span v-html="t('rules.concepts.behavior.expansive.advanceInteractive.utopianOrReinforce')"></span>
+              </p>
+            </div>
+          </div>
+          <ActionRulesCollapse>
+            <h6>{{t('rules.action.advance.title')}}</h6>
+            <p v-html="t('rules.concepts.behavior.expansive.advance.priorityExpansion')"></p>
+            <p v-html="t('rules.concepts.behavior.expansive.advance.transportColonizableSector')"></p>
+            <p v-html="t('rules.concepts.behavior.expansive.advance.enemySectorInRange')"></p>
+            <p v-html="t('rules.concepts.behavior.expansive.advance.utopianOrReinforce')"></p>
+            <h6>{{t('rules.action.recruit.title')}}</h6>
+            <p v-html="t('rules.concepts.behavior.expansive.recruit.description')"></p>
+          </ActionRulesCollapse>
         </div>
+
       </div>
     </template>
     <template #footer>

@@ -1,10 +1,10 @@
 <template>
   <button class="btn me-2"
       :class="{'btn-success':!answers.isNo(index),'btn-secondary':answers.isNo(index)}"
-      @click="answers.yes(index)">Yes</button>
+      @click="answers.yes(index)">{{t('action.yes')}}</button>
   <button class="btn me-2"
       :class="{'btn-danger':!answers.isYes(index),'btn-secondary':answers.isYes(index)}"
-      @click="answers.no(index)">No</button>
+      @click="answers.no(index)">{{t('action.no')}}</button>
 </template>
 
 <script lang="ts">
