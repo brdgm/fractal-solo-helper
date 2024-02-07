@@ -13,6 +13,7 @@
         </ul>
       </li>
       <li v-html="t('rules.action.recruit.unitSelection')"></li>
+      <li v-html="t('rules.action.recruit.singleSector')"></li>
       <li v-html="t('rules.action.recruit.notPossible')"></li>
     </ul>
   </ActionRulesCollapse>

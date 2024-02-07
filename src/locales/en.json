@@ -124,6 +124,7 @@
         "title": "Recruit",
         "addUnits": "Add units to a sector colonized by the Automata, determined by the active AI behavior <i>{behavior}</i>:",
         "unitSelection": "The rightmost visible space on the military track determines the recruited units. If the Automata doesn’t have enough units in reserve to place the indicated units, check the composition of the space immediately to the left. Keep going until you find a valid set of units.",
+        "singleSector": "Recruit always happens in a single sector.",
         "notPossible": "If the Automata can’t recruit the required units in full because it doesn’t have enough in its reserve, the action is not possible."
       },
       "advance": {

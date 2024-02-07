@@ -4,7 +4,7 @@ import Action from '@/services/enum/Action'
 import Behavior from '@/services/enum/Behavior'
 import { expect } from 'chai'
 
-describe('BotActions', () => {
+describe('services/BotActions', () => {
   it('card-1+2', () => {
     const cardDeck = CardDeck.fromPersistence({deck:[1], discard:[2], reserve:[]})
     const botActions = new BotActions(cardDeck)

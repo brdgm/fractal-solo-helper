@@ -2,7 +2,7 @@ import CardDeck from '@/services/CardDeck'
 import DifficultyLevel from '@/services/enum/DifficultyLevel'
 import { expect } from 'chai'
 
-describe('CardDeck', () => {
+describe('services/CardDeck', () => {
   it('new-normal', () => {
     const cardDeck = CardDeck.new(DifficultyLevel.NORMAL)
 
