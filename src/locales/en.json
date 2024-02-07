@@ -98,23 +98,31 @@
       "behavior": {
         "title": "AI Behavior",
         "victory": {
-          "title": "Victory"
+          "title": "Victory",
+          "recruitSummary": "Add units to a <i>besieged Automata colony</i> or, if there is none, to the <i>colony closest to the Utopian sector</i>.",
+          "recruitDescription": "If an Automata colony is besieged and the Automata doesn’t control the sector, add the units there. Otherwise, add the units to the colony closest to the Utopian sector. In case of a tie, check the colony priority to determine which colony to reinforce."
         },
         "defensive": {
-          "title": "Defensive"
+          "title": "Defensive",
+          "recruitSummary": "Add units to a <b>besieged Automata colony</b> or, if there is none, to the colony <b>closest to the most enemy units</b>.",
+          "recruitDescription": "If an Automata colony is besieged and the Automata doesn’t control the sector, add the units there. Otherwise, add the units to the colony closest to the most enemy units. In case of a tie, check the unit priority and reinforce the colony under threat by the most priority units."
         },
         "aggressive": {
-          "title": "Aggressive"
+          "title": "Aggressive",
+          "recruitSummary": "Add units to the colony <b>closest to the most enemy colonies</b>.",
+          "recruitDescription": "Add units to the Automata colony closest to the most enemy colonies. In case of a tie, check the colony priority."
         },
         "expansive": {
-          "title": "Expansive"
+          "title": "Expansive",
+          "recruitSummary": "Add units to the Automata's colony <b>closest to the most sectors it may colonize or invade</b>.",
+          "recruitDescription": "Add units to the Automata colony closest to sectors it may colonize or invade. If two colonies are at the same distance from colonizable sectors, choose the one with the most colonizable sectors in range. In case of a tie, check the colony priority."
         }
       }
     },
     "action": {
       "recruit": {
         "title": "Recruit",
-        "addUnits": "Add units to a sector colonized by the Automata, determined by the active AI behavior.",
+        "addUnits": "Add units to a sector colonized by the Automata, determined by the active AI behavior <i>{behavior}</i>:",
         "unitSelection": "The rightmost visible space on the military track determines the recruited units. If the Automata doesn’t have enough units in reserve to place the indicated units, check the composition of the space immediately to the left. Keep going until you find a valid set of units.",
         "notPossible": "If the Automata can’t recruit the required units in full because it doesn’t have enough in its reserve, the action is not possible."
       },
@@ -122,7 +130,7 @@
         "title": "Advance",
         "imperialTrack": "The imperial track determines how many movement orders the Automata can give, i.e., how many space units can move during the action.",
         "scienceTrack": "The science track determines the number of sectors they can move.",
-        "behavior": "For each space unit you move, check the AI behavior to determine how they must move. This process must be repeated every time a unit moves, not just once."
+        "behavior": "For each space unit you move, check the AI behavior <i>{behavior}</i> to determine how they must move. This process must be repeated every time a unit moves, not just once."
       },
       "colonize": {
         "title": "Colonize",
@@ -156,7 +164,7 @@
         "title": "Single Movement",
         "singleOrder": "The Automata performs a single movement order.",
         "scienceTrack": "The science track determines the number of sectors it can move.",
-        "behavior": "Check the AI behavior to determine how it must move."
+        "behavior": "Check the AI behavior <i>{behavior}</i> to determine how it must move."
       },
       "living-storm-movement": {
         "title": "Living Storm Movement",

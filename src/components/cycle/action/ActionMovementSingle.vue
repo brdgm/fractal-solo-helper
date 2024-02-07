@@ -1,10 +1,10 @@
 <template>
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
-  <ActionRulesCollapse>
+  <ActionRulesCollapse :behavior="behavior">
     <ul>
       <li v-html="t('rules.action.movement-single.singleOrder')"></li>
       <li v-html="t('rules.action.movement-single.scienceTrack')"></li>
-      <li v-html="t('rules.action.movement-single.behavior')"></li>
+      <li v-html="t('rules.action.movement-single.behavior', {behavior:t(`rules.concepts.behavior.${behavior}.title`)})"></li>
     </ul>
   </ActionRulesCollapse>
 </template>
@@ -14,8 +14,9 @@ import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import BotActions, { BotActionItem } from '@/services/BotActions'
 import Action from '@/services/enum/Action'
-import ActionRulesCollapse from '../ActionRulesCollapse.vue'
+import ActionRulesCollapse from '@/components/rules/ActionRulesCollapse.vue'
 import ActionTitle from '../ActionTitle.vue'
+import Behavior from '@/services/enum/Behavior'
 
 export default defineComponent({
   name: 'ActionMovementSingle',
@@ -39,6 +40,11 @@ export default defineComponent({
     botActions: {
       type: BotActions,
       required: true
+    }
+  },
+  computed: {
+    behavior() : Behavior {
+      return this.botActions.behavior
     }
   }
 })

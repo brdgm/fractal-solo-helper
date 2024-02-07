@@ -19,7 +19,7 @@ import { useI18n } from 'vue-i18n'
 import BotActions, { BotActionItem } from '@/services/BotActions'
 import AppIcon from '@/components/structure/AppIcon.vue'
 import Action from '@/services/enum/Action'
-import ActionRulesCollapse from '../ActionRulesCollapse.vue'
+import ActionRulesCollapse from '@/components/rules/ActionRulesCollapse.vue'
 import ActionCardIcon from '@/components/structure/ActionCardIcon.vue'
 import ActionTitle from '../ActionTitle.vue'
 

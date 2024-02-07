@@ -28,9 +28,7 @@
       </div>
       <div>
         <div class="prioritiesLabel">{{t('sideBar.priority.behavior')}}</div>
-        <button class="btn btn-secondary btn-sm" @click="openBehaviorModal">
-          {{t(`rules.concepts.behavior.${botActions.behavior}.title`)}}
-        </button>
+        <BehaviorButton :behavior="botActions.behavior"/>
       </div>
       <p class="mt-2" v-html="t('sideBar.remainingTurns', {turns: botActions.cardDeck.deck.length - 1})"></p>
     </div>
@@ -48,7 +46,7 @@ import AppIcon from '../structure/AppIcon.vue'
 import PlayerColorDisplay from '../structure/PlayerColorDisplay.vue'
 import LivingStormMovementIcon from '../structure/LivingStormMovementIcon.vue'
 import BehaviorModal from '../rules/BehaviorModal.vue'
-import showBehaviorModal from '@/util/showBehaviorModal'
+import BehaviorButton from '../rules/BehaviorButton.vue'
 
 export default defineComponent({
   name: 'SideBar',
@@ -56,7 +54,8 @@ export default defineComponent({
     AppIcon,
     PlayerColorDisplay,
     LivingStormMovementIcon,
-    BehaviorModal
+    BehaviorModal,
+    BehaviorButton
   },
   setup() {
     const { t } = useI18n()
@@ -71,13 +70,6 @@ export default defineComponent({
   computed: {
     botActions() : BotActions|undefined {
       return this.navigationState.botActions
-    }
-  },
-  methods: {
-    openBehaviorModal() {
-      if (this.botActions) {
-        showBehaviorModal(this.botActions.behavior)
-      }
     }
   }
 })
