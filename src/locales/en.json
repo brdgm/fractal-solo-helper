@@ -169,7 +169,17 @@
       "living-storm-movement": {
         "title": "Living Storm Movement",
         "moveStorm": "Move the living storm nearest the priority player.",
-        "identifyMovements": "Identify one of the possible movements of the storm and the final position indicated by the icon. Icons have 2 possible directions and orientations."
+        "direction": {
+          "down-right": "Move the storm right or down.",
+          "down-left": "Move the storm left or down.",
+          "up-left": "Move the storm left or up.",
+          "up-right": "Move the storm right or up.",
+          "utopian-sector": "The Automata is trying to get access to the Utopian sector or to block access to other players."
+        },
+        "orientation": {
+          "horizontal": "The final position of the lightning storm icon must be horizontal.",
+          "vertical": "The final position of the lightning storm icon must be vertical."
+        }
       },
       "action-card": {
         "title": "Play Action Card",

@@ -3,7 +3,8 @@
   <ActionRulesCollapse>
     <ul>
       <li v-html="t('rules.action.living-storm-movement.moveStorm')"></li>
-      <li v-html="t('rules.action.living-storm-movement.identifyMovements')"></li>
+      <li v-html="t(`rules.action.living-storm-movement.direction.${direction}`)"></li>
+      <li v-html="t(`rules.action.living-storm-movement.orientation.${orientation}`)"></li>
     </ul>
   </ActionRulesCollapse>
 </template>
@@ -15,6 +16,8 @@ import BotActions, { BotActionItem } from '@/services/BotActions'
 import Action from '@/services/enum/Action'
 import ActionRulesCollapse from '@/components/rules/ActionRulesCollapse.vue'
 import ActionTitle from '../ActionTitle.vue'
+import LivingStormOrientation from '@/services/enum/LivingStormOrientation'
+import LivingStormDirection from '@/services/enum/LivingStormDirection'
 
 export default defineComponent({
   name: 'ActionLivingStormMovement',
@@ -38,6 +41,14 @@ export default defineComponent({
     botActions: {
       type: BotActions,
       required: true
+    }
+  },
+  computed: {
+    direction() : LivingStormDirection {
+      return this.botActions.livingStormDirection
+    },
+    orientation() : LivingStormOrientation {
+      return this.botActions.livingStormOrientation
     }
   }
 })
