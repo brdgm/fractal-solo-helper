@@ -33,7 +33,9 @@ export const useStateStore = defineStore(`${name}.state`, {
     storeTurn(turn : Turn) {
       const cycle = this.cycles.find(item => item.cycle==turn.cycle)
       if (cycle) {
-        cycle.turns = cycle.turns.filter(item => item.turn < turn.turn || item.player != turn.player || item.bot != turn.bot)
+        cycle.turns = cycle.turns.filter(item => 
+            (item.turn < turn.turn || (item.turn == turn.turn && item.action < turn.action))
+            || item.player != turn.player || item.bot != turn.bot)
         cycle.turns.push(turn)
       }
     }
