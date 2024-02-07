@@ -18,7 +18,7 @@
         <div class="prioritiesLabel">{{t('sideBar.priority.player')}}</div>
         <AppIcon v-if="botActions.playerPriorityWatcherToken" name="watcher-token" class="icon"/>
         <template v-else>
-          <PlayerColorDisplay v-for="playerColor of botActions.playerPriority" :key="playerColor" :playerColor="playerColor" :sizeRem="1.5" class="icon"/>
+          <PlayerColorDisplay v-for="playerColor of botActions.playerPriority" :key="playerColor" :playerColor="playerColor" :sizeRem="1.75" class="icon playerColor"/>
         </template>
       </div>
       <div>
@@ -32,6 +32,7 @@
           {{t(`rules.concepts.behavior.${botActions.behavior}.title`)}}
         </button>
       </div>
+      <p class="mt-2" v-html="t('sideBar.remainingTurns', {turns: botActions.cardDeck.deck.length - 1})"></p>
     </div>
   </div>
 
@@ -95,12 +96,16 @@ export default defineComponent({
   }
 }
 .icon {
-  height: 1.5rem;
+  height: 1.75rem;
   margin-top: 0.25rem;
   margin-right: 0.25rem;
   margin-bottom: 0.25rem;
-  &.playerColor {
-    border-radius: 5px;
+  @media (max-width: 600px) {
+    height: 1.25rem;
+    &.playerColor {
+      width: 1.25rem;
+      border-radius: 5px;
+    }
   }
 }
 .prioritiesLabel {
