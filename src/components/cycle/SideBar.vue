@@ -28,7 +28,7 @@
       </div>
       <div>
         <div class="prioritiesLabel">{{t('sideBar.priority.behavior')}}</div>
-        <button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#rulesBehaviorModal">
+        <button class="btn btn-secondary btn-sm" @click="openBehaviorModal">
           {{t(`rules.concepts.behavior.${botActions.behavior}.title`)}}
         </button>
       </div>
@@ -47,6 +47,7 @@ import AppIcon from '../structure/AppIcon.vue'
 import PlayerColorDisplay from '../structure/PlayerColorDisplay.vue'
 import LivingStormMovementIcon from '../structure/LivingStormMovementIcon.vue'
 import BehaviorModal from '../rules/BehaviorModal.vue'
+import showBehaviorModal from '@/util/showBehaviorModal'
 
 export default defineComponent({
   name: 'SideBar',
@@ -69,6 +70,13 @@ export default defineComponent({
   computed: {
     botActions() : BotActions|undefined {
       return this.navigationState.botActions
+    }
+  },
+  methods: {
+    openBehaviorModal() {
+      if (this.botActions) {
+        showBehaviorModal(this.botActions.behavior)
+      }
     }
   }
 })
