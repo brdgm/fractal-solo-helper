@@ -4,7 +4,7 @@ import getIntRouteParam from 'brdgm-commons/src/util/router/getIntRouteParam'
 import PlayerColor from '@/services/enum/PlayerColor'
 import getPlayerColor from './getPlayerColor'
 import BotActions from '@/services/BotActions'
-import getBotCardDeck from './getBotCardDeck'
+import getBotActions from './getBotActions'
 
 export default class NavigationState {
 
@@ -31,12 +31,11 @@ export default class NavigationState {
     this.playerColor = getPlayerColor(playerSetup, this.player, this.bot)
     
     if (this.bot > 0 && this.turn > 0) {
-      const cardDeck = getBotCardDeck(state, this.cycle, this.turn, this.bot, this.action)
+      this.botActions = getBotActions(state, this.cycle, this.turn, this.bot, this.action)
       if (this.action == 1) {
         // draw next protocol card on begin of bot's turn
-        cardDeck.draw()
+        this.botActions.cardDeck.draw()
       }
-      this.botActions = new BotActions(cardDeck)
     }
   }
 
