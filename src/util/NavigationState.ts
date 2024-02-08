@@ -33,9 +33,9 @@ export default class NavigationState {
     this.botCount = playerSetup.botCount
     this.playerColor = getPlayerColor(playerSetup, this.player, this.bot)
     
-    this.botsActions = getBotsActions(state, this.cycle, this.stateIndex)
+    this.botsActions = getOrderedBotsActions(state, this.cycle, this.stateIndex, this.bot)
     if (this.bot > 0 && this.turn > 0) {
-      this.botActions = this.botsActions[this.bot-1]
+      this.botActions = this.botsActions.find(item => item.bot == this.bot)
       if (this.botActions && this.action == 1) {
         // draw protocol card for new turn
         this.botActions.cardDeck.draw()
@@ -45,9 +45,29 @@ export default class NavigationState {
 
 }
 
+/**
+ * State Index from URL. For views after action phase use max number.
+ */
 function getStateIndex(route : RouteLocation) : number {
   if (route.name == 'CycleConflict' || route.name == 'CycleEnd' || route.name == 'CycleTransition') {
     return Number.MAX_VALUE
   }
   return getIntRouteParam(route, 'stateIndex')
+}
+
+/**
+ * Get bot actions for all bots - and put current bot always first.
+ */
+function getOrderedBotsActions(state: State, cycle: number, stateIndex: number, bot: number) : BotActions[] {
+  const result : BotActions[] = []
+  const botsActions = getBotsActions(state, cycle, stateIndex)
+  if (bot > 0) {
+    result.push(botsActions[bot-1])
+  }
+  for (let i = 0; i < botsActions.length; i++) {
+    if (i != bot-1) {
+      result.push(botsActions[i])
+    }
+  }
+  return result
 }

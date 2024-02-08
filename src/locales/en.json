@@ -74,13 +74,12 @@
     "cycle": "Cycle",
     "turn": "Turn",
     "priority": {
-      "title": "AI Priorities",
-      "unit": "Unit",
-      "colony": "Colony",
-      "player": "Player",
-      "livingStorm": "Living Storm",
-      "behavior": "Behavior"
-    }
+      "unit": "Unit Priority",
+      "colony": "Colony Priority",
+      "player": "Player Priority",
+      "livingStorm": "Living Storm Movement"
+    },
+    "behavior": "Behavior"
   },
   "actionRulesCollapse": {
     "showRules": "Show Rules",

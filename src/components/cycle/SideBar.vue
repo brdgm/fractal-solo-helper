@@ -4,41 +4,8 @@
       {{t('sideBar.cycle')}} {{navigationState.cycle}} / 4<br/>
       <template v-if="navigationState.turn > 0">{{t('sideBar.turn')}} {{navigationState.turn}}</template>
     </p>
-    <div v-if="botActions">
-      {{t('sideBar.priority.title')}}
-      <div>
-        <div class="prioritiesLabel">{{t('sideBar.priority.unit')}}</div>
-        <AppIcon v-for="unit of botActions.unitPriority" :key="unit" type="unit-type" :name="unit" class="icon"/>
-      </div>
-      <div>
-        <div class="prioritiesLabel">{{t('sideBar.priority.colony')}}</div>
-        <AppIcon v-for="colony of botActions.colonyPriority" :key="colony" type="colony-type" :name="colony" class="icon"/>
-      </div>
-      <div>
-        <div class="prioritiesLabel">{{t('sideBar.priority.player')}}</div>
-        <AppIcon v-if="botActions.playerPriorityWatcherToken" name="watcher-token" class="icon"/>
-        <template v-else>
-          <PlayerColorDisplay v-for="playerColor of botActions.playerPriority" :key="playerColor" :playerColor="playerColor" :sizeRem="1.75" class="icon playerColor"/>
-        </template>
-      </div>
-      <div>
-        <div class="prioritiesLabel">{{t('sideBar.priority.livingStorm')}}</div>
-        <LivingStormMovementIcon :orientation="botActions.livingStormOrientation"
-            :direction="botActions.livingStormDirection" class="icon"/>
-      </div>
-      <div>
-        <div class="prioritiesLabel">{{t('sideBar.priority.behavior')}}</div>
-        <BehaviorButton :behavior="botActions.behavior"/>
-      </div>
-      <div class="mt-2 icon-card-list">
-        <AppIcon type="card" name="protocol" class="icon protocol"/>
-        <div class="value">{{getProtocolStatus(botActions)}}</div>
-        <AppIcon type="card" name="technology-civil" class="icon"/>
-        <div class="value">{{botActions.technologies.civilTotalCost}}</div>
-        <AppIcon type="card" name="technology-military" class="icon"/>
-        <div class="value">{{botActions.technologies.militaryTotalCost}}</div>
-      </div>
-    </div>
+    <SideBarBotInfo v-for="(botActions,index) of navigationState.botsActions" :key="index"
+        :navigationState="navigationState" :botActions="botActions"/>
   </div>
 
   <BehaviorModal/>
@@ -49,20 +16,14 @@ import BotActions from '@/services/BotActions'
 import NavigationState from '@/util/NavigationState'
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-import AppIcon from '../structure/AppIcon.vue'
-import PlayerColorDisplay from '../structure/PlayerColorDisplay.vue'
-import LivingStormMovementIcon from '../structure/LivingStormMovementIcon.vue'
 import BehaviorModal from '../rules/BehaviorModal.vue'
-import BehaviorButton from '../rules/BehaviorButton.vue'
+import SideBarBotInfo from './SideBarBotInfo.vue'
 
 export default defineComponent({
   name: 'SideBar',
   components: {
-    AppIcon,
-    PlayerColorDisplay,
-    LivingStormMovementIcon,
     BehaviorModal,
-    BehaviorButton
+    SideBarBotInfo
   },
   setup() {
     const { t } = useI18n()
@@ -72,11 +33,6 @@ export default defineComponent({
     navigationState: {
       type: NavigationState,
       required: true
-    }
-  },
-  computed: {
-    botActions() : BotActions|undefined {
-      return this.navigationState.botActions
     }
   },
   methods: {
@@ -96,46 +52,10 @@ export default defineComponent({
   width: 160px;
   margin-right: -12px;
   margin-left: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 35px;
   padding-right: 10px;
   @media (max-width: 600px) {
-    width: 110px;
+    width: 118px;
   }
-}
-.icon {
-  height: 1.75rem;
-  margin-top: 0.25rem;
-  margin-right: 0.25rem;
-  margin-bottom: 0.25rem;
-  &.protocol {
-    height: 1.25rem;
-  }
-  @media (max-width: 600px) {
-    height: 1.25rem;
-    &.protocol {
-      height: 0.9rem;
-    }
-    &.playerColor {
-      width: 1.25rem;
-      border-radius: 5px;
-    }
-  }
-}
-.icon-card-list {
-  display: flex;
-  align-items: center;
-  .value {
-    margin-right: 0.5rem;
-    @media (max-width: 600px) {
-      margin-right: 0.25rem;
-    }
-  }
-}
-.icon-card {
-  height: 1rem;
-}
-.prioritiesLabel {
-  font-size: 55%;
-  text-transform: uppercase;
 }
 </style>

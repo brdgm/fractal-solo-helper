@@ -1,7 +1,7 @@
 <template>
   <div class="mt-4" v-if="state.setup.debugMode">
     <hr/>
-    <div class="debug mb-2" v-for="(botActions,index) of orderedBotsActions" :key="index">
+    <div class="debug mb-2" v-for="(botActions,index) of navigationState.botsActions" :key="index">
       <b>[{{getBotFaction(botActions)}}#{{botActions.bot}}]</b> Active Card: {{botActions.cardDeck.actionCard?.id}},
       Discard: {{getDeckInfo(botActions.cardDeck.discard)}},
       Deck: {{getDeckInfo(botActions.cardDeck.deck)}},
@@ -36,20 +36,6 @@ export default defineComponent({
     navigationState: {
       type: NavigationState,
       required: true
-    }
-  },
-  computed: {
-    orderedBotsActions: function() : BotActions[] {
-      const result : BotActions[] = []
-      if (this.navigationState.botActions) {
-        result.push(this.navigationState.botActions)
-      }
-      for (const botActions of this.navigationState.botsActions) {
-        if (botActions.bot !== this.navigationState.botActions?.bot) {
-          result.push(botActions)
-        }
-      }
-      return result
     }
   },
   methods: {
