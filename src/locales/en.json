@@ -73,7 +73,6 @@
   "sideBar": {
     "cycle": "Cycle",
     "turn": "Turn",
-    "remainingTurns": "Remaining Turns: {turns}",
     "priority": {
       "title": "AI Priorities",
       "unit": "Unit",
@@ -86,6 +85,10 @@
   "actionRulesCollapse": {
     "showRules": "Show Rules",
     "hideRules": "Hide Rules"
+  },
+  "selectTechnology": {
+    "selectValue": "Please select the technology value of the selected card",
+    "pleaseSelect": "(Please select)"
   },
   "player": {
     "human": "Player | Player {player}",

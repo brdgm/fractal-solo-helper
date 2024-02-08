@@ -2,14 +2,19 @@
   <h4>Action {{actionIndex}}</h4>
   <div class="mt-3" v-if="botActionItem">
     <div v-for="action of botActionItem.actions" :key="action">
-      <component :is="`action-${action}`"
+      <component v-if="isTechnologyAction(action)" :is="`action-${action}`"
+          :action="action"
+          :botActionItem="botActionItem"
+          :botActions="botActions"
+          @technology="(technology:Technology) => selectTechnology(technology, action)"/>
+      <component v-else :is="`action-${action}`"
           :action="action"
           :botActionItem="botActionItem"
           :botActions="botActions"/>
     </div>
   </div>
 
-  <button class="btn btn-success btn-lg mt-4 me-2" @click="executed()">
+  <button class="btn btn-success btn-lg mt-4 me-2" @click="executed()" :disabled="!nextValid">
     {{t('turnBot.executed')}}
   </button>
   <button class="btn btn-danger btn-lg mt-4" @click="notPossible()">
@@ -31,6 +36,8 @@ import ActionMovementSingle from './action/ActionMovementSingle.vue'
 import ActionRecruit from './action/ActionRecruit.vue'
 import ActionResearchCivil from './action/ActionResearchCivil.vue'
 import ActionResearchMilitary from './action/ActionResearchMilitary.vue'
+import Action from '@/services/enum/Action'
+import Technology from '@/services/enum/Technology'
 
 export default defineComponent({
   name: 'BotActionSelection',
@@ -46,7 +53,10 @@ export default defineComponent({
     ActionResearchCivil,
     ActionResearchMilitary
   },
-  emits: ['next'],
+  emits: {
+    technology: (_technology?: Technology, _technologyAction?: Action) => true,  // eslint-disable-line @typescript-eslint/no-unused-vars,
+    next: () => true  // eslint-disable-line @typescript-eslint/no-unused-vars,
+  },
   setup() {
     const { t } = useI18n()    
     return { t }
@@ -63,7 +73,9 @@ export default defineComponent({
   },
   data() {
     return {
-      actionItem: 0
+      actionItem: 0,
+      selectedTechnology: undefined as Technology|undefined,
+      technologyAction: undefined as Action|undefined
     }
   },
   computed: {
@@ -72,6 +84,16 @@ export default defineComponent({
     },
     botActionItem() : BotActionItem|undefined {
       return this.botAction?.items[this.actionItem]
+    },
+    hasTechnologyAction() : boolean {
+      const actions = this.botActionItem?.actions ?? []
+      return actions.find(action => this.isTechnologyAction(action)) != undefined
+    },
+    nextValid() : boolean {
+      if (this.hasTechnologyAction) {
+        return this.selectedTechnology != undefined
+      }
+      return true
     }
   },
   methods: {
@@ -84,6 +106,14 @@ export default defineComponent({
       } else {
         this.$emit('next')
       }
+    },
+    isTechnologyAction(action: Action) {
+      return action === Action.RESEARCH_CIVIL || action === Action.RESEARCH_MILITARY
+    },
+    selectTechnology(technology?: Technology, action?: Action) {
+      this.selectedTechnology = technology
+      this.technologyAction = technology != undefined ? action : undefined
+      this.$emit('technology', this.selectedTechnology, this.technologyAction)
     }
   }
 })

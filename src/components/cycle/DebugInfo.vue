@@ -9,18 +9,20 @@
       <span v-for="(botAction,index) in botActions.actions" :key="index">
         Action {{index+1}}: {{getBotActionInfo(botAction)}}<br/>
       </span>
+      Technologies: Civil {{getTechInfo(botActions.technologies.civil)}} Military {{getTechInfo(botActions.technologies.military)}}
     </p>
   </div>
 </template>
 
 <script lang="ts">
-import NavigationState from '@/util/NavigationState';
+import NavigationState from '@/util/NavigationState'
 import { defineComponent } from 'vue'
-import { useI18n } from 'vue-i18n';
-import { useStateStore } from '@/store/state';
-import BotActions, { BotAction, BotActionItem } from '@/services/BotActions';
-import CardDeck from '@/services/CardDeck';
-import Card from '@/services/Card';
+import { useI18n } from 'vue-i18n'
+import { useStateStore } from '@/store/state'
+import BotActions, { BotAction, BotActionItem } from '@/services/BotActions'
+import CardDeck from '@/services/CardDeck'
+import Card from '@/services/Card'
+import Technology from '@/services/enum/Technology'
 
 export default defineComponent({
   name: 'DebugInfo',
@@ -57,6 +59,9 @@ export default defineComponent({
       return '[' + cards
         .map(card => card.id)
         .join(',') + ']'
+    },
+    getTechInfo(techs: readonly Technology[]) : string {
+      return `[${techs.join(',')}]`
     }
   }
 })

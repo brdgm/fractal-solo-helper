@@ -30,7 +30,14 @@
         <div class="prioritiesLabel">{{t('sideBar.priority.behavior')}}</div>
         <BehaviorButton :behavior="botActions.behavior"/>
       </div>
-      <p class="mt-2" v-html="t('sideBar.remainingTurns', {turns: botActions.cardDeck.deck.length})"></p>
+      <div class="mt-2 icon-card-list">
+        <AppIcon type="card" name="protocol" class="icon protocol"/>
+        <div class="value">{{getProtocolStatus(botActions)}}</div>
+        <AppIcon type="card" name="technology-civil" class="icon"/>
+        <div class="value">{{botActions.technologies.civilTotalCost}}</div>
+        <AppIcon type="card" name="technology-military" class="icon"/>
+        <div class="value">{{botActions.technologies.militaryTotalCost}}</div>
+      </div>
     </div>
   </div>
 
@@ -71,6 +78,14 @@ export default defineComponent({
     botActions() : BotActions|undefined {
       return this.navigationState.botActions
     }
+  },
+  methods: {
+    getProtocolStatus(botActions: BotActions) : string {
+      const cardDeck = botActions.cardDeck
+      const played = cardDeck.discard.length + (cardDeck.actionCard ? 1 : 0)
+      const total = cardDeck.deck.length + played
+      return `${played}/${total}`
+    }
   }
 })
 </script>
@@ -92,13 +107,32 @@ export default defineComponent({
   margin-top: 0.25rem;
   margin-right: 0.25rem;
   margin-bottom: 0.25rem;
+  &.protocol {
+    height: 1.25rem;
+  }
   @media (max-width: 600px) {
     height: 1.25rem;
+    &.protocol {
+      height: 0.9rem;
+    }
     &.playerColor {
       width: 1.25rem;
       border-radius: 5px;
     }
   }
+}
+.icon-card-list {
+  display: flex;
+  align-items: center;
+  .value {
+    margin-right: 0.5rem;
+    @media (max-width: 600px) {
+      margin-right: 0.25rem;
+    }
+  }
+}
+.icon-card {
+  height: 1rem;
 }
 .prioritiesLabel {
   font-size: 55%;

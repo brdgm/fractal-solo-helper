@@ -3,7 +3,7 @@
   <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t(`faction.${botFaction}`)}}</h1>
 
   <BotActionSelection v-if="botActions" :botActions="botActions" :actionIndex="action"
-      @next="next()"/>
+      @next="next()" @technology="selectTechnology"/>
 
   <DebugInfo :navigationState="navigationState"/>
 
@@ -25,6 +25,8 @@ import BotActionSelection from '@/components/cycle/BotActionSelection.vue'
 import BotActions from '@/services/BotActions'
 import Faction from '@/services/enum/Faction'
 import getBotFaction from '@/util/getBotFaction'
+import Technology from '@/services/enum/Technology'
+import Action from '@/services/enum/Action'
 
 export default defineComponent({
   name: 'TurnBot',
@@ -45,6 +47,12 @@ export default defineComponent({
     const routeCalculator = new RouteCalculator({cycle,turn,bot,action})
     return { t, state, cycle, turn, bot, action, botCount, playerColor, playerSetup, routeCalculator, navigationState }
   },
+  data() {
+    return {
+      selectedTechnology: undefined as Technology|undefined,
+      technologyAction: undefined as Action|undefined
+    }
+  },
   computed: {
     backButtonRouteTo() : string {
       return this.routeCalculator.getBackRouteTo(this.state)
@@ -63,6 +71,14 @@ export default defineComponent({
     next() : void {
       // store turn
       if (this.botActions) {
+        if (this.selectedTechnology && this.technologyAction) {
+          if (this.technologyAction == Action.RESEARCH_CIVIL) {
+            this.botActions.technologies.addCivil(this.selectedTechnology)
+          }
+          else {
+            this.botActions.technologies.addMilitary(this.selectedTechnology)
+          }
+        }
         const turn : Turn = {
           cycle: this.cycle,
           turn: this.turn,
@@ -76,6 +92,10 @@ export default defineComponent({
         this.state.storeTurn(turn)
       }
       this.$router.push(this.routeCalculator.getNextRouteTo(this.state))
+    },
+    selectTechnology(technology?: Technology, action?: Action) {
+      this.selectedTechnology = technology
+      this.technologyAction = action
     }
   }
 })
