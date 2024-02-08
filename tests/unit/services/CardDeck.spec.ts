@@ -10,6 +10,10 @@ describe('services/CardDeck', () => {
     expect(cardDeck.deck.length, 'deck size').to.eq(3)
     expect(cardDeck.reserve.length, 'reserve size').to.eq(6)
     expect(cardDeck.discard.length, 'discard size').to.eq(0)
+    expect(cardDeck.totalCards, 'discard size').to.eq(4)
+    expect(cardDeck.totalCards, 'total cards').to.eq(4)
+    expect(cardDeck.canGainCardCount, 'can gain').to.eq(6)
+    expect(cardDeck.canLooseCardCount, 'can loose').to.eq(0)
 
     const persistence = cardDeck.toPersistence()
     expect(persistence.active, 'action card').to.not.undefined
@@ -34,6 +38,9 @@ describe('services/CardDeck', () => {
     expect(cardDeck.deck.length, 'deck size').to.eq(6)
     expect(cardDeck.reserve.length, 'reserve size').to.eq(3)
     expect(cardDeck.discard.length, 'discard size').to.eq(0)
+    expect(cardDeck.totalCards, 'total cards').to.eq(7)
+    expect(cardDeck.canGainCardCount, 'can gain').to.eq(3)
+    expect(cardDeck.canLooseCardCount, 'can loose').to.eq(3)
   })
 
   it('new-impossible', () => {

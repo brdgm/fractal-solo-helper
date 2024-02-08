@@ -14,7 +14,7 @@ export default class CardDeck {
   private _reserve : Card[]
   private _discard : Card[]
 
-  public constructor(active: Card|undefined, deck : Card[], reserve : Card[], discard : Card[]) {
+  private constructor(active: Card|undefined, deck : Card[], reserve : Card[], discard : Card[]) {
     this._active = active
     this._deck = deck
     this._reserve = reserve
@@ -31,6 +31,13 @@ export default class CardDeck {
 
   public get discard() : readonly Card[] {
     return this._discard
+  }
+
+  /**
+   * Total available cards (all cards except the reserve)
+   */
+  public get totalCards() : number {
+    return this._deck.length + this._discard.length + (this._active ? 1 : 0)
   }
 
   public get actionCard() : Card|undefined {
@@ -93,6 +100,21 @@ export default class CardDeck {
     this._discard = []
     // discard 1st card
     this.draw()
+  }
+
+  /**
+   * @returns Maximum number of cards that can be gained additionally (= in the reserve).
+   */
+  public get canGainCardCount() : number {
+    return this._reserve.length
+  }
+
+  /**
+   * Maximum number of cards that can be lost.
+   */
+  public get canLooseCardCount() : number {
+    // keep min. 4 cards (ignoring other difficulty levels here)
+    return this.totalCards - 4
   }
 
   /**

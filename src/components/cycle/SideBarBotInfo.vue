@@ -108,8 +108,8 @@ export default defineComponent({
       return this.botActions.cardDeck
     },
     protocolStatus() : string {
-      const played = this.cardDeck.discard.length + (this.cardDeck.actionCard ? 1 : 0)
-      const total = this.cardDeck.deck.length + played
+      const total = this.cardDeck.totalCards
+      const played = total - this.cardDeck.deck.length
       return `${played}/${total}`
     }
   }
