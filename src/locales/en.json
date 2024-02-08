@@ -96,12 +96,12 @@
     "card": "{count} protocol card | {count} protocol cards",
     "gainCard": {
       "title": "Gain protocol card",
-      "productionColony": "A productive colony token is removed from the empire board (1 for the first two tokens, 2 for the last production token)",
+      "productiveColony": "A productive colony token is removed from the empire board (1 for the first two tokens, 2 for the last productive token)",
       "influence": "The first time the influence reaches 6 or 10"
     },
     "looseCard": {
       "title": "Loose protocol card",
-      "productionColony": "A production colony token is put back on the empire board"
+      "productiveColony": "A productive colony token is put back on the empire board"
     }
   },
   "player": {

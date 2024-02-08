@@ -118,6 +118,39 @@ export default class CardDeck {
   }
 
   /**
+   * Gain additional cards from reserve.
+   * @param count Number of cards
+   */
+  public gainCards(count: number) : void {
+    if (count > this.canGainCardCount) {
+      throw new Error(`Unable to gain ${count} cards, only ${this.canGainCardCount} available.`)
+    }
+    for (let i=0; i < count; i++) {
+      const reserveCard = this._reserve.shift()
+      if (reserveCard) {
+        this._discard.unshift(reserveCard)
+      }
+    }	
+  }
+
+  /**
+   * Loose cards to reserve. Shuffles reserve afterwards.
+   * @param count Number of cards
+   */
+  public looseCards(count: number) : void {
+    if (count > this.canLooseCardCount) {
+      throw new Error(`Unable to loose ${count} cards, only ${this.canLooseCardCount} can be lost.`)
+    }
+    for (let i=0; i < count; i++) {
+      const discardCard = this._discard.shift()
+      if (discardCard) {
+        this._reserve.unshift(discardCard)
+      }
+    }
+    this._reserve = _.shuffle(this._reserve)
+  }
+
+  /**
    * Creates a shuffled new deck and reserve deck.
    * @param difficultyLevel Difficulty level
    * @param additionalCards Number of additional cards to add to deck

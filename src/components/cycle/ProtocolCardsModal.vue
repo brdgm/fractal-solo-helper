@@ -6,10 +6,11 @@
         <h6 v-html="t('protocolCardsModal.gainCard.title')"></h6>
         {{t('protocolCardsModal.occurs')}}
         <ul>
-          <li v-html="t('protocolCardsModal.gainCard.productionColony')"></li>
+          <li v-html="t('protocolCardsModal.gainCard.productiveColony')"></li>
           <li v-html="t('protocolCardsModal.gainCard.influence')"></li>
         </ul>
-        <button v-if="!showGainProtocol" class="btn btn-primary" @click="showGainProtocol=true">{{t('protocolCardsModal.gainCard.title')}}</button>
+        <button v-if="!showGainProtocol" :disabled="cardDeck.canGainCardCount == 0"
+            class="btn btn-primary" @click="showGainProtocol=true">{{t('protocolCardsModal.gainCard.title')}}</button>
       </template>
       <template v-if="!showGainProtocol && !showLooseProtocol">
         <hr/>
@@ -18,9 +19,10 @@
         <h6 v-html="t('protocolCardsModal.looseCard.title')"></h6>
         {{t('protocolCardsModal.occurs')}}
         <ul>
-          <li v-html="t('protocolCardsModal.looseCard.productionColony')"></li>
+          <li v-html="t('protocolCardsModal.looseCard.productiveColony')"></li>
         </ul>
-        <button v-if="!showLooseProtocol" class="btn btn-primary" @click="showLooseProtocol=true">{{t('protocolCardsModal.looseCard.title')}}</button>
+        <button v-if="!showLooseProtocol" :disabled="cardDeck.canLooseCardCount == 0"
+            class="btn btn-primary" @click="showLooseProtocol=true">{{t('protocolCardsModal.looseCard.title')}}</button>
       </template>
       <template v-if="showGainProtocol || showLooseProtocol">
         {{t('protocolCardsModal.numberCards')}}<br/>
@@ -60,6 +62,7 @@ export default defineComponent({
   components: {
     ModalDialog
   },
+  emits: ['deckChange'],
   setup() {
     const { t } = useI18n()
     const state = useStateStore()
@@ -93,7 +96,10 @@ export default defineComponent({
       return this.cardDeck.deck.length + this.cardDeck.discard.length + (this.cardDeck.actionCard ? 1 : 0)
     },
     maxNumberCards() : number {
-      return 2
+      if (this.showLooseProtocol) {
+        return Math.min(2, this.cardDeck.canLooseCardCount)
+      }
+      return Math.min(2, this.cardDeck.canGainCardCount)
     }
   },
   methods: {
@@ -102,11 +108,13 @@ export default defineComponent({
       this.showLooseProtocol = false
     },
     gainProtocol() : void {
-      // TODO: implement
+      this.cardDeck.gainCards(this.numberCards)
+      this.$emit('deckChange')
       this.reset()
     },
     looseProtocol() : void {
-      // TODO: implement
+      this.cardDeck.looseCards(this.numberCards)
+      this.$emit('deckChange')
       this.reset()
     }
   }

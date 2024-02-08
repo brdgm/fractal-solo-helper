@@ -4,18 +4,17 @@
       {{t('sideBar.cycle')}} {{navigationState.cycle}} / 4<br/>
       <template v-if="navigationState.turn > 0">{{t('sideBar.turn')}} {{navigationState.turn}}</template>
     </p>
-    <SideBarBotInfo v-for="(botActions,index) of navigationState.botsActions" :key="index"
+    <SideBarBotInfo v-for="(botActions,index) of navigationState.botsActions" :key="index + deckUpdateCount*10"
         :navigationState="navigationState" :botActions="botActions"/>
   </div>
 
-  <template v-for="(botActions,index) of navigationState.botsActions" :key="index">
+  <template v-for="(botActions,index) of navigationState.botsActions" :key="index + deckUpdateCount*10">
     <BehaviorModal :bot="botActions.bot"/>
-    <ProtocolCardsModal :botActions="botActions"/>
+    <ProtocolCardsModal :botActions="botActions" @deck-change="onDeckChange"/>
   </template>
 </template>
 
 <script lang="ts">
-import BotActions from '@/services/BotActions'
 import NavigationState from '@/util/NavigationState'
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -34,6 +33,11 @@ export default defineComponent({
     const { t } = useI18n()
     return { t }
   },
+  data() {
+    return {
+      deckUpdateCount: 0
+    }
+  },
   props: {
     navigationState: {
       type: NavigationState,
@@ -41,11 +45,8 @@ export default defineComponent({
     }
   },
   methods: {
-    getProtocolStatus(botActions: BotActions) : string {
-      const cardDeck = botActions.cardDeck
-      const played = cardDeck.discard.length + (cardDeck.actionCard ? 1 : 0)
-      const total = cardDeck.deck.length + played
-      return `${played}/${total}`
+    onDeckChange() {
+      this.deckUpdateCount++
     }
   }
 })
