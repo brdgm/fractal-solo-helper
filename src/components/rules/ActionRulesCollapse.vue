@@ -3,7 +3,7 @@
     <button class="btn btn-sm btn-secondary mb-3 me-1" data-bs-toggle="collapse" :data-bs-target="`#rules-${id}`" @click="showRules = !showRules">
       {{t(`actionRulesCollapse.${showRules ? 'hideRules' : 'showRules'}`)}}
     </button>
-    <BehaviorButton v-if="behavior" :behavior="behavior" class="mb-3 me-1"/>
+    <BehaviorButton v-if="behavior && bot" :bot="bot" :behavior="behavior" class="mb-3 me-1"/>
     <div class="collapse" :id="`rules-${id}`">
       <slot></slot>
     </div>
@@ -27,6 +27,10 @@ export default defineComponent({
     return { t }
   },
   props: {
+    bot: {
+      type: Number,
+      required: false
+    },
     behavior: {
       type: String as PropType<Behavior>,
       required: false

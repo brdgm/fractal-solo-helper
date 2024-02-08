@@ -1,5 +1,5 @@
 <template>
-  <ModalDialog id="rulesBehaviorModal" :size-xl="true" :scrollable="true" :centered="false"
+  <ModalDialog :id="`rulesBehaviorModal-${bot}`" :size-xl="true" :scrollable="true" :centered="false"
       :title="t('rules.concepts.behavior.title')">
     <template #body>
       <ul class="nav nav-tabs" role="tablist">
@@ -24,15 +24,17 @@
         <!-- Important concepts -->
         <div class="tab-pane show active" id="tab-important-concepts" role="tabpanel" aria-labelledby="tablink-important-concepts" tabindex="0">
           <h6>{{t('rules.concepts.important.exploration.title')}}</h6>
-          <p v-html="t('rules.concepts.important.cards.description')"></p>
+          <p v-html="t('rules.concepts.important.exploration.description')"></p>
           <h6>{{t('rules.concepts.important.cards.title')}}</h6>
-          <p v-html="t('rules.concepts.important.training.description')"></p>
+          <p v-html="t('rules.concepts.important.cards.description')"></p>
           <h6>{{t('rules.concepts.important.training.title')}}</h6>
           <p v-html="t('rules.concepts.important.training.description')"></p>
           <h6>{{t('rules.concepts.important.holdTheLine.title')}}</h6>
           <p v-html="t('rules.concepts.important.holdTheLine.description')"></p>
           <h6>{{t('rules.concepts.important.shortCircuit.title')}}</h6>
           <p v-html="t('rules.concepts.important.shortCircuit.description')"></p>
+          <h6>{{t('rules.concepts.important.protocolCards.title')}}</h6>
+          <p v-html="t('rules.concepts.important.protocolCards.description')"></p>
         </div>
 
         <!-- Victory Behavior -->
@@ -205,6 +207,12 @@ export default defineComponent({
   setup() {
     const { t } = useI18n()
     return { t }
+  },
+  props: {
+    bot: {
+      type: Number,
+      required: true
+    }
   },
   data() {
     return {

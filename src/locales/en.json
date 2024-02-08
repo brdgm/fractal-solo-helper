@@ -89,6 +89,21 @@
     "selectValue": "Please select the technology value of the selected card",
     "pleaseSelect": "(Please select)"
   },
+  "protocolCardsModal": {
+    "title": "AI Protocol",
+    "occurs": "Occurs when:",
+    "numberCards": "Number of cards:",
+    "card": "{count} protocol card | {count} protocol cards",
+    "gainCard": {
+      "title": "Gain protocol card",
+      "productionColony": "A productive colony token is removed from the empire board (1 for the first two tokens, 2 for the last production token)",
+      "influence": "The first time the influence reaches 6 or 10"
+    },
+    "looseCard": {
+      "title": "Loose protocol card",
+      "productionColony": "A production colony token is put back on the empire board"
+    }
+  },
   "player": {
     "human": "Player | Player {player}",
     "bot": "AI Opponent | AI Opponent {bot}"
@@ -102,7 +117,7 @@
           "description": " When the Automata’s units enter a sector with an obstacle or anomaly, these are immediately discarded without revealing or resolving the cards. The Automata also doesn’t trigger exploitation areas on living galaxies."
         },
         "cards": {
-          "title": "Cards",
+          "title": "Action and technology cards",
           "description": "When the Automata draws an action or technology card, these are placed face-down in its play area. The effects are irrelevant, as only the type and number of cards matter."
         },
         "training": {
@@ -119,6 +134,10 @@
         "shortCircuit": {
           "title": "Short-circuit",
           "description": "If the Automata can do an action in two different ways, and the AI behavior cannot help you break the tie, the priority player on the currently active AI protocol card decides."
+        },
+        "protocolCards": {
+          "title": "AI Protocol Cards",
+          "description": "The AI starts with a set of protocol cards depending on the chosen difficulty level. The Goria faction starts with an additional card because it starts with a productive colony. This is managed by the application. To gain or loose additional protocol cards during the game, use the <i>AI Protocol</i> button in the sidebar."
         }
       },
       "behavior": {
@@ -315,7 +334,8 @@
     "pass": "Pass",
     "reset": "Reset",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "ok": "OK"
   },
   "footer": {
     "credits": "Credits"

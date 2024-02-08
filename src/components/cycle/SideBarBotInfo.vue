@@ -28,7 +28,7 @@
         </div>
         <div>
           <div class="prioritiesLabel">{{t('sideBar.behavior')}}</div>
-          <BehaviorButton :behavior="botActions.behavior"/>
+          <BehaviorButton :bot="botActions.bot" :behavior="botActions.behavior"/>
         </div>
       </template>
       <div class="mt-2 icon-card-list">
@@ -45,6 +45,8 @@
           <div class="value">{{botActions.technologies.militaryTotalCost}}</div>
         </div>
       </div>
+      <button class="btn btn-sm btn-secondary mt-2"
+          data-bs-toggle="modal" :data-bs-target="`#protocolCardsModal-${botActions.bot}`">{{t('protocolCardsModal.title')}}</button>
     </div>
   </div>
 </template>

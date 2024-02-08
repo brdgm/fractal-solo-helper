@@ -8,7 +8,10 @@
         :navigationState="navigationState" :botActions="botActions"/>
   </div>
 
-  <BehaviorModal/>
+  <template v-for="(botActions,index) of navigationState.botsActions" :key="index">
+    <BehaviorModal :bot="botActions.bot"/>
+    <ProtocolCardsModal :botActions="botActions"/>
+  </template>
 </template>
 
 <script lang="ts">
@@ -18,12 +21,14 @@ import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import BehaviorModal from '../rules/BehaviorModal.vue'
 import SideBarBotInfo from './SideBarBotInfo.vue'
+import ProtocolCardsModal from './ProtocolCardsModal.vue'
 
 export default defineComponent({
   name: 'SideBar',
   components: {
     BehaviorModal,
-    SideBarBotInfo
+    SideBarBotInfo,
+    ProtocolCardsModal
   },
   setup() {
     const { t } = useI18n()

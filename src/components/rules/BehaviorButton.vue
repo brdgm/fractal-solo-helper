@@ -17,6 +17,10 @@ export default defineComponent({
     return { t }
   },
   props: {
+    bot: {
+      type: Number,
+      required: true
+    },
     behavior: {
       type: String as PropType<Behavior>,
       required: true
@@ -24,7 +28,7 @@ export default defineComponent({
   },
   methods: {
     openModal() {
-      showModalPreselectTab('rulesBehaviorModal', `tablink-behavior-${this.behavior}`)
+      showModalPreselectTab(`rulesBehaviorModal-${this.bot}`, `tablink-behavior-${this.behavior}`)
     }
   }
 })

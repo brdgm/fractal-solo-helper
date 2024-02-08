@@ -1,6 +1,6 @@
 <template>
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
-  <ActionRulesCollapse :behavior="behavior">
+  <ActionRulesCollapse :bot="botActions.bot" :behavior="behavior">
     <ul>
       <li v-html="t('rules.action.advance.imperialTrack')"></li>
       <li v-html="t('rules.action.advance.scienceTrack')"></li>
