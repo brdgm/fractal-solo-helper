@@ -4,7 +4,7 @@
     <p class="debug">
       Active Card: {{cardDeck.actionCard?.id}},
       Discard: {{getDeckInfo(cardDeck.discard)}},
-      Deck: {{getDeckInfo(cardDeck.deck, 1)}},
+      Deck: {{getDeckInfo(cardDeck.deck)}},
       Reserve: {{getDeckInfo(cardDeck.reserve)}}<span v-if="cardDeck.isPass()">, pass</span><br/>
       <span v-for="(botAction,index) in botActions.actions" :key="index">
         Action {{index+1}}: {{getBotActionInfo(botAction)}}<br/>
@@ -53,8 +53,8 @@ export default defineComponent({
           + (botActionItem.alternative ? ' (alternative)' : '')
           + (botActionItem.fallback ? ' (fallback)' : '')
     },
-    getDeckInfo(cards: readonly Card[], skipCards : number = 0) : string {
-      return '[' + cards.slice(skipCards)
+    getDeckInfo(cards: readonly Card[]) : string {
+      return '[' + cards
         .map(card => card.id)
         .join(',') + ']'
     }

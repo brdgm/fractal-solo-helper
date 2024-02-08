@@ -32,18 +32,19 @@ describe('util/getBotActions', () => {
       {deck:[4],discard:[],reserve:[]}
     ]})
     // current cycle
-    expect(getBotActions(state, 1, 4, 1, 1).cardDeck.toPersistence()).to.eql({deck:[],discard:[3,2,1],reserve:[10]})
-    expect(getBotActions(state, 1, 3, 1, 1).cardDeck.toPersistence()).to.eql({deck:[3],discard:[2,1],reserve:[10]})
+    expect(getBotActions(state, 1, 4, 1, 1).cardDeck.toPersistence()).to.eql({active:3,deck:[],discard:[2,1],reserve:[10]})
+    expect(getBotActions(state, 1, 3, 1, 1).cardDeck.toPersistence()).to.eql({active:2,deck:[3],discard:[1],reserve:[10]})
     expect(getBotActions(state, 1, 3, 1, 2).cardDeck.toPersistence()).to.eql({deck:[3],discard:[2,1],reserve:[]})
-    expect(getBotActions(state, 1, 2, 1, 1).cardDeck.toPersistence()).to.eql({deck:[2,3],discard:[1],reserve:[10]})
+    expect(getBotActions(state, 1, 2, 1, 1).cardDeck.toPersistence()).to.eql({active:1,deck:[2,3],discard:[],reserve:[10]})
     expect(getBotActions(state, 1, 2, 1, 2).cardDeck.toPersistence()).to.eql({deck:[2,3],discard:[1],reserve:[]})
     // previous cycle
     const cardDeckNewCycle = getBotActions(state, 2, 1, 1, 1).cardDeck.toPersistence()
-    expect(cardDeckNewCycle.deck.length).to.eq(3)
+    expect(cardDeckNewCycle.active).to.not.undefined
+    expect(cardDeckNewCycle.deck.length).to.eq(2)
     expect(cardDeckNewCycle.discard.length).to.eq(0)
     expect(cardDeckNewCycle.reserve.length).to.eq(1)
     // initial
-    expect(getBotActions(state, 1, 1, 1, 1).cardDeck.toPersistence()).to.eql({deck:[],discard:[1],reserve:[]})
-    expect(getBotActions(state, 1, 1, 2, 1).cardDeck.toPersistence()).to.eql({deck:[],discard:[4],reserve:[]})
+    expect(getBotActions(state, 1, 1, 1, 1).cardDeck.toPersistence()).to.eql({active:1,deck:[],discard:[],reserve:[]})
+    expect(getBotActions(state, 1, 1, 2, 1).cardDeck.toPersistence()).to.eql({active:4,deck:[],discard:[],reserve:[]})
   })
 })

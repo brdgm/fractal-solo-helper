@@ -30,7 +30,7 @@
         <div class="prioritiesLabel">{{t('sideBar.priority.behavior')}}</div>
         <BehaviorButton :behavior="botActions.behavior"/>
       </div>
-      <p class="mt-2" v-html="t('sideBar.remainingTurns', {turns: botActions.cardDeck.deck.length - 1})"></p>
+      <p class="mt-2" v-html="t('sideBar.remainingTurns', {turns: botActions.cardDeck.deck.length})"></p>
     </div>
   </div>
 

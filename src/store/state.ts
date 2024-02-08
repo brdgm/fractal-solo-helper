@@ -82,6 +82,7 @@ export interface BotActionsPersistence {
   technologies: TechnologiesPersistence
 }
 export interface CardDeckPersistence {
+  active?: number
   deck: number[]
   reserve: number[]
   discard: number[]

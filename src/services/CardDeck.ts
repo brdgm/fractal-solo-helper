@@ -9,11 +9,13 @@ import { CardDeckPersistence } from '@/store/state'
  */
 export default class CardDeck {
 
+  private _active? : Card
   private _deck : Card[]
   private _reserve : Card[]
   private _discard : Card[]
 
-  public constructor(deck : Card[], reserve : Card[], discard : Card[]) {
+  public constructor(active: Card|undefined, deck : Card[], reserve : Card[], discard : Card[]) {
+    this._active = active
     this._deck = deck
     this._reserve = reserve
     this._discard = discard
@@ -32,7 +34,7 @@ export default class CardDeck {
   }
 
   public get actionCard() : Card|undefined {
-    return this._deck[0]
+    return this._active
   }
 
   public get supportCard() : Card|undefined {
@@ -43,30 +45,36 @@ export default class CardDeck {
    * Gets persistence view of card deck.
    */
   public toPersistence() : CardDeckPersistence {
-    return {
+    const persistence : CardDeckPersistence = {
       deck: this._deck.map(card => card.id),
       reserve: this._reserve.map(card => card.id),
       discard: this._discard.map(card => card.id)      
     }
+    if (this._active) {
+      persistence.active = this._active.id
+    }
+    return persistence
   }
 
   /**
-   * Draw a new card. Topmost card on discard pile is support card, topmost card on deck is action card.
-   * @return true if a card was drawn and there is still an action card left. if false, bot will pass.
+   * Draw a new card as active action card. Topmost card on discard pile is support card.
+   * @return true if a card was drawn and there is an active actin card. if false, bot will pass.
    */
   public draw() : boolean {
-    const drawnCard = this._deck.shift()
-    if (drawnCard) {
-      this._discard.unshift(drawnCard)
+    // discard current active card
+    if (this._active) {
+      this._discard.unshift(this._active)
     }
-    return drawnCard != undefined && this._deck.length >= 1
+    // draw new active card
+    this._active = this._deck.shift()
+    return this._active != undefined
   }
 
   /**
    * Bot passes after this round if this is the last action card.
    */
   public isPass() : boolean {
-    return (this._deck.length <= 1)
+    return (this._deck.length == 0)
   }
 
   /**
@@ -74,11 +82,17 @@ export default class CardDeck {
    */
   public prepareForNextCycle() : void {
     // discard all remaining cards
+    if (this._active) {
+      this._discard.push(this._active)
+      this._active = undefined
+    }
     this._deck.forEach(card => this._discard.push(card))
     this._deck = []
     // shuffle discard as new deck
     this._deck = _.shuffle(this._discard)
     this._discard = []
+    // discard 1st card
+    this.draw()
   }
 
   /**
@@ -108,7 +122,10 @@ export default class CardDeck {
       }
     }
 
-    return new CardDeck(deck, reserve, [])
+    const cardDeck = new CardDeck(undefined, deck, reserve, [])
+    // discard 1st card
+    cardDeck.draw()
+    return cardDeck
   }
 
   /**
@@ -116,6 +133,7 @@ export default class CardDeck {
    */
   public static fromPersistence(persistence : CardDeckPersistence) : CardDeck {
     return new CardDeck(
+      persistence.active ? Cards.get(persistence.active) : undefined,
       persistence.deck.map(Cards.get),
       persistence.reserve.map(Cards.get),
       persistence.discard.map(Cards.get)
