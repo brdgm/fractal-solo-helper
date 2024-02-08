@@ -1,6 +1,6 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t('player.bot', {bot}, botCount)}}</h1>
+  <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t(`faction.${botFaction}`)}}</h1>
 
   <BotActionSelection v-if="botActions" :botActions="botActions" :actionIndex="action"
       @next="next()"/>
@@ -23,6 +23,8 @@ import SideBar from '@/components/cycle/SideBar.vue'
 import DebugInfo from '@/components/cycle/DebugInfo.vue'
 import BotActionSelection from '@/components/cycle/BotActionSelection.vue'
 import BotActions from '@/services/BotActions'
+import Faction from '@/services/enum/Faction'
+import getBotFaction from '@/util/getBotFaction'
 
 export default defineComponent({
   name: 'TurnBot',
@@ -39,8 +41,9 @@ export default defineComponent({
     const state = useStateStore()
     const navigationState = new NavigationState(route, state)
     const { cycle, turn, bot, action, botCount, playerColor } = navigationState
+    const playerSetup = state.setup.playerSetup
     const routeCalculator = new RouteCalculator({cycle,turn,bot,action})
-    return { t, state, cycle, turn, bot, action, botCount, playerColor, routeCalculator, navigationState }
+    return { t, state, cycle, turn, bot, action, botCount, playerColor, playerSetup, routeCalculator, navigationState }
   },
   computed: {
     backButtonRouteTo() : string {
@@ -51,6 +54,9 @@ export default defineComponent({
     },
     isPass() : boolean {
       return this.action == 2 && (this.botActions?.cardDeck.isPass() ?? false)
+    },
+    botFaction() : Faction {
+      return getBotFaction(this.playerSetup, this.bot)
     }
   },
   methods: {
