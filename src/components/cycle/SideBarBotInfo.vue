@@ -119,9 +119,12 @@ export default defineComponent({
   border-left: 1px solid #aaa;
   border-top: 1px solid #aaa;
   border-bottom: 1px solid #aaa;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   margin-right: -10px;
   .header {
     background-color: #000;
+    border-top-left-radius: 5px;
     color: #fff;
     padding-left: 3px;
     padding-bottom: 3px;
@@ -137,9 +140,6 @@ export default defineComponent({
     padding: 5px;
     &.collapsing {
       transition: none;
-    }
-    @media (max-width: 600px) {
-      padding: 3px;
     }
   }
 }

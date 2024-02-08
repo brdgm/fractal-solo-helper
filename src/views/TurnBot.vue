@@ -86,7 +86,8 @@ export default defineComponent({
           turn: this.turn,
           bot: this.bot,
           action: this.action,
-          botsActions: this.navigationState.botsActions.map(botActions => botActions.toPersistence())
+          botsActions: this.navigationState.botsActions
+            .map(botActions => botActions.toPersistence())
         }
         if (this.isPass && this.action == 2) {
           turn.passed = true
