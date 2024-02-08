@@ -37,12 +37,12 @@ const routes: Array<RouteRecordRaw> = [
     component: CycleIncome
   },
   {
-    path: '/cycle/:cycle/turn/:turn/player/:player',
+    path: '/cycle/:cycle/turn/:turn/player/:player/state/:stateIndex',
     name: 'TurnPlayer',
     component: TurnPlayer
   },
   {
-    path: '/cycle/:cycle/turn/:turn/bot/:bot/action/:action',
+    path: '/cycle/:cycle/turn/:turn/bot/:bot/action/:action/state/:stateIndex',
     name: 'TurnBot',
     component: TurnBot
   },

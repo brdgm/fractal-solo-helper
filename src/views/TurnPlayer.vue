@@ -37,9 +37,11 @@ export default defineComponent({
     const route = useRoute()
     const state = useStateStore()
     const navigationState = new NavigationState(route, state)
-    const { cycle, turn, player, playerCount, playerColor } = navigationState
+    const { cycle, turn, player, stateIndex,
+        playerCount, playerColor } = navigationState
     const routeCalculator = new RouteCalculator({cycle,turn,player})
-    return { t, state, turn, player, playerCount, playerColor, cycle, routeCalculator, navigationState }
+    return { t, state, turn, player, stateIndex,
+        playerCount, playerColor, cycle, routeCalculator, navigationState }
   },
   computed: {
     backButtonRouteTo() : string {
@@ -50,9 +52,11 @@ export default defineComponent({
     next(pass : boolean) : void {
       // store turn
       const turn : Turn = {
+        stateIndex: this.stateIndex,
         cycle: this.cycle,
         turn: this.turn,
-        player: this.player
+        player: this.player,
+        botsActions: this.navigationState.botsActions.map(botActions => botActions.toPersistence())
       }
       if (pass) {
         turn.passed = true

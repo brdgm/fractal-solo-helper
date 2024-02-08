@@ -18,17 +18,10 @@ export default class BotActions {
 
   private _cardDeck : CardDeck
   private _technologies : Technologies
-  private _actions : BotAction[]
-  private _behavior : Behavior
 
-  public constructor(cardDeck : CardDeck, technologies: Technologies, drawCard: boolean = false) {
+  public constructor(cardDeck : CardDeck, technologies: Technologies) {
     this._cardDeck = cardDeck
     this._technologies = technologies
-    if (drawCard) {
-      this._cardDeck.draw()
-    }
-    this._actions = getCardActions(cardDeck).map(toBotAction)
-    this._behavior = getBehavior(cardDeck)
   }
 
   public get cardDeck() : CardDeck {
@@ -40,11 +33,11 @@ export default class BotActions {
   }
 
   public get actions() : readonly BotAction[] {
-    return this._actions
+    return getCardActions(this._cardDeck).map(toBotAction)
   }
 
   public get behavior() : Behavior {
-    return this._behavior
+    return getBehavior(this._cardDeck)
   }
 
   public get livingStormDirection() : LivingStormDirection {
@@ -84,13 +77,11 @@ export default class BotActions {
   /**
    * Re-creates bot actions from persistence.
    * @param persistence Persistence
-   * @param drawCard Draw card before fetching bot actions
    */
-  public static fromPersistence(persistence: BotActionsPersistence, drawCard: boolean = false) : BotActions {
+  public static fromPersistence(persistence: BotActionsPersistence) : BotActions {
     return new BotActions(
       CardDeck.fromPersistence(persistence.cardDeck),
-      Technologies.fromPersistence(persistence.technologies),
-      drawCard
+      Technologies.fromPersistence(persistence.technologies)
     )
   }
 

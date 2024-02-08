@@ -42,10 +42,12 @@ export default defineComponent({
     const route = useRoute()
     const state = useStateStore()
     const navigationState = new NavigationState(route, state)
-    const { cycle, turn, bot, action, botCount, playerColor } = navigationState
+    const { cycle, turn, bot, action, stateIndex,
+        botCount, playerColor } = navigationState
     const playerSetup = state.setup.playerSetup
     const routeCalculator = new RouteCalculator({cycle,turn,bot,action})
-    return { t, state, cycle, turn, bot, action, botCount, playerColor, playerSetup, routeCalculator, navigationState }
+    return { t, state, cycle, turn, bot, action, stateIndex,
+        botCount, playerColor, playerSetup, routeCalculator, navigationState }
   },
   data() {
     return {
@@ -80,13 +82,14 @@ export default defineComponent({
           }
         }
         const turn : Turn = {
+          stateIndex: this.stateIndex,
           cycle: this.cycle,
           turn: this.turn,
           bot: this.bot,
           action: this.action,
-          botActions: this.botActions.toPersistence()
+          botsActions: this.navigationState.botsActions.map(botActions => botActions.toPersistence())
         }
-        if (this.isPass) {
+        if (this.isPass && this.action == 2) {
           turn.passed = true
         }
         this.state.storeTurn(turn)

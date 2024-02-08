@@ -69,13 +69,14 @@ export interface Cycle {
   turns: Turn[]
 }
 export interface Turn {
+  stateIndex: number
   cycle: number
   turn: number
   player?: number
   bot?: number
   action?: number
   passed?: boolean
-  botActions?: BotActionsPersistence
+  botsActions: BotActionsPersistence[]
 }
 export interface BotActionsPersistence {
   cardDeck: CardDeckPersistence

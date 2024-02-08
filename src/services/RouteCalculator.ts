@@ -34,13 +34,13 @@ export default class RouteCalculator {
     }
     const currentStep = steps[currentStepIndex]
     if (currentStep.bot && this.action == 1) {
-      return routeTo(currentStep, 2)
+      return routeTo(currentStepIndex, currentStep, 2)
     } 
     const nextStep = steps[currentStepIndex+1]
     if (!nextStep) {
       return `/cycle/${this.cycle}/conflict`
     }
-    return routeTo(nextStep, 1)
+    return routeTo(currentStepIndex+1, nextStep, 1)
   }
 
   /**
@@ -56,13 +56,13 @@ export default class RouteCalculator {
     }
     const currentStep = steps[currentStepIndex]
     if (currentStep.bot && this.action == 2) {
-      return routeTo(currentStep, 1)
+      return routeTo(currentStepIndex, currentStep, 1)
     } 
     const previousStep = steps[currentStepIndex-1]
     if (!previousStep) {
       return `/cycle/${this.cycle}/income`
     }
-    return routeTo(previousStep, 2)
+    return routeTo(currentStepIndex-1, previousStep, 2)
   }
 
   /**
@@ -73,7 +73,7 @@ export default class RouteCalculator {
     const playerCount = state.setup.playerSetup.playerCount
     const botCount = state.setup.playerSetup.botCount
     const playerOrder = getPlayerOrder(playerCount, botCount, firstPlayer)
-    return routeTo({cycle:this.cycle,turn:1,player:playerOrder[0].player,bot:playerOrder[0].bot}, 1)
+    return routeTo(0, {cycle:this.cycle,turn:1,player:playerOrder[0].player,bot:playerOrder[0].bot}, 1)
   }
 
   /**
@@ -83,7 +83,7 @@ export default class RouteCalculator {
     const steps = getTurnOrder(state, this.cycle, this.turn, this.getFirstPlayer(state))
     const lastStep = steps[steps.length-1]
     if (lastStep) {
-      return routeTo(lastStep, 2)
+      return routeTo(steps.length-1, lastStep, 2)
     }
     else {
       return ''
@@ -106,12 +106,14 @@ export default class RouteCalculator {
 /**
  * Build route to player/bot step
  */
-function routeTo(step: Step, action: number) : string {
+function routeTo(stepIndex: number, step: Step, action: number) : string {
+  let stateIndex = (stepIndex+1) * 10
   if (step.bot) {
-    return `/cycle/${step.cycle}/turn/${step.turn}/bot/${step.bot}/action/${action}`
+    stateIndex += action
+    return `/cycle/${step.cycle}/turn/${step.turn}/bot/${step.bot}/action/${action}/state/${stateIndex}`
   }
   else {
-    return `/cycle/${step.cycle}/turn/${step.turn}/player/${step.player}`
+    return `/cycle/${step.cycle}/turn/${step.turn}/player/${step.player}/state/${stateIndex}`
   }
 }
 
