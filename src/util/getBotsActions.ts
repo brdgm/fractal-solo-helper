@@ -19,7 +19,7 @@ export default function getBotsActions(state: State, cycle: number, stateIndex: 
       .toSorted((a, b) => a.stateIndex - b.stateIndex)
       .findLast(item => item.cycle==cycle && item.stateIndex < stateIndex)
     if (lastTurn) {
-      return lastTurn.botsActions.map(persistence => BotActions.fromPersistence(persistence))
+      return lastTurn.botsActions.map((persistence,index) => BotActions.fromPersistence(index+1,persistence))
     }
   }
   let botsActions
@@ -32,8 +32,7 @@ export default function getBotsActions(state: State, cycle: number, stateIndex: 
     // use initial card decks
     botsActions = (state.setup.initialBotCardDecks ?? [])
       .map(persistence => CardDeck.fromPersistence(persistence))
-      .map(cardDeck => new BotActions(cardDeck, new Technologies()))      
-    botsActions.forEach(botActions => botActions.cardDeck.draw())
+      .map((cardDeck,index) => new BotActions(index+1, cardDeck, new Technologies()))      
   }
   return botsActions
 }

@@ -1,16 +1,16 @@
 <template>
-  <div class="mt-4" v-if="state.setup.debugMode && botActions && cardDeck">
+  <div class="mt-4" v-if="state.setup.debugMode">
     <hr/>
-    <p class="debug">
-      Active Card: {{cardDeck.actionCard?.id}},
-      Discard: {{getDeckInfo(cardDeck.discard)}},
-      Deck: {{getDeckInfo(cardDeck.deck)}},
-      Reserve: {{getDeckInfo(cardDeck.reserve)}}<span v-if="cardDeck.isPass()">, pass</span><br/>
+    <div class="debug mb-2" v-for="(botActions,index) of orderedBotsActions" :key="index">
+      <b>[{{getBotFaction(botActions)}}#{{botActions.bot}}]</b> Active Card: {{botActions.cardDeck.actionCard?.id}},
+      Discard: {{getDeckInfo(botActions.cardDeck.discard)}},
+      Deck: {{getDeckInfo(botActions.cardDeck.deck)}},
+      Reserve: {{getDeckInfo(botActions.cardDeck.reserve)}}<span v-if="botActions.cardDeck.isPass()">, pass</span><br/>
       <span v-for="(botAction,index) in botActions.actions" :key="index">
         Action {{index+1}}: {{getBotActionInfo(botAction)}}<br/>
       </span>
       Technologies: Civil {{getTechInfo(botActions.technologies.civil)}} Military {{getTechInfo(botActions.technologies.military)}}
-    </p>
+    </div>
   </div>
 </template>
 
@@ -20,9 +20,10 @@ import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useStateStore } from '@/store/state'
 import BotActions, { BotAction, BotActionItem } from '@/services/BotActions'
-import CardDeck from '@/services/CardDeck'
 import Card from '@/services/Card'
 import Technology from '@/services/enum/Technology'
+import Faction from '@/services/enum/Faction'
+import getBotFaction from '@/util/getBotFaction'
 
 export default defineComponent({
   name: 'DebugInfo',
@@ -38,11 +39,17 @@ export default defineComponent({
     }
   },
   computed: {
-    botActions() : BotActions|undefined {
-      return this.navigationState.botActions
-    },
-    cardDeck() : CardDeck|undefined {
-      return this.botActions?.cardDeck
+    orderedBotsActions: function() : BotActions[] {
+      const result : BotActions[] = []
+      if (this.navigationState.botActions) {
+        result.push(this.navigationState.botActions)
+      }
+      for (const botActions of this.navigationState.botsActions) {
+        if (botActions.bot !== this.navigationState.botActions?.bot) {
+          result.push(botActions)
+        }
+      }
+      return result
     }
   },
   methods: {
@@ -62,6 +69,9 @@ export default defineComponent({
     },
     getTechInfo(techs: readonly Technology[]) : string {
       return `[${techs.join(',')}]`
+    },
+    getBotFaction(botActions: BotActions) : Faction {
+      return getBotFaction(this.state.setup.playerSetup, botActions.bot)
     }
   }
 })

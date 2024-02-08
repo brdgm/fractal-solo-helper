@@ -6,7 +6,6 @@
       @next="next()" @technology="selectTechnology"/>
 
   <DebugInfo :navigationState="navigationState"/>
-
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" endGameButtonType="abortGame"/>
 </template>
 

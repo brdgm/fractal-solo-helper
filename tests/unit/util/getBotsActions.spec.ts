@@ -38,8 +38,8 @@ describe('util/getBotsActions', () => {
       ]})
     ],
     initialBotCardDecks: [
-      dck(undefined, [2,4,6], []),
-      dck(undefined, [8,10], [])
+      dck(2, [4,6], []),
+      dck(8, [10], [])
     ]})
     // current cycle
     expect(getBotsActions(state, 1, 111 /* turn 4, bot 1, action 1 */)[0].cardDeck.toPersistence()).to.eql(dck(4,[],[3,2,1],2))
@@ -50,7 +50,7 @@ describe('util/getBotsActions', () => {
     // previous cycle, last step
     const cardDeckNewCycle = getBotsActions(state, 2, 10  /* turn 1, player 1 */)[0].cardDeck.toPersistence()
     expect(cardDeckNewCycle.active).to.not.undefined
-    expect(cardDeckNewCycle.deck.length).to.eq(3),
+    expect(cardDeckNewCycle.deck.length).to.eq(3)
     expect(cardDeckNewCycle.discard.length).to.eq(0)
     expect(cardDeckNewCycle.reserve).to.eql([2])
     // initial

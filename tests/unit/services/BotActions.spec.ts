@@ -10,11 +10,12 @@ import { expect } from 'chai'
 describe('services/BotActions', () => {
   it('card-1+2', () => {
     const cardDeck = CardDeck.fromPersistence({active:1,deck:[],discard:[2],reserve:[]})
-    const botActions = new BotActions(cardDeck, new Technologies())
+    const botActions = new BotActions(1, cardDeck, new Technologies())
 
     expect(cardDeck.actionCard?.id, 'actionCard').to.eq(1)
     expect(cardDeck.supportCard?.id, 'supportCard').to.eq(2)
     
+    expect(botActions.bot).to.eq(1)
     expect(botActions.behavior).to.eq(Behavior.EXPANSIVE)
     expect(botActions.actions[0]).to.eql({
       items: [
@@ -34,7 +35,7 @@ describe('services/BotActions', () => {
 
   it('card-1+4', () => {
     const cardDeck = CardDeck.fromPersistence({active:1,deck:[],discard:[4],reserve:[]})
-    const botActions = new BotActions(cardDeck, new Technologies())
+    const botActions = new BotActions(1, cardDeck, new Technologies())
 
     expect(cardDeck.actionCard?.id, 'actionCard').to.eq(1)
     expect(cardDeck.supportCard?.id, 'supportCard').to.eq(4)
@@ -58,7 +59,7 @@ describe('services/BotActions', () => {
 
   it('card-4+1', () => {
     const cardDeck = CardDeck.fromPersistence({active:4,deck:[],discard:[1],reserve:[]})
-    const botActions = new BotActions(cardDeck, new Technologies())
+    const botActions = new BotActions(1, cardDeck, new Technologies())
 
     expect(cardDeck.actionCard?.id, 'actionCard').to.eq(4)
     expect(cardDeck.supportCard?.id, 'supportCard').to.eq(1)
@@ -82,7 +83,7 @@ describe('services/BotActions', () => {
 
   it('card-6+2', () => {
     const cardDeck = CardDeck.fromPersistence({active:6,deck:[],discard:[2],reserve:[]})
-    const botActions = new BotActions(cardDeck, new Technologies())
+    const botActions = new BotActions(1, cardDeck, new Technologies())
 
     expect(cardDeck.actionCard?.id, 'actionCard').to.eq(6)
     expect(cardDeck.supportCard?.id, 'supportCard').to.eq(2)
@@ -107,7 +108,7 @@ describe('services/BotActions', () => {
   it('persistence', () => {
     const cardDeck : CardDeckPersistence = {deck:[6], discard:[2], reserve:[]}
     const technologies : TechnologiesPersistence = {civil:[Technology.LEVEL_2,Technology.LEVEL_3],military:[Technology.LEVEL_5]}
-    const botActions = BotActions.fromPersistence({cardDeck, technologies})
+    const botActions = BotActions.fromPersistence(1, {cardDeck, technologies})
 
     const persistence = botActions.toPersistence()
     expect(persistence.cardDeck).to.eql(cardDeck)

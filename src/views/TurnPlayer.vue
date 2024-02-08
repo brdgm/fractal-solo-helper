@@ -11,6 +11,7 @@
     {{t('action.pass')}}
   </button>
 
+  <DebugInfo :navigationState="navigationState"/>
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" endGameButtonType="abortGame"/>
 </template>
 
@@ -24,13 +25,15 @@ import NavigationState from '@/util/NavigationState'
 import RouteCalculator from '@/services/RouteCalculator'
 import PlayerColorDisplay from '@/components/structure/PlayerColorDisplay.vue'
 import SideBar from '@/components/cycle/SideBar.vue'
+import DebugInfo from '@/components/cycle/DebugInfo.vue'
 
 export default defineComponent({
   name: 'TurnPlayer',
   components: {
     FooterButtons,
     PlayerColorDisplay,
-    SideBar
+    SideBar,
+    DebugInfo
   },
   setup() {
     const { t } = useI18n()

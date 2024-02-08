@@ -26,7 +26,7 @@ export default class NavigationState {
     this.player = getIntRouteParam(route, 'player')
     this.bot = getIntRouteParam(route, 'bot')
     this.action = getIntRouteParam(route, 'action')
-    this.stateIndex = getIntRouteParam(route, 'stateIndex')
+    this.stateIndex = getStateIndex(route)
 
     const playerSetup = state.setup.playerSetup
     this.playerCount = playerSetup.playerCount
@@ -43,4 +43,11 @@ export default class NavigationState {
     }
   }
 
+}
+
+function getStateIndex(route : RouteLocation) : number {
+  if (route.name == 'CycleConflict' || route.name == 'CycleEnd' || route.name == 'CycleTransition') {
+    return Number.MAX_VALUE
+  }
+  return getIntRouteParam(route, 'stateIndex')
 }

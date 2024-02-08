@@ -8,6 +8,7 @@
     {{t('action.next')}}
   </button>
 
+  <DebugInfo :navigationState="navigationState"/>
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" endGameButtonType="abortGame"/>
 </template>
 
@@ -20,12 +21,14 @@ import { useRoute } from 'vue-router'
 import NavigationState from '@/util/NavigationState'
 import RouteCalculator from '@/services/RouteCalculator'
 import SideBar from '@/components/cycle/SideBar.vue'
+import DebugInfo from '@/components/cycle/DebugInfo.vue'
 
 export default defineComponent({
   name: 'CycleConflict',
   components: {
     FooterButtons,
-    SideBar
+    SideBar,
+    DebugInfo
   },
   setup() {
     const { t } = useI18n()

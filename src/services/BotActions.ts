@@ -16,12 +16,18 @@ import UnitType from './enum/UnitType'
  */
 export default class BotActions {
 
+  private _bot : number
   private _cardDeck : CardDeck
   private _technologies : Technologies
 
-  public constructor(cardDeck : CardDeck, technologies: Technologies) {
+  public constructor(bot: number, cardDeck: CardDeck, technologies: Technologies) {
+    this._bot = bot
     this._cardDeck = cardDeck
     this._technologies = technologies
+  }
+
+  public get bot() : number {
+    return this._bot
   }
 
   public get cardDeck() : CardDeck {
@@ -78,8 +84,9 @@ export default class BotActions {
    * Re-creates bot actions from persistence.
    * @param persistence Persistence
    */
-  public static fromPersistence(persistence: BotActionsPersistence) : BotActions {
+  public static fromPersistence(bot: number, persistence: BotActionsPersistence) : BotActions {
     return new BotActions(
+      bot,
       CardDeck.fromPersistence(persistence.cardDeck),
       Technologies.fromPersistence(persistence.technologies)
     )

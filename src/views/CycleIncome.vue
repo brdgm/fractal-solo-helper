@@ -14,6 +14,7 @@
     {{t('action.next')}}
   </button>
 
+  <DebugInfo :navigationState="navigationState"/>
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" endGameButtonType="abortGame"/>
 </template>
 
@@ -27,13 +28,15 @@ import NavigationState from '@/util/NavigationState'
 import DetermineStartPlayer from '@/components/cycle/DetermineStartPlayer.vue'
 import RouteCalculator from '@/services/RouteCalculator'
 import SideBar from '@/components/cycle/SideBar.vue'
+import DebugInfo from '@/components/cycle/DebugInfo.vue'
 
 export default defineComponent({
   name: 'CycleIncome',
   components: {
     FooterButtons,
     DetermineStartPlayer,
-    SideBar
+    SideBar,
+    DebugInfo
   },
   setup() {
     const { t } = useI18n()
