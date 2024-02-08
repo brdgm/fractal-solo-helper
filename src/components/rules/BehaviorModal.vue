@@ -1,5 +1,5 @@
 <template>
-  <ModalDialog :id="`rulesBehaviorModal-${bot}`" :size-xl="true" :scrollable="true" :centered="false"
+  <ModalDialog :id="`rulesBehaviorModal${bot ? `-${bot}` : ''}`" :size-xl="true" :scrollable="true" :centered="false"
       :title="t('rules.concepts.behavior.title')">
     <template #body>
       <ul class="nav nav-tabs" role="tablist">
@@ -211,7 +211,7 @@ export default defineComponent({
   props: {
     bot: {
       type: Number,
-      required: true
+      required: false
     }
   },
   data() {

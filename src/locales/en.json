@@ -302,13 +302,162 @@
     }
   },
   "faction": {
-    "borroka": "Borroka",
-    "delverar": "Delverar",
-    "exodian": "Exodian",
-    "goria": "Goria",
-    "saura": "Saura",
-    "txingur": "Txingur",
-    "vax-117": "VAX-117"
+    "borroka": {
+      "title": "Borroka",
+      "generalAbility": {
+        "title": "Destroyer of Worlds",
+        "description": "When you remove ::component/obstacle::, ::component/anomaly::, ::component/living-galaxy:: or ::component/living-storm:: from the board, add a ::unit-type/lightship:: to the sector you removed it from or, if not possible, to the nearest sector."
+      },
+      "civilTechnologyAbility": {
+        "3": "After you play an action card face-down, gain 1 ::influence::.",
+        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "9": "When you perform a movement order, your ::unit-type/lightship:: ignore pin-down."
+      },
+      "pendulum1": {
+        "title": "Hunger of entropy",
+        "condition": "::influence:: <= Opponents",
+        "description": "Inflict 1 ::damage/indirect:: in each contested sectors with 2 of your units. If there are not valid sectors, perform 2 movement orders instead. Gain 1 ::influence::."
+      },
+      "pendulum2": {
+        "title": "Inertia",
+        "condition": "::influence:: > Opponents",
+        "description": "Banish a priority non-productive colony from your empire board. Lose 2 ::influence::."
+      }
+    },
+    "delverar": {
+      "title": "Delverar",
+      "generalAbility": {
+        "title": "Ancestral Oath",
+        "description": "Anytime your remove ::component/obstacle:: or ::component/anomaly:: from the board, place them on the faction mat.",
+        "setup": "Draw 1 ::artifact::."
+      },
+      "civilTechnologyAbility": {
+        "3": "When your colonize, you may place non-productive colonies in non-habitable sectors.",
+        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "9": "At the end of the game, gain 1 extra ::victory-point:: for each completed objective condition."
+      },
+      "pendulum1": {
+        "title": "Protector",
+        "condition": "::component/obstacle::/::component/anomaly:: on the faction mat < 2",
+        "description": "Place an ::component/obstacle:: on the nearest empty sector without ::component/obstacle::, then move 1 ::unit-type/lightship:: to the nearest sector with an ::component/obstacle:: or  ::component/anomaly::."
+      },
+      "pendulum2": {
+        "title": "",
+        "condition": "::component/obstacle::/::component/anomaly:: on the faction mat >= 2",
+        "description": "Banish 2 ::component/obstacle::/::component/anomaly:: from the faction mat, then draw 1 ::artifact::."
+      }
+    },
+    "exodian": {
+      "title": "Exodian",
+      "generalAbility": {
+        "title": "Children of the Rebellion",
+        "description": "Anytime you remove ::component/obstacle:: or ::component/anomaly:: from a sector, add 1 ::unit-type/infantry:: to that sector and place 1 ::battle-medal:: on the faction mat."
+      },
+      "civilTechnologyAbility": {
+        "3": "When you colonize, you may place non-productive colonies in non-habitable sectors.",
+        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "9": "Once per game: Place 2 different non-productive priority colonies from the empire board on the faction mat (count for scoring)."
+      },
+      "pendulum1": {
+        "title": "New beginning",
+        "condition": "::battle-medal:: < 3",
+        "description": "Upgrade a tactic card. Gain 1 ::battle-medal::."
+      },
+      "pendulum2": {
+        "title": "Elective conclave",
+        "condition": "::battle-medal:: >= 3",
+        "description": "Trigger 2 leftmost revealed colonization bonus from empire board. If not possible, banish a priority colony from it. Lose 2 ::battle-medal::."
+      }
+    },
+    "goria": {
+      "title": "Goria",
+      "generalAbility": {
+        "title": "Native Inhabitant",
+        "description": "Once per battle, when you inflict ::damage/indirect::, add the unit on the faction mat as part of your Bone Coin pool.",
+        "setup": "You start with 1 extra AI protocol card (automatically managed by the app)."
+      },
+      "civilTechnologyAbility": {
+        "3": "When you perform a movement order, your <i>space units</i> move by +1 ::sector::.",
+        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "9": "At the end of the game, gain 1 extra ::victory-point:: for each completed objective condition."
+      },
+      "pendulum1": {
+        "title": "The Hunt",
+        "condition": "Bone Coins < 2",
+        "description": "Perform 1 movement order to nearest sector with enemy ::unit-type/lightship:: or ::unit-type/infantry:: then add one of these units (priority) to your Bone Coin pool."
+      },
+      "pendulum2": {
+        "title": "Profit",
+        "condition": "Bone Coins >= 2",
+        "description": "Remove 2 units from the Bone Coin pool, then banish, then banish a non-productive colony from your empire board."
+      }
+    },
+    "saura": {
+      "title": "Saura",
+      "generalAbility": {
+        "title": "Blood Heaven",
+        "description": "Anytime your <i>ground units</i> are removed or replaced on the board, gain 1 ::influence::."
+      },
+      "civilTechnologyAbility": {
+        "3": "When you perform a movement order, your <i>space units</i> move by +1 ::sector::.",
+        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "9": "When you perform a single movement order in your turn, your <i>space units</i> move by +1 ::sector::."
+      },
+      "pendulum1": {
+        "title": "Call to War",
+        "condition": "::influence:: < 4",
+        "description": "Add 1 ::unit-type/lightship:: to a sector with your <i>ground units</i> nearest to enemy colonies. Perform a movement order to the nearest one. Gain 1 ::influence::."
+      },
+      "pendulum2": {
+        "title": "Tyranny",
+        "condition": "::influence:: >= 4",
+        "description": "Banish a non-productive priority colony from your empire board. Lose 3 ::influence::."
+      }
+    },
+    "txingur": {
+      "title": "Txingur",
+      "generalAbility": {
+        "title": "The Swarm",
+        "description": "You can't recruit ::unit-type/infantry::. Whenever you perform the Advance action, add 1 ::unit-type/infantry:: to a sector with your units, following the current AI behavior."
+      },
+      "civilTechnologyAbility": {
+        "3": "Your ::unit-type/warship:: and ::unit-type/mech:: gain the <i>Invade</i> ability.",
+        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "9": "Once per game: Place 2 different non-productive priority colonies from the empire board on the faction mat (count for scoring)."
+      },
+      "pendulum1": {
+        "title": "Collective",
+        "condition": "::unit-type/infantry:: < 4",
+        "description": "Add 1 ::unit-type/infantry:: to each sector with at least 2 of your units."
+      },
+      "pendulum2": {
+        "title": "Metamorphosys",
+        "condition": "::unit-type/infantry:: >= 4",
+        "description": "Replace 1 ::unit-type/infantry:: with the rightmost visible <i>space unit</i> on your military track, them remove another ::unit-type/infantry:: to upgrade a tactic to elite."
+      }
+    },
+    "vax-117": {
+      "title": "VAX-117",
+      "generalAbility": {
+        "title": "Deconstructor",
+        "description": "When you develop a technology or banish an ::component/obstacle:: or ::component/anomaly::, place 1 ::research-token:: on the faction mat."
+      },
+      "civilTechnologyAbility": {
+        "3": "Whenever you perform the Research action, gain 1 ::influence::.",
+        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "9": "At the end of the game, gain 1 extra ::victory-point:: for each completed objective condition."
+      },
+      "pendulum1": {
+        "title": "Hack",
+        "condition": "::research-token:: < 4",
+        "description": "Perform a Research action. During this action, you can develop face-down cards from the leftmost technology slot."
+      },
+      "pendulum2": {
+        "title": "Ascension",
+        "condition": "::research-token:: >= 4",
+        "description": "Return 1 AI protocol from the discard pile to the deck, then add 1 elite ard to the tactic deck. Remove 3 ::research-token::."
+      }
+    }
   },
   "difficultyLevel": {
     "1": "Normal",

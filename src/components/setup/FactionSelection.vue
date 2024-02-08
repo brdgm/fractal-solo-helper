@@ -9,7 +9,7 @@
       <div class="col-7 col-md-4">
         <select class="form-select"
             :value="factions[bot-1]" @input="updateFaction(bot, $event)">
-          <option v-for="faction in allFactions" :key="faction" :value="faction">{{t(`faction.${faction}`)}}</option>
+          <option v-for="faction in allFactions" :key="faction" :value="faction">{{t(`faction.${faction}.title`)}}</option>
         </select>
       </div>
     </div>

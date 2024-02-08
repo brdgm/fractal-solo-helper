@@ -5,7 +5,7 @@
       <ul>
         <li v-for="bot of botCount" :key="bot">
           <PlayerColorDisplay :player-color="playerColors[playerCount+bot-1]" :size-rem="1" class="color"/>
-          <b>{{t(`faction.${getFaction(bot)}`)}}</b>
+          <b>{{t(`faction.${getFaction(bot)}.title`)}}</b>
         </li>
       </ul>
     </li>
@@ -14,7 +14,7 @@
       <span v-html="t('setupBot.tacticCards')"></span>
       <ul>
         <li v-for="bot of botCount" :key="bot">
-          <b>{{t(`faction.${getFaction(bot)}`)}}</b>: {{t(`setupBot.tacticCardDifficultyLevel.${getDifficultyLevel(bot)}`)}}
+          <b>{{t(`faction.${getFaction(bot)}.title`)}}</b>: {{t(`setupBot.tacticCardDifficultyLevel.${getDifficultyLevel(bot)}`)}}
         </li>
       </ul>
     </li>
@@ -22,7 +22,7 @@
       <span v-html="t('setupBot.startingUnits')"></span>
       <ul>
         <li v-for="bot of botCount" :key="bot">
-          <b>{{t(`faction.${getFaction(bot)}`)}}</b>:
+          <b>{{t(`faction.${getFaction(bot)}.title`)}}</b>:
           <AppIcon type="colony-type" :name="getFactionConfig(bot).startingColony" class="icon colony"/>
           <AppIcon v-for="(unit,index) of getFactionConfig(bot).startingUnits" :key="index" type="unit-type" :name="unit" class="icon unit"/>
         </li>
@@ -40,7 +40,7 @@
 
   <p v-html="t('setupBot.importantInstructions')"></p>
 
-  <BehaviorModal/>
+  <BehaviorModal />
 </template>
 
 <script lang="ts">

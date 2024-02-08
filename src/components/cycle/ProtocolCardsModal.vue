@@ -84,7 +84,7 @@ export default defineComponent({
   },
   computed: {
     modalTitle() : string {
-      return this.t(`faction.${this.botFaction}`) + ': ' + this.t('protocolCardsModal.title')
+      return this.t(`faction.${this.botFaction}.title`) + ': ' + this.t('protocolCardsModal.title')
     },
     botFaction() : Faction {
       return getBotFaction(this.playerSetup, this.botActions.bot)

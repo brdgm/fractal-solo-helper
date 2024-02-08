@@ -1,6 +1,6 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t(`faction.${botFaction}`)}}</h1>
+  <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t(`faction.${botFaction}.title`)}}</h1>
 
   <BotActionSelection v-if="botActions" :botActions="botActions" :actionIndex="action"
       @next="next()" @technology="selectTechnology"/>

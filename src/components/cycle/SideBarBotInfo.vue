@@ -2,7 +2,7 @@
   <div class="botInfo">
     <div class="header" data-bs-toggle="collapse" :data-bs-target="`#${bodyId}`">
       <PlayerColorDisplay :playerColor="botPlayerColor" :sizeRem="1"/>
-      {{t(`faction.${botFaction}`)}}
+      {{t(`faction.${botFaction}.title`)}}
     </div>
     <div class="body collapse" :class="{show:isCurrentBot}" :id="bodyId">
       <template v-if="cardDeck.actionCard && cardDeck.supportCard">
