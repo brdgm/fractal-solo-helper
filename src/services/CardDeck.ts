@@ -1,4 +1,4 @@
-import * as _ from 'lodash'
+import { shuffle } from 'lodash'
 import Card from './Card'
 import Cards from './Cards'
 import DifficultyLevel from './enum/DifficultyLevel'
@@ -96,7 +96,7 @@ export default class CardDeck {
     this._deck.forEach(card => this._discard.push(card))
     this._deck = []
     // shuffle discard as new deck
-    this._deck = _.shuffle(this._discard)
+    this._deck = shuffle(this._discard)
     this._discard = []
     // discard 1st card
     this.draw()
@@ -155,7 +155,7 @@ export default class CardDeck {
         this._reserve.unshift(discardCard)
       }
     }
-    this._reserve = _.shuffle(this._reserve)
+    this._reserve = shuffle(this._reserve)
   }
 
   /**
@@ -180,7 +180,7 @@ export default class CardDeck {
    * @param additionalCards Number of additional cards to add to deck
    */
   public static new(difficultyLevel : DifficultyLevel, additionalCards: number = 0) : CardDeck {
-    const allCards = _.shuffle(Cards.getAll())
+    const allCards = shuffle(Cards.getAll())
     const deck : Card[] = []
     const reserve : Card[] = []
 
