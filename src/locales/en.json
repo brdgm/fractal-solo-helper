@@ -3,7 +3,7 @@
   "home": {
     "title": "Fractal: Beyond the Void Solo Helper",
     "play1": "Play <a href='https://boardgamegeek.com/boardgame/299106/fractal-beyond-void' target='_blank' rel='noopener'><b>Fractal: Beyond the Void</b></a> against automated opponents. You can play solo or add additional opponents to 2 and 3 player games.",
-    "play2": "You need the <a href='https://boardgamegeek.com/boardgameexpansion/401413/fractal-automata' target='_blank' rel='noopener'>Fractal: Automata</a> expansion. This application replaces the AI protocol and AI behavior cards and helps managing the faction abilities.",
+    "play2": "You need the <a href='https://boardgamegeek.com/boardgameexpansion/401413/fractal-automata' target='_blank' rel='noopener'>Fractal: Automata</a> expansion. This application replaces the AI protocol and AI behavior cards and helps managing the faction abilities, pendulum actions and effects of civil and military development. The rules included in the app incorporate clarifications and errata from the <a href='https://boardgamegeek.com/thread/3209146/unofficial-errata-document' target='_blank' rel='noopener'>Unofficial Errata Document</a>.",
     "feedback": "Discussion and Feedback:"
   },
   "setup": {
