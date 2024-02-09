@@ -149,7 +149,12 @@
         },
         "protocolCards": {
           "title": "AI Protocol Cards",
-          "description": "The AI starts with a set of protocol cards depending on the chosen difficulty level. The Goria faction starts with an additional card because it starts with a productive colony. This is managed by the application. To gain or lose additional protocol cards during the game, use the <i>AI Protocol</i> button in the sidebar."
+          "description": "The AI starts with a set of protocol cards depending on the chosen difficulty level. To gain or lose additional protocol cards during the game, use the <i>AI Protocol</i> button in the sidebar."
+        },
+        "damageAllocation": {
+          "title": "Damage Allocation",
+          "sufferingDamage": "<i>Suffering Damage</i>: Automata units always a absorb any amount of damage possible with <i>Resist</i>, then assign damage in the following order ::unit-type/infantry::>::unit-type/lightship::>::unit-type/mech::>::unit-type/warship::, but trying to keep at least one unit of each type.",
+          "assignDamage": "<i>Assign Damage</i>: When Automata causes ::damage/direct:: or ::damage/massive:: you must always try to interrupt any active tactic with higher initiative or reduce the unit diversity of the players. In other cases, assign damage in the following order ::unit-type/infantry::>::unit-type/lightship::>::unit-type/mech::>::unit-type/warship::."
         }
       },
       "behavior": {

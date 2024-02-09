@@ -35,6 +35,9 @@
           <p v-html="t('rules.concepts.important.shortCircuit.description')"></p>
           <h6>{{t('rules.concepts.important.protocolCards.title')}}</h6>
           <p v-html="t('rules.concepts.important.protocolCards.description')"></p>
+          <h6>{{t('rules.concepts.important.damageAllocation.title')}}</h6>
+          <p v-html="resolveIconReferences(t('rules.concepts.important.damageAllocation.sufferingDamage'))"></p>
+          <p v-html="resolveIconReferences(t('rules.concepts.important.damageAllocation.assignDamage'))"></p>
         </div>
 
         <!-- Victory Behavior -->
@@ -196,6 +199,7 @@ import BehaviorAnswers from '@/services/BehaviorAnswers'
 import BehaviorYesNoButtons from './BehaviorYesNoButtons.vue'
 import ActionRulesCollapse from './ActionRulesCollapse.vue'
 import enableTabLinksInContent from 'brdgm-commons/src/util/tab/enableTabLinksInContent'
+import resolveIconReferences from '@/util/resolveIconReferences'
 
 export default defineComponent({
   name: 'BehaviorModal',
@@ -228,6 +232,9 @@ export default defineComponent({
       this.defensive.reset()
       this.aggressive.reset()
       this.expansive.reset()
+    },
+    resolveIconReferences(text: string) : string {
+      return resolveIconReferences(text)
     }
   },
   mounted() {
