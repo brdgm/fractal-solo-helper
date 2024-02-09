@@ -19,6 +19,7 @@ export default class NavigationState {
   readonly playerColor : PlayerColor
   readonly botsActions : BotActions[]
   readonly botActions? : BotActions
+  readonly botsActionReadonly
 
   public constructor(route : RouteLocation, state : State) {    
     this.cycle = getIntRouteParam(route, 'cycle')
@@ -33,7 +34,7 @@ export default class NavigationState {
     this.botCount = playerSetup.botCount
     this.playerColor = getPlayerColor(playerSetup, this.player, this.bot)
     
-    this.botsActions = getBotsActions(state, this.cycle, this.stateIndex)
+    this.botsActions = getBotsActions(state, this.cycle, this.stateIndex, isCheckConflictPhase(route))
     if (this.bot > 0 && this.turn > 0) {
       this.botActions = this.botsActions.find(item => item.bot == this.bot)
       if (this.botActions && this.action == 1) {
@@ -41,6 +42,7 @@ export default class NavigationState {
         this.botActions.cardDeck.draw()
       }
     }
+    this.botsActionReadonly = isBotsActionReadonly(route)
   }
 
 }
@@ -49,8 +51,35 @@ export default class NavigationState {
  * State Index from URL. For views after action phase use max number.
  */
 function getStateIndex(route : RouteLocation) : number {
-  if (route.name == 'CycleConflict' || route.name == 'CycleEnd' || route.name == 'CycleTransition') {
+  if (isCycleConflict(route) || isCycleEnd(route) || isCycleTransition(route)) {
     return Number.MAX_VALUE
   }
   return getIntRouteParam(route, 'stateIndex')
+}
+
+/**
+ * Bot actions are only persisted during player/bot turns and during conflict.
+ */
+function isBotsActionReadonly(route : RouteLocation) : boolean {
+  return !isTurn(route) && !isCycleConflict(route)
+}
+
+/**
+ * Cycle end and transition take place after the conflict phase.
+ */
+function isCheckConflictPhase(route : RouteLocation) : boolean {
+  return isCycleEnd(route) || isCycleTransition(route)
+}
+
+function isTurn(route : RouteLocation) {
+  return route.name == 'TurnPlayer' || route.name == 'TurnBot'
+}
+function isCycleConflict(route : RouteLocation) {
+  return route.name == 'CycleConflict'
+}
+function isCycleEnd(route : RouteLocation) {
+  return route.name == 'CycleEnd'
+}
+function isCycleTransition(route : RouteLocation) {
+  return route.name == 'CycleTransition'
 }

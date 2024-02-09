@@ -31,6 +31,12 @@ export const useStateStore = defineStore(`${name}.state`, {
       this.cycles = this.cycles.filter(item => item.cycle < cycle.cycle)
       this.cycles.push(cycle)
     },
+    storeCycleConflictPhase(conflictPhase : ConflictPhase) {
+      const cycle = this.cycles.find(item => item.cycle==conflictPhase.cycle)      
+      if (cycle) {
+        cycle.conflictPhase = conflictPhase
+      }
+    },
     storeTurn(turn : Turn) {
       const cycle = this.cycles.find(item => item.cycle==turn.cycle)
       if (cycle) {
@@ -67,6 +73,7 @@ export interface Cycle {
   cycle: number
   startPlayer: number
   turns: Turn[]
+  conflictPhase?: ConflictPhase
 }
 export interface Turn {
   stateIndex: number
@@ -76,6 +83,10 @@ export interface Turn {
   bot?: number
   action?: number
   passed?: boolean
+  botsActions: BotActionsPersistence[]
+}
+export interface ConflictPhase {
+  cycle: number
   botsActions: BotActionsPersistence[]
 }
 export interface BotActionsPersistence {

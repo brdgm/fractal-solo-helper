@@ -2,7 +2,7 @@
   <SideBar :navigationState="navigationState"/>
   <h1>{{t('cycleConflict.title')}}</h1>
 
-  <p>TBD</p>
+  <ConflictInstructions :navigationState="navigationState"/>
 
   <button class="btn btn-primary btn-lg mt-4" @click="next()">
     {{t('action.next')}}
@@ -15,20 +15,22 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useStateStore } from '@/store/state'
+import { ConflictPhase, useStateStore } from '@/store/state'
 import FooterButtons from '@/components/structure/FooterButtons.vue'
 import { useRoute } from 'vue-router'
 import NavigationState from '@/util/NavigationState'
 import RouteCalculator from '@/services/RouteCalculator'
 import SideBar from '@/components/cycle/SideBar.vue'
 import DebugInfo from '@/components/cycle/DebugInfo.vue'
+import ConflictInstructions from '@/components/cycle/ConflictInstructions.vue'
 
 export default defineComponent({
   name: 'CycleConflict',
   components: {
     FooterButtons,
     SideBar,
-    DebugInfo
+    DebugInfo,
+    ConflictInstructions
   },
   setup() {
     const { t } = useI18n()
@@ -46,6 +48,12 @@ export default defineComponent({
   },
   methods: {
     next() : void {
+      // store conflict phase
+      const conflictPhase : ConflictPhase = {
+        cycle: this.cycle,
+        botsActions: this.navigationState.botsActions.map(botActions => botActions.toPersistence())
+      }
+      this.state.storeCycleConflictPhase(conflictPhase)
       this.$router.push(`/cycle/${this.cycle}/end`)
     }
   }

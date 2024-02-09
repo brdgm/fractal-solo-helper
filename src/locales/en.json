@@ -60,7 +60,14 @@
     "notPossible": "Not Possible"
   },
   "cycleConflict": {
-    "title": "Conflict"
+    "title": "Conflict",
+    "watcherPlayer": "Player {player} is the watcher ::watcher-token:: and recruits 1 ::unit-type/infantry:: or ::unit-type/lightship:: for free or performs a single movement order.",
+    "watcherBot": "{faction} is the watcher ::watcher-token:: but does not recruit oder moves.",
+    "placeMedals": "Place a battle medal in each contested sector.",
+    "resolveBattles": "Resolve battles in every sector with battle medals.",
+    "resolveSieges": "Resolve sieges in every sector with colonies of one player and units of another.",
+    "claimMedals": "Claim medals.",
+    "militaryCapabilities": "Unlocked military tech upgrades:"
   },
   "cycleEnd": {
     "title": "End of Cycle"

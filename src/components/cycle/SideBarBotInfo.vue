@@ -45,7 +45,7 @@
           <div class="value">{{botActions.technologies.militaryTotalCost}}</div>
         </div>
       </div>
-      <button class="btn btn-sm btn-secondary mt-2"
+      <button class="btn btn-sm btn-secondary mt-2" :disabled="navigationState.botsActionReadonly"
           data-bs-toggle="modal" :data-bs-target="`#protocolCardsModal-${botActions.bot}`">{{t('protocolCardsModal.title')}}</button>
     </div>
   </div>
