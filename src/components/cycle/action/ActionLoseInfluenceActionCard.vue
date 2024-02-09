@@ -4,6 +4,7 @@
     <ActionCardIcon class="icon" :actionCardSlot="botActionItem.actionCardSlot"/>
   </ActionTitle>
   <PendulumAction :botActions="botActions"/>
+  <FactionActionAbilities :action="action" :botActions="botActions"/>
   <ActionRulesCollapse>
     <ul>
       <li v-html="t('rules.action.lose-influence-action-card.moveMarker')"></li>
@@ -24,6 +25,7 @@ import ActionRulesCollapse from '@/components/rules/ActionRulesCollapse.vue'
 import ActionCardIcon from '@/components/structure/ActionCardIcon.vue'
 import ActionTitle from '../ActionTitle.vue'
 import PendulumAction from '../PendulumAction.vue'
+import FactionActionAbilities from '../FactionActionAbilities.vue'
 
 export default defineComponent({
   name: 'ActionLoseInfluenceActionCard',
@@ -32,7 +34,8 @@ export default defineComponent({
     ActionRulesCollapse,
     ActionCardIcon,
     ActionTitle,
-    PendulumAction
+    PendulumAction,
+    FactionActionAbilities
   },
   setup() {
     const { t } = useI18n()

@@ -1,6 +1,7 @@
 <template>
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
   <SelectTechnology @technology="selectTechnology"/>
+  <FactionActionAbilities :action="action" :botActions="botActions" :additionalTechnology="selectedTechnology"/>
   <ActionRulesCollapse>
     <ul>
       <li v-html="t('rules.action.research.scienceTrack')"></li>
@@ -20,13 +21,15 @@ import ActionRulesCollapse from '@/components/rules/ActionRulesCollapse.vue'
 import ActionTitle from '../ActionTitle.vue'
 import SelectTechnology from '../SelectTechnology.vue'
 import Technology from '@/services/enum/Technology'
+import FactionActionAbilities from '../FactionActionAbilities.vue'
 
 export default defineComponent({
   name: 'ActionResearchCivil',
   components: {
     ActionRulesCollapse,
     ActionTitle,
-    SelectTechnology
+    SelectTechnology,
+    FactionActionAbilities
   },
   emits: {
     technology: (_technology?: Technology) => true  // eslint-disable-line @typescript-eslint/no-unused-vars
@@ -49,8 +52,14 @@ export default defineComponent({
       required: true
     }
   },
+  data() {
+    return {
+      selectedTechnology: undefined as Technology|undefined
+    }
+  },
   methods: {
     selectTechnology(technology?: Technology) {
+      this.selectedTechnology = technology
       this.$emit('technology', technology)
     }
   }

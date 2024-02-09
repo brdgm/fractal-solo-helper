@@ -1,5 +1,6 @@
 <template>
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
+  <FactionActionAbilities :action="action" :botActions="botActions"/>
   <ActionRulesCollapse :bot="botActions.bot" :behavior="behavior">
     <ul>
       <li v-html="t('rules.action.advance.imperialTrack')"></li>
@@ -17,12 +18,14 @@ import Action from '@/services/enum/Action'
 import ActionTitle from '../ActionTitle.vue'
 import ActionRulesCollapse from '@/components/rules/ActionRulesCollapse.vue'
 import Behavior from '@/services/enum/Behavior'
+import FactionActionAbilities from '../FactionActionAbilities.vue'
 
 export default defineComponent({
   name: 'ActionColonize',
   components: {
     ActionRulesCollapse,
-    ActionTitle
+    ActionTitle,
+    FactionActionAbilities
   },
   setup() {
     const { t } = useI18n()

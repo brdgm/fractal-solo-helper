@@ -4,6 +4,7 @@
     <i>{{t(`rules.concepts.behavior.${behavior}.title`)}}</i>:
     <span v-html="t(`rules.concepts.behavior.${behavior}.recruit.summary`)"></span>
   </p>
+  <FactionActionAbilities :action="action" :botActions="botActions"/>
   <ActionRulesCollapse>
     <ul>
       <li>
@@ -27,12 +28,14 @@ import Action from '@/services/enum/Action'
 import ActionRulesCollapse from '@/components/rules/ActionRulesCollapse.vue'
 import ActionTitle from '../ActionTitle.vue'
 import Behavior from '@/services/enum/Behavior'
+import FactionActionAbilities from '../FactionActionAbilities.vue'
 
 export default defineComponent({
   name: 'ActionColonize',
   components: {
     ActionRulesCollapse,
-    ActionTitle
+    ActionTitle,
+    FactionActionAbilities
   },
   setup() {
     const { t } = useI18n()

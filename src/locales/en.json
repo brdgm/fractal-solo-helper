@@ -315,7 +315,7 @@
       },
       "civilTechnologyAbility": {
         "3": "After you play an action card face-down, gain 1&nbsp;::influence::.",
-        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "6": "<i>Once per game:</i> Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
         "9": "When you perform a movement order, your ::unit-type/lightship:: ignore pin-down."
       },
       "pendulum1": {
@@ -338,7 +338,7 @@
       },
       "civilTechnologyAbility": {
         "3": "When your colonize, you may place non-productive colonies in non-habitable sectors.",
-        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "6": "<i>Once per game:</i> Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
         "9": "At the end of the game, gain 1 extra ::victory-point:: for each completed objective condition."
       },
       "pendulum1": {
@@ -360,8 +360,8 @@
       },
       "civilTechnologyAbility": {
         "3": "When you colonize, you may place non-productive colonies in non-habitable sectors.",
-        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
-        "9": "Once per game: Place 2 different non-productive priority colonies from the empire board on the faction mat (count for scoring)."
+        "6": "<i>Once per game:</i> Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "9": "<i>Once per game:</i> Place 2 different non-productive priority colonies from the empire board on the faction mat (count for scoring)."
       },
       "pendulum1": {
         "title": "New beginning",
@@ -383,7 +383,7 @@
       },
       "civilTechnologyAbility": {
         "3": "When you perform a movement order, your <i>space units</i> move by +1 ::sector::.",
-        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "6": "<i>Once per game:</i> Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
         "9": "At the end of the game, gain 1 extra ::victory-point:: for each completed objective condition."
       },
       "pendulum1": {
@@ -405,7 +405,7 @@
       },
       "civilTechnologyAbility": {
         "3": "When you perform a movement order, your <i>space units</i> move by +1 ::sector::.",
-        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "6": "<i>Once per game:</i> Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
         "9": "When you perform a single movement order in your turn, your <i>space units</i> move by +1 ::sector::."
       },
       "pendulum1": {
@@ -427,8 +427,8 @@
       },
       "civilTechnologyAbility": {
         "3": "Your ::unit-type/warship:: and ::unit-type/mech:: gain the <i>Invade</i> ability.",
-        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
-        "9": "Once per game: Place 2 different non-productive priority colonies from the empire board on the faction mat (count for scoring)."
+        "6": "<i>Once per game:</i> Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "9": "<i>Once per game:</i> Place 2 different non-productive priority colonies from the empire board on the faction mat (count for scoring)."
       },
       "pendulum1": {
         "title": "Collective",
@@ -449,7 +449,7 @@
       },
       "civilTechnologyAbility": {
         "3": "Whenever you perform the Research action, gain 1&nbsp;::influence::.",
-        "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
+        "6": "<i>Once per game:</i> Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
         "9": "At the end of the game, gain 1 extra ::victory-point:: for each completed objective condition."
       },
       "pendulum1": {
