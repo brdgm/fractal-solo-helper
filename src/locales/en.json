@@ -316,6 +316,31 @@
         "drawCard": "A new action card is immediately drawn to the Action display and placed <i>face-down<i>.",
         "checkPendulum": "Check the pendulum action and trigger the applicable action."
       }
+    },
+    "conflict": {
+      "intro": "Battles against the Automata are similar to those between players, but it uses different tactic cards.",
+      "revealTactic": "During each battle turn, reveal an AI tactic as players reveal their own tactics. Reading from top to bottom, resolve the first eligible effect on the card.",
+      "noMatch": "If none of the two effects can be triggered, draw another AI tactic until you can activate an effect.",
+      "shuffleTactics": "If the Automata has no tactics left, shuffle the discard pile to form another deck. <b>The AI tactic deck is not shuffled between battles.</b> Instead, continue drawing cards until the deck is exhausted.",
+      "initiative": {
+        "title": "Initiative",
+        "initiativeValue": "The initiative value is indicated in the top left corner of each section. Automata initiative works as explained in the core rules, with ties resolving simultaneously."
+      },
+      "unitComposition": {
+        "title": "Unit composition",
+        "leftSide": "The left side of each section indicates the unit compositions required in the sector to trigger the effect.",
+        "redIcons": "When the icons are red, the composition is defensive and takes into account enemy units instead of Automata units. These tactics block damage, similar in function to the Ground Defense and Orbital Defense tactics in the player deck."
+      },
+      "damage": {
+        "title": "Damage",
+        "rightSide": "The icons on the right side of the arrow indicate the damage. When the composition is defensive, these are shown below the red icons.",
+        "order": "The damage inflicted is resolved from left to right.",
+        "damageAllocation": "The Automata’s damage allocation is explained in the <a href='#rulesBehaviorModal-1' data-bs-toggle='modal'>important concepts</a>."
+      },
+      "techUpgrade": {
+        "title": "Tech upgrade",
+        "trigger": "If the total scientific cost of all developed military technology cards is met, the Automata trigger the tech upgrade, which adds additional damages or blocks."
+      }
     }
   },
   "faction": {

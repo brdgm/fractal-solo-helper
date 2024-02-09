@@ -27,6 +27,35 @@
       </div>
     </li>
   </ul>
+
+  <ActionRulesCollapse>
+    <ul>
+      <li v-html="t('rules.conflict.intro')"></li>
+      <li v-html="t('rules.conflict.revealTactic')"></li>
+      <li v-html="t('rules.conflict.noMatch')"></li>
+      <li v-html="t('rules.conflict.shuffleTactics')"></li>
+    </ul>
+    <h6>{{t('rules.conflict.initiative.title')}}</h6>
+    <ul>
+      <li v-html="t('rules.conflict.initiative.initiativeValue')"></li>
+    </ul>
+    <h6>{{t('rules.conflict.unitComposition.title')}}</h6>
+    <ul>
+      <li v-html="t('rules.conflict.unitComposition.leftSide')"></li>
+      <li v-html="t('rules.conflict.unitComposition.redIcons')"></li>
+    </ul>
+    <h6>{{t('rules.conflict.damage.title')}}</h6>
+    <ul>
+      <li v-html="t('rules.conflict.damage.rightSide')"></li>
+      <li v-html="t('rules.conflict.damage.order')"></li>
+      <li v-html="t('rules.conflict.damage.damageAllocation')"></li>
+    </ul>
+    <h6>{{t('rules.conflict.techUpgrade.title')}}</h6>
+    <ul>
+      <li v-html="t('rules.conflict.techUpgrade.trigger')"></li>
+    </ul>
+  </ActionRulesCollapse>
+
 </template>
 
 <script lang="ts">
@@ -43,13 +72,15 @@ import getWatcherPlayer from '@/util/getWatcherPlayer'
 import PlayerColorDisplay from '../structure/PlayerColorDisplay.vue'
 import PlayerColor from '@/services/enum/PlayerColor'
 import getPlayerColor from '@/util/getPlayerColor'
+import ActionRulesCollapse from '../rules/ActionRulesCollapse.vue'
 
 export default defineComponent({
   name: 'ConflictInstructions',
   components: {
     AppIcon,
-    PlayerColorDisplay
-  },
+    PlayerColorDisplay,
+    ActionRulesCollapse
+},
   setup() {
     const { t } = useI18n()
     const state = useStateStore()
