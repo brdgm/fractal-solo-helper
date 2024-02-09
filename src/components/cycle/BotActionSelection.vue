@@ -31,7 +31,7 @@ import ActionAdvance from './action/ActionAdvance.vue'
 import ActionColonize from './action/ActionColonize.vue'
 import ActionGainInfluence from './action/ActionGainInfluence.vue'
 import ActionLivingStormMovement from './action/ActionLivingStormMovement.vue'
-import ActionLooseInfluenceActionCard from './action/ActionLooseInfluenceActionCard.vue'
+import ActionLoseInfluenceActionCard from './action/ActionLoseInfluenceActionCard.vue'
 import ActionMovementSingle from './action/ActionMovementSingle.vue'
 import ActionRecruit from './action/ActionRecruit.vue'
 import ActionResearchCivil from './action/ActionResearchCivil.vue'
@@ -47,7 +47,7 @@ export default defineComponent({
     ActionColonize,
     ActionGainInfluence,
     ActionLivingStormMovement,
-    ActionLooseInfluenceActionCard,
+    ActionLoseInfluenceActionCard,
     ActionMovementSingle,
     ActionRecruit,
     ActionResearchCivil,

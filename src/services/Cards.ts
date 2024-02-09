@@ -54,7 +54,7 @@ const cards : Card[] = [
         conditionalActivation: ConditionalActivation.FIRST_OR_SECOND
       },
       {
-        actions: [ Action.LOOSE_INFLUENCE_ACTION_CARD ],
+        actions: [ Action.LOSE_INFLUENCE_ACTION_CARD ],
         actionCardSlot: 1
       },
       {
@@ -112,7 +112,7 @@ const cards : Card[] = [
         conditionalActivation: ConditionalActivation.FIRST_IF_AVAILABLE_THEN_SECOND
       },
       {
-        actions: [ Action.LOOSE_INFLUENCE_ACTION_CARD ],
+        actions: [ Action.LOSE_INFLUENCE_ACTION_CARD ],
         actionCardSlot: 4
       },
       {
@@ -170,7 +170,7 @@ const cards : Card[] = [
         conditionalActivation: ConditionalActivation.FIRST_IF_AVAILABLE_THEN_SECOND
       },
       {
-        actions: [ Action.LOOSE_INFLUENCE_ACTION_CARD ],
+        actions: [ Action.LOSE_INFLUENCE_ACTION_CARD ],
         actionCardSlot: 2
       },
       {

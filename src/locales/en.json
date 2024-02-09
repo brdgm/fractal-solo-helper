@@ -100,8 +100,8 @@
       "productiveColony": "A productive colony token is removed from the empire board (1 for the first two tokens, 2 for the last productive token)",
       "influence": "The first time the influence reaches 6 or 10"
     },
-    "looseCard": {
-      "title": "Loose protocol card",
+    "loseCard": {
+      "title": "Lose protocol card",
       "productiveColony": "A productive colony token is put back on the empire board"
     }
   },
@@ -138,7 +138,7 @@
         },
         "protocolCards": {
           "title": "AI Protocol Cards",
-          "description": "The AI starts with a set of protocol cards depending on the chosen difficulty level. The Goria faction starts with an additional card because it starts with a productive colony. This is managed by the application. To gain or loose additional protocol cards during the game, use the <i>AI Protocol</i> button in the sidebar."
+          "description": "The AI starts with a set of protocol cards depending on the chosen difficulty level. The Goria faction starts with an additional card because it starts with a productive colony. This is managed by the application. To gain or lose additional protocol cards during the game, use the <i>AI Protocol</i> button in the sidebar."
         }
       },
       "behavior": {
@@ -269,8 +269,8 @@
         "title": "Gain Influence",
         "moveMarker": "Move the influence marker one step to the right on the empire board."
       },
-      "loose-influence-action-card": {
-        "title": "Loose Influence, Play Action Card",
+      "lose-influence-action-card": {
+        "title": "Lose Influence, Play Action Card",
         "moveMarker": "Move the influence marker one step to the left on the empire board."
       },
       "movement-single": {

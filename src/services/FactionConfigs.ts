@@ -16,7 +16,7 @@ const factionConfigs : FactionConfig[] = [
     startingUnits: [UnitType.INFANTRY,UnitType.INFANTRY,UnitType.LIGHTSHIP,UnitType.LIGHTSHIP],
     generalAbility: [Action.ADVANCE,Action.MOVEMENT_SINGLE],
     civilTechnologyAbility: {
-      3: [Action.ACTION_CARD,Action.LOOSE_INFLUENCE_ACTION_CARD],
+      3: [Action.ACTION_CARD,Action.LOSE_INFLUENCE_ACTION_CARD],
       6: [Action.RESEARCH_CIVIL,Action.RESEARCH_MILITARY],
       9: [Action.ADVANCE,Action.MOVEMENT_SINGLE]
     }

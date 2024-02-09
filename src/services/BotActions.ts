@@ -127,7 +127,7 @@ function toBotAction(cardAction: CardAction) : BotAction {
 
   if (cardAction.actionCardSlot) {
     items.forEach(item => {
-      if (item.actions.includes(Action.ACTION_CARD) || item.actions.includes(Action.LOOSE_INFLUENCE_ACTION_CARD)) {
+      if (item.actions.includes(Action.ACTION_CARD) || item.actions.includes(Action.LOSE_INFLUENCE_ACTION_CARD)) {
         item.actionCardSlot = cardAction.actionCardSlot
       }
     })

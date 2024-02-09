@@ -98,7 +98,7 @@ describe('services/BotActions', () => {
     })
     expect(botActions.actions[1]).to.eql({
       items: [
-        { actions: [Action.LOOSE_INFLUENCE_ACTION_CARD], actionCardSlot: 2 },
+        { actions: [Action.LOSE_INFLUENCE_ACTION_CARD], actionCardSlot: 2 },
         { actions: [Action.ADVANCE], fallback: true },
         { actions: [Action.RECRUIT], fallback: true },
       ]

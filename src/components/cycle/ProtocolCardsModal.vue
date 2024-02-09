@@ -2,7 +2,7 @@
   <ModalDialog :id="`protocolCardsModal-${botActions.bot}`" :scrollable="true" :centered="false"
       :title="modalTitle">
     <template #body>
-      <template v-if="!showLooseProtocol">
+      <template v-if="!showLoseProtocol">
         <h6 v-html="t('protocolCardsModal.gainCard.title')"></h6>
         {{t('protocolCardsModal.occurs')}}
         <ul>
@@ -12,19 +12,19 @@
         <button v-if="!showGainProtocol" :disabled="cardDeck.canGainCardCount == 0"
             class="btn btn-primary" @click="showGainProtocol=true">{{t('protocolCardsModal.gainCard.title')}}</button>
       </template>
-      <template v-if="!showGainProtocol && !showLooseProtocol">
+      <template v-if="!showGainProtocol && !showLoseProtocol">
         <hr/>
       </template>
       <template v-if="!showGainProtocol">
-        <h6 v-html="t('protocolCardsModal.looseCard.title')"></h6>
+        <h6 v-html="t('protocolCardsModal.loseCard.title')"></h6>
         {{t('protocolCardsModal.occurs')}}
         <ul>
-          <li v-html="t('protocolCardsModal.looseCard.productiveColony')"></li>
+          <li v-html="t('protocolCardsModal.loseCard.productiveColony')"></li>
         </ul>
-        <button v-if="!showLooseProtocol" :disabled="cardDeck.canLooseCardCount == 0"
-            class="btn btn-primary" @click="showLooseProtocol=true">{{t('protocolCardsModal.looseCard.title')}}</button>
+        <button v-if="!showLoseProtocol" :disabled="cardDeck.canLoseCardCount == 0"
+            class="btn btn-primary" @click="showLoseProtocol=true">{{t('protocolCardsModal.loseCard.title')}}</button>
       </template>
-      <template v-if="showGainProtocol || showLooseProtocol">
+      <template v-if="showGainProtocol || showLoseProtocol">
         {{t('protocolCardsModal.numberCards')}}<br/>
         <select class="form-select" v-model="numberCards">
           <option v-for="count of maxNumberCards" :key="count" :value="count">{{t('protocolCardsModal.card', {count}, count)}}</option>
@@ -36,8 +36,8 @@
         <button class="btn btn-primary" data-bs-dismiss="modal" @click="gainProtocol()">{{t('action.ok')}}</button>
         <button class="btn btn-secondary" data-bs-dismiss="modal" @click="reset()">{{t('action.cancel')}}</button>
       </template>
-      <template v-else-if="showLooseProtocol">
-        <button class="btn btn-primary" data-bs-dismiss="modal" @click="looseProtocol()">{{t('action.ok')}}</button>
+      <template v-else-if="showLoseProtocol">
+        <button class="btn btn-primary" data-bs-dismiss="modal" @click="loseProtocol()">{{t('action.ok')}}</button>
         <button class="btn btn-secondary" data-bs-dismiss="modal" @click="reset()">{{t('action.cancel')}}</button>
       </template>
       <template v-else>
@@ -78,7 +78,7 @@ export default defineComponent({
   data() {
     return {
       showGainProtocol: false,
-      showLooseProtocol: false,
+      showLoseProtocol: false,
       numberCards: 1
     }
   },
@@ -96,8 +96,8 @@ export default defineComponent({
       return this.cardDeck.deck.length + this.cardDeck.discard.length + (this.cardDeck.actionCard ? 1 : 0)
     },
     maxNumberCards() : number {
-      if (this.showLooseProtocol) {
-        return Math.min(2, this.cardDeck.canLooseCardCount)
+      if (this.showLoseProtocol) {
+        return Math.min(2, this.cardDeck.canLoseCardCount)
       }
       return Math.min(2, this.cardDeck.canGainCardCount)
     }
@@ -105,15 +105,15 @@ export default defineComponent({
   methods: {
     reset() : void {
       this.showGainProtocol = false
-      this.showLooseProtocol = false
+      this.showLoseProtocol = false
     },
     gainProtocol() : void {
       this.cardDeck.gainCards(this.numberCards)
       this.$emit('deckChange')
       this.reset()
     },
-    looseProtocol() : void {
-      this.cardDeck.looseCards(this.numberCards)
+    loseProtocol() : void {
+      this.cardDeck.loseCards(this.numberCards)
       this.$emit('deckChange')
       this.reset()
     }

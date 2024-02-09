@@ -112,7 +112,7 @@ export default class CardDeck {
   /**
    * Maximum number of cards that can be lost.
    */
-  public get canLooseCardCount() : number {
+  public get canLoseCardCount() : number {
     // keep min. 4 cards (ignoring other difficulty levels here)
     return this.totalCards - 4
   }
@@ -134,12 +134,12 @@ export default class CardDeck {
   }
 
   /**
-   * Loose cards to reserve. Shuffles reserve afterwards.
+   * Lose cards to reserve. Shuffles reserve afterwards.
    * @param count Number of cards
    */
-  public looseCards(count: number) : void {
-    if (count > this.canLooseCardCount) {
-      throw new Error(`Unable to loose ${count} cards, only ${this.canLooseCardCount} can be lost.`)
+  public loseCards(count: number) : void {
+    if (count > this.canLoseCardCount) {
+      throw new Error(`Unable to lose ${count} cards, only ${this.canLoseCardCount} can be lost.`)
     }
     for (let i=0; i < count; i++) {
       const discardCard = this._discard.shift()

@@ -1,12 +1,12 @@
 <template>
   <ActionTitle :action="action" :botActionItem="botActionItem">
-    <AppIcon type="action" name="loose-influence" class="icon"/>
+    <AppIcon type="action" name="lose-influence" class="icon"/>
     <ActionCardIcon class="icon" :actionCardSlot="botActionItem.actionCardSlot"/>
   </ActionTitle>
   <PendulumAction :botActions="botActions"/>
   <ActionRulesCollapse>
     <ul>
-      <li v-html="t('rules.action.loose-influence-action-card.moveMarker')"></li>
+      <li v-html="t('rules.action.lose-influence-action-card.moveMarker')"></li>
       <li v-html="t('rules.action.action-card.playCard', {slot:botActionItem.actionCardSlot})"></li>
       <li v-html="t('rules.action.action-card.drawCard')"></li>
       <li v-html="t('rules.action.action-card.checkPendulum')"></li>
@@ -26,7 +26,7 @@ import ActionTitle from '../ActionTitle.vue'
 import PendulumAction from '../PendulumAction.vue'
 
 export default defineComponent({
-  name: 'ActionLooseInfluenceActionCard',
+  name: 'ActionLoseInfluenceActionCard',
   components: {
     AppIcon,
     ActionRulesCollapse,
