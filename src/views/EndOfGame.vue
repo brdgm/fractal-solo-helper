@@ -1,7 +1,14 @@
 <template>
   <h1>{{t('endOfGame.title')}}</h1>
 
-  <p>TBD</p>
+  <p v-html="t('endOfGame.mostVPWins')"></p>
+  <ol>
+    <li v-html="t('endOfGame.tieBattleMedals')"></li>
+    <li v-html="t('endOfGame.tieInfluence')"></li>
+    <li v-html="t('endOfGame.tieCredits')"></li>
+    <li v-html="t('endOfGame.tieUnitsColonies')"></li>
+  </ol>
+  <p v-html="t('endOfGame.tieFinally')"></p>
 
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" endGameButtonType="endGame"/>
 </template>

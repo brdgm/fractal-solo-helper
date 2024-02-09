@@ -61,7 +61,7 @@
   },
   "cycleConflict": {
     "title": "Conflict",
-    "watcherPlayer": "Player {player} is the watcher ::watcher-token:: and recruits 1 ::unit-type/infantry:: or ::unit-type/lightship:: for free or performs a single movement order.",
+    "watcherPlayer": "Human player {player} is the watcher ::watcher-token:: and recruits 1 ::unit-type/infantry:: or ::unit-type/lightship:: for free or performs a single movement order.",
     "watcherBot": "{faction} is the watcher ::watcher-token:: but does not recruit oder moves.",
     "placeMedals": "Place a battle medal in each contested sector.",
     "resolveBattles": "Resolve battles in every sector with battle medals.",
@@ -80,10 +80,18 @@
     "advanceCycleMarker": "Advance cycle marker"
   },
   "cycleTransition": {
-    "title": "Transition"
+    "title": "Transition",
+    "scoreVictoryPoints": "During the transition, players score victory points ::victory-point:: when they meet the conditions on the objective cards.",
+    "botNoLimit": "The victory points of the AI opponents are not limited to 10."
   },
   "endOfGame": {
-    "title": "End of Game"
+    "title": "End of Game",
+    "mostVPWins": "The player with the most VPs after the last scoring wins. If two or more players have the same number of VPs, then break the tie as follows:",
+    "tieBattleMedals": "Most battle medals",
+    "tieInfluence": "Most remaining influence",
+    "tieCredits": "Most remaining credits",
+    "tieUnitsColonies": "Most remaining units and colonies on the board",
+    "tieFinally": "If this does not break the tie, all tied players win the game."
   },
   "sideBar": {
     "cycle": "Cycle",

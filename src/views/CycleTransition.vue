@@ -2,7 +2,10 @@
   <SideBar :navigationState="navigationState"/>
   <h1>{{t('cycleTransition.title')}}</h1>
 
-  <p>TBD</p>
+  <ul>
+    <li v-html="resolveIconReferences(t('cycleTransition.scoreVictoryPoints'))"></li>
+    <li v-html="t('cycleTransition.botNoLimit')"></li>
+  </ul>
 
   <button class="btn btn-primary btn-lg mt-4" @click="next()">
     {{t('action.next')}}
@@ -21,6 +24,7 @@ import { useRoute } from 'vue-router'
 import NavigationState from '@/util/NavigationState'
 import SideBar from '@/components/cycle/SideBar.vue'
 import DebugInfo from '@/components/cycle/DebugInfo.vue'
+import resolveIconReferences from '@/util/resolveIconReferences'
 
 export default defineComponent({
   name: 'CycleTransition',
@@ -50,6 +54,9 @@ export default defineComponent({
       else {
         this.$router.push(`/cycle/${this.cycle+1}/income`)
       }
+    },
+    resolveIconReferences(text: string) : string {
+      return resolveIconReferences(text)
     }
   }
 })
