@@ -44,6 +44,7 @@
       "voidThrone": "Void Throne",
       "taintedCivilization": "Tainted Civilization"
     },
+    "factionSetupAbilities": "Faction setup:",
     "importantInstructions": "If you are playing first time, read the <a href='#rulesBehaviorModal' data-bs-toggle='modal'>important concepts</a>."
   },
   "cycleIncome": {

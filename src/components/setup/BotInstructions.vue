@@ -36,6 +36,15 @@
         </li>
       </ul>
     </li>
+    <li v-if="factionsWithSetupAbilities.length > 0">
+      <span v-html="t('setupBot.factionSetupAbilities')"></span>
+      <ul>
+        <li v-for="faction of factionsWithSetupAbilities" :key="faction">
+          <b>{{t(`faction.${faction}.title`)}}</b>:
+          <span v-html="await resolveIconReferences(t(`faction.${faction}.generalAbility.setup`))"></span>
+        </li>
+      </ul>
+    </li>
   </ul>
 
   <p v-html="t('setupBot.importantInstructions')"></p>
@@ -57,6 +66,7 @@ import FactionConfig from '@/services/FactionConfig'
 import FactionConfigs from '@/services/FactionConfigs'
 import AppIcon from '../structure/AppIcon.vue'
 import BehaviorModal from '../rules/BehaviorModal.vue'
+import resolveIconReferences from '@/util/resolveIconReferences'
 
 export default defineComponent({
   name: 'BotInstructions',
@@ -88,6 +98,16 @@ export default defineComponent({
         'voidThrone',
         'taintedCivilization'
       ]
+    },
+    factionsWithSetupAbilities() : Faction[] {
+      const result : Faction[] = []
+      for (let bot = 1; bot <= this.botCount; bot++) {
+        const factionConfig = this.getFactionConfig(bot)
+        if (factionConfig.generalAbilitySetup) {
+          result.push(factionConfig.faction)
+        }
+      }
+      return result
     }
   },
   methods: {
@@ -99,6 +119,9 @@ export default defineComponent({
     },
     getFactionConfig(bot : number) : FactionConfig {
       return FactionConfigs.get(this.getFaction(bot));
+    },
+    async resolveIconReferences(text: string) : Promise<string> {
+      return await resolveIconReferences(text)
     }
   }
 })
