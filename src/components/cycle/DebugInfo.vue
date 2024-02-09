@@ -2,7 +2,7 @@
   <div class="mt-4" v-if="state.setup.debugMode">
     <hr/>
     <div class="debug mb-2" v-for="(botActions,index) of navigationState.botsActions" :key="index">
-      <b>[{{getBotFaction(botActions)}}#{{botActions.bot}}]</b> Active Card: {{botActions.cardDeck.actionCard?.id ?? '-'}},
+      <b>[{{getBotFaction(botActions)}}]</b> Active Card: {{botActions.cardDeck.actionCard?.id ?? '-'}},
       Discard: {{getDeckInfo(botActions.cardDeck.discard)}},
       Deck: {{getDeckInfo(botActions.cardDeck.deck)}},
       Reserve: {{getDeckInfo(botActions.cardDeck.reserve)}}<span v-if="botActions.cardDeck.isPass()">, pass</span><br/>

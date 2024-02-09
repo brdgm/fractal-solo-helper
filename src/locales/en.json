@@ -434,7 +434,7 @@
       "pendulum2": {
         "title": "Metamorphosys",
         "condition": "::unit-type/infantry:: >= 4",
-        "description": "Replace 1 ::unit-type/infantry:: with the rightmost visible <i>space unit</i> on your military track, them remove another ::unit-type/infantry:: to upgrade a tactic to elite."
+        "description": "Replace 1 ::unit-type/infantry:: with the rightmost visible <i>space unit</i> on your military track, then remove another ::unit-type/infantry:: to upgrade a tactic to elite."
       }
     },
     "vax-117": {
@@ -456,7 +456,7 @@
       "pendulum2": {
         "title": "Ascension",
         "condition": "::research-token:: >= 4",
-        "description": "Return 1 AI protocol from the discard pile to the deck, then add 1 elite ard to the tactic deck. Remove 3 ::research-token::."
+        "description": "Return 1 AI protocol from the discard pile to the deck, then add 1 elite card to the tactic deck.<br/>Remove 3 ::research-token::."
       }
     }
   },
