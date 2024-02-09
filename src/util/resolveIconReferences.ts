@@ -11,17 +11,18 @@ export default function resolveIconReferences(text: string) : string {
 }
 
 function buildIconTag(name: string, type?: string) : string {
-  const iconPath = buildIconPath(name, type)
-  return `<img src="${iconPath}" draggable="false" alt=""/>`
+  const url = buildIconUrl(name, type)
+  return `<img src="${url}" draggable="false" alt="" style="vertical-align:middle;height:1em;margin-top:-0.25rem;"/>`
 }
 
-export function buildIconPath(name: string, type?: string, extension: string = 'svg') : string {
+export function buildIconUrl(name: string, type?: string, extension: string = 'svg') : string {
+  const iconsPath = `${import.meta.env.BASE_URL}src/assets/icons`
   let iconPath
   if (type) {
-    iconPath = `/src/assets/icons/${type}/${name}.${extension}`
+    iconPath = `${iconsPath}/${type}/${name}.${extension}`
   }
   else {
-    iconPath = `/src/assets/icons/${name}.${extension}`
+    iconPath = `${iconsPath}/${name}.${extension}`
   }
   return new URL(iconPath, import.meta.url).toString()
 }

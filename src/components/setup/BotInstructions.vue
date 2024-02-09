@@ -120,7 +120,7 @@ export default defineComponent({
     getFactionConfig(bot : number) : FactionConfig {
       return FactionConfigs.get(this.getFaction(bot));
     },
-    resolveIconReferences(text: string) : Promise<string> {
+    resolveIconReferences(text: string) : string {
       return resolveIconReferences(text)
     }
   }
