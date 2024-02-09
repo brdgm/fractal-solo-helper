@@ -118,6 +118,14 @@ export default class CardDeck {
   }
 
   /**
+   * Maximum number of cards that can be returned from discard pile to the deck.
+   * At least one card must remain in the discard pile.
+   */
+  public get canReturnCardCount() : number {
+    return Math.max(this._discard.length - 1, 0)
+  }
+
+  /**
    * Gain additional cards from reserve.
    * @param count Number of cards
    */
@@ -148,6 +156,22 @@ export default class CardDeck {
       }
     }
     this._reserve = _.shuffle(this._reserve)
+  }
+
+  /**
+   * Return cards from discard pile to deck.
+   * @param count Number of cards
+   */
+  public returnCards(count: number) : void {
+    if (count > this.canReturnCardCount) {
+      throw new Error(`Unable to return ${count} cards, only ${this.canReturnCardCount} can be returned.`)
+    }
+    for (let i=0; i < count; i++) {
+      const discardCard = this._discard.shift()
+      if (discardCard) {
+        this._deck.unshift(discardCard)
+      }
+    }
   }
 
   /**

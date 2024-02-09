@@ -97,4 +97,30 @@ describe('services/CardDeck', () => {
     expect(cardDeck.canGainCardCount, 'can gain').to.eq(5)
     expect(cardDeck.canLoseCardCount, 'can lose').to.eq(1)
   })
+
+  it('return', () => {
+    const cardDeck = CardDeck.new(DifficultyLevel.NORMAL)
+    
+    expect(cardDeck.deck.length, 'deck size').to.eq(3)
+    expect(cardDeck.discard.length, 'discard size').to.eq(0)
+    expect(cardDeck.canReturnCardCount, 'can return').to.eq(0)
+
+    cardDeck.draw()
+
+    expect(cardDeck.deck.length, 'deck size').to.eq(2)
+    expect(cardDeck.discard.length, 'discard size').to.eq(1)
+    expect(cardDeck.canReturnCardCount, 'can return').to.eq(0)
+
+    cardDeck.draw()
+
+    expect(cardDeck.deck.length, 'deck size').to.eq(1)
+    expect(cardDeck.discard.length, 'discard size').to.eq(2)
+    expect(cardDeck.canReturnCardCount, 'can return').to.eq(1)
+
+    cardDeck.returnCards(1)
+
+    expect(cardDeck.deck.length, 'deck size').to.eq(2)
+    expect(cardDeck.discard.length, 'discard size').to.eq(1)
+    expect(cardDeck.canReturnCardCount, 'can return').to.eq(0)
+  })
 })

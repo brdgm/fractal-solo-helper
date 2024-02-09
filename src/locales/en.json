@@ -103,6 +103,10 @@
     "loseCard": {
       "title": "Lose protocol card",
       "productiveColony": "A productive colony token is put back on the empire board"
+    },
+    "returnCard": {
+      "title": "Return protocol card from discard to deck",
+      "vax117Pendulum": "Pendulum action of VAX-117 faction"
     }
   },
   "player": {
