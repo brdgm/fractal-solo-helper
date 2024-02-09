@@ -2,6 +2,7 @@
   <ActionTitle :action="action" :botActionItem="botActionItem">
     <ActionCardIcon class="icon" :actionCardSlot="botActionItem.actionCardSlot"/>
   </ActionTitle>
+  <PendulumAction :botActions="botActions"/>
   <ActionRulesCollapse>
     <ul>
       <li v-html="t('rules.action.action-card.playCard', {slot:botActionItem.actionCardSlot})"></li>
@@ -19,13 +20,15 @@ import Action from '@/services/enum/Action'
 import ActionRulesCollapse from '@/components/rules/ActionRulesCollapse.vue'
 import ActionCardIcon from '@/components/structure/ActionCardIcon.vue'
 import ActionTitle from '../ActionTitle.vue'
+import PendulumAction from '../PendulumAction.vue'
 
 export default defineComponent({
   name: 'ActionActionCard',
   components: {
     ActionRulesCollapse,
     ActionCardIcon,
-    ActionTitle
+    ActionTitle,
+    PendulumAction
   },
   setup() {
     const { t } = useI18n()

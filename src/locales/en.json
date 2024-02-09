@@ -298,7 +298,7 @@
         "title": "Play Action Card",
         "playCard": "Play the action card from slot {slot} of the Action display face-down. Ignore the card's effect.",
         "drawCard": "A new action card is immediately drawn to the Action display and placed <i>face-down<i>.",
-        "checkPendulum": "Check the pendulum action section on the faction mat and trigger the applicable action."
+        "checkPendulum": "Check the pendulum action and trigger the applicable action."
       }
     }
   },
@@ -310,19 +310,19 @@
         "description": "When you remove ::component/obstacle::, ::component/anomaly::, ::component/living-galaxy:: or ::component/living-storm:: from the board, add a ::unit-type/lightship:: to the sector you removed it from or, if not possible, to the nearest sector."
       },
       "civilTechnologyAbility": {
-        "3": "After you play an action card face-down, gain 1 ::influence::.",
+        "3": "After you play an action card face-down, gain 1&nbsp;::influence::.",
         "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
         "9": "When you perform a movement order, your ::unit-type/lightship:: ignore pin-down."
       },
       "pendulum1": {
         "title": "Hunger of entropy",
         "condition": "::influence:: <= Opponents",
-        "description": "Inflict 1 ::damage/indirect:: in each contested sectors with 2 of your units. If there are not valid sectors, perform 2 movement orders instead. Gain 1 ::influence::."
+        "description": "Inflict 1 ::damage/indirect:: in each contested sectors with 2 of your units. If there are not valid sectors, perform 2 movement orders instead.<br/>Gain 1&nbsp;::influence::."
       },
       "pendulum2": {
         "title": "Inertia",
         "condition": "::influence:: > Opponents",
-        "description": "Banish a priority non-productive colony from your empire board. Lose 2 ::influence::."
+        "description": "Banish a priority non-productive colony from your empire board.<br/>Lose 2&nbsp;::influence::."
       }
     },
     "delverar": {
@@ -343,7 +343,7 @@
         "description": "Place an ::component/obstacle:: on the nearest empty sector without ::component/obstacle::, then move 1 ::unit-type/lightship:: to the nearest sector with an ::component/obstacle:: or  ::component/anomaly::."
       },
       "pendulum2": {
-        "title": "",
+        "title": "The Gathering",
         "condition": "::component/obstacle::/::component/anomaly:: on the faction mat >= 2",
         "description": "Banish 2 ::component/obstacle::/::component/anomaly:: from the faction mat, then draw 1 ::artifact::."
       }
@@ -362,12 +362,12 @@
       "pendulum1": {
         "title": "New beginning",
         "condition": "::battle-medal:: < 3",
-        "description": "Upgrade a tactic card. Gain 1 ::battle-medal::."
+        "description": "Upgrade a tactic card.<br/>Gain 1 ::battle-medal::."
       },
       "pendulum2": {
         "title": "Elective conclave",
         "condition": "::battle-medal:: >= 3",
-        "description": "Trigger 2 leftmost revealed colonization bonus from empire board. If not possible, banish a priority colony from it. Lose 2 ::battle-medal::."
+        "description": "Trigger 2 leftmost revealed colonization bonus from empire board. If not possible, banish a priority colony from it.<br/>Lose 2 ::battle-medal::."
       }
     },
     "goria": {
@@ -385,7 +385,7 @@
       "pendulum1": {
         "title": "The Hunt",
         "condition": "Bone Coins < 2",
-        "description": "Perform 1 movement order to nearest sector with enemy ::unit-type/lightship:: or ::unit-type/infantry:: then add one of these units (priority) to your Bone Coin pool."
+        "description": "Perform 1 movement order to nearest sector with enemy ::unit-type/lightship:: or ::unit-type/infantry::, then add one of these units (priority) to your Bone Coin pool."
       },
       "pendulum2": {
         "title": "Profit",
@@ -397,7 +397,7 @@
       "title": "Saura",
       "generalAbility": {
         "title": "Blood Heaven",
-        "description": "Anytime your <i>ground units</i> are removed or replaced on the board, gain 1 ::influence::."
+        "description": "Anytime your <i>ground units</i> are removed or replaced on the board, gain 1&nbsp;::influence::."
       },
       "civilTechnologyAbility": {
         "3": "When you perform a movement order, your <i>space units</i> move by +1 ::sector::.",
@@ -407,12 +407,12 @@
       "pendulum1": {
         "title": "Call to War",
         "condition": "::influence:: < 4",
-        "description": "Add 1 ::unit-type/lightship:: to a sector with your <i>ground units</i> nearest to enemy colonies. Perform a movement order to the nearest one. Gain 1 ::influence::."
+        "description": "Add 1 ::unit-type/lightship:: to a sector with your <i>ground units</i> nearest to enemy colonies. Perform a movement order to the nearest one.<br/>Gain 1&nbsp;::influence::."
       },
       "pendulum2": {
         "title": "Tyranny",
         "condition": "::influence:: >= 4",
-        "description": "Banish a non-productive priority colony from your empire board. Lose 3 ::influence::."
+        "description": "Banish a non-productive priority colony from your empire board.<br/>Lose 3&nbsp;::influence::."
       }
     },
     "txingur": {
@@ -444,7 +444,7 @@
         "description": "When you develop a technology or banish an ::component/obstacle:: or ::component/anomaly::, place 1 ::research-token:: on the faction mat."
       },
       "civilTechnologyAbility": {
-        "3": "Whenever you perform the Research action, gain 1 ::influence::.",
+        "3": "Whenever you perform the Research action, gain 1&nbsp;::influence::.",
         "6": "Once per game: Draw an ::artifact:: and apply its effect. If it doesn't apply, upgrade a tactic instead.",
         "9": "At the end of the game, gain 1 extra ::victory-point:: for each completed objective condition."
       },

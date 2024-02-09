@@ -1,8 +1,8 @@
-const iconPattern = /::(([^:/]+?)\/)?([^:/]+?)::/g;
+const iconPattern = /::(([^:/]+?)\/)?([^:/]+?)::/g
 
 /**
  * Resolves icon references in the form ::icon-name:: or ::type/icon-name:: to the actual
- * icon references as IMG tag.
+ * SVG icon references as img tag.
  */
 export default function resolveIconReferences(text: string) : string {
   return text.replace(iconPattern, (_match, _, type, name) => {
