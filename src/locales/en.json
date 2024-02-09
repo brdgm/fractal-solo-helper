@@ -57,7 +57,8 @@
   },
   "turnBot": {
     "executed": "Completed",
-    "notPossible": "Not Possible"
+    "notPossible": "Not Possible",
+    "takeWatcherToken": "{faction} passes first and takes the watcher token ::watcher-token::."
   },
   "cycleConflict": {
     "title": "Conflict",

@@ -14,6 +14,11 @@
     </div>
   </div>
 
+  <div class="row" v-if="isTakeWatcherToken">
+    <div class="col alert alert-warning"
+      v-html="resolveIconReferences(t('turnBot.takeWatcherToken', {faction:t(`faction.${botFaction}.title`)}))"></div>
+  </div>
+
   <button class="btn btn-success btn-lg mt-4 me-2" @click="executed()" :disabled="!nextValid">
     {{t('turnBot.executed')}}
   </button>
@@ -38,6 +43,12 @@ import ActionResearchCivil from './action/ActionResearchCivil.vue'
 import ActionResearchMilitary from './action/ActionResearchMilitary.vue'
 import Action from '@/services/enum/Action'
 import Technology from '@/services/enum/Technology'
+import getWatcherPlayer from '@/util/getWatcherPlayer'
+import { useStateStore } from '@/store/state'
+import NavigationState from '@/util/NavigationState'
+import Faction from '@/services/enum/Faction'
+import getBotFaction from '@/util/getBotFaction'
+import resolveIconReferences from '@/util/resolveIconReferences'
 
 export default defineComponent({
   name: 'BotActionSelection',
@@ -59,11 +70,16 @@ export default defineComponent({
   },
   setup() {
     const { t } = useI18n()    
-    return { t }
+    const state = useStateStore()
+    return { t, state }
   },
   props: {
     botActions: {
       type: BotActions,
+      required: true
+    },
+    navigationState: {
+      type: NavigationState,
       required: true
     },
     actionIndex: {
@@ -94,6 +110,14 @@ export default defineComponent({
         return this.selectedTechnology != undefined
       }
       return true
+    },
+    botFaction() : Faction {
+      return getBotFaction(this.state.setup.playerSetup, this.botActions.bot)
+    },
+    isTakeWatcherToken() : boolean {
+      const watcherPlayer = getWatcherPlayer(this.state, this.navigationState.cycle, this.navigationState.stateIndex)
+      return (this.navigationState.action == 2) && this.botActions.cardDeck.isPass()
+          && !watcherPlayer.bot && !watcherPlayer.player
     }
   },
   methods: {
@@ -114,6 +138,9 @@ export default defineComponent({
       this.selectedTechnology = technology
       this.technologyAction = technology != undefined ? action : undefined
       this.$emit('technology', this.selectedTechnology, this.technologyAction)
+    },
+    resolveIconReferences(text: string) : string {
+      return resolveIconReferences(text)
     }
   }
 })

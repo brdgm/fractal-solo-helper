@@ -2,8 +2,8 @@
   <SideBar :navigationState="navigationState"/>
   <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t(`faction.${botFaction}.title`)}}</h1>
 
-  <BotActionSelection v-if="botActions" :botActions="botActions" :actionIndex="action"
-      @next="next()" @technology="selectTechnology"/>
+  <BotActionSelection v-if="botActions" :botActions="botActions" :navigationState="navigationState"
+     :actionIndex="action"  @next="next()" @technology="selectTechnology"/>
 
   <DebugInfo :navigationState="navigationState"/>
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" endGameButtonType="abortGame"/>

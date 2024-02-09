@@ -20,6 +20,7 @@ describe('util/getWatcherPlayer', () => {
       ]})
     ]})
     expect(getWatcherPlayer(state, 1)).to.eql({player:1,bot:undefined})
+    expect(getWatcherPlayer(state, 1, 40)).to.eql({})
   })
 
   it('bot', () => {
