@@ -41,7 +41,7 @@
       <ul>
         <li v-for="faction of factionsWithSetupAbilities" :key="faction">
           <b>{{t(`faction.${faction}.title`)}}</b>:
-          <span v-html="await resolveIconReferences(t(`faction.${faction}.generalAbility.setup`))"></span>
+          <span v-html="resolveIconReferences(t(`faction.${faction}.generalAbility.setup`))"></span>
         </li>
       </ul>
     </li>
@@ -120,8 +120,8 @@ export default defineComponent({
     getFactionConfig(bot : number) : FactionConfig {
       return FactionConfigs.get(this.getFaction(bot));
     },
-    async resolveIconReferences(text: string) : Promise<string> {
-      return await resolveIconReferences(text)
+    resolveIconReferences(text: string) : Promise<string> {
+      return resolveIconReferences(text)
     }
   }
 })

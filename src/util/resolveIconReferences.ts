@@ -1,44 +1,27 @@
 const iconPattern = /::(([^:/]+?)\/)?([^:/]+?)::/g;
-const iconModules = import.meta.glob<any>('/src/assets/icons/**/*.svg')
 
 /**
  * Resolves icon references in the form ::icon-name:: or ::type/icon-name:: to the actual
  * icon references as IMG tag.
  */
-export default async function resolveIconReferences(text: string) : Promise<string> {
-  const matches = Array.from(text.matchAll(iconPattern))
-  const replacements = await Promise.all(matches.map(([_match, _, type, name]) => buildIconTag(name, type)))
-
-  let result = text
-  for (let i = 0; i < matches.length; i++) {
-    const replacement = replacements[i]
-    if (replacement) {
-      result = result.replace(matches[i][0], replacement)
-    }
-  }
-
-  return result
+export default function resolveIconReferences(text: string) : string {
+  return text.replace(iconPattern, (_match, _, type, name) => {
+    return buildIconTag(name, type)
+  })
 }
 
-async function buildIconTag(name: string, type?: string) : Promise<string|undefined> {
-  const iconPath = await buildIconPath(name, type)
-  if (!iconPath) {
-    return undefined
-  }
+function buildIconTag(name: string, type?: string) : string {
+  const iconPath = buildIconPath(name, type)
   return `<img src="${iconPath}" draggable="false" alt=""/>`
 }
 
-async function buildIconPath(name: string, type?: string) : Promise<string|undefined> {
+export function buildIconPath(name: string, type?: string, extension: string = 'svg') : string {
   let iconPath
   if (type) {
-    iconPath = `/src/assets/icons/${type}/${name}.svg`
+    iconPath = `/src/assets/icons/${type}/${name}.${extension}`
   }
   else {
-    iconPath = `/src/assets/icons/${name}.svg`
+    iconPath = `/src/assets/icons/${name}.${extension}`
   }
-  const iconModule = iconModules[iconPath]
-  if (!iconModule) {
-    return undefined
-  }
-  return (await iconModule()).default
+  return new URL(iconPath, import.meta.url).toString()
 }
