@@ -80,7 +80,7 @@ export default defineComponent({
     AppIcon,
     PlayerColorDisplay,
     ActionRulesCollapse
-},
+  },
   setup() {
     const { t } = useI18n()
     const state = useStateStore()

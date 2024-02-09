@@ -70,7 +70,14 @@
     "militaryCapabilities": "Unlocked military tech upgrades:"
   },
   "cycleEnd": {
-    "title": "End of Cycle"
+    "title": "End of Cycle",
+    "prestigeCheck": "Prestige check",
+    "utopianSectorReward": "Utopian sector reward",
+    "cleanup": "Cleanup",
+    "depletionUpkeep": "Depletion upkeep",
+    "determineFirstPlayer": "Determine the first player",
+    "firstPlayerBot": "{faction} determines the first player based on its player priority.",
+    "advanceCycleMarker": "Advance cycle marker"
   },
   "cycleTransition": {
     "title": "Transition"
