@@ -1,6 +1,6 @@
 <template>
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
-  <FactionActionAbilities :action="action" :botActions="botActions"/>
+  <FactionActionPhaseAbilities :action="action" :botActions="botActions"/>
   <ActionRulesCollapse>
     <ul>
       <li v-html="t('rules.action.colonize.addColony')"></li>
@@ -17,14 +17,14 @@ import BotActions, { BotActionItem } from '@/services/BotActions'
 import Action from '@/services/enum/Action'
 import ActionRulesCollapse from '@/components/rules/ActionRulesCollapse.vue'
 import ActionTitle from '../ActionTitle.vue'
-import FactionActionAbilities from '../FactionActionAbilities.vue'
+import FactionActionPhaseAbilities from '../FactionActionPhaseAbilities.vue'
 
 export default defineComponent({
   name: 'ActionColonize',
   components: {
     ActionRulesCollapse,
     ActionTitle,
-    FactionActionAbilities
+    FactionActionPhaseAbilities
   },
   setup() {
     const { t } = useI18n()

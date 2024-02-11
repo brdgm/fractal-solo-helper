@@ -24,9 +24,10 @@ import resolveIconReferences from '@/util/resolveIconReferences'
 import Action from '@/services/enum/Action'
 import FactionConfigs from '@/services/FactionConfigs'
 import Technology from '@/services/enum/Technology'
+import Phase from '@/services/enum/Phase'
 
 export default defineComponent({
-  name: 'FactionActionAbilities',
+  name: 'FactionActionPhaseAbilities',
   components: {
     AppIcon
   },
@@ -39,7 +40,11 @@ export default defineComponent({
   props: {
     action: {
       type: String as PropType<Action>,
-      required: true
+      required: false
+    },
+    phase: {
+      type: String as PropType<Phase>,
+      required: false
     },
     botActions: {
       type: BotActions,
@@ -63,7 +68,8 @@ export default defineComponent({
     },
     civilTechnologyAbilities() : number[] {
       return Object.entries(FactionConfigs.get(this.botFaction).civilTechnologyAbility)
-        .filter(([,actionOrPhases]) => actionOrPhases.includes(this.action))
+        .filter(([,actionOrPhases]) => (this.action && actionOrPhases.includes(this.action))
+            || (this.phase && actionOrPhases.includes(this.phase)))
         .map(([limit]) => parseInt(limit))
         .filter(limit => limit <= this.civilTotalCost)
     }

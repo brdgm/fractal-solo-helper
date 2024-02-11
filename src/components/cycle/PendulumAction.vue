@@ -9,6 +9,7 @@
         <div class="condition" v-html="resolveIconReferences(t(`faction.${botFaction}.pendulum${index}.condition`))"></div>
         <div class="description" v-html="resolveIconReferences(t(`faction.${botFaction}.pendulum${index}.description`))"></div>
       </div>
+      <FactionActionPhaseAbilities :phase="getPendulumPhase(index)" :botActions="botActions"/>
     </div>
   </div>
 </template>
@@ -22,11 +23,14 @@ import { useStateStore } from '@/store/state'
 import Faction from '@/services/enum/Faction'
 import getBotFaction from '@/util/getBotFaction'
 import resolveIconReferences from '@/util/resolveIconReferences'
+import Phase from '@/services/enum/Phase'
+import FactionActionPhaseAbilities from './FactionActionPhaseAbilities.vue'
 
 export default defineComponent({
   name: 'PendulumAction',
   components: {
-    AppIcon
+    AppIcon,
+    FactionActionPhaseAbilities
   },
   setup() {
     const { t } = useI18n()
@@ -48,6 +52,15 @@ export default defineComponent({
   methods: {
     resolveIconReferences(text: string) : string {
       return resolveIconReferences(text)
+    },
+    getPendulumPhase(index: number) : Phase|undefined {
+      if (index == 1) {
+        return Phase.PENDULUM_1
+      }
+      else if (index == 2) {
+        return Phase.PENDULUM_2
+      }
+      return undefined
     }
   }
 })

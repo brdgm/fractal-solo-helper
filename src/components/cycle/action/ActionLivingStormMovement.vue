@@ -1,6 +1,6 @@
 <template>
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
-  <FactionActionAbilities :action="action" :botActions="botActions"/>
+  <FactionActionPhaseAbilities :action="action" :botActions="botActions"/>
   <ActionRulesCollapse>
     <ul>
       <li v-html="t('rules.action.living-storm-movement.moveStorm')"></li>
@@ -19,14 +19,14 @@ import ActionRulesCollapse from '@/components/rules/ActionRulesCollapse.vue'
 import ActionTitle from '../ActionTitle.vue'
 import LivingStormOrientation from '@/services/enum/LivingStormOrientation'
 import LivingStormDirection from '@/services/enum/LivingStormDirection'
-import FactionActionAbilities from '../FactionActionAbilities.vue'
+import FactionActionPhaseAbilities from '../FactionActionPhaseAbilities.vue'
 
 export default defineComponent({
   name: 'ActionLivingStormMovement',
   components: {
     ActionRulesCollapse,
     ActionTitle,
-    FactionActionAbilities
+    FactionActionPhaseAbilities
   },
   setup() {
     const { t } = useI18n()
