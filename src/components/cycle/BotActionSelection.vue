@@ -1,12 +1,12 @@
 <template>
-  <h4>Action {{actionIndex}}</h4>
+  <h4>{{t('turnBot.action', {action:actionIndex})}}</h4>
   <div class="mt-3" v-if="botActionItem">
     <div v-for="action of botActionItem.actions" :key="action">
-      <component v-if="isTechnologyAction(action)" :is="`action-${action}`"
+      <component v-if="isTechnologyMandatoryAction(action) || isTechnologyOptionalAction(action)" :is="`action-${action}`"
           :action="action"
           :botActionItem="botActionItem"
           :botActions="botActions"
-          @technology="(technology:Technology) => selectTechnology(technology, action)"/>
+          @technology="selectTechnology"/>
       <component v-else :is="`action-${action}`"
           :action="action"
           :botActionItem="botActionItem"
@@ -101,12 +101,12 @@ export default defineComponent({
     botActionItem() : BotActionItem|undefined {
       return this.botAction?.items[this.actionItem]
     },
-    hasTechnologyAction() : boolean {
+    hasTechnologyMandatoryAction() : boolean {
       const actions = this.botActionItem?.actions ?? []
-      return actions.find(action => this.isTechnologyAction(action)) != undefined
+      return actions.find(action => this.isTechnologyMandatoryAction(action)) != undefined
     },
     nextValid() : boolean {
-      if (this.hasTechnologyAction) {
+      if (this.hasTechnologyMandatoryAction) {
         return this.selectedTechnology != undefined
       }
       return true
@@ -131,8 +131,11 @@ export default defineComponent({
         this.$emit('next')
       }
     },
-    isTechnologyAction(action: Action) {
+    isTechnologyMandatoryAction(action: Action) {
       return action === Action.RESEARCH_CIVIL || action === Action.RESEARCH_MILITARY
+    },
+    isTechnologyOptionalAction(action: Action) {
+      return action === Action.ACTION_CARD
     },
     selectTechnology(technology?: Technology, action?: Action) {
       this.selectedTechnology = technology

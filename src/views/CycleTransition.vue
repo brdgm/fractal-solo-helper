@@ -7,6 +7,10 @@
     <li v-html="t('cycleTransition.botNoLimit')"></li>
   </ul>
 
+  <template v-for="botActions of navigationState.botsActions" :key="botActions.bot">
+    <FactionActionPhaseAbilities :botActions="botActions" :phase="phase" :showFactionName="true"/>
+  </template>
+
   <button class="btn btn-primary btn-lg mt-4" @click="next()">
     {{t('action.next')}}
   </button>
@@ -25,13 +29,16 @@ import NavigationState from '@/util/NavigationState'
 import SideBar from '@/components/cycle/SideBar.vue'
 import DebugInfo from '@/components/cycle/DebugInfo.vue'
 import resolveIconReferences from '@/util/resolveIconReferences'
+import Phase from '@/services/enum/Phase'
+import FactionActionPhaseAbilities from '@/components/cycle/FactionActionPhaseAbilities.vue'
 
 export default defineComponent({
   name: 'CycleTransition',
   components: {
     FooterButtons,
     SideBar,
-    DebugInfo
+    DebugInfo,
+    FactionActionPhaseAbilities
   },
   setup() {
     const { t } = useI18n()
@@ -44,6 +51,14 @@ export default defineComponent({
   computed: {
     backButtonRouteTo() : string {
       return `/cycle/${this.cycle}/end`
+    },
+    phase() : Phase {
+      if (this.cycle == 2) {
+        return Phase.TRANSITION_1
+      }
+      else {
+        return Phase.TRANSITION_2
+      }
     }
   },
   methods: {

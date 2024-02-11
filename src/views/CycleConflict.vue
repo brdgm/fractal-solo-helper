@@ -4,6 +4,10 @@
 
   <ConflictInstructions :navigationState="navigationState"/>
 
+  <template v-for="botActions of navigationState.botsActions" :key="botActions.bot">
+    <FactionActionPhaseAbilities :botActions="botActions" :phase="phase" :showFactionName="true"/>
+  </template>
+
   <button class="btn btn-primary btn-lg mt-4" @click="next()">
     {{t('action.next')}}
   </button>
@@ -23,6 +27,8 @@ import RouteCalculator from '@/services/RouteCalculator'
 import SideBar from '@/components/cycle/SideBar.vue'
 import DebugInfo from '@/components/cycle/DebugInfo.vue'
 import ConflictInstructions from '@/components/cycle/ConflictInstructions.vue'
+import Phase from '@/services/enum/Phase'
+import FactionActionPhaseAbilities from '@/components/cycle/FactionActionPhaseAbilities.vue'
 
 export default defineComponent({
   name: 'CycleConflict',
@@ -30,7 +36,8 @@ export default defineComponent({
     FooterButtons,
     SideBar,
     DebugInfo,
-    ConflictInstructions
+    ConflictInstructions,
+    FactionActionPhaseAbilities
   },
   setup() {
     const { t } = useI18n()
@@ -44,6 +51,9 @@ export default defineComponent({
   computed: {
     backButtonRouteTo() : string {
       return this.routeCalculator.getLastTurnRouteTo(this.state)
+    },
+    phase() : Phase {
+      return Phase.CONFLICT
     }
   },
   methods: {

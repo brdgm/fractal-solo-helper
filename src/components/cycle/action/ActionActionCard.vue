@@ -2,8 +2,8 @@
   <ActionTitle :action="action" :botActionItem="botActionItem">
     <ActionCardIcon class="icon" :actionCardSlot="botActionItem.actionCardSlot"/>
   </ActionTitle>
-  <PendulumAction :botActions="botActions"/>
-  <FactionActionAbilities :action="action" :botActions="botActions"/>
+  <PendulumAction :botActionItem="botActionItem" :botActions="botActions" @technology="selectTechnology"/>
+  <FactionActionPhaseAbilities :action="action" :botActions="botActions"/>
   <ActionRulesCollapse>
     <ul>
       <li v-html="t('rules.action.action-card.playCard', {slot:botActionItem.actionCardSlot})"></li>
@@ -22,7 +22,8 @@ import ActionRulesCollapse from '@/components/rules/ActionRulesCollapse.vue'
 import ActionCardIcon from '@/components/structure/ActionCardIcon.vue'
 import ActionTitle from '../ActionTitle.vue'
 import PendulumAction from '../PendulumAction.vue'
-import FactionActionAbilities from '../FactionActionAbilities.vue'
+import FactionActionPhaseAbilities from '../FactionActionPhaseAbilities.vue'
+import Technology from '@/services/enum/Technology'
 
 export default defineComponent({
   name: 'ActionActionCard',
@@ -31,7 +32,10 @@ export default defineComponent({
     ActionCardIcon,
     ActionTitle,
     PendulumAction,
-    FactionActionAbilities
+    FactionActionPhaseAbilities
+  },
+  emits: {
+    technology: (_technology?: Technology, _technologyAction?: Action) => true,  // eslint-disable-line @typescript-eslint/no-unused-vars,
   },
   setup() {
     const { t } = useI18n()
@@ -49,6 +53,11 @@ export default defineComponent({
     botActions: {
       type: BotActions,
       required: true
+    }
+  },
+  methods: {
+    selectTechnology(technology?: Technology, action?: Action) {
+      this.$emit('technology', technology, action)
     }
   }
 })

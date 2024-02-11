@@ -1,7 +1,7 @@
 <template>
   <ActionTitle :action="action" :botActionItem="botActionItem"/>
   <SelectTechnology @technology="selectTechnology"/>
-  <FactionActionAbilities :action="action" :botActions="botActions"/>
+  <FactionActionPhaseAbilities :action="action" :botActions="botActions"/>
   <ActionRulesCollapse>
     <ul>
       <li v-html="t('rules.action.research.scienceTrack')"></li>
@@ -21,7 +21,7 @@ import ActionRulesCollapse from '@/components/rules/ActionRulesCollapse.vue'
 import ActionTitle from '../ActionTitle.vue'
 import Technology from '@/services/enum/Technology'
 import SelectTechnology from '../SelectTechnology.vue'
-import FactionActionAbilities from '../FactionActionAbilities.vue'
+import FactionActionPhaseAbilities from '../FactionActionPhaseAbilities.vue'
 
 export default defineComponent({
   name: 'ActionResearchMilitary',
@@ -29,10 +29,10 @@ export default defineComponent({
     ActionRulesCollapse,
     ActionTitle,
     SelectTechnology,
-    FactionActionAbilities
+    FactionActionPhaseAbilities
   },
   emits: {
-    technology: (_technology?: Technology) => true  // eslint-disable-line @typescript-eslint/no-unused-vars
+    technology: (_technology?: Technology, _technologyAction?: Action) => true,  // eslint-disable-line @typescript-eslint/no-unused-vars,
   },
   setup() {
     const { t } = useI18n()
@@ -54,7 +54,7 @@ export default defineComponent({
   },
   methods: {
     selectTechnology(technology?: Technology) {
-      this.$emit('technology', technology)
+      this.$emit('technology', technology, this.action)
     }
   }
 })

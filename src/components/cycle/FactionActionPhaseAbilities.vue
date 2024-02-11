@@ -1,7 +1,21 @@
 <template>
-  <div class="row mb-3">
+  <div class="row mb-3" v-if="generalAbility || civilTechnologyAbilities.length > 0">
+    <div class="col col-12" v-if="generalAbility">
+      <div class="ability">
+        <div class="faction" v-if="showFactionName">
+          {{t(`faction.${botFaction}.title`)}}:
+        </div>
+        <div class="description">
+          <i>{{t(`faction.${botFaction}.generalAbility.title`)}}: </i>
+          <span v-html="resolveIconReferences(t(`faction.${botFaction}.generalAbility.description`))"></span>
+        </div>
+      </div>
+    </div>
     <div class="col col-12" v-for="limit of civilTechnologyAbilities" :key="limit">
       <div class="ability">
+        <div class="faction" v-if="showFactionName">
+          {{t(`faction.${botFaction}.title`)}}:
+        </div>
         <div class="limit">
           <AppIcon type="card" name="technology-civil" class="icon"/>
           {{ limit }}
@@ -24,9 +38,10 @@ import resolveIconReferences from '@/util/resolveIconReferences'
 import Action from '@/services/enum/Action'
 import FactionConfigs from '@/services/FactionConfigs'
 import Technology from '@/services/enum/Technology'
+import Phase from '@/services/enum/Phase'
 
 export default defineComponent({
-  name: 'FactionActionAbilities',
+  name: 'FactionActionPhaseAbilities',
   components: {
     AppIcon
   },
@@ -39,7 +54,11 @@ export default defineComponent({
   props: {
     action: {
       type: String as PropType<Action>,
-      required: true
+      required: false
+    },
+    phase: {
+      type: String as PropType<Phase>,
+      required: false
     },
     botActions: {
       type: BotActions,
@@ -48,11 +67,20 @@ export default defineComponent({
     additionalTechnology: {
       type: Number as PropType<Technology>,
       required: false
+    },
+    showFactionName: {
+      type: Boolean,
+      required: false
     }
   },
   computed: {
     botFaction() : Faction {
       return getBotFaction(this.playerSetup, this.botActions.bot)
+    },
+    generalAbility() : boolean {
+      return Object.entries(FactionConfigs.get(this.botFaction).generalAbility)
+          .find(actionOrPhases => (this.action && actionOrPhases.includes(this.action))
+            || (this.phase && actionOrPhases.includes(this.phase))) != undefined
     },
     civilTotalCost() : number {
       let totalCost = this.botActions.technologies.civilTotalCost
@@ -63,7 +91,8 @@ export default defineComponent({
     },
     civilTechnologyAbilities() : number[] {
       return Object.entries(FactionConfigs.get(this.botFaction).civilTechnologyAbility)
-        .filter(([,actionOrPhases]) => actionOrPhases.includes(this.action))
+        .filter(([,actionOrPhases]) => (this.action && actionOrPhases.includes(this.action))
+            || (this.phase && actionOrPhases.includes(this.phase)))
         .map(([limit]) => parseInt(limit))
         .filter(limit => limit <= this.civilTotalCost)
     }
@@ -84,6 +113,10 @@ export default defineComponent({
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 10px;
+  .faction {
+    font-weight: bold;
+    margin-right: 1rem;
+  }
   .limit {
     font-weight: bold;
     white-space: nowrap;
