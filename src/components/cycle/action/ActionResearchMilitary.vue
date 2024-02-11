@@ -32,7 +32,7 @@ export default defineComponent({
     FactionActionPhaseAbilities
   },
   emits: {
-    technology: (_technology?: Technology) => true  // eslint-disable-line @typescript-eslint/no-unused-vars
+    technology: (_technology?: Technology, _technologyAction?: Action) => true,  // eslint-disable-line @typescript-eslint/no-unused-vars,
   },
   setup() {
     const { t } = useI18n()
@@ -54,7 +54,7 @@ export default defineComponent({
   },
   methods: {
     selectTechnology(technology?: Technology) {
-      this.$emit('technology', technology)
+      this.$emit('technology', technology, this.action)
     }
   }
 })

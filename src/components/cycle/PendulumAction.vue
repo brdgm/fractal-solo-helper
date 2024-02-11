@@ -8,16 +8,26 @@
         </div>
         <div class="condition" v-html="resolveIconReferences(t(`faction.${botFaction}.pendulum${index}.condition`))"></div>
         <div class="description" v-html="resolveIconReferences(t(`faction.${botFaction}.pendulum${index}.description`))"></div>
+        <div v-if="isVAX117Pendulum1(index)">
+          <button class="btn btn-sm btn-secondary mt-2 me-2" @click="performCivilResearch">{{t('rules.action.research-civil.title')}}</button>
+          <button class="btn btn-sm btn-secondary mt-2" @click="performMilitaryResearch">{{t('rules.action.research-military.title')}}</button>
+        </div>
       </div>
       <FactionActionPhaseAbilities :phase="getPendulumPhase(index)" :botActions="botActions"/>
+      <div v-if="isVAX117Pendulum1(index)">
+        <ActionResearchCivil v-if="performResearchAction && isCivilResearchAction()"
+            :action="performResearchAction" :botActionItem="botActionItem" :botActions="botActions" @technology="selectTechnology"/>
+        <ActionResearchMilitary v-if="performResearchAction && isMilitaryResearchAction()"
+            :action="performResearchAction" :botActionItem="botActionItem" :botActions="botActions"  @technology="selectTechnology"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
-import BotActions from '@/services/BotActions'
+import BotActions, { BotActionItem } from '@/services/BotActions'
 import AppIcon from '../structure/AppIcon.vue'
 import { useStateStore } from '@/store/state'
 import Faction from '@/services/enum/Faction'
@@ -25,12 +35,18 @@ import getBotFaction from '@/util/getBotFaction'
 import resolveIconReferences from '@/util/resolveIconReferences'
 import Phase from '@/services/enum/Phase'
 import FactionActionPhaseAbilities from './FactionActionPhaseAbilities.vue'
+import Action from '@/services/enum/Action'
+import Technology from '@/services/enum/Technology'
+import ActionResearchCivil from './action/ActionResearchCivil.vue'
+import ActionResearchMilitary from './action/ActionResearchMilitary.vue'
 
 export default defineComponent({
   name: 'PendulumAction',
   components: {
     AppIcon,
-    FactionActionPhaseAbilities
+    FactionActionPhaseAbilities,
+    ActionResearchCivil,
+    ActionResearchMilitary
   },
   setup() {
     const { t } = useI18n()
@@ -39,9 +55,18 @@ export default defineComponent({
     return { t, playerSetup }
   },
   props: {
+    botActionItem: {
+      type: Object as PropType<BotActionItem>,
+      required: true
+    },
     botActions: {
       type: BotActions,
       required: true
+    }
+  },
+  data() {
+    return {
+      performResearchAction: undefined as Action|undefined
     }
   },
   computed: {
@@ -61,6 +86,24 @@ export default defineComponent({
         return Phase.PENDULUM_2
       }
       return undefined
+    },
+    isVAX117Pendulum1(index: number) {
+      return this.botFaction == Faction.VAX_117 && index == 1
+    },
+    performCivilResearch() {
+      this.performResearchAction = Action.RESEARCH_CIVIL
+    },
+    performMilitaryResearch() {
+      this.performResearchAction = Action.RESEARCH_MILITARY
+    },
+    isCivilResearchAction() {
+      return this.performResearchAction == Action.RESEARCH_CIVIL
+    },
+    isMilitaryResearchAction() {
+      return this.performResearchAction == Action.RESEARCH_MILITARY
+    },
+    selectTechnology(technology?: Technology, action?: Action) {
+      this.$emit('technology', technology, action)
     }
   }
 })
