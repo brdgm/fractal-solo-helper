@@ -1,5 +1,5 @@
 <template>
-  <h4>Action {{actionIndex}}</h4>
+  <h4>{{t('turnBot.action', {action:actionIndex})}}</h4>
   <div class="mt-3" v-if="botActionItem">
     <div v-for="action of botActionItem.actions" :key="action">
       <component v-if="isTechnologyMandatoryAction(action) || isTechnologyOptionalAction(action)" :is="`action-${action}`"
