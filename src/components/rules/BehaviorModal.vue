@@ -4,10 +4,10 @@
     <template #body>
       <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="tablink-important-concepts" data-bs-toggle="tab" data-bs-target="#tab-important-concepts" type="button" role="tab" aria-controls="tab-important-concepts" aria-selected="false">{{t('rules.concepts.important.title')}}</button>
+          <button class="nav-link active" id="tablink-important-concepts" data-bs-toggle="tab" data-bs-target="#tab-important-concepts" type="button" role="tab" aria-controls="tab-important-concepts" aria-selected="true">{{t('rules.concepts.important.title')}}</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="tablink-behavior-victory" data-bs-toggle="tab" data-bs-target="#tab-behavior-victory" type="button" role="tab" aria-controls="tab-behavior-victory" aria-selected="true">{{t('rules.concepts.behavior.victory.title')}}</button>
+          <button class="nav-link" id="tablink-behavior-victory" data-bs-toggle="tab" data-bs-target="#tab-behavior-victory" type="button" role="tab" aria-controls="tab-behavior-victory" aria-selected="false">{{t('rules.concepts.behavior.victory.title')}}</button>
         </li>
         <li class="nav-item" role="presentation">
           <button class="nav-link" id="tablink-behavior-defensive" data-bs-toggle="tab" data-bs-target="#tab-behavior-defensive" type="button" role="tab" aria-controls="tab-behavior-defensive" aria-selected="false">{{t('rules.concepts.behavior.defensive.title')}}</button>
