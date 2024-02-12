@@ -132,10 +132,10 @@ export default defineComponent({
       }
     },
     isTechnologyMandatoryAction(action: Action) {
-      return action === Action.RESEARCH_CIVIL || action === Action.RESEARCH_MILITARY
+      return action == Action.RESEARCH_CIVIL || action == Action.RESEARCH_MILITARY
     },
     isTechnologyOptionalAction(action: Action) {
-      return action === Action.ACTION_CARD
+      return action == Action.ACTION_CARD || action == Action.LOSE_INFLUENCE_ACTION_CARD
     },
     selectTechnology(technology?: Technology, action?: Action) {
       this.selectedTechnology = technology

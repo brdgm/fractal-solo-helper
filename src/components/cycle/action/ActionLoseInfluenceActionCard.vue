@@ -3,7 +3,7 @@
     <AppIcon type="action" name="lose-influence" class="icon"/>
     <ActionCardIcon class="icon" :actionCardSlot="botActionItem.actionCardSlot"/>
   </ActionTitle>
-  <PendulumAction :botActions="botActions"/>
+  <PendulumAction :botActionItem="botActionItem" :botActions="botActions" @technology="selectTechnology"/>
   <FactionActionPhaseAbilities :action="action" :botActions="botActions"/>
   <ActionRulesCollapse>
     <ul>
@@ -26,6 +26,7 @@ import ActionCardIcon from '@/components/structure/ActionCardIcon.vue'
 import ActionTitle from '../ActionTitle.vue'
 import PendulumAction from '../PendulumAction.vue'
 import FactionActionPhaseAbilities from '../FactionActionPhaseAbilities.vue'
+import Technology from '@/services/enum/Technology'
 
 export default defineComponent({
   name: 'ActionLoseInfluenceActionCard',
@@ -36,6 +37,9 @@ export default defineComponent({
     ActionTitle,
     PendulumAction,
     FactionActionPhaseAbilities
+  },
+  emits: {
+    technology: (_technology?: Technology, _technologyAction?: Action) => true,  // eslint-disable-line @typescript-eslint/no-unused-vars,
   },
   setup() {
     const { t } = useI18n()
@@ -53,6 +57,11 @@ export default defineComponent({
     botActions: {
       type: BotActions,
       required: true
+    }
+  },
+  methods: {
+    selectTechnology(technology?: Technology, action?: Action) {
+      this.$emit('technology', technology, action)
     }
   }
 })
