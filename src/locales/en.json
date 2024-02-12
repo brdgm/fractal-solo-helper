@@ -29,9 +29,9 @@
     "title": "Automata Setup",
     "factionMap": "Place the faction mat to the left of the empire board. Place the corresponding faction token for the chosen color on the empire board.",
     "empireBoard": "On the Automata empire board, place the corresponding colonies, influence marker on 1, and victory points marker on 0.",
-    "tacticCards": "Shuffle the AI tactic cards and AI elite tactic cards to form the AI tactic DECK. The rest of the elite AI tactic cards go to ELITE. The replaced non-elite card are put to RESERVE. Place each deck in its corresponding space.",
+    "tacticCards": "Shuffle the AI tactic cards and some of the AI elite tactic cards to form the AI tactic DECK. The rest of the elite AI tactic cards go to ELITE. The replaced non-elite card are put to RESERVE. Place each deck in its corresponding space.",
     "tacticCardDifficultyLevel": {
-      "1": "Shuffle all non-elite tactic cars as DECK. No elite cards are included in initially.",
+      "1": "Shuffle all non-elite tactic cards as DECK. No elite cards are included in initially.",
       "2": "Replace 1 random AI tactic card with the elite tactic card with the same name and shuffle it with the other non-elite tactic cards as DECK.",
       "3": "Replace 2 random AI tactic cards with the elite tactic cards with the same name and shuffle them with the other non-elite tactic cards as DECK."
     },
@@ -147,7 +147,7 @@
         },
         "cards": {
           "title": "Action and technology cards",
-          "description": "When the Automata draws an action or technology card, these are placed face-down in its play area. The effects are irrelevant, as only the type and number of cards matter."
+          "description": "When the Automata draws an action or technology card, these are placed face-down in its play area. The effects are irrelevant, as only the type and number of cards matter. If the Automata takes an action card, the replacement card is face-down, and players can only play it face-down."
         },
         "training": {
           "title": "Training",
@@ -365,7 +365,7 @@
       "title": "Borroka",
       "generalAbility": {
         "title": "Destroyer of Worlds",
-        "description": "When you remove ::component/obstacle::, ::component/anomaly::, ::component/living-galaxy:: or ::component/living-storm:: from the board, add a ::unit-type/lightship:: to the sector you removed it from or, if not possible, to the nearest sector."
+        "description": "When you remove ::component/obstacle::, ::component/anomaly::, ::component/living-galaxy::, ::component/living-storm:: or ::sector:: from the board, add a ::unit-type/lightship:: to the sector you removed it from or, if not possible, to the nearest sector."
       },
       "civilTechnologyAbility": {
         "3": "After you play an action card face-down, gain 1&nbsp;::influence::.",
