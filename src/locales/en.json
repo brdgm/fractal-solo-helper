@@ -432,7 +432,7 @@
       "title": "Goria",
       "generalAbility": {
         "title": "Native Inhabitant",
-        "description": "Once per battle, when you inflict ::damage/indirect::, add the unit on the faction mat as part of your Bone Coin pool.",
+        "description": "Once per battle, when you inflict ::damage/retreat::, add the unit on the faction mat as part of your Bone Coin pool.",
         "setup": "You start with 1 extra AI protocol card (automatically managed by the app)."
       },
       "civilTechnologyAbility": {
