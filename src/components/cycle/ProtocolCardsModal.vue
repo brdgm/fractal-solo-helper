@@ -147,7 +147,7 @@ export default defineComponent({
 })
 </script>
 
-<style type="scss" scoped>
+<style lang="scss" scoped>
 .option + .option {
   border-top: 1px solid lightgray;
   margin-top: 10px;

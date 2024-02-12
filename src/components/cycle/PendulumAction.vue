@@ -109,7 +109,7 @@ export default defineComponent({
 })
 </script>
 
-<style type="scss" scoped>
+<style lang="scss" scoped>
 .pendulum {
   border: 2px dashed darkgray;
   border-radius: 10px;

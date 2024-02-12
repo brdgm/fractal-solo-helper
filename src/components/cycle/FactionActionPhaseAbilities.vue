@@ -105,7 +105,7 @@ export default defineComponent({
 })
 </script>
 
-<style type="scss" scoped>
+<style lang="scss" scoped>
 .ability {
   display: flex;
   border: 2px dashed darkgray;

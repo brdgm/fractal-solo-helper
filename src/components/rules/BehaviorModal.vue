@@ -243,7 +243,7 @@ export default defineComponent({
 })
 </script>
 
-<style type="scss" scoped>
+<style lang="scss" scoped>
 .answer {
   margin-left: 1rem;
 }
