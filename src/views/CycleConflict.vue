@@ -1,16 +1,18 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1>{{t('cycleConflict.title')}}</h1>
+  <ContentLeftOfSidebar>
+    <h1>{{t('cycleConflict.title')}}</h1>
 
-  <ConflictInstructions :navigationState="navigationState"/>
+    <ConflictInstructions :navigationState="navigationState"/>
 
-  <template v-for="botActions of navigationState.botsActions" :key="botActions.bot">
-    <FactionActionPhaseAbilities :botActions="botActions" :phase="phase" :showFactionName="true"/>
-  </template>
+    <template v-for="botActions of navigationState.botsActions" :key="botActions.bot">
+      <FactionActionPhaseAbilities :botActions="botActions" :phase="phase" :showFactionName="true"/>
+    </template>
 
-  <button class="btn btn-primary btn-lg mt-4" @click="next()">
-    {{t('action.next')}}
-  </button>
+    <button class="btn btn-primary btn-lg mt-4" @click="next()">
+      {{t('action.next')}}
+    </button>
+  </ContentLeftOfSidebar>
 
   <DebugInfo :navigationState="navigationState"/>
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" endGameButtonType="abortGame"/>
@@ -29,6 +31,7 @@ import DebugInfo from '@/components/cycle/DebugInfo.vue'
 import ConflictInstructions from '@/components/cycle/ConflictInstructions.vue'
 import Phase from '@/services/enum/Phase'
 import FactionActionPhaseAbilities from '@/components/cycle/FactionActionPhaseAbilities.vue'
+import ContentLeftOfSidebar from '@/components/cycle/ContentLeftOfSidebar.vue'
 
 export default defineComponent({
   name: 'CycleConflict',
@@ -37,7 +40,8 @@ export default defineComponent({
     SideBar,
     DebugInfo,
     ConflictInstructions,
-    FactionActionPhaseAbilities
+    FactionActionPhaseAbilities,
+    ContentLeftOfSidebar
   },
   setup() {
     const { t } = useI18n()

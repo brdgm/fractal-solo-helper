@@ -1,9 +1,11 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t(`faction.${botFaction}.title`)}}</h1>
+  <ContentLeftOfSidebar>
+    <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t(`faction.${botFaction}.title`)}}</h1>
 
-  <BotActionSelection v-if="botActions" :botActions="botActions" :navigationState="navigationState"
-     :actionIndex="action"  @next="next()" @technology="selectTechnology"/>
+    <BotActionSelection v-if="botActions" :botActions="botActions" :navigationState="navigationState"
+      :actionIndex="action"  @next="next()" @technology="selectTechnology"/>
+  </ContentLeftOfSidebar>
 
   <DebugInfo :navigationState="navigationState"/>
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" endGameButtonType="abortGame"/>
@@ -26,6 +28,7 @@ import Faction from '@/services/enum/Faction'
 import getBotFaction from '@/util/getBotFaction'
 import Technology from '@/services/enum/Technology'
 import Action from '@/services/enum/Action'
+import ContentLeftOfSidebar from '@/components/cycle/ContentLeftOfSidebar.vue'
 
 export default defineComponent({
   name: 'TurnBot',
@@ -34,8 +37,9 @@ export default defineComponent({
     PlayerColorDisplay,
     SideBar,
     DebugInfo,
-    BotActionSelection
-  },
+    BotActionSelection,
+    ContentLeftOfSidebar
+},
   setup() {
     const { t } = useI18n()
     const route = useRoute()

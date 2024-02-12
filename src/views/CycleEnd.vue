@@ -1,24 +1,26 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1>{{t('cycleEnd.title')}}</h1>
+  <ContentLeftOfSidebar>
+    <h1>{{t('cycleEnd.title')}}</h1>
 
-  <ol>
-    <li v-html="t('cycleEnd.prestigeCheck')"></li>
-    <li v-html="t('cycleEnd.utopianSectorReward')"></li>
-    <li v-html="t('cycleEnd.cleanup')"></li>
-    <li v-html="t('cycleEnd.depletionUpkeep')"></li>
-    <li>
-      <span v-html="t('cycleEnd.determineFirstPlayer')"></span>
-      <ul v-if="watcherPlayer.bot">
-        <li v-html="t('cycleEnd.firstPlayerBot', {faction:t(`faction.${getBotFaction(watcherPlayer.bot)}.title`)})"></li>
-      </ul>
-    </li>
-    <li v-html="t('cycleEnd.advanceCycleMarker')"></li>
-  </ol>
+    <ol>
+      <li v-html="t('cycleEnd.prestigeCheck')"></li>
+      <li v-html="t('cycleEnd.utopianSectorReward')"></li>
+      <li v-html="t('cycleEnd.cleanup')"></li>
+      <li v-html="t('cycleEnd.depletionUpkeep')"></li>
+      <li>
+        <span v-html="t('cycleEnd.determineFirstPlayer')"></span>
+        <ul v-if="watcherPlayer.bot">
+          <li v-html="t('cycleEnd.firstPlayerBot', {faction:t(`faction.${getBotFaction(watcherPlayer.bot)}.title`)})"></li>
+        </ul>
+      </li>
+      <li v-html="t('cycleEnd.advanceCycleMarker')"></li>
+    </ol>
 
-  <button class="btn btn-primary btn-lg mt-4" @click="next()">
-    {{t('action.next')}}
-  </button>
+    <button class="btn btn-primary btn-lg mt-4" @click="next()">
+      {{t('action.next')}}
+    </button>
+  </ContentLeftOfSidebar>
 
   <DebugInfo :navigationState="navigationState"/>
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" endGameButtonType="abortGame"/>
@@ -37,13 +39,15 @@ import { PlayerOrder } from '@/util/getPlayerOrder'
 import getWatcherPlayer from '@/util/getWatcherPlayer'
 import Faction from '@/services/enum/Faction'
 import getBotFaction from '@/util/getBotFaction'
+import ContentLeftOfSidebar from '@/components/cycle/ContentLeftOfSidebar.vue'
 
 export default defineComponent({
   name: 'CycleEnd',
   components: {
     FooterButtons,
     SideBar,
-    DebugInfo
+    DebugInfo,
+    ContentLeftOfSidebar
   },
   setup() {
     const { t } = useI18n()

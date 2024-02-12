@@ -1,18 +1,20 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1>{{t('cycleIncome.title')}}</h1>
+  <ContentLeftOfSidebar>
+    <h1>{{t('cycleIncome.title')}}</h1>
 
-  <ol>
-    <li>
-      <span v-html="t('cycleIncome.startPlayer')"></span><br/>
-      <DetermineStartPlayer @startPlayer="setStartPlayer" class="mt-2"/>
-    </li>
-    <li v-html="t('cycleIncome.gainIncome')"></li>
-  </ol>
+    <ol>
+      <li>
+        <span v-html="t('cycleIncome.startPlayer')"></span><br/>
+        <DetermineStartPlayer @startPlayer="setStartPlayer" class="mt-2"/>
+      </li>
+      <li v-html="t('cycleIncome.gainIncome')"></li>
+    </ol>
 
-  <button class="btn btn-primary btn-lg mt-4" @click="next()" v-if="startPlayer">
-    {{t('action.next')}}
-  </button>
+    <button class="btn btn-primary btn-lg mt-4" @click="next()" v-if="startPlayer">
+      {{t('action.next')}}
+    </button>
+  </ContentLeftOfSidebar>
 
   <DebugInfo :navigationState="navigationState"/>
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" endGameButtonType="abortGame"/>
@@ -29,6 +31,7 @@ import DetermineStartPlayer from '@/components/cycle/DetermineStartPlayer.vue'
 import RouteCalculator from '@/services/RouteCalculator'
 import SideBar from '@/components/cycle/SideBar.vue'
 import DebugInfo from '@/components/cycle/DebugInfo.vue'
+import ContentLeftOfSidebar from '@/components/cycle/ContentLeftOfSidebar.vue'
 
 export default defineComponent({
   name: 'CycleIncome',
@@ -36,7 +39,8 @@ export default defineComponent({
     FooterButtons,
     DetermineStartPlayer,
     SideBar,
-    DebugInfo
+    DebugInfo,
+    ContentLeftOfSidebar
   },
   setup() {
     const { t } = useI18n()

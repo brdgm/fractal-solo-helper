@@ -1,15 +1,17 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t('player.human', {player}, playerCount)}}</h1>
+  <ContentLeftOfSidebar>
+    <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t('player.human', {player}, playerCount)}}</h1>
 
-  <p v-html="t('turnPlayer.takeTurn')" class="mt-4"></p>
+    <p v-html="t('turnPlayer.takeTurn')" class="mt-4"></p>
 
-  <button class="btn btn-primary btn-lg mt-4 me-2" @click="next(false)">
-    {{t('action.next')}}
-  </button>
-  <button class="btn btn-secondary btn-lg mt-4" @click="next(true)">
-    {{t('action.pass')}}
-  </button>
+    <button class="btn btn-primary btn-lg mt-4 me-2" @click="next(false)">
+      {{t('action.next')}}
+    </button>
+    <button class="btn btn-secondary btn-lg mt-4" @click="next(true)">
+      {{t('action.pass')}}
+    </button>
+  </ContentLeftOfSidebar>
 
   <DebugInfo :navigationState="navigationState"/>
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" endGameButtonType="abortGame"/>
@@ -26,6 +28,7 @@ import RouteCalculator from '@/services/RouteCalculator'
 import PlayerColorDisplay from '@/components/structure/PlayerColorDisplay.vue'
 import SideBar from '@/components/cycle/SideBar.vue'
 import DebugInfo from '@/components/cycle/DebugInfo.vue'
+import ContentLeftOfSidebar from '@/components/cycle/ContentLeftOfSidebar.vue'
 
 export default defineComponent({
   name: 'TurnPlayer',
@@ -33,7 +36,8 @@ export default defineComponent({
     FooterButtons,
     PlayerColorDisplay,
     SideBar,
-    DebugInfo
+    DebugInfo,
+    ContentLeftOfSidebar
   },
   setup() {
     const { t } = useI18n()

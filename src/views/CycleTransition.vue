@@ -1,19 +1,21 @@
 <template>
   <SideBar :navigationState="navigationState"/>
-  <h1>{{t('cycleTransition.title')}}</h1>
+  <ContentLeftOfSidebar>
+    <h1>{{t('cycleTransition.title')}}</h1>
 
-  <ul>
-    <li v-html="resolveIconReferences(t('cycleTransition.scoreVictoryPoints'))"></li>
-    <li v-html="t('cycleTransition.botNoLimit')"></li>
-  </ul>
+    <ul>
+      <li v-html="resolveIconReferences(t('cycleTransition.scoreVictoryPoints'))"></li>
+      <li v-html="t('cycleTransition.botNoLimit')"></li>
+    </ul>
 
-  <template v-for="botActions of navigationState.botsActions" :key="botActions.bot">
-    <FactionActionPhaseAbilities :botActions="botActions" :phase="phase" :showFactionName="true"/>
-  </template>
+    <template v-for="botActions of navigationState.botsActions" :key="botActions.bot">
+      <FactionActionPhaseAbilities :botActions="botActions" :phase="phase" :showFactionName="true"/>
+    </template>
 
-  <button class="btn btn-primary btn-lg mt-4" @click="next()">
-    {{t('action.next')}}
-  </button>
+    <button class="btn btn-primary btn-lg mt-4" @click="next()">
+      {{t('action.next')}}
+    </button>
+  </ContentLeftOfSidebar>
 
   <DebugInfo :navigationState="navigationState"/>
   <FooterButtons :backButtonRouteTo="backButtonRouteTo" endGameButtonType="abortGame"/>
@@ -31,6 +33,7 @@ import DebugInfo from '@/components/cycle/DebugInfo.vue'
 import resolveIconReferences from '@/util/resolveIconReferences'
 import Phase from '@/services/enum/Phase'
 import FactionActionPhaseAbilities from '@/components/cycle/FactionActionPhaseAbilities.vue'
+import ContentLeftOfSidebar from '@/components/cycle/ContentLeftOfSidebar.vue'
 
 export default defineComponent({
   name: 'CycleTransition',
@@ -38,7 +41,8 @@ export default defineComponent({
     FooterButtons,
     SideBar,
     DebugInfo,
-    FactionActionPhaseAbilities
+    FactionActionPhaseAbilities,
+    ContentLeftOfSidebar
   },
   setup() {
     const { t } = useI18n()
