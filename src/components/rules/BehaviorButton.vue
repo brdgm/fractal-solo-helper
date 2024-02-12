@@ -28,7 +28,7 @@ export default defineComponent({
   },
   methods: {
     openModal() {
-      showModalPreselectTab(`rulesBehaviorModal-${this.bot}`, `tablink-behavior-${this.behavior}`)
+      showModalPreselectTab(`rulesBehaviorModal-${this.bot}`, `tablink-behavior-${this.behavior}-${this.bot}`)
     }
   }
 })
