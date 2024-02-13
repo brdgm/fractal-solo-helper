@@ -4,7 +4,12 @@
     <h1>{{t('cycleTransition.title')}}</h1>
 
     <ul>
-      <li v-html="resolveIconReferences(t('cycleTransition.scoreVictoryPoints'))"></li>
+      <li>
+        <span v-html="resolveIconReferences(t('cycleTransition.scoreVictoryPoints', {age}))"></span>
+        <ul>
+          <li v-html="resolveIconReferences(t('cycleTransition.objectiveSpecialization'))"></li>
+        </ul>
+      </li>
       <li v-html="t('cycleTransition.botNoLimit')"></li>
     </ul>
 
@@ -56,12 +61,20 @@ export default defineComponent({
     backButtonRouteTo() : string {
       return `/cycle/${this.cycle}/end`
     },
-    phase() : Phase {
-      if (this.cycle == 2) {
-        return Phase.TRANSITION_1
+    age() : number {
+      if (this.cycle == 4) {
+        return 2
       }
       else {
+        return 1
+      }
+    },
+    phase() : Phase {
+      if (this.age == 2) {
         return Phase.TRANSITION_2
+      }
+      else {
+        return Phase.TRANSITION_1
       }
     }
   },

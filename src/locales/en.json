@@ -83,7 +83,8 @@
   },
   "cycleTransition": {
     "title": "Transition",
-    "scoreVictoryPoints": "During the transition, players score victory points ::victory-point:: when they meet the conditions on the objective cards.",
+    "scoreVictoryPoints": "During Age {age}, each condition on the objective card rewards {age} ::victory-point::.",
+    "objectiveSpecialization": "If you fulfill the condition of an objective (at least) twice, gain 1 extra ::victory-point::.",
     "botNoLimit": "The victory points of the AI opponents are not limited to 10."
   },
   "endOfGame": {
@@ -315,7 +316,7 @@
             "colonizableSectorInRange": "Can you transport infantries to a colonizable sector without Automata infantry?",
             "transportColonizableSector": "Transport an infantry to a colonizable sector.",
             "enemySectorInRange": "Can you transport infantries to a sector with an enemy colony?",
-            "transportEnemySector": "Transport infantries to an enemy colony?",
+            "transportEnemySector": "Transport infantries to an enemy colony.",
             "utopianOrReinforce": "Move to the Utopian sector. If not possible, reinforce contested sectors instead."
           },
           "advance": {

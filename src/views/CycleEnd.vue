@@ -6,15 +6,15 @@
     <ol>
       <li v-html="t('cycleEnd.prestigeCheck')"></li>
       <li v-html="t('cycleEnd.utopianSectorReward')"></li>
-      <li v-html="t('cycleEnd.cleanup')"></li>
+      <li v-if="!isLastCycle" v-html="t('cycleEnd.cleanup')"></li>
       <li v-html="t('cycleEnd.depletionUpkeep')"></li>
-      <li>
+      <li v-if="!isLastCycle">
         <span v-html="t('cycleEnd.determineFirstPlayer')"></span>
         <ul v-if="watcherPlayer.bot">
           <li v-html="t('cycleEnd.firstPlayerBot', {faction:t(`faction.${getBotFaction(watcherPlayer.bot)}.title`)})"></li>
         </ul>
       </li>
-      <li v-html="t('cycleEnd.advanceCycleMarker')"></li>
+      <li v-if="!isLastCycle" v-html="t('cycleEnd.advanceCycleMarker')"></li>
     </ol>
 
     <button class="btn btn-primary btn-lg mt-4" @click="next()">
@@ -64,6 +64,9 @@ export default defineComponent({
     },
     watcherPlayer() : PlayerOrder {
       return getWatcherPlayer(this.state, this.cycle)
+    },
+    isLastCycle() : boolean {
+      return this.cycle == 4
     }
   },
   methods: {
