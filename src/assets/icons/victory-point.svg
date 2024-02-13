@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 13.81 17.01" style="enable-background:new 0 0 13.81 17.01;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_00000165918146770638062880000005037624492781080721_);}
+</style>
+<g>
+	<defs>
+		<rect id="SVGID_1_" width="13.81" height="17.01"/>
+	</defs>
+	<clipPath id="SVGID_00000078025967263044930080000003349060121042619010_">
+		<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+	</clipPath>
+	<path style="clip-path:url(#SVGID_00000078025967263044930080000003349060121042619010_);" d="M2.06,0l3.44,9.47l-1.39,3.77L0,1.94
+		C0.57,1.12,0.78,0.82,1.36,0H2.06z"/>
+	<path style="clip-path:url(#SVGID_00000078025967263044930080000003349060121042619010_);" d="M13.81,1.94L8.33,17.01H5.57
+		l5.54-15.22L11.75,0h0.7C13.03,0.82,13.24,1.12,13.81,1.94"/>
+</g>
+</svg>
