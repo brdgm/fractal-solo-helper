@@ -1,7 +1,7 @@
 <template>
 
   <div class="float-end m-2 w-25">
-    <a href="https://boardgamegeek.com/boardgame/299106/fractal-beyond-void" target="_blank" rel="noopener">
+    <a href="https://boardgamegeek.com/boardgame/299106/fractal" target="_blank" rel="noopener">
       <img src="../assets/game-fractal.webp" class="rounded shadow w-75 mb-3" alt=""/>
     </a>
   </div>
@@ -23,7 +23,7 @@
 
   <p class="disclaimer">
     This is not an official Bored Game Ink product and has no affiliation with <a href="https://boredgameink.com/" target="_blank" rel="noopener">Bored Game Ink</a>.
-    All art in this app is from <a href="https://boredgameink.com/portfolio/fractal-beyond-the-void/" target="_blank" rel="noopener">Fractal: Beyond the Void</a>.
+    All art in this app is from <a href="https://boredgameink.com/portfolio/fractal-beyond-the-void/" target="_blank" rel="noopener">Fractal</a>.
     See <a href="#" data-bs-toggle="modal" data-bs-target="#creditsModal">{{t('footer.credits')}}</a>.
     <a href="https://ko-fi.com/brdgm_me" target="_blank" rel="noopener"><img class="kofi-button" src="@/assets/kofi_button_dark.png" alt="Support me on Ko-fi"/></a>
   </p>

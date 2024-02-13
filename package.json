@@ -2,7 +2,7 @@
   "name": "@brdgm/fractal-solo-helper",
   "version": "1.0.0",
   "private": true,
-  "description": "Fractal: Beyond the Void Solo Helper",
+  "description": "Fractal Solo Helper",
   "appDeployName": "fractal",
   "type": "module",
   "scripts": {

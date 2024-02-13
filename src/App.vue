@@ -26,7 +26,7 @@
 
   <ModalDialog id="creditsModal" :title="t('footer.credits')">
     <template #body>
-      <h4><a href="https://boardgamegeek.com/boardgame/299106/fractal-beyond-void" target="_blank" rel="noopener">{{t('gameTitle')}}</a></h4>
+      <h4><a href="https://boardgamegeek.com/boardgame/299106/fractal" target="_blank" rel="noopener">{{t('gameTitle')}}</a></h4>
       <dl>
         <dt>Game design</dt>
         <dd>Yann Hilaire, Romain Lesiuk, Bernardo Rippe</dd>
