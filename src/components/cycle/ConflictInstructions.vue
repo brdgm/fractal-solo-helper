@@ -54,6 +54,11 @@
     <ul>
       <li v-html="t('rules.conflict.techUpgrade.trigger')"></li>
     </ul>
+    <h6>{{t('rules.conflict.colonies.title')}}</h6>
+    <ul>
+      <li v-html="t('rules.conflict.colonies.lostColony')"></li>
+      <li v-html="t('rules.conflict.colonies.productiveColony')"></li>
+    </ul>
   </ActionRulesCollapse>
 
 </template>

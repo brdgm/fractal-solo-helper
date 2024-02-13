@@ -6,6 +6,7 @@
       <li v-html="t('rules.action.colonize.addColony')"></li>
       <li v-html="t('rules.action.colonize.pickType')"></li>
       <li v-html="t('rules.action.colonize.shortCircuit')"></li>
+      <li v-html="t('rules.action.colonize.productiveColony')"></li>
     </ul>
   </ActionRulesCollapse>
 </template>

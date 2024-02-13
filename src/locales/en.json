@@ -282,7 +282,8 @@
         "title": "Colonize",
         "addColony": "Add a colony to a colonizable sector controlled by the Automata and containing at least 1 infantry.",
         "pickType": "Pick colony type based on current colony AI priority.",
-        "shortCircuit": "If two possible sectors have priority for colony placement, the most-prioritized human player decides."
+        "shortCircuit": "If two possible sectors have priority for colony placement, the most-prioritized human player decides.",
+        "productiveColony": "If a new productive colony is placed, gain a new AI protocol card. This can be done via <i>AI Protocol</i> button in the sidebar."
       },
       "research-civil": {
         "title": "Research (Civil)",
@@ -357,6 +358,11 @@
       "techUpgrade": {
         "title": "Tech upgrade",
         "trigger": "If the total scientific cost of all developed military technology cards is met, the Automata trigger the tech upgrade, which adds additional damages or blocks."
+      },
+      "colonies": {
+        "title": "Colonies",
+        "lostColony": "When an Automata colony is invaded or razed, put it back on it's empire board.",
+        "productiveColony": "If the invaded or razed colony is a productive colony, loose an AI protocol card. This can be done via <i>AI Protocol</i> button in the sidebar."
       }
     }
   },
