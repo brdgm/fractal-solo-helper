@@ -58,8 +58,10 @@
               <tbody>
                 <tr v-for="(_index,colony) of 4" :key="colony">
                   <td v-html="t(`rules.concepts.empireTracks.colony.${colony}`,{botSuffix})"></td>
-                  <td v-if="(empireTrack == 'imperial' && colony > 0) || (empireTrack == 'scientific' || empireTrack == 'military') && colony > 1"
-                      v-html="t(`rules.concepts.empireTracks.${empireTrack}.bonus.${colony}`,{botSuffix})"></td>
+                  <td v-if="(empireTrack == 'imperial' && colony > 0) || (empireTrack == 'scientific' || empireTrack == 'military') && colony > 1">
+                    <span v-html="t(`rules.concepts.empireTracks.${empireTrack}.bonus.${colony}`,{botSuffix})"></span>
+                    <button v-if="showPerformResearch && empireTrack == 'scientific' && colony == 2" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" @click="performCivilResearch">{{t('rules.action.research-civil.title')}}</button>
+                  </td>
                   <td v-else></td>
                   <td v-html="t(`rules.concepts.empireTracks.${empireTrack}.effect.${colony}`,{botSuffix})"></td>
                 </tr>
@@ -236,6 +238,7 @@ export default defineComponent({
     BehaviorYesNoButtons,
     ActionRulesCollapse
   },
+  emits: ['performCivilResearch'],
   setup() {
     const { t } = useI18n()
     return { t }
@@ -243,6 +246,10 @@ export default defineComponent({
   props: {
     bot: {
       type: Number,
+      required: false
+    },
+    showPerformResearch: {
+      type: Boolean,
       required: false
     }
   },
@@ -276,6 +283,9 @@ export default defineComponent({
     },
     resolveIconReferences(text: string) : string {
       return resolveIconReferences(text)
+    },
+    performCivilResearch() {
+      this.$emit('performCivilResearch')
     }
   },
   mounted() {

@@ -45,7 +45,7 @@ export default defineComponent({
     },
     botActionItem: {
       type: Object as PropType<BotActionItem>,
-      required: true
+      required: false
     },
     botActions: {
       type: BotActions,
