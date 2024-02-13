@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <span v-html="t('selectTechnology.selectValue')"></span><br/>
-    <select class="form-select mt-2 mb-3" v-model="technology">
+    <select class="form-select mt-2 mb-3 ms-2" v-model="technology">
       <option :value="undefined">{{t('selectTechnology.pleaseSelect')}}</option>
       <option v-for="item of technologies" :value="item" :key="item">{{item}}</option>
     </select>
