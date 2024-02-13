@@ -7,6 +7,9 @@
           <button class="nav-link active" :id="`tablink-important-concepts${botSuffix}`" data-bs-toggle="tab" :data-bs-target="`#tab-important-concepts${botSuffix}`" type="button" role="tab" :aria-controls="`tab-important-concepts${botSuffix}`" aria-selected="true">{{t('rules.concepts.important.title',{botSuffix})}}</button>
         </li>
         <li class="nav-item" role="presentation">
+          <button class="nav-link" :id="`tablink-empire-tracks${botSuffix}`" data-bs-toggle="tab" :data-bs-target="`#tab-empire-tracks${botSuffix}`" type="button" role="tab" :aria-controls="`tab-empire-tracks${botSuffix}`" aria-selected="true">{{t('rules.concepts.empireTracks.title',{botSuffix})}}</button>
+        </li>
+        <li class="nav-item" role="presentation">
           <button class="nav-link" :id="`tablink-behavior-victory${botSuffix}`" data-bs-toggle="tab" :data-bs-target="`#tab-behavior-victory${botSuffix}`" type="button" role="tab" :aria-controls="`tab-behavior-victory${botSuffix}`" aria-selected="false">{{t('rules.concepts.behavior.victory.title',{botSuffix})}}</button>
         </li>
         <li class="nav-item" role="presentation">
@@ -38,6 +41,33 @@
           <h6>{{t('rules.concepts.important.damageAllocation.title',{botSuffix})}}</h6>
           <p v-html="resolveIconReferences(t('rules.concepts.important.damageAllocation.sufferingDamage',{botSuffix}))"></p>
           <p v-html="resolveIconReferences(t('rules.concepts.important.damageAllocation.assignDamage',{botSuffix}))"></p>
+        </div>
+
+        <!-- Empire tracks -->
+        <div class="tab-pane" :id="`tab-empire-tracks${botSuffix}`" role="tabpanel" :aria-labelledby="`tablink-empire-tracks${botSuffix}`" tabindex="0">
+          <template v-for="empireTrack of empireTracks" :key="empireTrack">
+            <h5>{{t(`rules.concepts.empireTracks.${empireTrack}.title`,{botSuffix})}}</h5>
+            <table class="table table-striped table-bordered table-light">
+              <thead>
+                <tr>
+                  <th scope="col">{{t('rules.concepts.empireTracks.header.colony',{botSuffix})}}</th>
+                  <th scope="col">{{t('rules.concepts.empireTracks.header.bonus',{botSuffix})}}</th>
+                  <th scope="col">{{t('rules.concepts.empireTracks.header.effect',{botSuffix})}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(_index,colony) of 4" :key="colony">
+                  <td v-html="t(`rules.concepts.empireTracks.colony.${colony}`,{botSuffix})"></td>
+                  <td v-if="(empireTrack == 'imperial' && colony > 0) || (empireTrack == 'scientific' || empireTrack == 'military') && colony > 1">
+                    <span v-html="t(`rules.concepts.empireTracks.${empireTrack}.bonus.${colony}`,{botSuffix})"></span>
+                    <button v-if="showPerformResearch && empireTrack == 'scientific' && colony == 2" class="btn btn-sm btn-secondary" data-bs-dismiss="modal" @click="performCivilResearch">{{t('rules.action.research-civil.title')}}</button>
+                  </td>
+                  <td v-else></td>
+                  <td v-html="t(`rules.concepts.empireTracks.${empireTrack}.effect.${colony}`,{botSuffix})"></td>
+                </tr>
+              </tbody>
+            </table>
+          </template>
         </div>
 
         <!-- Victory Behavior -->
@@ -208,6 +238,7 @@ export default defineComponent({
     BehaviorYesNoButtons,
     ActionRulesCollapse
   },
+  emits: ['performCivilResearch'],
   setup() {
     const { t } = useI18n()
     return { t }
@@ -215,6 +246,10 @@ export default defineComponent({
   props: {
     bot: {
       type: Number,
+      required: false
+    },
+    showPerformResearch: {
+      type: Boolean,
       required: false
     }
   },
@@ -229,6 +264,14 @@ export default defineComponent({
   computed: {
     botSuffix() : string {
       return this.bot ? `-${this.bot}` : ''
+    },
+    empireTracks() : string[] {
+      return [
+        'imperial',
+        'productive',
+        'scientific',
+        'military'
+      ]
     }
   },
   methods: {
@@ -240,6 +283,9 @@ export default defineComponent({
     },
     resolveIconReferences(text: string) : string {
       return resolveIconReferences(text)
+    },
+    performCivilResearch() {
+      this.$emit('performCivilResearch')
     }
   },
   mounted() {
@@ -257,5 +303,8 @@ export default defineComponent({
   float: left;
   margin-right: 0.25rem;
   height: 2rem;
+}
+table th {
+  font-size: small;
 }
 </style>

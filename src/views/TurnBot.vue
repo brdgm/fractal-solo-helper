@@ -1,5 +1,5 @@
 <template>
-  <SideBar :navigationState="navigationState"/>
+  <SideBar :navigationState="navigationState" @technology="(_bot,technology?,action?) => selectTechnology(technology,action)"/>
   <ContentLeftOfSidebar>
     <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t(`faction.${botFaction}.title`)}}</h1>
 
@@ -39,7 +39,7 @@ export default defineComponent({
     DebugInfo,
     BotActionSelection,
     ContentLeftOfSidebar
-},
+  },
   setup() {
     const { t } = useI18n()
     const route = useRoute()

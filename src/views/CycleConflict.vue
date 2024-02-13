@@ -1,5 +1,5 @@
 <template>
-  <SideBar :navigationState="navigationState"/>
+  <SideBar :navigationState="navigationState" @technology="selectTechnology"/>
   <ContentLeftOfSidebar>
     <h1>{{t('cycleConflict.title')}}</h1>
 
@@ -32,6 +32,8 @@ import ConflictInstructions from '@/components/cycle/ConflictInstructions.vue'
 import Phase from '@/services/enum/Phase'
 import FactionActionPhaseAbilities from '@/components/cycle/FactionActionPhaseAbilities.vue'
 import ContentLeftOfSidebar from '@/components/cycle/ContentLeftOfSidebar.vue'
+import Technology from '@/services/enum/Technology'
+import Action from '@/services/enum/Action'
 
 export default defineComponent({
   name: 'CycleConflict',
@@ -52,6 +54,12 @@ export default defineComponent({
     const routeCalculator = new RouteCalculator({cycle})
     return { t, state, cycle, routeCalculator, navigationState }
   },
+  data() {
+    return {
+      selectedTechnology: [] as (Technology|undefined)[],
+      technologyAction: [] as (Action|undefined)[]
+    }
+  },
   computed: {
     backButtonRouteTo() : string {
       return this.routeCalculator.getLastTurnRouteTo(this.state)
@@ -62,6 +70,19 @@ export default defineComponent({
   },
   methods: {
     next() : void {
+      // check for selected technologies from colonization bonus
+      for (const botActions of this.navigationState.botsActions) {
+        const selectedTechnology = this.selectedTechnology[botActions.bot-1]
+        const technologyAction = this.technologyAction[botActions.bot-1]
+        if (selectedTechnology && technologyAction) {
+          if (technologyAction == Action.RESEARCH_CIVIL) {
+            botActions.technologies.addCivil(selectedTechnology)
+          }
+          else {
+            botActions.technologies.addMilitary(selectedTechnology)
+          }
+        }
+      }
       // store conflict phase
       const conflictPhase : ConflictPhase = {
         cycle: this.cycle,
@@ -69,6 +90,10 @@ export default defineComponent({
       }
       this.state.storeCycleConflictPhase(conflictPhase)
       this.$router.push(`/cycle/${this.cycle}/end`)
+    },
+    selectTechnology(bot:number, technology?: Technology, action?: Action) {
+      this.selectedTechnology[bot-1] = technology
+      this.technologyAction[bot-1] = action
     }
   }
 })

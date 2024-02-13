@@ -48,6 +48,9 @@ export default defineComponent({
     ActionResearchCivil,
     ActionResearchMilitary
   },
+  emits: {
+    technology: (_technology?: Technology, _technologyAction?: Action) => true,  // eslint-disable-line @typescript-eslint/no-unused-vars,
+  },
   setup() {
     const { t } = useI18n()
     const state = useStateStore()
