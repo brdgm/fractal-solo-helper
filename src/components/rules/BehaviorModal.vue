@@ -56,7 +56,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(,colony) of 4" :key="colony">
+                <tr v-for="(_index,colony) of 4" :key="colony">
                   <td v-html="t(`rules.concepts.empireTracks.colony.${colony}`,{botSuffix})"></td>
                   <td v-html="t(`rules.concepts.empireTracks.${empireTrack}.bonus.${colony}`,{botSuffix})"></td>
                   <td v-html="t(`rules.concepts.empireTracks.${empireTrack}.effect.${colony}`,{botSuffix})"></td>
