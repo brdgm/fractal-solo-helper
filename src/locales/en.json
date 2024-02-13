@@ -190,7 +190,6 @@
         "imperial": {
           "title": "Imperial track",
           "bonus": {
-            "0": "",
             "1": "Gain 1 influence.",
             "2": "Gain 2 influence.",
             "3": "Draw artifacts until you find 1 that is valid."
@@ -204,12 +203,6 @@
         },
         "productive": {
           "title": "Productive track",
-          "bonus": {
-            "0": "",
-            "1": "",
-            "2": "",
-            "3": ""
-          },
           "effect": {
             "0": "No effect.",
             "1": "Gain 1 AI protocol card (via <i>AI Protocol</i> button in the sidebar).",
@@ -220,8 +213,6 @@
         "scientific": {
           "title": "Scientific track",
           "bonus": {
-            "0": "",
-            "1": "",
             "2": "Immediately develop a civil technology.",
             "3": "Draw artifacts until you find 1 that is valid."
           },
@@ -235,8 +226,6 @@
         "military": {
           "title": "Military track",
           "bonus": {
-            "0": "",
-            "1": "",
             "2": "Add 1 AI elite tactic to the deck (replace the non-elite one) and reshuffle the deck.",
             "3": "Add 1 AI elite tactic to the deck (replace the non-elite one) and reshuffle the deck."
           },
