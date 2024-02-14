@@ -7,12 +7,16 @@ import App from './App.vue'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap'
+import IconGlobResolver from './util/IconGlobResolver'
 
 const pinia = createPinia()
-.use(piniaPluginPersistedState)
+  .use(piniaPluginPersistedState)
+
+const resolver = await IconGlobResolver.createResolved()
 
 createApp(App)
   .use(pinia)
   .use(router)
   .use(i18n)
+  .provide('iconGlobResolver', resolver)
   .mount('#app')
