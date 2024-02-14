@@ -12,11 +12,11 @@ import IconGlobResolver from './util/IconGlobResolver'
 const pinia = createPinia()
   .use(piniaPluginPersistedState)
 
-const resolver = await IconGlobResolver.createResolved()
-
-createApp(App)
-  .use(pinia)
-  .use(router)
-  .use(i18n)
-  .provide('iconGlobResolver', resolver)
-  .mount('#app')
+IconGlobResolver.createResolved().then(resolver => {
+  createApp(App)
+    .use(pinia)
+    .use(router)
+    .use(i18n)
+    .provide('iconGlobResolver', resolver)
+    .mount('#app')  
+})
