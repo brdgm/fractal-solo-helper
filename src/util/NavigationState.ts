@@ -21,7 +21,7 @@ export default class NavigationState {
   readonly botActions? : BotActions
   readonly botsActionReadonly
 
-  public constructor(route : RouteLocation, state : State) {    
+  public constructor(route : RouteLocation, state : State) {
     this.cycle = getIntRouteParam(route, 'cycle')
     this.turn = getIntRouteParam(route, 'turn')
     this.player = getIntRouteParam(route, 'player')
