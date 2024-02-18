@@ -48,7 +48,11 @@
     <ul>
       <li v-html="t('rules.conflict.damage.rightSide')"></li>
       <li v-html="t('rules.conflict.damage.order')"></li>
-      <li v-html="t('rules.conflict.damage.damageAllocation')"></li>
+    </ul>
+    <h6>{{t('rules.concepts.important.damageAllocation.title')}}</h6>
+    <ul>
+      <li v-html="resolveIconReferences(t('rules.concepts.important.damageAllocation.sufferingDamage'))"></li>
+      <li v-html="resolveIconReferences(t('rules.concepts.important.damageAllocation.assignDamage'))"></li>
     </ul>
     <h6>{{t('rules.conflict.techUpgrade.title')}}</h6>
     <ul>

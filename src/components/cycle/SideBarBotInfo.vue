@@ -18,7 +18,7 @@
           <div class="prioritiesLabel">{{t('sideBar.priority.player')}}</div>
           <AppIcon v-if="botActions.playerPriorityWatcherToken" name="watcher-token" class="icon"/>
           <template v-else>
-            <PlayerColorDisplay v-for="playerColor of botActions.playerPriority" :key="playerColor" :playerColor="playerColor" :sizeRem="1.75" class="icon playerColor"/>
+            <PlayerColorDisplay v-for="playerColor of playerPriority" :key="playerColor" :playerColor="playerColor" :sizeRem="1.75" class="icon playerColor"/>
           </template>
         </div>
         <div>
@@ -103,6 +103,12 @@ export default defineComponent({
     },
     botPlayerColor() : PlayerColor {
       return getPlayerColor(this.playerSetup, 0, this.botActions.bot)
+    },
+    playerPriority() : PlayerColor[]|undefined {
+      // filter out player colors not in play      
+      return (this.botActions.playerPriority ?? [])
+        .filter(playerColor => this.playerSetup.playerColors.slice(0,
+          this.playerSetup.playerCount+this.playerSetup.botCount).includes(playerColor))
     },
     cardDeck() : CardDeck {
       return this.botActions.cardDeck

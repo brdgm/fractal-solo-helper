@@ -118,12 +118,14 @@
   "protocolCardsModal": {
     "title": "AI Protocol",
     "occurs": "Occurs when:",
+    "chooseReason": "Select reason:",
     "numberCards": "Number of cards:",
     "card": "{count} protocol card | {count} protocol cards",
     "gainCard": {
       "title": "Gain protocol card",
-      "productiveColony": "A productive colony token is removed from the empire board (1 for the first two tokens, 2 for the last productive token)",
-      "influence": "The first time the influence reaches 6 or 10"
+      "productive-colony": "A productive colony token is removed from the empire board (1 for the first two tokens, 2 for the last productive token)",
+      "influence-6": "The first time the influence reaches 6",
+      "influence-10": "The first time the influence reaches 10"
     },
     "loseCard": {
       "title": "Lose protocol card",
@@ -416,8 +418,7 @@
       "damage": {
         "title": "Damage",
         "rightSide": "The icons on the right side of the arrow indicate the damage. When the composition is defensive, these are shown below the red icons.",
-        "order": "The damage inflicted is resolved from left to right.",
-        "damageAllocation": "The Automata’s damage allocation is explained in the <a href='#rulesBehaviorModal-1' data-bs-toggle='modal'>important concepts</a>."
+        "order": "The damage inflicted is resolved from left to right."
       },
       "techUpgrade": {
         "title": "Tech upgrade",

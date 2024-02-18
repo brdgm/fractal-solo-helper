@@ -1,5 +1,6 @@
 import CardDeck from '@/services/CardDeck'
 import DifficultyLevel from '@/services/enum/DifficultyLevel'
+import GainProtocolCardReason from '@/services/enum/GainProtocolCardReason'
 import { expect } from 'chai'
 
 describe('services/CardDeck', () => {
@@ -83,14 +84,16 @@ describe('services/CardDeck', () => {
   it('gain-lose', () => {
     const cardDeck = CardDeck.new(DifficultyLevel.NORMAL)
     
-    cardDeck.gainCards(2)
+    cardDeck.gainCards(GainProtocolCardReason.PRODUCTIVE_COLONY, 2)
+    cardDeck.gainCards(GainProtocolCardReason.INFLUENCE_6, 1)
+    expect(cardDeck.gainProtocolCardReasons).to.eql([GainProtocolCardReason.INFLUENCE_6])
 
-    expect(cardDeck.reserve.length, 'reserve size').to.eq(4)
-    expect(cardDeck.discard.length, 'discard size').to.eq(2)
-    expect(cardDeck.canGainCardCount, 'can gain').to.eq(4)
-    expect(cardDeck.canLoseCardCount, 'can lose').to.eq(2)
+    expect(cardDeck.reserve.length, 'reserve size').to.eq(3)
+    expect(cardDeck.discard.length, 'discard size').to.eq(3)
+    expect(cardDeck.canGainCardCount, 'can gain').to.eq(3)
+    expect(cardDeck.canLoseCardCount, 'can lose').to.eq(3)
 
-    cardDeck.loseCards(1)
+    cardDeck.loseCards(GainProtocolCardReason.PRODUCTIVE_COLONY, 2)
 
     expect(cardDeck.reserve.length, 'reserve size').to.eq(5)
     expect(cardDeck.discard.length, 'discard size').to.eq(1)
