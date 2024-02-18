@@ -63,7 +63,7 @@ const factionConfigs : FactionConfig[] = [
     startingUnits: [UnitType.INFANTRY,UnitType.INFANTRY,UnitType.LIGHTSHIP,UnitType.LIGHTSHIP],
     generalAbility: [Phase.CONFLICT],
     civilTechnologyAbility: {
-      3: [Action.RESEARCH_CIVIL,Action.RESEARCH_MILITARY,Phase.PENDULUM_1],
+      3: [Action.ADVANCE,Action.MOVEMENT_SINGLE,Phase.PENDULUM_1],
       6: [Action.RESEARCH_CIVIL,Action.RESEARCH_MILITARY],
       9: [Action.MOVEMENT_SINGLE,Phase.PENDULUM_1]
     }
