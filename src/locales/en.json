@@ -416,8 +416,7 @@
       "damage": {
         "title": "Damage",
         "rightSide": "The icons on the right side of the arrow indicate the damage. When the composition is defensive, these are shown below the red icons.",
-        "order": "The damage inflicted is resolved from left to right.",
-        "damageAllocation": "The Automata’s damage allocation is explained in the <a href='#rulesBehaviorModal-1' data-bs-toggle='modal'>important concepts</a>."
+        "order": "The damage inflicted is resolved from left to right."
       },
       "techUpgrade": {
         "title": "Tech upgrade",
