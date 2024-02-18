@@ -69,7 +69,7 @@ describe('util/getBotsActions', () => {
 
 function dck(active: number|undefined, deck: number[], discard: number[], action : number = 10) : CardDeckPersistence {
   // put action number as "marker" in reserve, this is not a card number
-  return {active, deck, discard, reserve:[action]}
+  return {active, deck, discard, reserve:[action], gainProtocolCardReasons:[]}
 }
 
 function botAct(cardDeck: CardDeckPersistence) : BotActionsPersistence {

@@ -4,13 +4,25 @@
     <template #body>
       <div class="option" v-if="!showLoseCard && !showReturnCard">
         <h6 v-html="t('protocolCardsModal.gainCard.title')"></h6>
-        {{t('protocolCardsModal.occurs')}}
-        <ul>
-          <li v-html="t('protocolCardsModal.gainCard.productiveColony')"></li>
-          <li v-html="t('protocolCardsModal.gainCard.influence')"></li>
-        </ul>
+        <div v-if="showGainCard" class="mb-3">
+          <b>{{t('protocolCardsModal.chooseReason')}}</b>
+          <div class="form-check" v-for="reason in gainProtocolCardReasons" :key="reason" >
+            <label class="form-check-label">
+              <input class="form-check-input" type="radio" :value="reason" v-model="gainProtocolCardReason" name="gainProtocolCardReason"
+                :disabled="!isValidGainProtocolCardReason(reason)">
+              <span v-html="t(`protocolCardsModal.gainCard.${reason}`)" :class="{invalidReason:!isValidGainProtocolCardReason(reason)}"></span>
+            </label>
+          </div>
+        </div>
+        <template v-else>
+          {{t('protocolCardsModal.occurs')}}
+          <ul>
+            <li v-for="reason in gainProtocolCardReasons" :key="reason" v-html="t(`protocolCardsModal.gainCard.${reason}`)"
+              :class="{invalidReason:!isValidGainProtocolCardReason(reason)}"></li>
+          </ul>
+        </template>
         <button v-if="!showGainCard" :disabled="cardDeck.canGainCardCount == 0"
-            class="btn btn-primary" @click="showGainCard=true">{{t('protocolCardsModal.gainCard.title')}}</button>
+            class="btn btn-primary" @click="setShowGainCard">{{t('protocolCardsModal.gainCard.title')}}</button>
       </div>
       <div class="option" v-if="!showGainCard && !showReturnCard">
         <h6 v-html="t('protocolCardsModal.loseCard.title')"></h6>
@@ -39,7 +51,7 @@
     </template>
     <template #footer>
       <template v-if="showGainCard">
-        <button class="btn btn-primary" data-bs-dismiss="modal" @click="gainCard()">{{t('action.ok')}}</button>
+        <button class="btn btn-primary" data-bs-dismiss="modal" @click="gainCard()" :disabled="!canGainProtocolCards">{{t('action.ok')}}</button>
         <button class="btn btn-secondary" data-bs-dismiss="modal" @click="reset()">{{t('action.cancel')}}</button>
       </template>
       <template v-else-if="showLoseCard">
@@ -66,6 +78,7 @@ import getBotFaction from '@/util/getBotFaction'
 import Faction from '@/services/enum/Faction'
 import { useStateStore } from '@/store/state'
 import CardDeck from '@/services/CardDeck'
+import GainProtocolCardReason from '@/services/enum/GainProtocolCardReason'
 
 export default defineComponent({
   name: 'ProtocolCardsModal',
@@ -87,6 +100,7 @@ export default defineComponent({
   },
   data() {
     return {
+      gainProtocolCardReason: undefined as GainProtocolCardReason|undefined,
       showGainCard: false,
       showLoseCard: false,
       showReturnCard: false,
@@ -96,6 +110,9 @@ export default defineComponent({
   computed: {
     modalTitle() : string {
       return this.t(`faction.${this.botFaction}.title`) + ': ' + this.t('protocolCardsModal.title')
+    },
+    gainProtocolCardReasons() : GainProtocolCardReason[] {
+      return Object.values(GainProtocolCardReason)
     },
     botFaction() : Faction {
       return getBotFaction(this.playerSetup, this.botActions.bot)
@@ -108,7 +125,8 @@ export default defineComponent({
     },
     maxNumberCards() : number {
       if (this.showGainCard) {
-        return Math.min(2, this.cardDeck.canGainCardCount)
+        const maxGainCards = this.gainProtocolCardReason == GainProtocolCardReason.PRODUCTIVE_COLONY ? 2 : 1
+        return Math.min(maxGainCards, this.cardDeck.canGainCardCount)
       }
       else if (this.showLoseCard) {
         return Math.min(2, this.cardDeck.canLoseCardCount)
@@ -120,6 +138,9 @@ export default defineComponent({
     },
     returnCardEnabled() : boolean {
       return this.botFaction == Faction.VAX_117
+    },
+    canGainProtocolCards() : boolean {
+      return this.gainProtocolCardReason != undefined && (this.numberCards == 1 || this.gainProtocolCardReason == GainProtocolCardReason.PRODUCTIVE_COLONY)
     }
   },
   methods: {
@@ -127,14 +148,17 @@ export default defineComponent({
       this.showGainCard = false
       this.showLoseCard = false
       this.showReturnCard = false
+      this.gainProtocolCardReason = undefined
     },
     gainCard() : void {
-      this.cardDeck.gainCards(this.numberCards)
-      this.$emit('deckChange')
-      this.reset()
+      if (this.gainProtocolCardReason) {
+        this.cardDeck.gainCards(this.gainProtocolCardReason, this.numberCards)
+        this.$emit('deckChange')
+        this.reset()
+      }
     },
     loseCard() : void {
-      this.cardDeck.loseCards(this.numberCards)
+      this.cardDeck.loseCards(GainProtocolCardReason.PRODUCTIVE_COLONY, this.numberCards)
       this.$emit('deckChange')
       this.reset()
     },
@@ -142,6 +166,15 @@ export default defineComponent({
       this.cardDeck.returnCards(this.numberCards)
       this.$emit('deckChange')
       this.reset()
+    },
+    setShowGainCard() : void {
+      this.showGainCard = true
+      if (!this.isValidGainProtocolCardReason(GainProtocolCardReason.INFLUENCE_6) && !this.isValidGainProtocolCardReason(GainProtocolCardReason.INFLUENCE_10)) {
+        this.gainProtocolCardReason = GainProtocolCardReason.PRODUCTIVE_COLONY
+      }
+    },
+    isValidGainProtocolCardReason(reason: GainProtocolCardReason) : boolean {
+      return !this.cardDeck.gainProtocolCardReasons.includes(reason)
     }
   }
 })
@@ -152,5 +185,8 @@ export default defineComponent({
   border-top: 1px solid lightgray;
   margin-top: 10px;
   padding-top: 10px;
+}
+.invalidReason {
+  text-decoration: line-through;
 }
 </style>

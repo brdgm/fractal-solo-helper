@@ -118,12 +118,14 @@
   "protocolCardsModal": {
     "title": "AI Protocol",
     "occurs": "Occurs when:",
+    "chooseReason": "Select reason:",
     "numberCards": "Number of cards:",
     "card": "{count} protocol card | {count} protocol cards",
     "gainCard": {
       "title": "Gain protocol card",
-      "productiveColony": "A productive colony token is removed from the empire board (1 for the first two tokens, 2 for the last productive token)",
-      "influence": "The first time the influence reaches 6 or 10"
+      "productive-colony": "A productive colony token is removed from the empire board (1 for the first two tokens, 2 for the last productive token)",
+      "influence-6": "The first time the influence reaches 6",
+      "influence-10": "The first time the influence reaches 10"
     },
     "loseCard": {
       "title": "Lose protocol card",

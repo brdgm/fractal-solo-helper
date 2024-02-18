@@ -3,6 +3,7 @@ import Card from './Card'
 import Cards from './Cards'
 import DifficultyLevel from './enum/DifficultyLevel'
 import { CardDeckPersistence } from '@/store/state'
+import GainProtocolCardReason from './enum/GainProtocolCardReason'
 
 /**
  * Deck of AI protocol cards with draw pile, discard pile and reserve.
@@ -13,12 +14,15 @@ export default class CardDeck {
   private _deck : Card[]
   private _reserve : Card[]
   private _discard : Card[]
+  private _gainProtocolCardReasons: GainProtocolCardReason[]
 
-  private constructor(active: Card|undefined, deck : Card[], reserve : Card[], discard : Card[]) {
+  private constructor(active: Card|undefined, deck : Card[], reserve : Card[], discard : Card[],
+      gainProtocolCardReasons: GainProtocolCardReason[]) {
     this._active = active
     this._deck = deck
     this._reserve = reserve
     this._discard = discard
+    this._gainProtocolCardReasons = gainProtocolCardReasons
   }
 
   public get deck() : readonly Card[] {
@@ -31,6 +35,10 @@ export default class CardDeck {
 
   public get discard() : readonly Card[] {
     return this._discard
+  }
+
+  public get gainProtocolCardReasons() : readonly GainProtocolCardReason[] {
+    return this._gainProtocolCardReasons
   }
 
   /**
@@ -55,7 +63,8 @@ export default class CardDeck {
     const persistence : CardDeckPersistence = {
       deck: this._deck.map(card => card.id),
       reserve: this._reserve.map(card => card.id),
-      discard: this._discard.map(card => card.id)      
+      discard: this._discard.map(card => card.id),
+      gainProtocolCardReasons: [...this._gainProtocolCardReasons]
     }
     if (this._active) {
       persistence.active = this._active.id
@@ -127,9 +136,10 @@ export default class CardDeck {
 
   /**
    * Gain additional cards from reserve.
+   * @param reason Reason for gaining cards
    * @param count Number of cards
    */
-  public gainCards(count: number) : void {
+  public gainCards(reason: GainProtocolCardReason, count: number) : void {
     if (count > this.canGainCardCount) {
       throw new Error(`Unable to gain ${count} cards, only ${this.canGainCardCount} available.`)
     }
@@ -137,17 +147,24 @@ export default class CardDeck {
       const reserveCard = this._reserve.shift()
       if (reserveCard) {
         this._discard.unshift(reserveCard)
+        if (reason != GainProtocolCardReason.PRODUCTIVE_COLONY) {
+          this._gainProtocolCardReasons.push(reason)
+        }
       }
-    }	
+    }
   }
 
   /**
    * Lose cards to reserve. Shuffles reserve afterwards.
+   * @param reason Reason for losing cards
    * @param count Number of cards
    */
-  public loseCards(count: number) : void {
+  public loseCards(reason: GainProtocolCardReason, count: number) : void {
     if (count > this.canLoseCardCount) {
       throw new Error(`Unable to lose ${count} cards, only ${this.canLoseCardCount} can be lost.`)
+    }
+    if (reason != GainProtocolCardReason.PRODUCTIVE_COLONY) {
+      throw new Error(`Unable to lose cards for reason ${reason}.`)
     }
     for (let i=0; i < count; i++) {
       const discardCard = this._discard.shift()
@@ -201,7 +218,7 @@ export default class CardDeck {
       }
     }
 
-    const cardDeck = new CardDeck(undefined, deck, reserve, [])
+    const cardDeck = new CardDeck(undefined, deck, reserve, [], [])
     // discard 1st card
     cardDeck.draw()
     return cardDeck
@@ -215,7 +232,8 @@ export default class CardDeck {
       persistence.active ? Cards.get(persistence.active) : undefined,
       persistence.deck.map(Cards.get),
       persistence.reserve.map(Cards.get),
-      persistence.discard.map(Cards.get)
+      persistence.discard.map(Cards.get),
+      [...persistence.gainProtocolCardReasons ?? []]
     )
   }
 

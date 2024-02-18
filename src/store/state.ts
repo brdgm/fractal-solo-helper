@@ -4,6 +4,7 @@ import DifficultyLevel from '@/services/enum/DifficultyLevel'
 import Faction from '@/services/enum/Faction'
 import PlayerColor from '@/services/enum/PlayerColor'
 import Technology from '@/services/enum/Technology'
+import GainProtocolCardReason from '@/services/enum/GainProtocolCardReason'
 
 export const useStateStore = defineStore(`${name}.state`, {
   state: () => {
@@ -98,6 +99,7 @@ export interface CardDeckPersistence {
   deck: number[]
   reserve: number[]
   discard: number[]
+  gainProtocolCardReasons?: GainProtocolCardReason[]
 }
 export interface TechnologiesPersistence {
   civil: Technology[]

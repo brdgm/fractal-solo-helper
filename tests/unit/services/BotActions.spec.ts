@@ -106,7 +106,7 @@ describe('services/BotActions', () => {
   })
 
   it('persistence', () => {
-    const cardDeck : CardDeckPersistence = {deck:[6], discard:[2], reserve:[]}
+    const cardDeck : CardDeckPersistence = {deck:[6], discard:[2], reserve:[], gainProtocolCardReasons:[]}
     const technologies : TechnologiesPersistence = {civil:[Technology.LEVEL_2,Technology.LEVEL_3],military:[Technology.LEVEL_5]}
     const botActions = BotActions.fromPersistence(1, {cardDeck, technologies})
 
