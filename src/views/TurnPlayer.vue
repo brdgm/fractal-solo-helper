@@ -1,5 +1,5 @@
 <template>
-  <SideBar :navigationState="navigationState"/>
+  <SideBar :navigationState="navigationState" @technology="selectTechnology"/>
   <ContentLeftOfSidebar>
     <h1><PlayerColorDisplay :playerColor="playerColor" class="color"/> {{t('player.human', {player}, playerCount)}}</h1>
 
@@ -29,6 +29,8 @@ import PlayerColorDisplay from '@/components/structure/PlayerColorDisplay.vue'
 import SideBar from '@/components/cycle/SideBar.vue'
 import DebugInfo from '@/components/cycle/DebugInfo.vue'
 import ContentLeftOfSidebar from '@/components/cycle/ContentLeftOfSidebar.vue'
+import Technology from '@/services/enum/Technology'
+import Action from '@/services/enum/Action'
 
 export default defineComponent({
   name: 'TurnPlayer',
@@ -50,6 +52,12 @@ export default defineComponent({
     return { t, state, turn, player, stateIndex,
         playerCount, playerColor, cycle, routeCalculator, navigationState }
   },
+  data() {
+    return {
+      selectedTechnology: [] as (Technology|undefined)[],
+      technologyAction: [] as (Action|undefined)[]
+    }
+  },
   computed: {
     backButtonRouteTo() : string {
       return this.routeCalculator.getBackRouteTo(this.state)
@@ -57,6 +65,19 @@ export default defineComponent({
   },
   methods: {
     next(pass : boolean) : void {
+      // check for selected technologies from colonization bonus
+      for (const botActions of this.navigationState.botsActions) {
+        const selectedTechnology = this.selectedTechnology[botActions.bot-1]
+        const technologyAction = this.technologyAction[botActions.bot-1]
+        if (selectedTechnology && technologyAction) {
+          if (technologyAction == Action.RESEARCH_CIVIL) {
+            botActions.technologies.addCivil(selectedTechnology)
+          }
+          else {
+            botActions.technologies.addMilitary(selectedTechnology)
+          }
+        }
+      }
       // store turn
       const turn : Turn = {
         stateIndex: this.stateIndex,
@@ -70,6 +91,10 @@ export default defineComponent({
       }
       this.state.storeTurn(turn)
       this.$router.push(this.routeCalculator.getNextRouteTo(this.state))
+    },
+    selectTechnology(bot:number, technology?: Technology, action?: Action) {
+      this.selectedTechnology[bot-1] = technology
+      this.technologyAction[bot-1] = action
     }
   }
 })
