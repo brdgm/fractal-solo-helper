@@ -5,6 +5,7 @@ import Faction from '@/services/enum/Faction'
 import PlayerColor from '@/services/enum/PlayerColor'
 import Technology from '@/services/enum/Technology'
 import GainProtocolCardReason from '@/services/enum/GainProtocolCardReason'
+import CampaignOption from '@/services/enum/CampaignOption'
 
 export const useStateStore = defineStore(`${name}.state`, {
   state: () => {
@@ -60,6 +61,7 @@ export interface State {
 export interface Setup {
   playerSetup: PlayerSetup
   initialBotCardDecks?: CardDeckPersistence[]
+  campaignOptions?: CampaignOption[]
   debugMode?: boolean
 }
 export interface PlayerSetup {
