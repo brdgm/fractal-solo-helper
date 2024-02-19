@@ -25,7 +25,7 @@ const factionConfigs : FactionConfig[] = [
     faction: Faction.DELVERAR,
     startingColony: ColonyType.SCIENTIFIC,
     startingUnits: [UnitType.INFANTRY,UnitType.INFANTRY,UnitType.LIGHTSHIP,UnitType.LIGHTSHIP],
-    generalAbility: [Action.ADVANCE,Action.MOVEMENT_SINGLE],
+    generalAbility: [Action.ADVANCE,Action.MOVEMENT_SINGLE,Phase.PENDULUM_1],
     generalAbilitySetup: true,
     civilTechnologyAbility: {
       3: [Action.COLONIZE],
