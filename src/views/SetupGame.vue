@@ -4,6 +4,7 @@
   <PlayersSetup/>
   <FactionSelection/>
   <DifficultyLevel/>
+  <CampaignSetup/>
 
   <RouterLink class="btn btn-primary btn-lg mt-4" to="/setupBot">
     {{t('action.next')}}
@@ -20,6 +21,7 @@ import { RouterLink } from 'vue-router'
 import PlayersSetup from '@/components/setup/PlayersSetup.vue'
 import FactionSelection from '@/components/setup/FactionSelection.vue'
 import DifficultyLevel from '@/components/setup/DifficultyLevel.vue'
+import CampaignSetup from '@/components/setup/CampaignSetup.vue'
 
 export default defineComponent({
   name: 'SetupGame',
@@ -28,7 +30,8 @@ export default defineComponent({
     RouterLink,
     PlayersSetup,
     FactionSelection,
-    DifficultyLevel
+    DifficultyLevel,
+    CampaignSetup
   },
   setup() {
     const { t } = useI18n()

@@ -23,6 +23,11 @@
     },
     "factionSelection": {
       "title": "Faction"
+    },
+    "campaign": {
+      "title": "Campaign (Experimental)",
+      "show": "Show",
+      "intro": "The Beyond the Void campaigns is not officially supported by the Automata (and this App). However, if you want to experiment with it, here is a subset of the Campaign options which directly affect the app. You can also use them without the campaign."
     }
   },
   "setupBot": {
@@ -45,7 +50,9 @@
       "taintedCivilization": "Tainted Civilization"
     },
     "factionSetupAbilities": "Faction setup:",
-    "importantInstructions": "If you are playing first time, read the <a href='#rulesBehaviorModal' data-bs-toggle='modal'>important concepts</a>. You can access this information later via the <i>AI Behavior</i> button in the sidebar."
+    "campaignOptions": "Campaign setup:",
+    "importantInstructions": "If you are playing first time, read the <a href='#rulesBehaviorModal' data-bs-toggle='modal'>important concepts</a>. You can access this information later via the <i>AI Behavior</i> button in the sidebar.",
+    "technologiesMissing": "Please select the civil or military starting technologies for the AI opponents."
   },
   "cycleIncome": {
     "title": "Income",
@@ -587,6 +594,23 @@
         "condition": "::research-token:: >= 4",
         "description": "Return 1 AI protocol from the discard pile to the deck, then add 1 elite card to the tactic deck.<br/>Remove 3 ::research-token::."
       }
+    }
+  },
+  "campaignOption": {
+    "forgotten-technology": {
+      "title": "Forgotten Technology/Scientific Breakthrough",
+      "description": "Free Research action on startup.",
+      "setup": "In reverse turn order, each player performs a free Research action. Then, flip all visible face-down technology cards face-up."
+    },
+    "ruins-of-empire": {
+      "title": "Ruins of the Empire",
+      "description": "Short Game - Play 1 age (2 cycles) and start with 1 additional productive colony.",
+      "setup": "In turn order, each player places 1 ::colony-type/productive:: on the nearest empty productive sector, then add 1 ::unit-type/infantry:: and 1 ::unit-type/lightship:: to that sector. The AI opponents gain an additional protocol card, this is managed by the app."
+    },
+    "fallen-galaxy": {
+      "title": "Fallen Galaxy",
+      "description": "Long Game - Play 3 ages (6 cycles) and extra objective and technologies.",
+      "setup": "Banish the cycle board and use the Age 3 cycle board. Place a random Age 3 objective card face-down near the other objective cards. Shuffle the Age 3 technologies and place the deck near the board."
     }
   },
   "difficultyLevel": {

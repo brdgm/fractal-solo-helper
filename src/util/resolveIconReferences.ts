@@ -26,7 +26,7 @@ export function resolveIconReferencesWithGlobResolver(text: string, iconGlobReso
 function buildIconTag(iconGlobResolver: IconGlobResolver|undefined, name: string, type?: string) : string {
   const url = buildIconUrl(iconGlobResolver, name, type)
   if (url) {
-    return `<img src="${url.toString()}" draggable="false" alt="" style="vertical-align:middle;height:1em;margin-top:-0.25rem;"/>`
+    return `<img src="${url.toString()}" draggable="false" alt="" style="vertical-align:middle;height:1.4rem;margin-top:-0.25rem;"/>`
   }
   else {
     return `<i>${type ? type + '/' : ''}${name}</i>`

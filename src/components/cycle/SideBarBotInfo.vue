@@ -105,10 +105,12 @@ export default defineComponent({
       return getPlayerColor(this.playerSetup, 0, this.botActions.bot)
     },
     playerPriority() : PlayerColor[]|undefined {
-      // filter out player colors not in play      
       return (this.botActions.playerPriority ?? [])
+        // filter out player color of the bot
+        .filter(playerColor => playerColor !== this.botPlayerColor)
+        // filter out player colors not in play      
         .filter(playerColor => this.playerSetup.playerColors.slice(0,
-          this.playerSetup.playerCount+this.playerSetup.botCount).includes(playerColor))
+            this.playerSetup.playerCount+this.playerSetup.botCount).includes(playerColor))
     },
     cardDeck() : CardDeck {
       return this.botActions.cardDeck

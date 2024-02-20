@@ -45,6 +45,29 @@
         </li>
       </ul>
     </li>
+    <li v-if="campaignOptions.length > 0">
+      <span v-html="t('setupBot.campaignOptions')"></span>
+      <ul>
+        <li v-for="campaignOption of campaignOptions" :key="campaignOption">
+          <b>{{t(`campaignOption.${campaignOption}.title`)}}</b>:
+          <span v-html="resolveIconReferences(t(`campaignOption.${campaignOption}.setup`))"></span>
+          <ul v-if="isCampaignOptionForgottenTechnology(campaignOption)">
+            <li v-for="bot of botCount" :key="bot">
+              <div>
+                <b>{{t(`faction.${getFaction(bot)}.title`)}}</b>:
+              </div>
+              <div class="form-check form-check-inline" v-for="researchAction of researchActions" :key="researchAction">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" :name="`researchAction${bot}`" v-model="technologyAction[bot-1]" :value="researchAction" @change="selectResearchAction(bot)">
+                  {{t(`rules.action.${researchAction}.title`)}}
+                </label>
+              </div>
+              <SelectTechnology @technology="(technology) => selectTechnology(bot, technology)"/>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 
   <p v-html="t('setupBot.importantInstructions')"></p>
@@ -67,18 +90,32 @@ import FactionConfigs from '@/services/FactionConfigs'
 import AppIcon from '../structure/AppIcon.vue'
 import BehaviorModal from '../rules/BehaviorModal.vue'
 import resolveIconReferences from '@/util/resolveIconReferences'
+import CampaignOption from '@/services/enum/CampaignOption'
+import SelectTechnology from '../cycle/SelectTechnology.vue'
+import Technology from '@/services/enum/Technology'
+import Action from '@/services/enum/Action'
 
 export default defineComponent({
   name: 'BotInstructions',
   components: {
     PlayerColorDisplay,
     AppIcon,
-    BehaviorModal
+    BehaviorModal,
+    SelectTechnology
+  },
+  emits: {
+    technology: (_bot: number, _technology?: Technology, _technologyAction?: Action) => true,  // eslint-disable-line @typescript-eslint/no-unused-vars,
   },
   setup() {
     const { t } = useI18n()
     const state = useStateStore()
     return { t, state }
+  },
+  data() {
+    return {
+      selectedTechnology: [] as (Technology|undefined)[],
+      technologyAction: [] as (Action|undefined)[]
+    }
   },
   computed: {
     playerCount() : number {
@@ -108,6 +145,13 @@ export default defineComponent({
         }
       }
       return result
+    },
+    campaignOptions() : CampaignOption[] {
+      return Object.values(CampaignOption)
+        .filter(option => this.state.setup.campaignOptions?.includes(option))
+    },
+    researchActions() : Action[] {
+      return [Action.RESEARCH_CIVIL, Action.RESEARCH_MILITARY]
     }
   },
   methods: {
@@ -122,6 +166,19 @@ export default defineComponent({
     },
     resolveIconReferences(text: string) : string {
       return resolveIconReferences(text)
+    },
+    isCampaignOptionForgottenTechnology(option : CampaignOption) : boolean {
+      return option === CampaignOption.FORGOTTEN_TECHNOLOGY
+    },
+    selectResearchAction(bot: number) : void {
+      this.emitTechnology(bot)
+    },
+    selectTechnology(bot: number, technology?: Technology) : void {
+      this.selectedTechnology[bot-1] = technology
+      this.emitTechnology(bot)
+    },
+    emitTechnology(bot: number) : void {
+      this.$emit('technology', bot, this.selectedTechnology[bot-1], this.technologyAction[bot-1])
     }
   }
 })
@@ -133,7 +190,7 @@ export default defineComponent({
   margin-right: 0.25rem;
 }
 .icon {
-  width: 1.5rem;
+  height: 1.4rem;
   margin-top: 0.25rem;
   margin-left: 0.25rem;
   margin-bottom: 0.25rem;

@@ -40,3 +40,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss" scoped>
+select {
+  max-width: 250px;
+}
+</style>

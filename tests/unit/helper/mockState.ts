@@ -1,7 +1,7 @@
 import PlayerColor from '@/services/enum/PlayerColor'
 import Faction from '@/services/enum/Faction'
 import DifficultyLevel from '@/services/enum/DifficultyLevel'
-import { CardDeckPersistence, Cycle, State } from '@/store/state'
+import { CardDeckPersistence, Cycle, State, TechnologiesPersistence } from '@/store/state'
 
 export default function (params?: MockStateParams) : State {  
   return {
@@ -15,7 +15,8 @@ export default function (params?: MockStateParams) : State {
         botFactions: params?.botFactions ?? [],
         botDifficultyLevels: params?.botDifficultyLevels ?? []
       },
-      initialBotCardDecks: params?.initialBotCardDecks
+      initialBotCardDecks: params?.initialBotCardDecks,
+      initialBotTechnologies: params?.initialBotTechnologies
     },
     cycles: params?.cycles ?? []
   }
@@ -29,4 +30,5 @@ export interface MockStateParams {
   botDifficultyLevels?: DifficultyLevel[]
   cycles?: Cycle[]
   initialBotCardDecks?: CardDeckPersistence[]
+  initialBotTechnologies?: TechnologiesPersistence[]
 }
