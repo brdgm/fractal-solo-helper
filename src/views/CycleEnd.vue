@@ -66,12 +66,12 @@ export default defineComponent({
       return getWatcherPlayer(this.state, this.cycle)
     },
     isLastCycle() : boolean {
-      return this.cycle == 4
+      return this.cycle == this.navigationState.cycleCount
     }
   },
   methods: {
     next() : void {
-      if (this.cycle == 2 || this.cycle == 4) {
+      if (this.cycle % 2 == 0) {
         this.$router.push(`/cycle/${this.cycle}/transition`)
       }
       else {

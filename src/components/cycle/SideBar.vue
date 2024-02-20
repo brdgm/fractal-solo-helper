@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar">
     <p>
-      {{t('sideBar.cycle')}} {{navigationState.cycle}} / 4<br/>
+      {{t('sideBar.cycle')}} {{navigationState.cycle}} / {{navigationState.cycleCount}}<br/>
       <template v-if="navigationState.turn > 0">{{t('sideBar.turn')}} {{navigationState.turn}}</template>
     </p>
     <SideBarBotInfo v-for="(botActions,index) of navigationState.botsActions" :key="index + deckUpdateCount*10"

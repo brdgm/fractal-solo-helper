@@ -59,7 +59,12 @@ export default defineComponent({
   computed: {
     backButtonRouteTo() : string {
       if (this.cycle > 1) {
-        return `/cycle/${this.cycle-1}/end`
+        if ((this.cycle-1) % 2 == 0) {
+          return `/cycle/${this.cycle-1}/transition`
+        }
+        else {
+          return `/cycle/${this.cycle-1}/end`
+        }
       }
       return ''
     }

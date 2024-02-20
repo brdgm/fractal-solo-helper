@@ -30,7 +30,7 @@ const factionConfigs : FactionConfig[] = [
     civilTechnologyAbility: {
       3: [Action.COLONIZE],
       6: [Action.RESEARCH_CIVIL,Action.RESEARCH_MILITARY],
-      9: [Phase.TRANSITION_2]
+      9: [Phase.TRANSITION_LAST]
     }
   },
   {
@@ -54,7 +54,7 @@ const factionConfigs : FactionConfig[] = [
     civilTechnologyAbility: {
       3: [Action.ADVANCE,Action.MOVEMENT_SINGLE,Phase.PENDULUM_1],
       6: [Action.RESEARCH_CIVIL,Action.RESEARCH_MILITARY],
-      9: [Phase.TRANSITION_2]
+      9: [Phase.TRANSITION_LAST]
     }
   },
   {
@@ -87,7 +87,7 @@ const factionConfigs : FactionConfig[] = [
     civilTechnologyAbility: {
       3: [Action.RESEARCH_CIVIL,Action.RESEARCH_MILITARY],
       6: [Action.RESEARCH_CIVIL,Action.RESEARCH_MILITARY],
-      9: [Phase.TRANSITION_2]
+      9: [Phase.TRANSITION_LAST]
     }
   }
 ]

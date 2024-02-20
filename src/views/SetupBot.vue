@@ -28,6 +28,7 @@ import CampaignOption from '@/services/enum/CampaignOption'
 import Technology from '@/services/enum/Technology'
 import Action from '@/services/enum/Action'
 import Technologies from '@/services/Technologies'
+import GainProtocolCardReason from '@/services/enum/GainProtocolCardReason'
 
 export default defineComponent({
   name: 'SetupBot',
@@ -49,6 +50,9 @@ export default defineComponent({
   computed: {
     isCampaignOptionForgottenTechnology() : boolean {
       return (this.state.setup.campaignOptions ?? []).includes(CampaignOption.FORGOTTEN_TECHNOLOGY)
+    },
+    isCampaignOptionRuinsOfEmpire() : boolean {
+      return (this.state.setup.campaignOptions ?? []).includes(CampaignOption.RUINS_OF_EMPIRE)
     },
     isTechnologiesSelected() : boolean {
       if (this.isCampaignOptionForgottenTechnology) {
@@ -74,7 +78,11 @@ export default defineComponent({
         const difficultyLevel = getBotDifficultyLevel(playerSetup, bot)
         const faction = getBotFaction(playerSetup, bot)
         const factionConfig = FactionConfigs.get(faction)
-        initialBotCardDecks.push(CardDeck.new(difficultyLevel, factionConfig.additionalProtocolCards))
+        const cardDeck = CardDeck.new(difficultyLevel, factionConfig.additionalProtocolCards)
+        if (this.isCampaignOptionRuinsOfEmpire) {
+          cardDeck.gainCards(GainProtocolCardReason.PRODUCTIVE_COLONY, 1)
+        }
+        initialBotCardDecks.push(cardDeck)
 
         // technologies
         const technologies = new Technologies()
