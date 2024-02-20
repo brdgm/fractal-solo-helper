@@ -50,7 +50,9 @@
       "taintedCivilization": "Tainted Civilization"
     },
     "factionSetupAbilities": "Faction setup:",
-    "importantInstructions": "If you are playing first time, read the <a href='#rulesBehaviorModal' data-bs-toggle='modal'>important concepts</a>. You can access this information later via the <i>AI Behavior</i> button in the sidebar."
+    "campaignOptions": "Campaign setup:",
+    "importantInstructions": "If you are playing first time, read the <a href='#rulesBehaviorModal' data-bs-toggle='modal'>important concepts</a>. You can access this information later via the <i>AI Behavior</i> button in the sidebar.",
+    "technologiesMissing": "Please select the civil or military starting technologies for the AI opponents."
   },
   "cycleIncome": {
     "title": "Income",
@@ -603,7 +605,7 @@
     "ruins-of-empire": {
       "title": "Ruins of the Empire",
       "description": "Short Game - Play 1 age (2 cycles) and start with 1 additional productive colony.",
-      "setup": "In turn order, each player places 1 ::colony-type/productive:: on the nearest empty productive sector, then adds 1 ::unit-type/infantry:: and 1 ::unit-type/lightship:: to that sector."
+      "setup": "In turn order, each player places 1 ::colony-type/productive:: on the nearest empty productive sector, then add 1 ::unit-type/infantry:: and 1 ::unit-type/lightship:: to that sector. The AI opponents gain an additional protocol card, this is managed by the app."
     },
     "fallen-galaxy": {
       "title": "Fallen Galaxy",

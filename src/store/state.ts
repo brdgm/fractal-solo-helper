@@ -28,6 +28,7 @@ export const useStateStore = defineStore(`${name}.state`, {
     resetGame() {
       this.cycles = []
       this.setup.initialBotCardDecks = undefined
+      this.setup.initialTechnologies = undefined
     },
     storeCycle(cycle : Cycle) {
       this.cycles = this.cycles.filter(item => item.cycle < cycle.cycle)
@@ -61,6 +62,7 @@ export interface State {
 export interface Setup {
   playerSetup: PlayerSetup
   initialBotCardDecks?: CardDeckPersistence[]
+  initialTechnologies?: TechnologiesPersistence[]
   campaignOptions?: CampaignOption[]
   debugMode?: boolean
 }
