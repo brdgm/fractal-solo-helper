@@ -92,7 +92,11 @@
     "title": "Transition",
     "scoreVictoryPoints": "During Age {age}, each condition on the objective card rewards {age} ::victory-point::.",
     "objectiveSpecialization": "If you fulfill the condition of an objective (at least) twice, gain 1 extra ::victory-point::.",
-    "botNoLimit": "The victory points of the AI opponents are not limited to 10."
+    "botNoLimit": "The victory points of an AI opponent is not limited to 10.",
+    "fallenGalaxy": {
+      "age2": "Check the win condition for Age 2 of the Age 3 objective card. If not fulfilled, follow the instructions and continue with Age 3.",
+      "age3": "Check the win condition for Age 3 of the Age 3 objective card."
+    }
   },
   "endOfGame": {
     "title": "End of Game",

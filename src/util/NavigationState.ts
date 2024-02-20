@@ -1,10 +1,11 @@
-import { State } from '@/store/state'
+import { Setup, State } from '@/store/state'
 import { RouteLocation } from 'vue-router'
 import getIntRouteParam from 'brdgm-commons/src/util/router/getIntRouteParam'
 import PlayerColor from '@/services/enum/PlayerColor'
 import getPlayerColor from './getPlayerColor'
 import BotActions from '@/services/BotActions'
 import getBotsActions from './getBotsActions'
+import CampaignOption from '@/services/enum/CampaignOption'
 
 export default class NavigationState {
 
@@ -17,6 +18,7 @@ export default class NavigationState {
   readonly playerCount : number
   readonly botCount : number
   readonly playerColor : PlayerColor
+  readonly cycleCount : number
   readonly botsActions : BotActions[]
   readonly botActions? : BotActions
   readonly botsActionReadonly
@@ -33,7 +35,8 @@ export default class NavigationState {
     this.playerCount = playerSetup.playerCount
     this.botCount = playerSetup.botCount
     this.playerColor = getPlayerColor(playerSetup, this.player, this.bot)
-    
+    this.cycleCount = getCycleCount(state.setup)
+
     this.botsActions = getBotsActions(state, this.cycle, this.stateIndex, isCheckConflictPhase(route))
     if (this.bot > 0 && this.turn > 0) {
       this.botActions = this.botsActions.find(item => item.bot == this.bot)
@@ -82,4 +85,15 @@ function isCycleEnd(route : RouteLocation) {
 }
 function isCycleTransition(route : RouteLocation) {
   return route.name == 'CycleTransition'
+}
+
+function getCycleCount(setup : Setup) : number {
+  const campaignOptions = setup.campaignOptions ?? []
+  if (campaignOptions.includes(CampaignOption.RUINS_OF_EMPIRE)) {
+    return 2
+  }
+  if (campaignOptions.includes(CampaignOption.FALLEN_GALAXY)) {
+    return 6
+  }
+  return 4
 }
