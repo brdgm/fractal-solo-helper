@@ -68,7 +68,7 @@ export default defineComponent({
       // prepare initial bot card decks and technologies
       const playerSetup = this.state.setup.playerSetup
       const initialBotCardDecks : CardDeck[] = []
-      const initialTechnologies : Technologies[] = []
+      const initialBotTechnologies : Technologies[] = []
       for (let bot=1; bot<=playerSetup.botCount; bot++) {
         // card deck
         const difficultyLevel = getBotDifficultyLevel(playerSetup, bot)
@@ -88,10 +88,10 @@ export default defineComponent({
             technologies.addMilitary(selectedTechnology)
           }
         }
-        initialTechnologies.push(technologies)
+        initialBotTechnologies.push(technologies)
       }
       this.state.setup.initialBotCardDecks = initialBotCardDecks.map(deck => deck.toPersistence())
-      this.state.setup.initialTechnologies = initialTechnologies.map(technologies => technologies.toPersistence())
+      this.state.setup.initialBotTechnologies = initialBotTechnologies.map(technologies => technologies.toPersistence())
 
       this.$router.push('/cycle/1/income')
     },
