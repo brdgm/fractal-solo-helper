@@ -5,6 +5,7 @@ import Faction from '@/services/enum/Faction'
 import PlayerColor from '@/services/enum/PlayerColor'
 import Technology from '@/services/enum/Technology'
 import GainProtocolCardReason from '@/services/enum/GainProtocolCardReason'
+import CampaignOption from '@/services/enum/CampaignOption'
 
 export const useStateStore = defineStore(`${name}.state`, {
   state: () => {
@@ -27,6 +28,7 @@ export const useStateStore = defineStore(`${name}.state`, {
     resetGame() {
       this.cycles = []
       this.setup.initialBotCardDecks = undefined
+      this.setup.initialBotTechnologies = undefined
     },
     storeCycle(cycle : Cycle) {
       this.cycles = this.cycles.filter(item => item.cycle < cycle.cycle)
@@ -60,6 +62,8 @@ export interface State {
 export interface Setup {
   playerSetup: PlayerSetup
   initialBotCardDecks?: CardDeckPersistence[]
+  initialBotTechnologies?: TechnologiesPersistence[]
+  campaignOptions?: CampaignOption[]
   debugMode?: boolean
 }
 export interface PlayerSetup {

@@ -37,7 +37,14 @@ export default function getBotsActions(state: State, cycle: number, stateIndex: 
     // use initial card decks
     botsActions = (state.setup.initialBotCardDecks ?? [])
       .map(persistence => CardDeck.fromPersistence(persistence))
-      .map((cardDeck,index) => new BotActions(index+1, cardDeck, new Technologies()))      
+      .map((cardDeck,index) => {
+        let technologies = new Technologies()
+        const initialTechnologies = state.setup.initialBotTechnologies?.[index]
+        if (initialTechnologies) {
+          technologies = Technologies.fromPersistence(initialTechnologies)
+        }
+        return new BotActions(index+1, cardDeck, technologies)
+      })
   }
   return botsActions
 }

@@ -3,6 +3,7 @@ import mockCycle from '../helper/mockCycle'
 import mockState from '../helper/mockState'
 import getBotsActions from '@/util/getBotsActions'
 import { BotActionsPersistence, CardDeckPersistence } from '@/store/state'
+import Technology from '@/services/enum/Technology'
 
 describe('util/getBotsActions', () => {
   it('cardDeck', () => {
@@ -42,7 +43,12 @@ describe('util/getBotsActions', () => {
     initialBotCardDecks: [
       dck(2, [4,6], []),
       dck(8, [10], [])
+    ],
+    initialBotTechnologies: [
+      {civil:[Technology.LEVEL_2],military:[]},
+      {civil:[],military:[]}
     ]})
+
     // current cycle
     expect(getBotsActions(state, 1, 111 /* turn 4, bot 1, action 1 */)[0].cardDeck.toPersistence()).to.eql(dck(4,[],[3,2,1],2))
     expect(getBotsActions(state, 1, 81  /* turn 3, bot 1, action 1 */)[0].cardDeck.toPersistence()).to.eql(dck(3,[4],[2,1]))
@@ -63,7 +69,9 @@ describe('util/getBotsActions', () => {
     expect(cardDeckNewCycle.reserve).to.eql([3])
     // initial
     expect(getBotsActions(state, 1, 10  /* turn 1, player 1 */)[0].cardDeck.toPersistence()).to.eql(dck(2, [4,6], []))
+    expect(getBotsActions(state, 1, 10  /* turn 1, player 1 */)[0].technologies.toPersistence()).to.eql({civil:[Technology.LEVEL_2],military:[]})
     expect(getBotsActions(state, 1, 10  /* turn 1, player 1 */)[1].cardDeck.toPersistence()).to.eql(dck(8, [10], []))
+    expect(getBotsActions(state, 1, 10  /* turn 1, player 1 */)[1].technologies.toPersistence()).to.eql({civil:[],military:[]})
   })
 })
 
