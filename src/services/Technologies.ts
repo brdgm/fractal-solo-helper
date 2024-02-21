@@ -1,5 +1,6 @@
 import { TechnologiesPersistence } from '@/store/state'
 import Technology from './enum/Technology'
+import Action from './enum/Action'
 
 /**
  * Collection of civil and military technologies.
@@ -36,6 +37,19 @@ export default class Technologies {
 
   public addMilitary(technology: Technology) {
     this._military.push(technology)
+  }
+
+  public add(technologyAction: Action, technology: Technology) {
+    switch (technologyAction) {
+      case Action.RESEARCH_CIVIL:
+        this.addCivil(technology)
+        break
+      case Action.RESEARCH_MILITARY:
+        this.addMilitary(technology)
+        break
+      default:
+        throw new Error(`Invalid technology action: ${technologyAction}`)
+    }
   }
 
   /**

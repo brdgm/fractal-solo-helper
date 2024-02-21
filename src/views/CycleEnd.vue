@@ -1,5 +1,5 @@
 <template>
-  <SideBar :navigationState="navigationState"/>
+  <SideBar :navigationState="navigationState" @technology="selectTechnology"/>
   <ContentLeftOfSidebar>
     <h1>{{t('cycleEnd.title')}}</h1>
 
@@ -29,7 +29,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useStateStore } from '@/store/state'
+import { CycleEnd, useStateStore } from '@/store/state'
 import FooterButtons from '@/components/structure/FooterButtons.vue'
 import { useRoute } from 'vue-router'
 import NavigationState from '@/util/NavigationState'
@@ -40,6 +40,8 @@ import getWatcherPlayer from '@/util/getWatcherPlayer'
 import Faction from '@/services/enum/Faction'
 import getBotFaction from '@/util/getBotFaction'
 import ContentLeftOfSidebar from '@/components/cycle/ContentLeftOfSidebar.vue'
+import Technology from '@/services/enum/Technology'
+import Action from '@/services/enum/Action'
 
 export default defineComponent({
   name: 'CycleEnd',
@@ -58,6 +60,12 @@ export default defineComponent({
     const { cycle } = navigationState
     return { t, state, playerSetup, cycle, navigationState }
   },
+  data() {
+    return {
+      selectedTechnology: [] as (Technology|undefined)[],
+      technologyAction: [] as (Action|undefined)[]
+    }
+  },
   computed: {
     backButtonRouteTo() : string {
       return `/cycle/${this.cycle}/conflict`
@@ -71,6 +79,20 @@ export default defineComponent({
   },
   methods: {
     next() : void {
+      // check for selected technologies from colonization bonus
+      for (const botActions of this.navigationState.botsActions) {
+        const selectedTechnology = this.selectedTechnology[botActions.bot-1]
+        const technologyAction = this.technologyAction[botActions.bot-1]
+        if (selectedTechnology && technologyAction) {
+          botActions.technologies.add(technologyAction, selectedTechnology)
+        }
+      }
+      // store conflict phase
+      const cycleEnd : CycleEnd = {
+        cycle: this.cycle,
+        botsActions: this.navigationState.botsActions.map(botActions => botActions.toPersistence())
+      }
+      this.state.storeCycleEnd(cycleEnd)
       if (this.cycle % 2 == 0) {
         this.$router.push(`/cycle/${this.cycle}/transition`)
       }
@@ -80,6 +102,10 @@ export default defineComponent({
     },
     getBotFaction(bot: number) : Faction {
       return getBotFaction(this.playerSetup, bot)
+    },
+    selectTechnology(bot:number, technology?: Technology, action?: Action) {
+      this.selectedTechnology[bot-1] = technology
+      this.technologyAction[bot-1] = action
     }
   }
 })
