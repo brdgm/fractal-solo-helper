@@ -70,12 +70,7 @@ export default defineComponent({
         const selectedTechnology = this.selectedTechnology[botActions.bot-1]
         const technologyAction = this.technologyAction[botActions.bot-1]
         if (selectedTechnology && technologyAction) {
-          if (technologyAction == Action.RESEARCH_CIVIL) {
-            botActions.technologies.addCivil(selectedTechnology)
-          }
-          else {
-            botActions.technologies.addMilitary(selectedTechnology)
-          }
+          botActions.technologies.add(technologyAction, selectedTechnology)
         }
       }
       // store turn
