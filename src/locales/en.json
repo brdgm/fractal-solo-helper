@@ -581,7 +581,7 @@
       "title": "VAX-117",
       "generalAbility": {
         "title": "Deconstructor",
-        "description": "When you develop a technology or discard an ::component/obstacle:: or ::component/anomaly::, place 1 ::research-token:: on the faction mat."
+        "description": "When you develop a technology or remove or banish an ::component/obstacle:: or ::component/anomaly::, place 1 ::research-token:: on the faction mat."
       },
       "civilTechnologyAbility": {
         "3": "Whenever you perform the Research action, gain 1&nbsp;::influence::.",
