@@ -515,7 +515,7 @@
       "generalAbility": {
         "title": "Native Inhabitant",
         "description": "Once per battle, when you inflict ::damage/retreat::, add the unit on the faction mat as part of your Bone Coin pool.",
-        "setup": "You start with 1 extra AI protocol card (automatically managed by the app). Also add 1 extra influence as colonization bonus for the starting productive colony."
+        "setup": "You start with 1 extra AI protocol card (automatically managed by the app)."
       },
       "civilTechnologyAbility": {
         "3": "When you perform a movement order, your <i>space units</i> move by +1 ::sector::.",
