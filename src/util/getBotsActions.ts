@@ -10,13 +10,17 @@ import { State } from '@/store/state'
  * @param cycle Cycle
  * @param stateIndex State index
  * @param checkConflictPhase Check for results of conflict phase first in this cycle
+ * @param checkCycleEnd Check for cycle end first in this cycle
  * @returns Bot actions for each bot
  */
 export default function getBotsActions(state: State, cycle: number, stateIndex: number,
-    checkConflictPhase: boolean = false) : BotActions[] {
+    checkConflictPhase: boolean = false, checkCycleEnd: boolean = false) : BotActions[] {
   // check current cycle
   const cycleData = state.cycles.find(item => item.cycle==cycle)
   if (cycleData) {
+    if (checkCycleEnd && cycleData.cycleEnd) {
+      return cycleData.cycleEnd.botsActions.map((persistence,index) => BotActions.fromPersistence(index+1,persistence))
+    }
     if (checkConflictPhase && cycleData.conflictPhase) {
       return cycleData.conflictPhase.botsActions.map((persistence,index) => BotActions.fromPersistence(index+1,persistence))
     }
@@ -30,7 +34,7 @@ export default function getBotsActions(state: State, cycle: number, stateIndex: 
   let botsActions
   if (cycle > 1) {
     // check previous cycle, check first for conflict phase in that cycle
-    botsActions = getBotsActions(state, cycle - 1, Number.MAX_VALUE, true)
+    botsActions = getBotsActions(state, cycle - 1, Number.MAX_VALUE, true, true)
     botsActions.forEach(botActions => botActions.cardDeck.prepareForNextCycle())
   }
   else {

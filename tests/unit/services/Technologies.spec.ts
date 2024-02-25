@@ -1,4 +1,5 @@
 import Technologies from '@/services/Technologies'
+import Action from '@/services/enum/Action'
 import Technology from '@/services/enum/Technology'
 import { expect } from 'chai'
 
@@ -9,8 +10,8 @@ describe('services/Technologies', () => {
     const civil = [Technology.LEVEL_1,Technology.LEVEL_1,Technology.LEVEL_5]
     const military = [Technology.LEVEL_2]
 
-    civil.forEach(item => underTest.addCivil(item))
-    military.forEach(item => underTest.addMilitary(item))
+    civil.forEach(item => underTest.add(Action.RESEARCH_CIVIL, item))
+    military.forEach(item => underTest.add(Action.RESEARCH_MILITARY, item))
 
     const persistence = underTest.toPersistence()
     expect(persistence.civil).to.eql(civil)

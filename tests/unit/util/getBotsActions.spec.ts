@@ -37,7 +37,8 @@ describe('util/getBotsActions', () => {
         {stateIndex: 61, cycle:2, turn:2, bot:2, action:1, botsActions:[botAct(dck(2,[1],[3,4],1)),  botAct(dck(6,[5],[7,8],1))]},
         {stateIndex: 62, cycle:2, turn:2, bot:2, action:2, botsActions:[botAct(dck(2,[1],[3,4],2)),  botAct(dck(6,[5],[7,8],2))]},
       ],
-      conflictPhase: {cycle:1, botsActions:[botAct(dck(2,[1],[3,4],3)),  botAct(dck(6,[5],[7,8],3))]}
+      conflictPhase: {cycle:1, botsActions:[botAct(dck(2,[1],[3,4],3)), botAct(dck(6,[5],[7,8],3))]},
+      cycleEnd: {cycle:1, botsActions:[botAct(dck(2,[1],[3,4],4)), botAct(dck(6,[5],[7,8],4))]}
       })
     ],
     initialBotCardDecks: [
@@ -61,12 +62,16 @@ describe('util/getBotsActions', () => {
     expect(cardDeckNewCycle.deck.length).to.eq(3)
     expect(cardDeckNewCycle.discard.length).to.eq(0)
     expect(cardDeckNewCycle.reserve).to.eql([2])
-    // previous cycle, conflict phase
+    // previous cycle, cycle end
     cardDeckNewCycle = getBotsActions(state, 3, 10  /* turn 1, player 1 */)[0].cardDeck.toPersistence()
     expect(cardDeckNewCycle.active).to.not.undefined
     expect(cardDeckNewCycle.deck.length).to.eq(3)
     expect(cardDeckNewCycle.discard.length).to.eq(0)
-    expect(cardDeckNewCycle.reserve).to.eql([3])
+    expect(cardDeckNewCycle.reserve).to.eql([4])
+    // current cycle, conflict phase
+    expect(getBotsActions(state, 2, 0, true)[0].cardDeck.toPersistence()).to.eql(dck(2,[1],[3,4],3))
+    // current cycle, cycle end
+    expect(getBotsActions(state, 2, 0, true, true)[0].cardDeck.toPersistence()).to.eql(dck(2,[1],[3,4],4))
     // initial
     expect(getBotsActions(state, 1, 10  /* turn 1, player 1 */)[0].cardDeck.toPersistence()).to.eql(dck(2, [4,6], []))
     expect(getBotsActions(state, 1, 10  /* turn 1, player 1 */)[0].technologies.toPersistence()).to.eql({civil:[Technology.LEVEL_2],military:[]})

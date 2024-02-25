@@ -37,7 +37,7 @@ export default class NavigationState {
     this.playerColor = getPlayerColor(playerSetup, this.player, this.bot)
     this.cycleCount = getCycleCount(state.setup)
 
-    this.botsActions = getBotsActions(state, this.cycle, this.stateIndex, isCheckConflictPhase(route))
+    this.botsActions = getBotsActions(state, this.cycle, this.stateIndex, isCheckConflictPhase(route), isCheckCycleEnd(route))
     if (this.bot > 0 && this.turn > 0) {
       this.botActions = this.botsActions.find(item => item.bot == this.bot)
       if (this.botActions && this.action == 1) {
@@ -64,14 +64,21 @@ function getStateIndex(route : RouteLocation) : number {
  * Bot actions are only persisted during player/bot turns and during conflict.
  */
 function isBotsActionReadonly(route : RouteLocation) : boolean {
-  return !isTurn(route) && !isCycleConflict(route)
+  return !isTurn(route) && !isCycleConflict(route) && !isCycleEnd(route)
 }
 
 /**
- * Cycle end and transition take place after the conflict phase.
+ * Cycle end takes place after the conflict phase.
  */
 function isCheckConflictPhase(route : RouteLocation) : boolean {
-  return isCycleEnd(route) || isCycleTransition(route)
+  return isCycleEnd(route)
+}
+
+/**
+ * Transition phase takes place after cycle end.
+ */
+function isCheckCycleEnd(route : RouteLocation) : boolean {
+  return isCycleTransition(route)
 }
 
 function isTurn(route : RouteLocation) {
