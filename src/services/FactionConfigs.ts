@@ -15,6 +15,7 @@ const factionConfigs : FactionConfig[] = [
     startingColony: ColonyType.IMPERIAL,
     startingUnits: [UnitType.INFANTRY,UnitType.INFANTRY,UnitType.LIGHTSHIP,UnitType.LIGHTSHIP],
     generalAbility: [Action.ADVANCE,Action.MOVEMENT_SINGLE],
+    generalAbilitySetup: true,
     civilTechnologyAbility: {
       3: [Action.ACTION_CARD,Action.LOSE_INFLUENCE_ACTION_CARD],
       6: [Action.RESEARCH_CIVIL,Action.RESEARCH_MILITARY],
@@ -38,6 +39,7 @@ const factionConfigs : FactionConfig[] = [
     startingColony: ColonyType.IMPERIAL,
     startingUnits: [UnitType.INFANTRY,UnitType.INFANTRY,UnitType.LIGHTSHIP,UnitType.LIGHTSHIP],
     generalAbility: [Action.ADVANCE,Action.MOVEMENT_SINGLE],
+    generalAbilitySetup: true,
     civilTechnologyAbility: {
       3: [Action.COLONIZE,Action.ADVANCE,Action.MOVEMENT_SINGLE],
       6: [Action.RESEARCH_CIVIL,Action.RESEARCH_MILITARY],
