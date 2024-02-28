@@ -28,7 +28,7 @@ const factionConfigs : FactionConfig[] = [
     generalAbility: [Action.ADVANCE,Action.MOVEMENT_SINGLE,Phase.PENDULUM_1],
     generalAbilitySetup: true,
     civilTechnologyAbility: {
-      3: [Action.COLONIZE],
+      3: [Action.COLONIZE,Action.ADVANCE,Action.MOVEMENT_SINGLE],
       6: [Action.RESEARCH_CIVIL,Action.RESEARCH_MILITARY],
       9: [Phase.TRANSITION_LAST]
     }
@@ -39,7 +39,7 @@ const factionConfigs : FactionConfig[] = [
     startingUnits: [UnitType.INFANTRY,UnitType.INFANTRY,UnitType.LIGHTSHIP,UnitType.LIGHTSHIP],
     generalAbility: [Action.ADVANCE,Action.MOVEMENT_SINGLE],
     civilTechnologyAbility: {
-      3: [Action.COLONIZE],
+      3: [Action.COLONIZE,Action.ADVANCE,Action.MOVEMENT_SINGLE],
       6: [Action.RESEARCH_CIVIL,Action.RESEARCH_MILITARY],
       9: [Action.RESEARCH_CIVIL,Action.RESEARCH_MILITARY]
     }
