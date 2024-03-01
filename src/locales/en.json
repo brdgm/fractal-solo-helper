@@ -447,7 +447,8 @@
       "title": "Borroka",
       "generalAbility": {
         "title": "Destroyer of Worlds",
-        "description": "When you remove ::component/obstacle::, ::component/anomaly::, ::component/living-galaxy::, ::component/living-storm:: or ::sector:: from the board, add a ::unit-type/lightship:: to the sector you removed it from or, if not possible, to the nearest sector."
+        "description": "When you remove ::component/obstacle::, ::component/anomaly::, ::component/living-galaxy::, ::component/living-storm:: or ::sector:: from the board, add a ::unit-type/lightship:: to the sector you removed it from or, if not possible, to the nearest sector.",
+        "setup": "Gain 1 influence as bonus for the first imperial colony."
       },
       "civilTechnologyAbility": {
         "3": "After you play an action card face-down, gain 1&nbsp;::influence::.",
@@ -492,7 +493,8 @@
       "title": "Exodian",
       "generalAbility": {
         "title": "Children of the Rebellion",
-        "description": "Anytime you remove ::component/obstacle:: or ::component/anomaly:: from a sector, add 1 ::unit-type/infantry:: to that sector and place 1 ::battle-medal:: on the faction mat."
+        "description": "Anytime you remove ::component/obstacle:: or ::component/anomaly:: from a sector, add 1 ::unit-type/infantry:: to that sector and place 1 ::battle-medal:: on the faction mat.",
+        "setup": "Gain 1 influence as bonus for the first imperial colony."
       },
       "civilTechnologyAbility": {
         "3": "When you colonize, you may place non-productive colonies in non-habitable sectors.",
