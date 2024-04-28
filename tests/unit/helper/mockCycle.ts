@@ -1,4 +1,4 @@
-import { ConflictPhase, Cycle, CycleEnd, Turn } from '@/store/state';
+import { ConflictPhase, Cycle, CycleEnd, Turn } from '@/store/state'
 
 export default function (params?: MockCycleParams) : Cycle {
   return {
