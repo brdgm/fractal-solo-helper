@@ -224,11 +224,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
-import ModalDialog from 'brdgm-commons/src/components/structure/ModalDialog.vue'
+import ModalDialog from '@brdgm/brdgm-commons/src/components/structure/ModalDialog.vue'
 import BehaviorAnswers from '@/services/BehaviorAnswers'
 import BehaviorYesNoButtons from './BehaviorYesNoButtons.vue'
 import ActionRulesCollapse from './ActionRulesCollapse.vue'
-import enableTabLinksInContent from 'brdgm-commons/src/util/tab/enableTabLinksInContent'
+import enableTabLinksInContent from '@brdgm/brdgm-commons/src/util/tab/enableTabLinksInContent'
 import resolveIconReferences from '@/util/resolveIconReferences'
 
 export default defineComponent({

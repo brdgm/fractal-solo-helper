@@ -12,7 +12,7 @@
 import { defineComponent } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Technology from '@/services/enum/Technology'
-import getAllEnumValues from 'brdgm-commons/src/util/enum/getAllEnumValues'
+import getAllEnumValues from '@brdgm/brdgm-commons/src/util/enum/getAllEnumValues'
 
 export default defineComponent({
   name: 'SelectTechnology',

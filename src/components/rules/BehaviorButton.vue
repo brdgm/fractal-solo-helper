@@ -8,7 +8,7 @@
 import { defineComponent, PropType } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Behavior from '@/services/enum/Behavior'
-import { showModalPreselectTab } from 'brdgm-commons/src/util/modal/showModal'
+import { showModalPreselectTab } from '@brdgm/brdgm-commons/src/util/modal/showModal'
 
 export default defineComponent({
   name: 'BehaviorButton',

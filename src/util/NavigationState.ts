@@ -1,6 +1,6 @@
 import { Setup, State } from '@/store/state'
 import { RouteLocation } from 'vue-router'
-import getIntRouteParam from 'brdgm-commons/src/util/router/getIntRouteParam'
+import getIntRouteParam from '@brdgm/brdgm-commons/src/util/router/getIntRouteParam'
 import PlayerColor from '@/services/enum/PlayerColor'
 import getPlayerColor from './getPlayerColor'
 import BotActions from '@/services/BotActions'
