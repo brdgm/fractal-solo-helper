@@ -162,7 +162,7 @@ export default defineComponent({
       return getBotFaction(this.state.setup.playerSetup, bot)
     },
     getFactionConfig(bot : number) : FactionConfig {
-      return FactionConfigs.get(this.getFaction(bot));
+      return FactionConfigs.get(this.getFaction(bot))
     },
     resolveIconReferences(text: string) : string {
       return resolveIconReferences(text)

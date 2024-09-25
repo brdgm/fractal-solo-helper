@@ -1,5 +1,5 @@
-import { inject } from "vue"
-import IconGlobResolver from "./IconGlobResolver"
+import { inject } from 'vue'
+import IconGlobResolver from './IconGlobResolver'
 
 const iconPattern = /::(([^:/]+?)\/)?([^:/]+?)::/g
 

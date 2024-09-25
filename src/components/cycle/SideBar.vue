@@ -24,7 +24,7 @@ import BehaviorModal from '../rules/BehaviorModal.vue'
 import SideBarBotInfo from './SideBarBotInfo.vue'
 import ProtocolCardsModal from './ProtocolCardsModal.vue'
 import PerformCivilResearchModal from './PerformCivilResearchModal.vue'
-import showModal from 'brdgm-commons/src/util/modal/showModal'
+import showModal from '@brdgm/brdgm-commons/src/util/modal/showModal'
 import Technology from '@/services/enum/Technology'
 import Action from '@/services/enum/Action'
 
