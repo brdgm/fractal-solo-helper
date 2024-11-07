@@ -1,0 +1,656 @@
+{
+  "gameTitle": "Fractal",
+  "home": {
+    "title": "Assistant Solo Fractal",
+    "play1": "Jouez à <a href='https://boardgamegeek.com/boardgame/299106/fractal' target='_blank' rel='noopener'><b>Fractal</b></a> contre des adversaires automatisés. Vous pouvez jouer en solo ou ajouter des adversaires supplémentaires pour des parties à 2 ou 3 joueurs.",
+    "play2": "Vous avez besoin de l'extension <a href='https://boardgamegeek.com/boardgameexpansion/401413/fractal-automata' target='_blank' rel='noopener'>Fractal: Automata</a>. Cette application remplace le protocole d'IA et les cartes de comportement de l'IA et aide à gérer les capacités de faction, les actions du pendule et les effets du développement civil et militaire. Les règles incluses dans l'application intègrent des clarifications et des errata provenant du <a href='https://boardgamegeek.com/thread/3209146/unofficial-errata-document' target='_blank' rel='noopener'>Document d'Errata Non Officiel</a>.",
+    "feedback": "Discussion et Retours :"
+  },
+  "setup": {
+    "title": "Mise en Place du Jeu",
+    "players": {
+      "title": "Joueur",
+      "playerColor": "Couleur de {player}",
+      "playerCount": "Joueurs Humains",
+      "playerCountItem": "{count} Joueur | {count} Joueurs",
+      "botCount": "Adversaires IA",
+      "botCountItem": "{count} Adversaire IA | {count} Adversaires IA"
+    },
+    "difficultyLevel": {
+      "title": "Niveau de Difficulté",
+      "easy": "Facile",
+      "hard": "Difficile"
+    },
+    "factionSelection": {
+      "title": "Faction"
+    },
+    "campaign": {
+      "title": "Campagne (Expérimental)",
+      "show": "Afficher",
+      "intro": "La campagne Beyond the Void n'est pas officiellement supportée par Automata (ni par cette application). Cependant, si vous souhaitez l'expérimenter, voici un sous-ensemble des options de campagne qui affectent directement l'application. Vous pouvez également les utiliser sans la campagne."
+    }
+  },
+  "setupBot": {
+    "title": "Configuration de l'Automata",
+    "factionMap": "Placez le plateau de faction à gauche du plateau de l'empire. Placez le jeton de faction correspondant à la couleur choisie sur le plateau de l'empire.",
+    "empireBoard": "Sur le plateau de l'empire Automata, placez les colonies correspondantes, le marqueur d'influence sur 1, et le marqueur de points de victoire sur 0.",
+    "tacticCards": "Mélangez les cartes de tactique de l'IA et certaines des cartes de tactique d'élite de l'IA pour former le PAQUET de tactiques de l'IA. Le reste des cartes de tactique d'élite de l'IA va dans ÉLITE. Les cartes non-élites remplacées sont mises en RÉSERVE. Placez chaque paquet dans son emplacement correspondant.",
+    "tacticCardDifficultyLevel": {
+      "1": "Mélangez toutes les cartes de tactique non-élites comme PAQUET. Aucune carte d'élite n'est incluse au départ.",
+      "2": "Remplacez 1 carte de tactique de l'IA au hasard par la carte de tactique d'élite du même nom et mélangez-la avec les autres cartes de tactique non-élites comme PAQUET.",
+      "3": "Remplacez 2 cartes de tactique de l'IA au hasard par les cartes de tactique d'élite du même nom et mélangez-les avec les autres cartes de tactique non-élites comme PAQUET."
+    },
+    "startingUnits": "Déployez la colonie et les unités de départ dans le secteur de départ.",
+    "singularity": "Mélangez les singularités suivantes et placez-en une face cachée sur le secteur Utopien :",
+    "singularityToken": {
+      "resonantMonolith": "Monolithe Résonant",
+      "openedRift": "Fissure Ouverte",
+      "forbiddenPact": "Le Pacte Interdit",
+      "voidThrone": "Trône du Vide",
+      "taintedCivilization": "Civilisation Corrompue"
+    },
+    "factionSetupAbilities": "Configuration de faction :",
+    "campaignOptions": "Configuration de la campagne :",
+    "importantInstructions": "Si c'est votre première fois, lisez les <a href='#rulesBehaviorModal' data-bs-toggle='modal'>concepts importants</a>. Vous pouvez accéder à ces informations plus tard via le bouton <i>Comportement de l'IA</i> dans la barre latérale.",
+    "technologiesMissing": "Veuillez sélectionner les technologies de départ civiles ou militaires pour les adversaires IA."
+  },
+  "cycleIncome": {
+    "title": "Revenu",
+    "startPlayer": "Déterminez le premier joueur pour ce cycle :",
+    "gainIncome": "Les joueurs humains gagnent des crédits et des ressources provenant des zones d'exploitation."
+  },
+  "turnPlayer": {
+    "takeTurn": "C'est à vous de jouer."
+  },
+  "turnBot": {
+    "action": "Action {action}",
+    "executed": "Terminé",
+    "notPossible": "Impossible",
+    "takeWatcherToken": "{faction} passe en premier et prend le jeton de veilleur ::watcher-token::."
+  },
+  "cycleConflict": {
+    "title": "Conflit",
+    "watcherPlayer": "Le joueur humain {player} est le veilleur ::watcher-token:: et recrute gratuitement 1 ::unit-type/infantry:: ou ::unit-type/lightship:: ou effectue un seul ordre de mouvement.",
+    "watcherBot": "{faction} est le veilleur ::watcher-token:: mais ne recrute ni ne se déplace.",
+    "placeMedals": "Placez une médaille de bataille dans chaque secteur contesté.",
+    "resolveBattles": "Résolvez les batailles dans chaque secteur avec des médailles de bataille.",
+    "resolveSieges": "Résolvez les sièges dans chaque secteur avec des colonies d'un joueur et des unités d'un autre.",
+    "claimMedals": "Réclamez les médailles.",
+    "militaryCapabilities": "Améliorations technologiques militaires débloquées :"
+  },
+  "cycleEnd": {
+    "title": "Fin du Cycle",
+    "prestigeCheck": "Vérification du prestige",
+    "utopianSectorReward": "Récompense du secteur Utopien",
+    "cleanup": "Nettoyage",
+    "depletionUpkeep": "Entretien de l'épuisement",
+    "determineFirstPlayer": "Déterminez le premier joueur",
+    "firstPlayerBot": "{faction} détermine le premier joueur en fonction de sa priorité de joueur.",
+    "advanceCycleMarker": "Avancez le marqueur de cycle"
+  },
+  "cycleTransition": {
+    "title": "Transition",
+    "scoreVictoryPoints": "Pendant l'Ère {age}, chaque condition de la carte objectif rapporte {age} ::point-victoire::.",
+    "objectiveSpecialization": "Si vous remplissez la condition d'un objectif (au moins) deux fois, gagnez 1 ::point-victoire:: supplémentaire.",
+    "botNoLimit": "Les points de victoire d'un adversaire IA ne sont pas limités à 10.",
+    "fallenGalaxy": {
+      "age2": "Vérifiez la condition de victoire pour l'Ère 2 de la carte objectif de l'Ère 3. Si elle n'est pas remplie, suivez les instructions et continuez avec l'Ère 3.",
+      "age3": "Vérifiez la condition de victoire pour l'Ère 3 de la carte objectif de l'Ère 3."
+    }
+  },
+  "endOfGame": {
+    "title": "Fin du Jeu",
+    "mostVPWins": "Le joueur avec le plus de points de victoire à la fin du dernier score gagne. Si deux ou plusieurs joueurs ont le même nombre de points de victoire, départagez-les ainsi :",
+    "tieBattleMedals": "Le plus de médailles de bataille",
+    "tieInfluence": "Le plus d'influence restante",
+    "tieCredits": "Le plus de crédits restants",
+    "tieUnitsColonies": "Le plus d'unités et de colonies restantes sur le plateau",
+    "tieFinally": "Si cela ne départage pas, tous les joueurs ex æquo gagnent la partie."
+  },
+  "sideBar": {
+    "cycle": "Cycle",
+    "turn": "Tour",
+    "priority": {
+      "unit": "Priorité des unités",
+      "colony": "Priorité des colonies",
+      "player": "Priorité des joueurs",
+      "livingStorm": "Mouvement de la Tempête Vivante"
+    },
+    "behavior": "Comportement"
+  },
+  "actionRulesCollapse": {
+    "showRules": "Afficher les règles",
+    "hideRules": "Cacher les règles"
+  },
+  "selectTechnology": {
+    "selectValue": "Veuillez sélectionner la valeur technologique de la carte choisie",
+    "pleaseSelect": "(Veuillez sélectionner)"
+  },
+  "protocolCardsModal": {
+    "title": "Protocole IA",
+    "occurs": "Se produit lorsque :",
+    "chooseReason": "Sélectionnez la raison :",
+    "numberCards": "Nombre de cartes :",
+    "card": "{count} carte de protocole | {count} cartes de protocole",
+    "gainCard": {
+      "title": "Gagner une carte de protocole",
+      "productive-colony": "Un jeton de colonie productive est retiré du plateau de l'empire (1 pour les deux premiers jetons, 2 pour le dernier jeton productif)",
+      "influence-6": "La première fois que l'influence atteint 6",
+      "influence-10": "La première fois que l'influence atteint 10"
+    },
+    "loseCard": {
+      "title": "Perdre une carte de protocole",
+      "productiveColony": "Un jeton de colonie productive est remis sur le plateau de l'empire"
+    },
+    "returnCard": {
+      "title": "Retourner une carte de protocole de la défausse au deck",
+      "vax117Pendulum": "Action pendulaire de la faction VAX-117"
+    }
+  },
+  "player": {
+    "human": "Joueur | Joueur {player}",
+    "bot": "Adversaire IA | Adversaire IA {bot}"
+  },
+  "rules": {
+    "concepts": {
+      "important": {
+        "title": "Concepts Importants",
+        "exploration": {
+          "title": "Exploration",
+          "description": "Lorsque les unités de l'Automate entrent dans un secteur avec un obstacle ou une anomalie, ceux-ci sont immédiatement écartés sans révéler ni résoudre les cartes. L'Automate ne déclenche pas non plus les zones d'exploitation des galaxies vivantes."
+        },
+        "cards": {
+          "title": "Cartes d'action et de technologie",
+          "description": "Lorsque l'Automate tire une carte d'action ou de technologie, celles-ci sont placées face cachée dans sa zone de jeu. Les effets sont sans importance, car seuls le type et le nombre de cartes comptent. Si l'Automate prend une carte d'action, la carte de remplacement est face cachée, et les joueurs ne peuvent la jouer que face cachée."
+        },
+        "training": {
+          "title": "Entraînement",
+          "description": "Lorsque l'Automate améliore une carte de tactique IA, tirez une tactique IA élite aléatoire de la réserve d'élite, puis remplacez la version de base de cette carte dans le deck (par exemple, l'Assaut Orbital Elite remplace l'Assaut Orbital)."
+        },
+        "lastBreath": {
+          "title": "Dernier souffle"
+        },
+        "holdTheLine": {
+          "title": "Tenir la ligne",
+          "description": "Si l'Automate essaie de déplacer des unités spatiales et qu'il y a plusieurs secteurs valides pour les déplacer, choisissez toujours celles qui sont le plus proches du secteur de départ de l'Automate."
+        },
+        "shortCircuit": {
+          "title": "Court-circuit",
+          "description": "Si l'Automate peut effectuer une action de deux manières différentes, et que le comportement IA ne peut pas aider à trancher, le joueur prioritaire sur la carte de protocole IA active décide."
+        },
+        "protocolCards": {
+          "title": "Cartes de Protocole IA",
+          "description": "L'IA commence avec un ensemble de cartes de protocole en fonction du niveau de difficulté choisi. Pour gagner ou perdre des cartes de protocole supplémentaires pendant la partie, utilisez le bouton <i>Protocole IA</i> dans la barre latérale."
+        },
+        "damageAllocation": {
+          "title": "Répartition des Dégâts",
+          "sufferingDamage": "<i>Subir des Dégâts</i> : Les unités de l'Automate absorbent toujours autant de dégâts que possible avec <i>Résister</i>, puis les dégâts sont répartis dans l'ordre suivant ::unit-type/infanterie::>::unit-type/léger vaisseau::>::unit-type/méca::>::unit-type/vaisseau de guerre::, en essayant de conserver au moins une unité de chaque type.",
+          "assignDamage": "<i>Attribuer des Dégâts</i> : Lorsque l'Automate cause ::dégâts/direct:: ou ::dégâts/massifs::, vous devez toujours essayer d'interrompre toute tactique active avec une initiative plus élevée ou de réduire la diversité des unités des joueurs. Dans d'autres cas, attribuez les dégâts dans l'ordre suivant ::unit-type/infanterie::>::unit-type/léger vaisseau::>::unit-type/méca::>::unit-type/vaisseau de guerre::."
+        }
+      },
+      "empireTracks": {
+        "title": "Pistes de l'Empire",
+        "colony": {
+          "0": "aucune",
+          "1": "1ère",
+          "2": "2ème",
+          "3": "3ème"
+        },
+        "header": {
+          "colony": "Colonie",
+          "bonus": "Bonus de Colonisation",
+          "effect": "Effet Permanent"
+        },
+        "imperial": {
+          "title": "Piste Impériale",
+          "bonus": {
+            "1": "Gagnez 1 influence.",
+            "2": "Gagnez 2 influences.",
+            "3": "Piochez des artefacts jusqu'à en trouver un valide."
+          },
+          "effect": {
+            "0": "Exécutez 2 ordres de mouvement lorsque vous progressez.",
+            "1": "Exécutez 3 ordres de mouvement lorsque vous progressez.",
+            "2": "Exécutez 3 ordres de mouvement lorsque vous progressez.",
+            "3": "Exécutez 5 ordres de mouvement lorsque vous progressez."
+          }
+        },
+        "productive": {
+          "title": "Piste Productive",
+          "effect": {
+            "0": "Aucun effet.",
+            "1": "Gagnez 1 carte de protocole IA (via le bouton <i>Protocole IA</i> dans la barre latérale).",
+            "2": "Gagnez 1 carte de protocole IA (via le bouton <i>Protocole IA</i> dans la barre latérale).",
+            "3": "Gagnez 2 cartes de protocole IA (via le bouton <i>Protocole IA</i> dans la barre latérale)."
+          }
+        },
+        "scientific": {
+          "title": "Piste Scientifique",
+          "bonus": {
+            "2": "Développez immédiatement une technologie civile.",
+            "3": "Piochez des artefacts jusqu'à en trouver un valide."
+          },
+          "effect": {
+            "0": "Développez des technologies coûtant 1 lorsque vous effectuez une recherche. Déplacez-vous d'un secteur par ordre de mouvement lorsque vous progressez.",
+            "1": "Développez des technologies coûtant 2 ou moins lorsque vous effectuez une recherche. Déplacez-vous de 2 secteurs par ordre de mouvement lorsque vous progressez.",
+            "2": "Développez des technologies coûtant 5 ou moins lorsque vous effectuez une recherche. Déplacez-vous de 2 secteurs par ordre de mouvement lorsque vous progressez.",
+            "3": "Développez des technologies coûtant 7 ou moins lorsque vous effectuez une recherche. Déplacez-vous de 3 secteurs par ordre de mouvement lorsque vous progressez."
+          }
+        },
+        "military": {
+          "title": "Piste Militaire",
+          "bonus": {
+            "2": "Ajoutez 1 tactique IA élite au deck (remplacez la tactique non-élite) et mélangez le deck.",
+            "3": "Ajoutez 1 tactique IA élite au deck (remplacez la tactique non-élite) et mélangez le deck."
+          },
+          "effect": {
+            "0": "Recrutez 1 infanterie et 1 léger vaisseau lorsque vous recrutez.",
+            "1": "Recrutez 1 méca et 1 léger vaisseau lorsque vous recrutez. Si cela n'est pas possible, utilisez l'option immédiatement à gauche sur la piste.",
+            "2": "Recrutez 1 méca et 1 vaisseau de guerre lorsque vous recrutez. Si cela n'est pas possible, utilisez l'option immédiatement à gauche sur la piste.",
+            "3": "Recrutez 2 méca et 1 vaisseau de guerre lorsque vous recrutez. Si cela n'est pas possible, utilisez l'option immédiatement à gauche sur la piste."
+          }
+        }
+      },
+      "behavior": {
+        "title": "Comportement de l'IA",
+        "victory": {
+          "title": "Victoire",
+          "recruit": {
+            "summary": "Ajoutez des unités à une <i>colonie d'Automata assiégée</i> ou, s'il n'y en a pas, à la <i>colonie la plus proche du secteur Utopien</i>.",
+            "description": "Si une colonie d'Automata est assiégée et que l'Automata ne contrôle pas le secteur, ajoutez les unités à cet endroit. Sinon, ajoutez les unités à la colonie la plus proche du secteur Utopien. En cas d'égalité, vérifiez la priorité des colonies pour déterminer quelle colonie renforcer."
+          },
+          "advanceInteractive": {
+            "controllingUtopian": "L'Automata contrôle-t-il le secteur Utopien ?",
+            "scoringSector": "Déplacez-vous vers un secteur à marquer, en suivant cette priorité : <i>Mystérieux > Biodiversité > Aride</i>.",
+            "scoringNoValidTarget": "<b>Aucune cible valide :</b> <a href='#tablink-behavior-aggressive{botSuffix}' data-custom-toggle='tab'>Comportement agressif de l'IA</a>.",
+            "utopianInRange": "Le secteur Utopien est-il à portée ?",
+            "moveToUtopian": "Déplacez-vous vers le secteur Utopien.",
+            "switchDefensive": "<a href='#tablink-behavior-defensive{botSuffix}' data-custom-toggle='tab'>Comportement défensif de l'IA</a>."
+          },
+          "advance": {
+            "priorityUtopian": "La priorité est de prendre le contrôle du secteur Utopien. Avant chaque mouvement déterminé par la piste impériale, l'Automata vérifie s'il contrôle le secteur Utopien.",
+            "scoringFocus": "Si c'est le cas, l'Automata se concentre sur le gain de points de victoire en remplissant des objectifs nécessitant le contrôle de secteurs. L'Automata vérifie les types de secteurs sur les cartes d'objectifs et tente de contrôler les secteurs à portée.",
+            "scoringTie": "En cas d'égalité, l'Automata priorise les secteurs dans cet ordre : <i>Mystérieux > Biodiversité > Aride</i>.",
+            "scoringNoValidTarget": "S'il n'y a pas de cible valide, l'Automata déclenche le <a href='#tablink-behavior-aggressive{botSuffix}' data-custom-toggle='tab'>Comportement agressif de l'IA</a>.",
+            "switchDefensive": "Si l'Automata ne contrôle pas le secteur Utopien, il déplace ses unités vers celui-ci. Si le secteur Utopien n'est pas à portée, il déclenche le <a href='#tablink-behavior-defensive{botSuffix}' data-custom-toggle='tab'>Comportement défensif</a> à la place."
+          }
+        },
+        "defensive": {
+          "title": "Défensif",
+          "recruit": {
+            "summary": "Ajoutez des unités à une <b>colonie d'Automata assiégée</b> ou, s'il n'y en a pas, à la colonie <b>la plus proche du plus grand nombre d'unités ennemies</b>.",
+            "description": "Si une colonie d'Automata est assiégée et que l'Automata ne contrôle pas le secteur, ajoutez les unités à cet endroit. Sinon, ajoutez les unités à la colonie la plus proche du plus grand nombre d'unités ennemies. En cas d'égalité, vérifiez la priorité des unités et renforcez la colonie sous la menace des unités les plus prioritaires."
+          },
+          "advanceInteractive": {
+            "besiegedColonies": "Y a-t-il des colonies assiégées qui ne sont pas sous le contrôle de l'Automata à portée ?",
+            "defendClosestColony": "Déplacez-vous pour défendre la colonie la plus proche.",
+            "defendNoValidTarget": "<b>Aucune cible valide :</b> <a href='#tablink-behavior-aggressive{botSuffix}' data-custom-toggle='tab'>Comportement agressif de l'IA</a>.",
+            "enemiesInRange": "Y a-t-il des unités spatiales ennemies actuellement non immobilisées à portée ?<br/>",
+            "moveToClosestEnemy": "Déplacez-vous vers les unités spatiales ennemies non immobilisées les plus proches.",
+            "switchExpansive": "<a href='#tablink-behavior-expansive{botSuffix}' data-custom-toggle='tab'>Comportement expansif de l'IA</a>."
+          },
+          "advance": {
+            "priorityReinforce": "La priorité de l'Automata est de renforcer ses colonies assiégées. Avant chaque mouvement, vérifiez si des colonies d'Automata à portée contiennent plus d'unités ennemies que celles de l'Automata.",
+            "moveReinforce": "Si c'est le cas, déplacez-y des <i>unités spatiales</i>, transportant le maximum d'unités terrestres pour renforcer le secteur. Si plusieurs colonies sont assiégées, choisissez la plus proche et, en cas d'égalité, la plus prioritaire. Si plusieurs unités spatiales sont à portée, utilisez la règle <a href='#tablink-important-concepts{botSuffix}' data-custom-toggle='tab'>Tenir la ligne</a> pour départager. Si des colonies sont assiégées mais que l'Automata ne peut pas déplacer ses unités pour défendre le secteur, il déclenche le <a href='#tablink-behavior-aggressive{botSuffix}' data-custom-toggle='tab'>Comportement agressif de l'IA</a> à la place.",
+            "opponentSpaceUnits": "S'il n'y a pas de colonies assiégées, vérifiez si l'adversaire a des <i>unités spatiales</i> à portée qui ne sont pas immobilisées, c'est-à-dire non engagées avec les unités spatiales de l'Automata (ou d'un autre adversaire). Si c'est le cas, déplacez les unités de l'Automata les plus proches pour les engager.",
+            "severalUnits": "Si plusieurs unités sont à portée, choisissez les unités prioritaires. Si plusieurs unités d'Automata peuvent engager, utilisez les unités prioritaires pour déterminer lesquelles se déplacent.",
+            "switchExpansive": "Enfin, si aucune option n'est disponible, l'Automata déclenche le <a href='#tablink-behavior-expansive{botSuffix}' data-custom-toggle='tab'>Comportement expansif</a> à la place."
+          }
+        },
+        "aggressive": {
+          "title": "Agressif",
+          "recruit": {
+            "summary": "Ajoutez des unités à la colonie <b>la plus proche du plus grand nombre de colonies ennemies</b>.",
+            "description": "Ajoutez des unités à la colonie d'Automata la plus proche du plus grand nombre de colonies ennemies. En cas d'égalité, vérifiez la priorité des colonies."
+          },
+          "advanceInteractive": {
+            "enemyColoniesInRange": "Y a-t-il des colonies ennemies non contrôlées par l'Automata à portée ?",
+            "moveToEnemyColony": "Déplacez-vous vers la colonie ennemie la plus proche seulement si vous pouvez transporter au moins une unité terrestre.",
+            "aggressiveNoValidTarget": "<b>Aucune cible valide :</b> <a href='#tablink-behavior-defensive{botSuffix}' data-custom-toggle='tab'>Comportement défensif de l'IA</a>.",
+            "enemyUnitsInRange": "Y a-t-il des unités ennemies à portée ?",
+            "enforceContestedSectors": "Déplacez-vous pour renforcer les secteurs contestés qui ne sont pas sous le contrôle de l'Automata.",
+            "switchExpansive": "<a href='#tablink-behavior-expansive{botSuffix}' data-custom-toggle='tab'>Comportement expansif de l'IA</a>."
+          },
+          "advance": {
+            "priorityEnemyColonies": "La priorité est d'attaquer et d'assiéger les colonies ennemies. Avant chaque mouvement distinct, vérifiez s'il y a des colonies ennemies à portée des <i>unités spatiales</i> de l'Automate.",
+            "attackColony": "Si oui, déplacez des unités spatiales transportant le nombre maximal d'<i>unités terrestres</i> pour renforcer le secteur. Si plusieurs colonies sont à portée, choisissez par priorité. Si plusieurs unités de l'Automate sont à portée, sélectionnez les unités prioritaires. Utilisez la règle <a href='#tablink-important-concepts{botSuffix}' data-custom-toggle='tab'>Tenir la ligne</a> pour départager. Si les unités spatiales ne peuvent pas transporter d'<i>unités terrestres</i>, l'Automate déclenche le <a href='#tablink-behavior-defensive{botSuffix}' data-custom-toggle='tab'>comportement défensif</a> à la place.",
+            "contestedSector": "S'il n'y a pas de colonies ennemies à portée, vérifiez s'il y a un secteur contesté avec des unités de l'Automate à portée mais non sous son contrôle. Si oui, déplacez les unités Automate les plus proches pour renforcer le secteur.",
+            "prioritize": "Si plusieurs <i>unités spatiales</i> sont à portée, utilisez celle prioritaire. Si plusieurs secteurs sont à égalité, déplacez-vous vers celui contenant le plus d'unités prioritaires. En cas d'égalité, utilisez la règle <a href='#tablink-important-concepts{botSuffix}' data-custom-toggle='tab'>Tenir la ligne</a>.",
+            "switchExpansive": "Enfin, si aucune option n'est disponible, l'Automate déclenche le <a href='#tablink-behavior-expansive{botSuffix}' data-custom-toggle='tab'>comportement expansif</a> à la place."
+          }
+        },
+        "expansive": {
+          "title": "Expansif",
+          "recruit": {
+            "summary": "Ajoutez des unités à la colonie de l'Automate <b>la plus proche du plus grand nombre de secteurs qu'il peut coloniser ou envahir</b>.",
+            "description": "Ajoutez des unités à la colonie de l'Automate la plus proche des secteurs qu'il peut coloniser ou envahir. Si deux colonies sont à la même distance des secteurs colonisables, choisissez celle ayant le plus de secteurs colonisables à portée. En cas d'égalité, vérifiez la priorité de la colonie."
+          },
+          "advanceInteractive": {
+            "colonizableSectorInRange": "Pouvez-vous transporter des infanteries vers un secteur colonisable sans infanterie Automate ?",
+            "transportColonizableSector": "Transportez une infanterie vers un secteur colonisable.",
+            "enemySectorInRange": "Pouvez-vous transporter des infanteries vers un secteur avec une colonie ennemie ?",
+            "transportEnemySector": "Transportez des infanteries vers une colonie ennemie.",
+            "utopianOrReinforce": "Déplacez-vous vers le secteur utopique. Si ce n'est pas possible, renforcez les secteurs contestés à la place."
+          },
+          "advance": {
+            "priorityExpansion": "La priorité est de s'étendre sur le plateau pour être en position de coloniser de nouveaux secteurs. Avant chaque mouvement distinct, vérifiez si vous pouvez transporter des infanteries vers un secteur colonisable sans infanterie Automate.",
+            "transportColonizableSector": "Si vous le pouvez, déplacez une <i>unité spatiale</i> là-bas en transportant une infanterie. Si plusieurs secteurs colonisables sont à portée, utilisez la colonie prioritaire. Utilisez la règle <a href='#tablink-important-concepts{botSuffix}' data-custom-toggle='tab'>Tenir la ligne</a> pour départager.",
+            "enemySectorInRange": "S'il n'y a pas d'<i>unités spatiales</i> capables de transporter une infanterie à portée ou s'il n'y a pas de secteurs colonisables, déplacez les unités vers le secteur le plus proche avec des colonies ennemies. Si plusieurs options sont disponibles, utilisez la priorité de la colonie ou la règle <a href='#tablink-important-concepts{botSuffix}' data-custom-toggle='tab'>Tenir la ligne</a> pour départager.",
+            "utopianOrReinforce": "Enfin, s'il n'y a pas de secteurs colonisables ou de colonies ennemies à portée, déplacez-vous vers le secteur utopique même si l'Automate ne peut pas l'atteindre. Si ce n'est pas possible, renforcez les secteurs contestés à la place."
+          }
+        }
+      }
+    },
+    "action": {
+      "recruit": {
+        "title": "Recruter",
+        "addUnits": "Ajoutez des unités à un secteur colonisé par l'Automate, déterminé par le comportement d'IA actif <i>{behavior}</i> :",
+        "unitSelection": "L'emplacement le plus à droite visible sur la piste militaire détermine les unités recrutées. Si l'Automate n'a pas assez d'unités en réserve pour placer les unités indiquées, vérifiez la composition de l'emplacement immédiatement à gauche. Continuez jusqu'à trouver un ensemble valide d'unités.",
+        "singleSector": "Le recrutement se fait toujours dans un seul secteur.",
+        "notPossible": "Si l'Automate ne peut pas recruter les unités requises en totalité parce qu'il n'en a pas assez en réserve, l'action n'est pas possible."
+      },
+      "advance": {
+        "title": "Avancer",
+        "imperialTrack": "La piste impériale détermine combien d'ordres de mouvement l'Automate peut donner, c'est-à-dire combien d'unités spatiales peuvent se déplacer lors de l'action.",
+        "scienceTrack": "La piste scientifique détermine le nombre de secteurs qu'elles peuvent traverser.",
+        "behavior": "Pour chaque unité spatiale déplacée, vérifiez le comportement d'IA <i>{behavior}</i> pour déterminer comment elles doivent se déplacer. Ce processus doit être répété à chaque déplacement d'unité, pas seulement une fois."
+      },
+      "colonize": {
+        "title": "Coloniser",
+        "addColony": "Ajoutez une colonie dans un secteur colonisable contrôlé par l'Automate et contenant au moins une infanterie.",
+        "pickType": "Choisissez le type de colonie en fonction de la priorité actuelle de l'IA pour les colonies.",
+        "shortCircuit": "Si deux secteurs possibles ont la priorité pour la colonisation, le joueur humain le plus prioritaire décide.",
+        "productiveColony": "Si une nouvelle colonie productive est placée, obtenez une nouvelle carte de protocole IA. Cela peut être fait via le bouton <i>Protocole IA</i> dans la barre latérale."
+      },
+      "research-civil": {
+        "title": "Recherche (Civile)",
+        "type": "civil"
+      },
+      "research-military": {
+        "title": "Recherche (Militaire)",
+        "type": "militaire"
+      },
+      "research": {
+        "scienceTrack": "Vérifiez la piste scientifique sur le tableau de l'empire pour la carte avec le coût scientifique le plus élevé qui peut être développée.",
+        "chooseTech": "Sur le tableau technologique {type}, prenez une carte correspondant à ce coût.",
+        "chooseTechFallback": "S'il n'y a pas de carte avec ce coût, prenez une carte avec le coût immédiatement inférieur.",
+        "shortCircuit": "S'il y a plusieurs technologies correspondantes, le joueur humain le plus prioritaire décide."
+      },
+      "gain-influence": {
+        "title": "Gagner de l'influence",
+        "moveMarker": "Déplacez le marqueur d'influence d'un pas vers la droite sur le tableau de l'empire."
+      },
+      "lose-influence-action-card": {
+        "title": "Perdre de l'influence, Jouer une carte Action",
+        "moveMarker": "Déplacez le marqueur d'influence d'un pas vers la gauche sur le tableau de l'empire."
+      },
+      "movement-single": {
+        "title": "Mouvement unique",
+        "singleOrder": "L'Automate exécute un seul ordre de mouvement.",
+        "scienceTrack": "La piste scientifique détermine le nombre de secteurs qu'il peut traverser.",
+        "behavior": "Vérifiez le comportement d'IA <i>{behavior}</i> pour déterminer comment il doit se déplacer."
+      },
+      "living-storm-movement": {
+        "title": "Mouvement de la Tempête Vivante",
+        "moveStorm": "Déplacez la tempête vivante la plus proche du joueur prioritaire.",
+        "direction": {
+          "down-right": "Déplacez la tempête vers la droite ou vers le bas.",
+          "down-left": "Déplacez la tempête vers la gauche ou vers le bas.",
+          "up-left": "Déplacez la tempête vers la gauche ou vers le haut.",
+          "up-right": "Déplacez la tempête vers la droite ou vers le haut.",
+          "utopian-sector": "L'Automate essaie d'accéder au secteur Utopique ou de bloquer l'accès aux autres joueurs."
+        },
+        "orientation": {
+          "horizontal": "La position finale de l'icône de la tempête doit être horizontale.",
+          "vertical": "La position finale de l'icône de la tempête doit être verticale."
+        }
+      },
+      "action-card": {
+        "title": "Jouer une carte Action",
+        "playCard": "Jouez la carte action de l'emplacement {slot} de l'affichage des actions face cachée. Ignorez l'effet de la carte.",
+        "drawCard": "Une nouvelle carte action est immédiatement tirée dans l'affichage des actions et placée <i>face cachée</i>.",
+        "checkPendulum": "Vérifiez l'action pendulaire et déclenchez l'action applicable."
+      }
+    },
+    "conflict": {
+      "intro": "Les combats contre l'Automate sont similaires à ceux entre les joueurs, mais il utilise des cartes tactiques différentes.",
+      "revealTactic": "Lors de chaque tour de combat, révélez une tactique de l'IA comme les joueurs révèlent leurs propres tactiques. Lisez de haut en bas et appliquez le premier effet éligible sur la carte.",
+      "noMatch": "Si aucun des deux effets ne peut être déclenché, piochez une autre carte tactique de l'IA jusqu'à ce que vous puissiez activer un effet.",
+      "shuffleTactics": "Si l'Automate n'a plus de tactiques, mélangez la pile de défausse pour former un nouveau paquet. <b>Le paquet de tactiques de l'IA n'est pas mélangé entre les batailles.</b> Continuez à piocher des cartes jusqu'à épuisement du paquet.",
+      "initiative": {
+        "title": "Initiative",
+        "initiativeValue": "La valeur d'initiative est indiquée dans le coin supérieur gauche de chaque section. L'initiative de l'Automate fonctionne comme expliqué dans les règles de base, les égalités étant résolues simultanément."
+      },
+      "unitComposition": {
+        "title": "Composition des unités",
+        "leftSide": "Le côté gauche de chaque section indique la composition des unités requise dans le secteur pour déclencher l'effet.",
+        "redIcons": "Lorsque les icônes sont rouges, la composition est défensive et prend en compte les unités ennemies au lieu des unités de l'Automate. Ces tactiques bloquent les dégâts, fonctionnant de manière similaire aux tactiques de Défense Terrestre et de Défense Orbitale du paquet de cartes des joueurs."
+      },
+      "damage": {
+        "title": "Dégâts",
+        "rightSide": "Les icônes à droite de la flèche indiquent les dégâts. Lorsque la composition est défensive, ils sont affichés sous les icônes rouges.",
+        "order": "Les dégâts infligés sont résolus de gauche à droite."
+      },
+      "techUpgrade": {
+        "title": "Amélioration technologique",
+        "trigger": "Si le coût scientifique total de toutes les cartes de technologies militaires développées est atteint, l'Automate déclenche l'amélioration technologique, qui ajoute des dégâts ou des blocs supplémentaires."
+      },
+      "colonies": {
+        "title": "Colonies",
+        "lostColony": "Lorsqu'une colonie de l'Automate est envahie ou détruite, remettez-la sur son tableau d'empire.",
+        "productiveColony": "Si la colonie envahie ou détruite est une colonie productive, perdez une carte de protocole IA. Cela peut être fait via le bouton <i>Protocole IA</i> dans la barre latérale."
+      }
+    }
+  },
+  "faction": {
+    "borroka": {
+      "title": "Borroka",
+      "generalAbility": {
+        "title": "Destructeur de Mondes",
+        "description": "Lorsque vous retirez ::component/obstacle::, ::component/anomaly::, ::component/living-galaxy::, ::component/living-storm:: ou ::sector:: du plateau, ajoutez un ::unit-type/lightship:: au secteur d'où vous l'avez retiré, ou, si ce n'est pas possible, au secteur le plus proche.",
+        "setup": "Gagnez 1 influence en bonus pour la première colonie impériale."
+      },
+      "civilTechnologyAbility": {
+        "3": "Après avoir joué une carte action face cachée, gagnez 1&nbsp;::influence::.",
+        "6": "<i>Une fois par partie :</i> Piochez un ::artifact:: et appliquez son effet. S'il ne s'applique pas, améliorez une tactique à la place.",
+        "9": "Lorsque vous effectuez un ordre de mouvement, vos ::unit-type/lightship:: ignorent l'immobilisation."
+      },
+      "pendulum1": {
+        "title": "Faim d'entropie",
+        "condition": "::influence:: <= Opposants",
+        "description": "Infligez 1 ::damage/indirect:: dans chaque secteur contesté où se trouvent 2 de vos unités. S'il n'y a pas de secteurs valides, effectuez 2 ordres de mouvement à la place.<br/>Gagnez 1&nbsp;::influence::."
+      },
+      "pendulum2": {
+        "title": "Inertie",
+        "condition": "::influence:: > Opposants",
+        "description": "Bannissez une colonie non productive prioritaire de votre tableau d'empire.<br/>Perdez 2&nbsp;::influence::."
+      }
+    },
+    "delverar": {
+      "title": "Delverar",
+      "generalAbility": {
+        "title": "Serment Ancestral",
+        "description": "Chaque fois que vous retirez un ::component/obstacle:: ou un ::component/anomaly:: du plateau, placez-le sur le tapis de faction.",
+        "setup": "Piochez 1 ::artifact::."
+      },
+      "civilTechnologyAbility": {
+        "3": "Lorsque vous colonisez, vous pouvez placer des colonies non productives dans des secteurs non habitables.",
+        "6": "<i>Une fois par partie :</i> Piochez un ::artifact:: et appliquez son effet. S'il ne s'applique pas, améliorez une tactique à la place.",
+        "9": "À la fin de la partie, gagnez 1 point de victoire supplémentaire pour chaque condition d'objectif accomplie."
+      },
+      "pendulum1": {
+        "title": "Protecteur",
+        "condition": "::component/obstacle::/::component/anomaly:: sur le tapis de faction < 2",
+        "description": "Placez un ::component/obstacle:: sur le secteur vide le plus proche sans ::component/obstacle::, puis déplacez 1 ::unit-type/lightship:: vers le secteur le plus proche avec un ::component/obstacle:: ou un ::component/anomaly::."
+      },
+      "pendulum2": {
+        "title": "La Réunion",
+        "condition": "::component/obstacle::/::component/anomaly:: sur le tapis de faction >= 2",
+        "description": "Bannissez 2 ::component/obstacle::/::component/anomaly:: du tapis de faction, puis piochez 1 ::artifact::."
+      }
+    },
+    "exodian": {
+      "title": "Exodian",
+      "generalAbility": {
+        "title": "Enfants de la Rébellion",
+        "description": "Chaque fois que vous retirez un ::component/obstacle:: ou un ::component/anomaly:: d'un secteur, ajoutez 1 ::unit-type/infantry:: à ce secteur et placez 1 ::battle-medal:: sur le tapis de faction.",
+        "setup": "Gagnez 1 influence en bonus pour la première colonie impériale."
+      },
+      "civilTechnologyAbility": {
+        "3": "Lorsque vous colonisez, vous pouvez placer des colonies non productives dans des secteurs non habitables.",
+        "6": "<i>Une fois par partie :</i> Piochez un ::artifact:: et appliquez son effet. S'il ne s'applique pas, améliorez une tactique à la place.",
+        "9": "<i>Une fois par partie :</i> Placez 2 colonies non productives prioritaires différentes du tableau d'empire sur le tapis de faction (comptent pour le score)."
+      },
+      "pendulum1": {
+        "title": "Nouveau départ",
+        "condition": "::battle-medal:: < 3",
+        "description": "Améliorez une carte tactique.<br/>Gagnez 1 ::battle-medal::."
+      },
+      "pendulum2": {
+        "title": "Conclave électif",
+        "condition": "::battle-medal:: >= 3",
+        "description": "Déclenchez 2 bonus de colonisation révélés les plus à gauche du tableau d'empire. Si ce n'est pas possible, bannissez une colonie prioritaire de celui-ci.<br/>Perdez 2 ::battle-medal::."
+      }
+    },
+    "goria": {
+      "title": "Goria",
+      "generalAbility": {
+        "title": "Habitant natif",
+        "description": "Une fois par bataille, lorsque vous infligez ::damage/retreat::, ajoutez l'unité sur le tapis de faction en tant que partie de votre réserve de Pièces d'Os.",
+        "setup": "Vous commencez avec 1 carte de protocole IA supplémentaire (gérée automatiquement par l'application)."
+      },
+      "civilTechnologyAbility": {
+        "3": "Lorsque vous effectuez un ordre de mouvement, vos <i>unités spatiales</i> se déplacent de +1 ::sector::.",
+        "6": "<i>Une fois par partie :</i> Piochez un ::artifact:: et appliquez son effet. S'il ne s'applique pas, améliorez une tactique à la place.",
+        "9": "À la fin de la partie, gagnez 1 point de victoire supplémentaire pour chaque condition d'objectif accomplie."
+      },
+      "pendulum1": {
+        "title": "La Chasse",
+        "condition": "Pièces d'Os < 2",
+        "description": "Effectuez un ordre de mouvement vers le secteur le plus proche avec une ::unit-type/lightship:: ou une ::unit-type/infantry:: ennemie, puis ajoutez l'une de ces unités (prioritairement) à votre réserve de Pièces d'Os."
+      },
+      "pendulum2": {
+        "title": "Profit",
+        "condition": "Pièces d'Os >= 2",
+        "description": "Retirez 2 unités de la réserve de Pièces d'Os, puis bannissez une colonie non productive de votre tableau d'empire."
+      }
+    },
+    "saura": {
+      "title": "Saura",
+      "generalAbility": {
+        "title": "Ciel de Sang",
+        "description": "Chaque fois que vos <i>unités terrestres</i> sont retirées ou remplacées sur le plateau, gagnez 1&nbsp;::influence::."
+      },
+      "civilTechnologyAbility": {
+        "3": "Lorsque vous effectuez un ordre de mouvement, vos <i>unités spatiales</i> se déplacent de +1 ::sector::.",
+        "6": "<i>Une fois par partie :</i> Piochez un ::artifact:: et appliquez son effet. S'il ne s'applique pas, améliorez une tactique à la place.",
+        "9": "Lorsque vous effectuez un seul ordre de mouvement pendant votre tour, vos <i>unités spatiales</i> se déplacent de +1 ::sector::."
+      },
+      "pendulum1": {
+        "title": "Appel à la Guerre",
+        "condition": "::influence:: < 4",
+        "description": "Ajoutez 1 ::unit-type/lightship:: à un secteur avec vos <i>unités terrestres</i> le plus proche des colonies ennemies. Effectuez un ordre de mouvement vers la plus proche.<br/>Gagnez 1&nbsp;::influence::."
+      },
+      "pendulum2": {
+        "title": "Tyrannie",
+        "condition": "::influence:: >= 4",
+        "description": "Bannissez une colonie prioritaire non productive de votre tableau d'empire.<br/>Perdez 3&nbsp;::influence::."
+      }
+    },
+    "txingur": {
+      "title": "Txingur",
+      "generalAbility": {
+        "title": "L'Essaim",
+        "description": "Vous ne pouvez pas recruter de ::unit-type/infantry::. Chaque fois que vous effectuez l'action Avance, ajoutez 1 ::unit-type/infantry:: à un secteur avec vos unités, en suivant le comportement actuel de l'IA."
+      },
+      "civilTechnologyAbility": {
+        "3": "Vos ::unit-type/warship:: et ::unit-type/mech:: gagnent la capacité <i>Envahir</i>.",
+        "6": "<i>Une fois par partie :</i> Piochez un ::artifact:: et appliquez son effet. S'il ne s'applique pas, améliorez une tactique à la place.",
+        "9": "<i>Une fois par partie :</i> Placez 2 colonies prioritaires non productives différentes du tableau de l'empire sur le tapis de faction (elles comptent pour le score)."
+      },
+      "pendulum1": {
+        "title": "Collectif",
+        "condition": "::unit-type/infantry:: < 4",
+        "description": "Ajoutez 1 ::unit-type/infantry:: à chaque secteur contenant au moins 2 de vos unités."
+      },
+      "pendulum2": {
+        "title": "Métamorphose",
+        "condition": "::unit-type/infantry:: >= 4",
+        "description": "Remplacez 1 ::unit-type/infantry:: par l'unité spatiale la plus à droite visible sur votre piste militaire, puis retirez une autre ::unit-type/infantry:: pour améliorer une tactique à élite."
+      }
+    },
+    "vax-117": {
+      "title": "VAX-117",
+      "generalAbility": {
+        "title": "Déconstructeur",
+        "description": "Lorsque vous développez une technologie ou que vous retirez ou bannissez un ::component/obstacle:: ou une ::component/anomaly::, placez 1 ::research-token:: sur le tapis de faction."
+      },
+      "civilTechnologyAbility": {
+        "3": "Chaque fois que vous effectuez l'action Recherche, gagnez 1&nbsp;::influence::.",
+        "6": "<i>Une fois par partie :</i> Piochez un ::artifact:: et appliquez son effet. S'il ne s'applique pas, améliorez une tactique à la place.",
+        "9": "À la fin du jeu, gagnez 1 ::victory-point:: supplémentaire pour chaque condition d'objectif accomplie."
+      },
+      "pendulum1": {
+        "title": "Pirater",
+        "condition": "::research-token:: < 4",
+        "description": "Effectuez une action de Recherche. Pendant cette action, vous pouvez développer des cartes face cachée de l'emplacement technologique le plus à gauche."
+      },
+      "pendulum2": {
+        "title": "Ascension",
+        "condition": "::research-token:: >= 4",
+        "description": "Retournez 1 protocole IA de la pile de défausse au paquet, puis ajoutez 1 carte élite au paquet tactique.<br/>Retirez 3 ::research-token::."
+      }
+    }
+  },
+  "campaignOption": {
+    "forgotten-technology": {
+      "title": "Technologie Oubliée/Avancée Scientifique",
+      "description": "Action de Recherche gratuite au démarrage.",
+      "setup": "Dans l'ordre inverse du tour, chaque joueur effectue une action de Recherche gratuite. Ensuite, retournez toutes les cartes technologiques visibles face cachée."
+    },
+    "ruins-of-empire": {
+      "title": "Ruines de l'Empire",
+      "description": "Partie courte - Jouez 1 âge (2 cycles) et commencez avec 1 colonie productive supplémentaire.",
+      "setup": "Dans l'ordre du tour, chaque joueur place 1 ::colony-type/productive:: sur le secteur productif vide le plus proche, puis ajoute 1 ::unit-type/infantry:: et 1 ::unit-type/lightship:: à ce secteur. Les adversaires IA gagnent une carte de protocole supplémentaire, gérée par l'application."
+    },
+    "fallen-galaxy": {
+      "title": "Galaxie Déchue",
+      "description": "Partie longue - Jouez 3 âges (6 cycles) avec des objectifs et technologies supplémentaires.",
+      "setup": "Bannissez le tableau de cycle et utilisez le tableau de cycle de l'âge 3. Placez une carte d'objectif aléatoire de l'âge 3 face cachée près des autres cartes d'objectif. Mélangez les technologies de l'âge 3 et placez le paquet près du plateau."
+    }
+  },
+  "difficultyLevel": {
+    "1": "Normal",
+    "2": "Difficile",
+    "3": "Impossible"
+  },
+  "notfound": {
+    "title": "Non trouvé"
+  },
+  "action": {
+    "playGame": "Jouer",
+    "startGame": "Commencer le jeu",
+    "next": "Suivant",
+    "nextRound": "Prochain tour",
+    "abortGame": "Abandonner le jeu",
+    "abortGameConfirm": "Abandonner la partie en cours - êtes-vous sûr ?",
+    "endGame": "Terminer le jeu",
+    "endGameConfirm": "Terminer ce jeu et revenir à l'écran d'accueil - êtes-vous sûr ?",
+    "cancel": "Annuler",
+    "backToHome": "Retour à l'accueil",
+    "back": "Retour",
+    "close": "Fermer",
+    "pass": "Passer",
+    "reset": "Réinitialiser",
+    "yes": "Oui",
+    "no": "Non",
+    "ok": "OK"
+  },
+  "footer": {
+    "credits": "Crédits"
+  },
+  "serviceWorkerUpdatedRefresh": {
+    "title": "Actualiser l'application",
+    "notice": "L'application a été mise à jour - voulez-vous actualiser pour utiliser la dernière version ?"
+  }
+}
