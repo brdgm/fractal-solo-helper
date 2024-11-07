@@ -66,7 +66,7 @@ export default defineComponent({
   },
   emits: {
     technology: (_technology?: Technology, _technologyAction?: Action) => true,  // eslint-disable-line @typescript-eslint/no-unused-vars,
-    next: () => true  // eslint-disable-line @typescript-eslint/no-unused-vars,
+    next: () => true
   },
   setup() {
     const { t } = useI18n()    
