@@ -93,7 +93,7 @@ export default defineComponent({
       return Object.entries(FactionConfigs.get(this.botFaction).civilTechnologyAbility)
         .filter(([,actionOrPhases]) => (this.action && actionOrPhases.includes(this.action))
             || (this.phase && actionOrPhases.includes(this.phase)))
-        .map(([limit]) => parseInt(limit))
+        .map(([limit]) => Number.parseInt(limit))
         .filter(limit => limit <= this.civilTotalCost)
     }
   },
