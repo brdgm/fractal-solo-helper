@@ -95,7 +95,9 @@ const factionConfigs : FactionConfig[] = [
 ]
 
 const factionConfigsMap = new Map<Faction,FactionConfig>()
-factionConfigs.forEach(factionConfig => factionConfigsMap.set(factionConfig.faction, factionConfig))
+for (const factionConfig of factionConfigs) {
+  factionConfigsMap.set(factionConfig.faction, factionConfig)
+}
 
 export default {
 

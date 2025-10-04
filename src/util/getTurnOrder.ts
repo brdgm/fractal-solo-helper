@@ -19,7 +19,7 @@ export default function getTurnOrder(state: State, cycle: number, turn: number, 
 
   let invalidTurn = false
   for (let turnNo=1; turnNo<=turn+1; turnNo++) {
-    playerOrder.forEach(player => {
+    for (const player of playerOrder) {
       if (!playerHasPassedBeforeTurn(turns, cycle, turnNo, player)) {
         if (turnNo > MAX_TURN) {
           // not a valid cycle as not all have passed in time, return empty list of steps
@@ -32,7 +32,7 @@ export default function getTurnOrder(state: State, cycle: number, turn: number, 
           steps.push({cycle, turn:turnNo, bot:player.bot})
         }
       }
-    })
+    }
   }
   if (invalidTurn) {
     return []
