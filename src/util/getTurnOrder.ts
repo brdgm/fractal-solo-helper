@@ -9,7 +9,7 @@ import getPlayerOrder, { PlayerOrder } from './getPlayerOrder'
  * @param turn Current turn
  * @param startPlayer Start player
  */
-export default function(state: State, cycle: number, turn: number, startPlayer: number) : TurnOrder[] {
+export default function getTurnOrder(state: State, cycle: number, turn: number, startPlayer: number) : TurnOrder[] {
   const playerCount = state.setup.playerSetup.playerCount
   const botCount = state.setup.playerSetup.botCount
   const playerOrder = getPlayerOrder(playerCount, botCount, startPlayer)
