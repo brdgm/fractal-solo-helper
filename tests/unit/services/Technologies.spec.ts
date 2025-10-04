@@ -10,8 +10,12 @@ describe('services/Technologies', () => {
     const civil = [Technology.LEVEL_1,Technology.LEVEL_1,Technology.LEVEL_5]
     const military = [Technology.LEVEL_2]
 
-    civil.forEach(item => underTest.add(Action.RESEARCH_CIVIL, item))
-    military.forEach(item => underTest.add(Action.RESEARCH_MILITARY, item))
+    for (const item of civil) {
+      underTest.add(Action.RESEARCH_CIVIL, item)
+    }
+    for (const item of military) {
+      underTest.add(Action.RESEARCH_MILITARY, item)
+    }
 
     const persistence = underTest.toPersistence()
     expect(persistence.civil).to.eql(civil)

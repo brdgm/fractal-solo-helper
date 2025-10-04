@@ -102,7 +102,9 @@ export default class CardDeck {
       this._discard.push(this._active)
       this._active = undefined
     }
-    this._deck.forEach(card => this._discard.push(card))
+    for (const card of this._deck) {
+      this._discard.push(card)
+    }
     this._deck = []
     // shuffle discard as new deck
     this._deck = shuffle(this._discard)
