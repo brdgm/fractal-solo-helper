@@ -50,7 +50,7 @@ export default defineComponent({
   },
   methods: {
     updateDifficultyLevel(bot : number, event: Event) {
-      const level = parseInt((event.target as HTMLInputElement).value)
+      const level = Number.parseInt((event.target as HTMLInputElement).value)
       this.levels[bot-1] = level
       this.state.setup.playerSetup.botDifficultyLevels = this.levels.slice(0, this.botCount)
     }

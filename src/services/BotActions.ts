@@ -126,11 +126,11 @@ function toBotAction(cardAction: CardAction) : BotAction {
   }
 
   if (cardAction.actionCardSlot) {
-    items.forEach(item => {
+    for (const item of items) {
       if (item.actions.includes(Action.ACTION_CARD) || item.actions.includes(Action.LOSE_INFLUENCE_ACTION_CARD)) {
         item.actionCardSlot = cardAction.actionCardSlot
       }
-    })
+    }
   }
   return { items }
 }
@@ -143,12 +143,12 @@ function getCardActions(cardDeck: CardDeck) : CardAction[] {
   const actionCard = cardDeck.actionCard
   const supportCard = cardDeck.supportCard
   if (actionCard && supportCard) {
-    supportCard.triggerSlots.forEach(slot => {
+    for (const slot of supportCard.triggerSlots) {
       const action = actionCard.actions[slot - 1]
       if (action) {
         actions.push(action)
       }
-    })
+    }
   }
   return actions
 }

@@ -35,7 +35,9 @@ export default function getBotsActions(state: State, cycle: number, stateIndex: 
   if (cycle > 1) {
     // check previous cycle, check first for conflict phase in that cycle
     botsActions = getBotsActions(state, cycle - 1, Number.MAX_VALUE, true, true)
-    botsActions.forEach(botActions => botActions.cardDeck.prepareForNextCycle())
+    for (const botActions of botsActions) {
+      botActions.cardDeck.prepareForNextCycle()
+    }
   }
   else {
     // use initial card decks
